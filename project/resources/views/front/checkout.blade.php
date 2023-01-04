@@ -26,8 +26,9 @@
                @include('includes.form-error')
             </div>
          </div>
-         <form class="form checkout-form checkoutform" action="#" method="post" name="checkout" autocomplete="off">
+         <form class="form checkout-form checkoutform" action="" method="post" name="checkout">
             @csrf    
+            
             <div class="row mb-9">
                <div class="col-lg-7 pr-lg-4 mb-4">
                   <h3 class="title billing-title text-uppercase ls-10 pt-1 pb-3 mb-0">
@@ -361,7 +362,11 @@
 @endsection
 @section('scripts')
 <script type="text/javascript">
-    
+   var mainurl = "{{url('/')}}";
+   var gs      = {!! json_encode($gs) !!};
+   var langg    = {!! json_encode($langg) !!};
+ </script>
+<script type="text/javascript">
     loadShipping();
     
     function loadShipping(){
@@ -375,6 +380,8 @@
     }
     
    function shipments() {
+      // alert($("input[name='address']").val());
+
       $("#final-btn").prop("disabled", true);
       let street = country = state = city = zip = "";
       var shipping_service = '{{ old('shipping_service') }}';
@@ -392,8 +399,15 @@
          zip = $("input[name='zip']").val();
       }
 
+      // alert(street)
+      // alert(country)
+      // alert(state)
+      // alert(city)
+      // alert(zip)
+
       if(street != "" || country != "" || state != "" || city != "" || zip != ""){
          $("#preloader").show();
+         // alert("LOC");
          $.ajax({
                     type: "GET",
                     url:mainurl+"/checkout/get_ship",
@@ -463,6 +477,7 @@
    $(document).on("input",'input[name="zip"]',function(e){
        clearTimeout(timer);
         timer = setTimeout(function() {
+         // alert("kk");
             shipments(); 
         }, delay );
    });
@@ -560,7 +575,6 @@
    $('a.payment:first').addClass('active');
    $('.checkoutform').prop('action',$('a.payment:first').data('form'));
    $($('a.payment:first').attr('href')).load($('a.payment:first').data('href'));
-   alert("EDF");
       var show = $('a.payment:first').data('show');
       if(show != 'no') {
          $('.pay-area').removeClass('d-none');
@@ -677,7 +691,7 @@ ttotal = parseFloat(ttotal);
 $('#grandtotal').val(ttotal);
       
 })
-
+// let mainurl = "http://127.0.0.1:8000/checkout";
     $("#check-coupon-form").on('submit', function () {
         var val = $("#code").val();
         var total = $("#grandtotal").val();
@@ -791,7 +805,7 @@ ttotal = parseFloat(ttotal);
 var ck = 0;
 
    $('.checkoutform').on('submit',function(e){
-      alert("Submit");
+      // alert("Submit");
       if(ck == 0) {
          e.preventDefault();        
       $('#pills-step2-tab').removeClass('disabled');
@@ -860,6 +874,7 @@ var ck = 0;
    });
 
    $(document).on('click','#final-btn',function(){
+      // alert('ck');
       ck = 1;
    })
 

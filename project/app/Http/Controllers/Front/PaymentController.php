@@ -386,7 +386,7 @@ public function notify(Request $request){
     // Capcha Code Image
     private function  code_image()
     {
-        $actual_path = base_path() . '/';
+        $actual_path = public_path() . '/';
         $image = imagecreatetruecolor(200, 50);
         $background_color = imagecolorallocate($image, 255, 255, 255);
         imagefilledrectangle($image,0,0,200,50,$background_color);

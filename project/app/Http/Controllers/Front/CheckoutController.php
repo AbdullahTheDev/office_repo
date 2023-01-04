@@ -48,6 +48,7 @@ class CheckoutController extends Controller
 
     public function calcShipping(Request $request)
     {
+        // phpinfo();
         // $oldCart = Session::get('cart');
         // $cart = new Cart($oldCart);
         // $products = $cart->items;
@@ -67,7 +68,7 @@ class CheckoutController extends Controller
 
         //version
         $rateRequest->Version->ServiceId = 'crs';
-        $rateRequest->Version->Major = 31;
+        $rateRequest->Version->Major = 24;
         $rateRequest->Version->Minor = 0;
         $rateRequest->Version->Intermediate = 0;
 
@@ -433,7 +434,9 @@ class CheckoutController extends Controller
 
     public function cashondelivery(Request $request)
     {
-        return redirect()->back()->with('success', 'ful');
+        // $rand = rand();
+        // return redirect()->back()->with('success', $rand);
+        // return redirect()->back()->with('success', 'ful');
         $u_id = $request->user_id;
         if ($request->pass_check) {
             $users = User::where('email', '=', $request->personal_email)->get();
@@ -497,9 +500,11 @@ class CheckoutController extends Controller
         //find last order
         // $last_order = Order::orderBy('id','desc')->first();
         $order = new Order;
+
+
         $success_url = action('Front\PaymentController@payreturn');
         $item_name = $gs->title . " Order";
-        $item_number = str_random(4) . time();
+        $item_number = rand() . time();
         $order['user_id'] = $u_id;
         $order['cart'] = utf8_encode(bzcompress(serialize($cart), 9));
         $order['totalQty'] = $request->totalQty;
@@ -513,7 +518,7 @@ class CheckoutController extends Controller
         $order['packing_cost'] = $request->packing_cost;
         $order['tax'] = $request->tax;
         $order['customer_phone'] = $request->phone;
-        $order['order_number'] = str_random(4) . time();
+        $order['order_number'] = rand() . time();
         $order['customer_address'] = $request->address;
         $order['customer_country'] = $request->customer_country;
         $order['customer_state'] = $request->state;
@@ -637,44 +642,44 @@ class CheckoutController extends Controller
 
         //Sending Email To Buyer
 
-        if ($gs->is_smtp == 1) {
-            $data = [
-                'to' => $request->email,
-                'type' => "new_order",
-                'cname' => $request->name,
-                'oamount' => "",
-                'aname' => "",
-                'aemail' => "",
-                'wtitle' => "",
-                'onumber' => $order->order_number,
-            ];
+        // if ($gs->is_smtp == 1) {
+        //     $data = [
+        //         'to' => $request->email,
+        //         'type' => "new_order",
+        //         'cname' => $request->name,
+        //         'oamount' => "",
+        //         'aname' => "",
+        //         'aemail' => "",
+        //         'wtitle' => "",
+        //         'onumber' => $order->order_number,
+        //     ];
 
-            $mailer = new GeniusMailer();
-            $mailer->sendAutoOrderMail($data, $order->id);
-        } else {
-            $to = $request->email;
-            $subject = "Your Order Placed!!";
-            $msg = "Hello " . $request->name . "!\nYou have placed a new order.\nYour order number is " . $order->order_number . ".Please wait for your delivery. \nThank you.";
-            $headers = "From: " . $gs->from_name . "<" . $gs->from_email . ">";
-            mail($to, $subject, $msg, $headers);
-        }
-        //Sending Email To Admin
-        if ($gs->is_smtp == 1) {
-            $data = [
-                'to' => Pagesetting::find(1)->contact_email,
-                'subject' => "New Order Recieved!!",
-                'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is " . $order->order_number . ".Please login to your panel to check. <br>Thank you.",
-            ];
+        //     $mailer = new GeniusMailer();
+        //     $mailer->sendAutoOrderMail($data, $order->id);
+        // } else {
+        //     $to = $request->email;
+        //     $subject = "Your Order Placed!!";
+        //     $msg = "Hello " . $request->name . "!\nYou have placed a new order.\nYour order number is " . $order->order_number . ".Please wait for your delivery. \nThank you.";
+        //     $headers = "From: " . $gs->from_name . "<" . $gs->from_email . ">";
+        //     mail($to, $subject, $msg, $headers);
+        // }
+        // //Sending Email To Admin
+        // if ($gs->is_smtp == 1) {
+        //     $data = [
+        //         'to' => Pagesetting::find(1)->contact_email,
+        //         'subject' => "New Order Recieved!!",
+        //         'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is " . $order->order_number . ".Please login to your panel to check. <br>Thank you.",
+        //     ];
 
-            $mailer = new GeniusMailer();
-            $mailer->sendCustomMail($data, $order->id);
-        } else {
-            $to = Pagesetting::find(1)->contact_email;
-            $subject = "New Order Recieved!!";
-            $msg = "Hello Admin!\nYour store has recieved a new order.\nOrder Number is " . $order->order_number . ".Please login to your panel to check. \nThank you.";
-            $headers = "From: " . $gs->from_name . "<" . $gs->from_email . ">";
-            mail($to, $subject, $msg, $headers);
-        }
+        //     $mailer = new GeniusMailer();
+        //     $mailer->sendCustomMail($data, $order->id);
+        // } else {
+        //     $to = Pagesetting::find(1)->contact_email;
+        //     $subject = "New Order Recieved!!";
+        //     $msg = "Hello Admin!\nYour store has recieved a new order.\nOrder Number is " . $order->order_number . ".Please login to your panel to check. \nThank you.";
+        //     $headers = "From: " . $gs->from_name . "<" . $gs->from_email . ">";
+        //     mail($to, $subject, $msg, $headers);
+        // }
 
         return redirect($success_url);
     }
@@ -759,7 +764,7 @@ class CheckoutController extends Controller
         $order = new Order;
         $success_url = action('Front\PaymentController@payreturn');
         $item_name = $settings->title . " Order";
-        $item_number = str_random(4) . time();
+        $item_number = rand() . time();
         $order['user_id'] = $request->user_id;
         $order['cart'] = utf8_encode(bzcompress(serialize($cart), 9));
         $order['totalQty'] = $request->totalQty;
@@ -773,7 +778,7 @@ class CheckoutController extends Controller
         $order['packing_cost'] = $request->packing_cost;
         $order['tax'] = $request->tax;
         $order['customer_phone'] = $request->phone;
-        $order['order_number'] = str_random(4) . time();
+        $order['order_number'] = rand() . time();
         $order['customer_address'] = $request->address;
         $order['customer_country'] = $request->customer_country;
         $order['customer_city'] = $request->city;
