@@ -23,7 +23,7 @@
                 <div class="left">
                     <h5 class="title">{{ __('Orders Pending!') }} </h5>
                     <span class="number">{{count($pending)}}</span>
-                    <a href="#" class="link">{{ __('View All') }}</a>
+                    <a href="{{url('admin/orders/pending')}}" class="link">{{ __('View All') }}</a>
                 </div>
                 <div class="right d-flex align-self-center">
                     <div class="icon">
@@ -37,7 +37,7 @@
                 <div class="left">
                     <h5 class="title">{{ __('Orders Procsessing!') }}</h5>
                     <span class="number">{{count($processing)}}</span>
-                    <a href="#" class="link">{{ __('View All') }}</a>
+                    <a href="{{url('admin/orders/processing')}}" class="link">{{ __('View All') }}</a>
                 </div>
                 <div class="right d-flex align-self-center">
                     <div class="icon">
@@ -51,7 +51,7 @@
                 <div class="left">
                     <h5 class="title">{{ __('Orders Completed!') }}</h5>
                     <span class="number">{{count($completed)}}</span>
-                    <a href="#" class="link">{{ __('View All') }}</a>
+                    <a href="{{url('admin/orders/completed')}}" class="link">{{ __('View All') }}</a>
                 </div>
                 <div class="right d-flex align-self-center">
                     <div class="icon">
@@ -65,7 +65,7 @@
                 <div class="left">
                     <h5 class="title">{{ __('Total Products!') }}</h5>
                     <span class="number">{{$products}}</span>
-                    <a href="#" class="link">{{ __('View All') }}</a>
+                    <a href="{{url('admin/products')}}" class="link">{{ __('View All') }}</a>
                 </div>
                 <div class="right d-flex align-self-center">
                     <div class="icon">
