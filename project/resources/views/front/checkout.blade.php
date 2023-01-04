@@ -560,6 +560,7 @@
    $('a.payment:first').addClass('active');
    $('.checkoutform').prop('action',$('a.payment:first').data('form'));
    $($('a.payment:first').attr('href')).load($('a.payment:first').data('href'));
+   alert("EDF");
       var show = $('a.payment:first').data('show');
       if(show != 'no') {
          $('.pay-area').removeClass('d-none');
@@ -790,6 +791,7 @@ ttotal = parseFloat(ttotal);
 var ck = 0;
 
    $('.checkoutform').on('submit',function(e){
+      alert("Submit");
       if(ck == 0) {
          e.preventDefault();        
       $('#pills-step2-tab').removeClass('disabled');
@@ -813,6 +815,9 @@ var ck = 0;
    });
 
 // Step 2 btn DONE
+// $('#final-btn').on('click', function(){
+//    alert('PRes');
+// })
 
    $('#allowGuest').on('click',function(){
       // $("#final-btn").prop("disabled", false);

@@ -112,7 +112,7 @@
                                  @endif
                             </div>
                             <hr class="product-divider">
-                            <form enctype="multipart/form-data" method="post" class="cart ext-cart-frm d-block">
+                            <form id="cat-prods-form" enctype="multipart/form-data" method="post" class="cart ext-cart-frm d-block">
                                  @if(!empty($productt->color))
                                 <div class="product-form product-variation-form product-color-swatch">
                                     <label>{{ $langg->lang89 }} :</label>
@@ -1073,5 +1073,34 @@
    	"itemCondition": "http://schema.org/{{ $productt->product_condition == 2 ? 'New' : 'Refurbished' }}Condition"
    }]
    }
+</script>
+@endsection
+@section('scripts')
+<script type="text/javascript">
+  $(".disp-prod2").change(function () {
+     $(".disp-prod1").val($(this).val());
+     $("#cat-prods-form")[0].submit();
+  });
+
+  $("#goto-page").change(function () {
+    let page = $(this).val();
+    let max = $(this).data("max");
+      if(page > max){
+        $(this).val(max);
+        page = max;
+      }
+     $("#cat-prods-form")[0].submit();
+  });
+
+  $(".layout-chng").click(function () {
+     $("#pge_layout").val($(this).data("layout"));
+     $("#cat-prods-form")[0].submit();
+  });
+
+  $(".filterPrice").click(function () {
+     $("#goto-page").val(1);
+     $("#cat-prods-form")[0].submit();
+  });
+  
 </script>
 @endsection

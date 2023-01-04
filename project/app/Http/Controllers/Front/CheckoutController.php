@@ -433,6 +433,7 @@ class CheckoutController extends Controller
 
     public function cashondelivery(Request $request)
     {
+        return redirect()->back()->with('success', 'ful');
         $u_id = $request->user_id;
         if ($request->pass_check) {
             $users = User::where('email', '=', $request->personal_email)->get();
