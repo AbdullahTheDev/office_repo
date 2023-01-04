@@ -25,6 +25,7 @@
                     <div class="row">
                       <div class="col-lg-6 col-md-6 col-sm-12 mt-5">
                         <h2>Sign In</h2>
+                        <img src="{{ asset('assets/images/capcha_code.png') }}" alt="capcha">
                         <form class="login mloginform signin-form" action="{{ route('user.login.submit') }}" method="post">
                                  {{ csrf_field() }}
                               

@@ -88,10 +88,10 @@ class LoginController extends Controller
     // Capcha Code Image
     private function  code_image()
     {
-        $actual_path = public_path() . '/';
-        $image = imagecreatetruecolor(200, 50);
-        $background_color = imagecolorallocate($image, 255, 255, 255);
-        imagefilledrectangle($image,0,0,200,50,$background_color);
+      $actual_path = public_path() . '/';
+      $image = imagecreatetruecolor(200, 50);
+      $background_color = imagecolorallocate($image, 255, 255, 255);
+      imagefilledrectangle($image,0,0,200,50,$background_color);
 
         $pixel = imagecolorallocate($image, 0,0,255);
         for($i=0;$i<500;$i++)
@@ -119,7 +119,7 @@ class LoginController extends Controller
             imagesetpixel($image,rand()%200,rand()%50,$pixels);
         }
         session(['captcha_string' => $word]);
-        imagepng($image, $actual_path."assets/images/capcha_code.png");
+
+        imagepng($image, $actual_path."assets/images/capcha_code.png"); 
     }
-    
 }
