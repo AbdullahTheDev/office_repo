@@ -11,6 +11,10 @@ Route::get('/clear', function(){
     return '<h1>All Cache cleared</h1>';
 });
 
+Route::get('sforget', function ($id) {
+    
+});
+
 // use Illuminate\Routing\Route;
 // use Illuminate\Support\Facades\Auth;
 
