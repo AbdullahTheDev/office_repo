@@ -78,9 +78,11 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
 
+        // return response()->json('hello World');
         //--- Logic Section
         $data = Order::findOrFail($id);
 
+        
         $input = $request->all();
         if ($data->status == "completed"){
 
@@ -105,47 +107,49 @@ class OrderController extends Controller
                 }
     
                 $gs = Generalsetting::findOrFail(1);
-                if($gs->is_smtp == 1)
-                {
-                    $maildata = [
-                        'to' => $data->customer_email,
-                        'subject' => 'Your order '.$data->order_number.' is Confirmed!',
-                        'body' => "Hello ".$data->customer_name.","."\n Thank you for shopping with us. We are looking forward to your next visit.",
-                    ];
+                // if($gs->is_smtp == 1)
+                // {
+                //     $maildata = [
+                //         'to' => $data->customer_email,
+                //         'subject' => 'Your order '.$data->order_number.' is Confirmed!',
+                //         'body' => "Hello ".$data->customer_name.","."\n Thank you for shopping with us. We are looking forward to your next visit.",
+                //     ];
     
-                    $mailer = new GeniusMailer();
-                    $mailer->sendOrderStatusMail($maildata);                
-                }
-                else
-                {
-                   $to = $data->customer_email;
-                   $subject = 'Your order '.$data->order_number.' is Confirmed!';
-                   $msg = "Hello ".$data->customer_name.","."\n Thank you for shopping with us. We are looking forward to your next visit.";
-                $headers = "From: ".$gs->from_name."<".$gs->from_email.">";
-                   mail($to,$subject,$msg,$headers);                
-                }
+                //     $mailer = new GeniusMailer();
+                //     $mailer->sendOrderStatusMail($maildata);                
+                // }
+                // else
+                // {
+                //    $to = $data->customer_email;
+                //    $subject = 'Your order '.$data->order_number.' is Confirmed!';
+                //    $msg = "Hello ".$data->customer_name.","."\n Thank you for shopping with us. We are looking forward to your next visit.";
+                // $headers = "From: ".$gs->from_name."<".$gs->from_email.">";
+                //    mail($to,$subject,$msg,$headers);                
+                // }
+                // return response()->json('Your order '.$data->order_number.' is Confirmed!');
             }
             if ($input['status'] == "declined"){
                 $gs = Generalsetting::findOrFail(1);
-                if($gs->is_smtp == 1)
-                {
-                    $maildata = [
-                        'to' => $data->customer_email,
-                        'subject' => 'Your order '.$data->order_number.' is Declined!',
-                        'body' => "Hello ".$data->customer_name.","."\n We are sorry for the inconvenience caused. We are looking forward to your next visit.",
-                    ];
-                    $mailer = new GeniusMailer();
-                    $mailer->sendOrderStatusMail($maildata);
-                }
-                else
-                {
-                   $to = $data->customer_email;
-                   $subject = 'Your order '.$data->order_number.' is Declined!';
-                   $msg = "Hello ".$data->customer_name.","."\n We are sorry for the inconvenience caused. We are looking forward to your next visit.";
-                   $headers = "From: ".$gs->from_name."<".$gs->from_email.">";
-                   mail($to,$subject,$msg,$headers);
-                }
+                // if($gs->is_smtp == 1)
+                // {
+                //     $maildata = [
+                //         'to' => $data->customer_email,
+                //         'subject' => 'Your order '.$data->order_number.' is Declined!',
+                //         'body' => "Hello ".$data->customer_name.","."\n We are sorry for the inconvenience caused. We are looking forward to your next visit.",
+                //     ];
+                //     $mailer = new GeniusMailer();
+                //     $mailer->sendOrderStatusMail($maildata);
+                // }
+                // else
+                // {
+                //    $to = $data->customer_email;
+                //    $subject = 'Your order '.$data->order_number.' is Declined!';
+                //    $msg = "Hello ".$data->customer_name.","."\n We are sorry for the inconvenience caused. We are looking forward to your next visit.";
+                //    $headers = "From: ".$gs->from_name."<".$gs->from_email.">";
+                //    mail($to,$subject,$msg,$headers);
+                // }
     
+                // return response()->json('Your order '.$data->order_number.' is Declined!');
             }
 
             $data->update($input);
