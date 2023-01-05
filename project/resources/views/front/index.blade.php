@@ -163,31 +163,31 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-1">
                             <label>Full Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="name" required/>
+                            <input type="text" placeholder="ex.John" class="form-control" name="name" required/>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-1">
                             <label>Email <span class="text-danger">*</span></label>
-                            <input type="email" class="form-control" name="email" required/>
+                            <input type="email" placeholder="ex.john@example.com" class="form-control" name="email" required/>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-1">
                             <label>Phone <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" name="phone" required/>
+                            <input type="number" placeholder="ex.12345" class="form-control" name="phone" required/>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-1">
                             <label>Company Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="company_name" required/>
+                            <input type="text" placeholder="ex.Company" class="form-control" name="company_name" required/>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-1">
                             <label>Part Number <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="part_number" required/>
+                            <input type="text" placeholder="ex.65892" class="form-control" name="part_number" required/>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-1">
                             <label>Target Price <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" name="target_price" required/>
+                            <input type="number" placeholder="ex.5400" class="form-control" name="target_price" required/>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-1">
                             <label>Quantity <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" name="qty" required/>
+                            <input type="number" placeholder="ex.10" class="form-control" name="qty" required/>
                         </div>
                     </div>
                     <p class="form-submit mt-2">
