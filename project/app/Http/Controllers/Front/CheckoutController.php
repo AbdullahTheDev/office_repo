@@ -642,44 +642,44 @@ class CheckoutController extends Controller
 
         //Sending Email To Buyer
 
-        // if ($gs->is_smtp == 1) {
-        //     $data = [
-        //         'to' => $request->email,
-        //         'type' => "new_order",
-        //         'cname' => $request->name,
-        //         'oamount' => "",
-        //         'aname' => "",
-        //         'aemail' => "",
-        //         'wtitle' => "",
-        //         'onumber' => $order->order_number,
-        //     ];
+        if ($gs->is_smtp == 1) {
+            $data = [
+                'to' => $request->email,
+                'type' => "new_order",
+                'cname' => $request->name,
+                'oamount' => "",
+                'aname' => "",
+                'aemail' => "",
+                'wtitle' => "",
+                'onumber' => $order->order_number,
+            ];
 
-        //     $mailer = new GeniusMailer();
-        //     $mailer->sendAutoOrderMail($data, $order->id);
-        // } else {
-        //     $to = $request->email;
-        //     $subject = "Your Order Placed!!";
-        //     $msg = "Hello " . $request->name . "!\nYou have placed a new order.\nYour order number is " . $order->order_number . ".Please wait for your delivery. \nThank you.";
-        //     $headers = "From: " . $gs->from_name . "<" . $gs->from_email . ">";
-        //     mail($to, $subject, $msg, $headers);
-        // }
-        // //Sending Email To Admin
-        // if ($gs->is_smtp == 1) {
-        //     $data = [
-        //         'to' => Pagesetting::find(1)->contact_email,
-        //         'subject' => "New Order Recieved!!",
-        //         'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is " . $order->order_number . ".Please login to your panel to check. <br>Thank you.",
-        //     ];
+            $mailer = new GeniusMailer();
+            $mailer->sendAutoOrderMail($data, $order->id);
+        } else {
+            $to = $request->email;
+            $subject = "Your Order Placed!!";
+            $msg = "Hello " . $request->name . "!\nYou have placed a new order.\nYour order number is " . $order->order_number . ".Please wait for your delivery. \nThank you.";
+            $headers = "From: " . $gs->from_name . "<" . $gs->from_email . ">";
+            mail($to, $subject, $msg, $headers);
+        }
+        //Sending Email To Admin
+        if ($gs->is_smtp == 1) {
+            $data = [
+                'to' => Pagesetting::find(1)->contact_email,
+                'subject' => "New Order Recieved!!",
+                'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is " . $order->order_number . ".Please login to your panel to check. <br>Thank you.",
+            ];
 
-        //     $mailer = new GeniusMailer();
-        //     $mailer->sendCustomMail($data, $order->id);
-        // } else {
-        //     $to = Pagesetting::find(1)->contact_email;
-        //     $subject = "New Order Recieved!!";
-        //     $msg = "Hello Admin!\nYour store has recieved a new order.\nOrder Number is " . $order->order_number . ".Please login to your panel to check. \nThank you.";
-        //     $headers = "From: " . $gs->from_name . "<" . $gs->from_email . ">";
-        //     mail($to, $subject, $msg, $headers);
-        // }
+            $mailer = new GeniusMailer();
+            $mailer->sendCustomMail($data, $order->id);
+        } else {
+            $to = Pagesetting::find(1)->contact_email;
+            $subject = "New Order Recieved!!";
+            $msg = "Hello Admin!\nYour store has recieved a new order.\nOrder Number is " . $order->order_number . ".Please login to your panel to check. \nThank you.";
+            $headers = "From: " . $gs->from_name . "<" . $gs->from_email . ">";
+            mail($to, $subject, $msg, $headers);
+        }
 
         return redirect($success_url);
     }

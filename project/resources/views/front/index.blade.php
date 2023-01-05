@@ -97,7 +97,7 @@
       @foreach($services as $service)
       <div class="icon-box icon-box-side icon-box-primary">
          <span class="icon-box-icon icon-shipping">
-         <img loading="lazy" src="{{ asset('assets/images/services') }}/{{ $service->photo }}" width="42" height="45" alt="services">
+         <img src="{{ asset('assets/images/services') }}/{{ $service->photo }}" width="42" height="45" alt="services">
          </span>
          <div class="icon-box-content">
             <h4 class="icon-box-title font-weight-bold mb-1">{{ $service->title }}</h4>

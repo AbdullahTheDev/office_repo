@@ -72,22 +72,22 @@ class LoginController extends Controller
         $admin->update($input);
       $subject = "Reset Password Request";
       $msg = "Your New Password is : ".$autopass;
-      // if($gs->is_smtp == 1)
-      // {
-      //     $data = [
-      //             'to' => $request->email,
-      //             'subject' => $subject,
-      //             'body' => $msg,
-      //     ];
+      if($gs->is_smtp == 1)
+      {
+          $data = [
+                  'to' => $request->email,
+                  'subject' => $subject,
+                  'body' => $msg,
+          ];
 
-      //     $mailer = new GeniusMailer();
-      //     $mailer->sendCustomMail($data);                
-      // }
-      // else
-      // {
-      //     $headers = "From: ".$gs->from_name."<".$gs->from_email.">";
-      //     mail($request->email,$subject,$msg,$headers);            
-      // }
+          $mailer = new GeniusMailer();
+          $mailer->sendCustomMail($data);                
+      }
+      else
+      {
+          $headers = "From: ".$gs->from_name."<".$gs->from_email.">";
+          mail($request->email,$subject,$msg,$headers);            
+      }
       return response()->json($autopass);
       return response()->json('Your Password Reseted Successfully. Please Check your email for new Password.' . $autopass);
       }
