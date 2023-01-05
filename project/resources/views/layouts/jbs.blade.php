@@ -22,7 +22,8 @@
 	<title>{{$productt->name}}</title>
 	@else
 	<meta name="keywords" content="{{ $seo->meta_keys }}">
-	<meta name="author" content="EezeSolutions">
+	<meta name="author" content="Abdullah">
+	<meta name="description" content="deals on drive provide best hardwares">
 	<title>{{$gs->title}}</title>
 	@endif
 	@yield('meta_tags')
@@ -78,7 +79,7 @@
 					{{csrf_field()}}
 					<div class="form-group">
 						<input type="email" name="email" placeholder="{{ $langg->lang741 }}" required="">
-						<button id="sub-btn" type="submit">{{ $langg->lang742 }}</button>
+						<button id="sub-btn" type="submit" aria-label="lang">{{ $langg->lang742 }}</button>
 					</div>
 				</form>
 			</div>
@@ -103,7 +104,7 @@
 			<!-- #content -->
 			<div class="container">
 				@if(!empty($brands))
-				<h2 class="title title-underline mb-4 ls-normal">Our Clients</h2>
+				<h2 class="title title-underline mb-4 ls-normal">Our Partners</h2>
 				<div class="owl-carousel owl-theme brands-wrapper mb-9 row gutter-no cols-xl-6 cols-lg-5 cols-md-4 cols-sm-3 cols-2" data-owl-options="{
 		                    'nav': false,
 		                    'dots': false,
@@ -129,7 +130,7 @@
 		                }">
 					@foreach($brands as $brand)
 					<div class="brand-col">
-						<a href="{{url('category?brand='.$brand->id)}}">
+						<a href="{{url('category?brand='.$brand->id)}}" aria-label="partners">
 							<figure class="brand-wrapper">
 								<img src="{{ asset('assets/images/partner/'.$brand->photo) }}" alt="{{ $brand->name }}" width="410" height="186" />
 							</figure>
@@ -184,7 +185,7 @@
 				@endif
 				<input type="hidden" id="search-param" name="post_type" value="product" />
 				<input type="text" class="form-control" name="search" autocomplete="off" placeholder="Search" required value="{{ request()->input('search') }}" />
-				<button class="btn btn-search" type="submit">
+				<button class="btn btn-search" aria-label="search" type="submit">
 					<i class="w-icon-search"></i>
 				</button>
 			</form>
@@ -217,7 +218,7 @@
 				<input type="hidden" name="maxprice" value="{{ request()->input('maxprice') }}">
 				@endif
 				<input type="text" class="form-control" name="search" autocomplete="off" placeholder="Search" required value="{{ request()->input('search') }}" />
-				<button class="btn btn-search" type="submit">
+				<button class="btn btn-search" aria-label="search" type="submit">
 					<i class="w-icon-search"></i>
 				</button>
 			</form>

@@ -4,8 +4,14 @@
    <div class="owl-carousel owl-theme owl-nav-inner owl-dot-inner owl-nav-lg gutter-no row cols-1"
       data-owl-options="{
       'nav': false,
-      'dots': true,
+      'dots': false,
+      'loop': true,
       'items': 1,
+      'autoplay':true,
+        'autoplayTimeout':2200,
+        'autoplaySpeed': 2200,
+        'autoplayHoverPause':true,
+        'slideTransition': 'linear',
       'responsive': {
       '1600': {
       'nav': true,
@@ -91,7 +97,7 @@
       @foreach($services as $service)
       <div class="icon-box icon-box-side icon-box-primary">
          <span class="icon-box-icon icon-shipping">
-         <img loading="lazy" src="{{ asset('assets/images/services') }}/{{ $service->photo }}" width="42" height="45">
+         <img loading="lazy" src="{{ asset('assets/images/services') }}/{{ $service->photo }}" width="42" height="45" alt="services">
          </span>
          <div class="icon-box-content">
             <h4 class="icon-box-title font-weight-bold mb-1">{{ $service->title }}</h4>
@@ -206,7 +212,7 @@
             <div class="tab tab-nav-boxed tab-nav-outline">
                 <ul class="nav nav-tabs active-underline" role="tablist">
                     @foreach($multiple_sections as $key => $section)
-                    <li class="nav-item mr-2 mb-2">
+                    <li role="tab" class="nav-item mr-2 mb-2">
                         <a class="nav-link br-sm font-size-md ls-normal {{ $key == 1 ? 'active' : '' }}" href="#tab{{ $key }}">{{ $section->heading }}</a>
                     </li>
                     @endforeach
@@ -371,7 +377,7 @@
    <div class="tab tab-nav-boxed tab-nav-outline">
         <ul class="nav nav-tabs" role="tablist">
             @foreach($multiple_sections as $key => $section)
-            <li class="nav-item mr-2 mb-2">
+            <li role="tab" class="nav-item mr-2 mb-2">
                 <a class="nav-link br-sm font-size-md ls-normal {{ $key == 7 ? 'active' : '' }}" href="#{{ $section->id }}{{ $key }}">{{ $section->heading }}</a>
             </li>
             @endforeach

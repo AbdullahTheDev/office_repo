@@ -50,7 +50,7 @@
                     <input type="hidden" id="search-param" name="post_type" value="product"/>
                     <input type="text" class="form-control" name="search" id="prod_name"
                         placeholder="Search for products" autocomplete="off" required  value="{{ request()->input('search') }}" />
-                    <button class="btn btn-search" type="submit"><i class="w-icon-search"></i>
+                    <button class="btn btn-search" aria-label="search" type="submit"><i class="w-icon-search"></i>
                     </button>
                     <div class="autocomplete">
                         <div id="myInputautocomplete-list" class="autocomplete-items">
@@ -60,7 +60,7 @@
             </div>
             <div class="header-right ml-4">
                 <div class="header-call d-xs-show d-lg-flex align-items-center">
-                    <a href="tel:#" class="w-icon-call"></a>
+                    <a href="tel:#" class="w-icon-call" aria-label="phone-num"></a>
                     <div class="call-info d-lg-show">
                         <h4 class="chat font-weight-normal font-size-md text-normal ls-normal text-light mb-0">
                             <a href="javascript:void(Tawk_API.toggle())" class="text-capitalize">Live Chat</a> or :</h4>
