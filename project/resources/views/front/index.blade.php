@@ -16,7 +16,7 @@
       @if($ps->slider == 1)
       @foreach($sliders as $data)
       <div class="banner banner-fixed intro-slide intro-slide1"
-         style="background-image: url({{ asset('assets/jbs') }}/images/slider/home-v1-background.jpg); background-color: #ebeef2;">
+         style="background-color: #020300;">
          <div class="container">
             <figure class="slide-image skrollable">
                <img src="{{ asset('assets/images/sliders') }}/{{ $data->photo }}" alt="Banner"
@@ -29,20 +29,20 @@
                   'name': 'fadeInRightShorter',
                   'duration': '1s',
                   'delay': '.2s'
-                  }" style="font-size: {{ $data->title_size }}; color: {{ $data->title_color }};">{{ $data->title_text }}
+                  }" style="font-size: {{ $data->title_size }} !important; color: {{ $data->title_color }} !important;">{{ $data->title_text }}
                </h5>
                <h3 class="banner-title font-weight-bolder ls-25 lh-1 slide-animate"
                   data-animation-options="{
                   'name': 'fadeInRightShorter',
                   'duration': '1s',
                   'delay': '.4s'
-                  }"style="font-size: {{ $data->subtitle_size }}; color: {{ $data->subtitle_color }};">{{ $data->subtitle_text }}
+                  }"style="font-size: {{ $data->subtitle_size }} !important; color: {{ $data->subtitle_color }} !important;">{{ $data->subtitle_text }}
                </h3>
                <p class="font-weight-normal text-default slide-animate" data-animation-options="{
                   'name': 'fadeInRightShorter',
                   'duration': '1s',
                   'delay': '.6s'
-                  }"style="font-size: {{ $data->details_size }}; color: {{ $data->details_color }};">{{ $data->details_text }}
+                  }"style="font-size: {{ $data->details_size }} !important; color: {{ $data->details_color }} !important;">{{ $data->details_text }}
                </p>
                <a href="javascript:void(0)"
                   class="btn btn-dark btn-outline btn-rounded btn-icon-right slide-animate"

@@ -53,7 +53,7 @@ class StaffController extends Controller
     {
         //--- Validation Section
         $rules = [
-               'photo'      => 'required|mimes:jpeg,jpg,png,svg',
+               'photo'      => 'required|mimes:jpeg,jpg,png,svg,webp',
                 ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -97,7 +97,7 @@ class StaffController extends Controller
         {
             $rules =
             [
-                'photo' => 'mimes:jpeg,jpg,png,svg',
+                'photo' => 'mimes:jpeg,jpg,png,svg,webp',
                 'email' => 'unique:admins,email,'.$id
             ];
 

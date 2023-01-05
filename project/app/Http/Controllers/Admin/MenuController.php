@@ -53,8 +53,8 @@ class MenuController extends Controller
         $rules = [
                'name'      => 'required|max:100',
                'category_id'      => 'required|integer|min:1',
-               'img_1'      => 'required|mimes:jpeg,jpg,png,svg',
-               'img_2'      => 'required|mimes:jpeg,jpg,png,svg'
+               'img_1'      => 'required|mimes:jpeg,jpg,png,svg,webp',
+               'img_2'      => 'required|mimes:jpeg,jpg,png,svg,webp'
                 ];
 
         $validator = Validator::make($request->all(), $rules);

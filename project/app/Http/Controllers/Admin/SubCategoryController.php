@@ -66,7 +66,7 @@ class SubCategoryController extends Controller
     {
         //--- Validation Section
         $rules = [
-            'image' => 'mimes:jpeg,jpg,png,svg',
+            'image' => 'mimes:jpeg,jpg,png,svg,webp',
             'slug' => 'unique:subcategories|regex:/^[a-zA-Z0-9\s-]+$/'
                  ];
         $customs = [
@@ -113,7 +113,7 @@ class SubCategoryController extends Controller
     {
         //--- Validation Section
         $rules = [
-            'image' => 'mimes:jpeg,jpg,png,svg',
+            'image' => 'mimes:jpeg,jpg,png,svg,webp',
             'slug' => 'unique:subcategories,slug,'.$id.'|regex:/^[a-zA-Z0-9\s-]+$/'
                  ];
         $customs = [
