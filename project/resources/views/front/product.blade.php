@@ -86,7 +86,7 @@
                                             @endif
                                             <tr>
                                                 <td>Payment</td>
-                                                <td><img src="{{ asset('assets/jbs/images/stripe.jpeg') }}" alt="" class="hover-img" width="180" height="28"></td>
+                                                <td><img src="{{ asset('assets/images/stripe.jpeg') }}" alt="" class="hover-img" width="180" height="28"></td>
                                             </tr>
                                             <tr>
                                                 <td>Express Shipping to</td>
@@ -246,7 +246,7 @@
                                      <a href="tel:+1 469-459-9688" class="text_v_wGSQBcdt compact_v_wGSQBcdt sizeBody2_v_wGSQBcdt weightNormal_v_wGSQBcdt primary_aEALyqkgyT">+1 847-677-2771</a>
                                      </span>
                                      <div>
-                                        <div class="button_rqpY_qfrS7"><a href="mailto:orders@dealsondrives.com" class="text_v_wGSQBcdt compact_v_wGSQBcdt sizeBody2_v_wGSQBcdt weightNormal_v_wGSQBcdt primaryLink_aEALyqkgyT hoverUnderline_v_wGSQBcdt">Email</a>
+                                        <div class="button_rqpY_qfrS7"><a href="mailto:sales@dealsondrives.com" class="text_v_wGSQBcdt compact_v_wGSQBcdt sizeBody2_v_wGSQBcdt weightNormal_v_wGSQBcdt primaryLink_aEALyqkgyT hoverUnderline_v_wGSQBcdt">Email</a>
                                         </div>
                                      </div>
                                   </div>
@@ -396,7 +396,7 @@
                                         </tr>
                                         <tr style="height: 18px;">
                                            <td style="width: 15.1123%; height: 18px; text-align: center;"><strong>APO/FPO</strong></td>
-                                           <td style="width: 84.8877%; height: 18px;">JBS Drives ships all APO/FPO orders using USPS Registered Mail.</td>
+                                           <td style="width: 84.8877%; height: 18px;">DOD Drives ships all APO/FPO orders using USPS Registered Mail.</td>
                                         </tr>
                                         <tr style="height: 18px;">
                                            <td style="width: 15.1123%; height: 18px; text-align: center;"><strong>Puerto Rico/Canada</strong></td>
@@ -404,7 +404,7 @@
                                         </tr>
                                         <tr style="height: 18px;">
                                            <td style="width: 15.1123%; height: 18px; text-align: center;"><b>Saturday Shipping</b></td>
-                                           <td style="width: 84.8877%; height: 18px;">JBS Drives ships all APO/FPO orders using USPS Registered Mail.</td>
+                                           <td style="width: 84.8877%; height: 18px;">DOD Drives ships all APO/FPO orders using USPS Registered Mail.</td>
                                         </tr>
                                         <tr style="height: 18px;">
                                            <td style="width: 15.1123%; height: 18px; text-align: center;"><strong>Countries we ship to</strong></td>

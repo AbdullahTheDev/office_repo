@@ -47,7 +47,7 @@ require __DIR__.'/vendor/autoload.php';
 $app = require_once __DIR__.'/bootstrap/app.php';
 $app->bind('path.public', function() {
     // return __DIR__;
-    return '/home/jbstechn/public_html/';
+    return '/home/delasondrives/public_html/';
 });
 
 $kernel = $app->make(Kernel::class);

@@ -113,7 +113,7 @@
                                                                                     <td class="esd-block-text es-p5t es-p5b es-p40r es-p40l" align="left">
                                                                                         <h4>{{ $order->shipping_name == null ? $order->customer_name : $order->shipping_name }},</h4>
                                                                                         <p style="color: #333333;">
-                                                                                            Thank you for your order from Pondesk (A Subsidiary of Jaffer Business Systems Inc. After your package has been shipped we will send you a tracking number. You can check the status of your order anytime by logging into your account if you created it. For questions about your order, Please email us at orders@jbsdevices.com or call us at +1 469-459-9688
+                                                                                            Thank you for your order from Pondesk (A Subsidiary of Jaffer Business Systems Inc. After your package has been shipped we will send you a tracking number. You can check the status of your order anytime by logging into your account if you created it. For questions about your order, Please email us at orders@dealsondrives.com or call us at +1 469-459-9688
                                                                                         </p>
                                                                                     </td>
                                                                                 </tr>

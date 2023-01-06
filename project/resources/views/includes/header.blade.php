@@ -134,7 +134,7 @@
                                                 <li>
                                                     <div class="banner-fixed menu-banner menu-banner2">
                                                         <figure>
-                                                            <img src="{{ asset('assets/jbs/images/megamenu.jpg') }}" alt="Menu Banner"
+                                                            <img src="{{ asset('assets/images/megamenu.jpg') }}" alt="Menu Banner"
                                                                 width="235" height="347" />
                                                         </figure>
                                                         <div class="banner-content">

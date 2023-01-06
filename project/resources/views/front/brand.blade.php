@@ -86,7 +86,7 @@
             </div>
             <!-- .shop-control-bar -->
             <div class="tab-content">
-                <p class="col" style="font-size:18px;">If you don't see an item that you are looking for, feel free to <strong><a href="https://jbsdevices.com/contact">contact us</a></strong>. We have access to over 1 million items in stock and can help locate your required item. <br> <br>   <strong>Phone:</strong>  <a href="tel:+1 469-459-9688">+923368473429</a> <br>  <strong>Email: </strong><a href="mailto:support@jbsdevices.com ">support@jbsdevices.com </a></p>
+                <p class="col" style="font-size:18px;">If you don't see an item that you are looking for, feel free to <strong><a href="{{url('contact')}}">contact us</a></strong>. We have access to over 1 million items in stock and can help locate your required item. <br> <br>   <strong>Phone:</strong>  <a href="tel:+1 469-459-9688">+923368473429</a> <br>  <strong>Email: </strong><a href="mailto:support@dealsondrives.com ">support@dealsondrives.com </a></p>
               <div id="grid" class="tab-pane {{ request()->layout == '' || request()->layout == 'grid' ? 'active' : '' }}" role="tabpanel">
                 <div class="woocommerce columns-5">
                   <div class="products">

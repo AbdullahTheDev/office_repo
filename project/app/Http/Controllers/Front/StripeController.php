@@ -86,10 +86,10 @@ class StripeController extends Controller
         $item_name = $settings->title." Order";
         //get last order
         $last_order = Order::orderBy("id","desc")->first();
-        $item_number = "JBS-100001";
+        $item_number = "DOD-100001";
         if($last_order){
             $last_order_no = explode("-",$last_order->order_number);
-            $item_number = "JBS-".(intval($last_order_no[1]) + 1);
+            $item_number = "DOD-".(intval($last_order_no[1]) + 1);
         }
         // $item_number = str_random(4).time();
         $item_amount = (float)$request->total;

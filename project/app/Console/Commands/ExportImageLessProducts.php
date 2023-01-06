@@ -28,7 +28,7 @@ class ExportImageLessProducts extends Command
         $products = Product::with(["category", "subcategory", "childcategory"])
                     ->chunk(50, function($products) use (&$list){
                         foreach ($products as $key => $product) {
-                            if(!file_exists('/home/jbstechn/public_html/assets/images/products/'.$product->getOriginal("photo")) || empty($product->getOriginal("photo"))){
+                            if(!file_exists('/home/dealsondrives/public_html/assets/images/products/'.$product->getOriginal("photo")) || empty($product->getOriginal("photo"))){
                                 $category = "";
                                 if($product->category){
                                     $category = $product->category->name;
