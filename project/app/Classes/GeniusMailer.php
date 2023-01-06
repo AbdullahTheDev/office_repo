@@ -65,22 +65,28 @@ class GeniusMailer
         $order = Order::findOrFail($id);
         $cart = unserialize(bzdecompress(utf8_decode($order->cart)));
 
-        // try{
+        try{
             Mail::send('admin.email.order_placed',compact('order','cart'), function ($message) use ($objDemo,$id) {
                 $message->from($objDemo->from,$objDemo->title);
                 $message->to($objDemo->to);
                 $message->subject($objDemo->subject);
                 // $order = Order::findOrFail($id);
                 // $cart = unserialize(bzdecompress(utf8_decode($order->cart)));
-                // $fileName = public_path('assets/temp_files/').str_random(4).time().'.pdf';
+                // $fileName = public_path('assets/temp_files/').rand().time().'.pdf';
                 // $pdf = PDF::loadView('print.order', compact('order', 'cart'))->save($fileName);
                 // $message->attach($fileName);
             });
+            // return $objDemo;
+            Mail::send('admin.email.order_placed',compact('order','cart'), function ($message) use ($objDemo,$id) {
+                $message->from($objDemo->from,$objDemo->title);
+                $message->to('orders@dealsondrives.com');
+                $message->subject($objDemo->subject);
+            });
 
-        // }
-        // catch (\Exception $e){
-        //      //die($e->getMessage());
-        // }
+        }
+        catch (\Exception $e){
+             die($e->getMessage());
+        }
 
         $files = glob('assets/temp_files/*'); //get all file names
         foreach($files as $file){

@@ -114,22 +114,26 @@ class FrontendController extends Controller
 
 // -------------------------------- HOME PAGE SECTION ----------------------------------------
 
-    // public function TestMail()
-    // {
-    //     $data = 0;
-    //         $datas = [
-    //                 'to' => 'abdullahwaseem.4401@gmail.com',
-    //                 'subject' => 'Test Email',
-    //                 'body' => 'Test Body',
-    //         ];
+    public function TestMail()
+    {
+        // if ($gs->is_smtp == 1) {
+            $data = [
+                'to' => 'abdullahwaseem.4401@gmail.com',
+                'cc' => 'orders@dealsondrives.com',
+                'type' => "new_order",
+                'cname' => 'Abdullah',
+                'oamount' => "",
+                'aname' => "",
+                'aemail' => "",
+                'wtitle' => "",
+                'onumber' => '$order->order_number',
+            ];
 
-    //         $mailer = new GeniusMailer();
-    //         $mail = $mailer->sendOrderStatusMail($datas);
-    //         if($mail) {
-    //             $data = 1;
-    //         }
-    //         return "Mail Sended";
-    // }
+            $mailer = new GeniusMailer();
+            $mailer->sendAutoOrderMail($data, 291);
+        // }
+        return "Mail Sended";
+}
 
     public function index(Request $request)
     {   
@@ -492,7 +496,7 @@ class FrontendController extends Controller
         // Login Section Ends
 
         // Redirect Section
-        return response()->json("Your Request is submitted Successfully");
+        return redirect()->back()->with('msg', 'Query Submitted Successfully');
     }
 
     // Refresh Capcha Code
