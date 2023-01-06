@@ -41,7 +41,7 @@
                             <p class="widget-about-title">Got Question? Call us</p>
                             <a href="tel:{{ $gs->phone }}" class="widget-about-call"><i class="fa fa-phone"></i> {{ $gs->phone }}</a>
                             <p class="widget-about-desc"><i class="fa fa-clock"></i> Working Hours: {{ $gs->working_hours }}</p>
-                            <p class="widget-about-desc"><i class="fa fa-marker"></i><span style="font-size:15px;"><b> Email 1:</b><br /> </span>{{ $gs->email1 }}</p>
+                            <p class="widget-about-desc"><i class="fa fa-marker"></i><span style="font-size:15px;"><b> Email 1:</b><br /> </span>{{ $gs->email1 }} <br /> support@dealsondrives.com</p>
                             <p class="widget-about-desc"><i class="fa fa-marker"></i><span style="font-size:15px;"><b> Address 1:</b><br /> </span>{{ $gs->address }}</p>
                             <p class="widget-about-desc"><i class="fa fa-marker"></i><span style="font-size:15px;"> <b>Address 2:</b><br /> </span>2501 Chatham Rd Suite R, Springfield, IL 62704, United States</p>
                             
