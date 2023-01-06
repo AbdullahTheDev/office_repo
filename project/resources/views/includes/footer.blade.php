@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-lg-5 col-sm-6">
                     <div class="widget widget-about">
-                        <a href="demo1.html" class="logo-footer">
+                        <a href="{{url('/')}}" class="logo-footer">
                             <img src="{{ asset('assets/images') }}/{{ $gs->logo }}" alt="logo-footer" width="144"
                                 height="45" />
                         </a>
@@ -47,8 +47,13 @@
                             
 
                             <div class="social-icons social-icons-colored">
-                                <a href="https://www.facebook.com/jbsgloballive" aria-label="facebook" target="_blank" class="social-icon social-facebook w-icon-facebook"></a>
-                                <a href="https://pk.linkedin.com/company/jbsgloballive" aria-label="twitter" target="_blank" class="social-icon social-linkedin w-icon-linkedin"></a>
+                                {{-- <a href="https://www.facebook.com/jbsgloballive" aria-label="facebook" target="_blank" class="social-icon social-facebook w-icon-facebook"></a>
+                                <a href="https://pk.linkedin.com/company/jbsgloballive" aria-label="twitter" target="_blank" class="social-icon social-linkedin w-icon-linkedin">
+                                
+                                </a> --}}
+                                <a href="" style="background-color: #1b4f9b; min-width: '170px'; border-radius: 50%">
+                                    <img src="{{asset('assets/front/fonts/linkedin.svg')}}" alt="">
+                                </a>
                                 <!-- <a href="#" class="social-icon social-instagram w-icon-instagram"></a>
                                 <a href="#" class="social-icon social-youtube w-icon-youtube"></a>
                                 <a href="#" class="social-icon social-pinterest w-icon-pinterest"></a> -->
