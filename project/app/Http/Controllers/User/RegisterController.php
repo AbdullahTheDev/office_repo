@@ -102,7 +102,7 @@ class RegisterController extends Controller
 	        $notification->user_id = $user->id;
 	        $notification->save();
             Auth::guard('web')->login($user); 
-          	return response()->json(1);
+          	return redirect()->back()->with('msg', 'User register successfully');
 	        }
 
     }
