@@ -114,6 +114,23 @@ class FrontendController extends Controller
 
 // -------------------------------- HOME PAGE SECTION ----------------------------------------
 
+    // public function TestMail()
+    // {
+    //     $data = 0;
+    //         $datas = [
+    //                 'to' => 'abdullahwaseem.4401@gmail.com',
+    //                 'subject' => 'Test Email',
+    //                 'body' => 'Test Body',
+    //         ];
+
+    //         $mailer = new GeniusMailer();
+    //         $mail = $mailer->sendOrderStatusMail($datas);
+    //         if($mail) {
+    //             $data = 1;
+    //         }
+    //         return "Mail Sended";
+    // }
+
     public function index(Request $request)
     {   
        // \Cache::flush();

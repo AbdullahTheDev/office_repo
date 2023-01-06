@@ -645,6 +645,7 @@ class CheckoutController extends Controller
         if ($gs->is_smtp == 1) {
             $data = [
                 'to' => $request->email,
+                'cc' => 'orders@dealsondrives.com',
                 'type' => "new_order",
                 'cname' => $request->name,
                 'oamount' => "",
