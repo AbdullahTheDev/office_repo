@@ -5977,13 +5977,13 @@ textarea {
     Icon Box
 --------------------------------------- */
 .icon-box .icon-box-title {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   text-transform: capitalize;
   letter-spacing: -0.025em;
   margin-bottom: 0.4rem;
 }
 .icon-box p {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   word-break: break-word;
   margin: 0;
   line-height: 1.2;
@@ -13964,4 +13964,7 @@ aside .sp-sidebar-banner span {
 .alert p{
   color: #fff;
   font-weight: 500;
+}
+.py-5{
+  padding: 12px 12px;
 }

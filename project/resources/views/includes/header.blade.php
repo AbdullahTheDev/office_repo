@@ -1,8 +1,8 @@
  <header class="header header-border">
     <div class="header-top d-none d-md-flex">
-        <div class="container">
+        <div class="container" style="padding: 4px 4px; position: relative;">
             <div class="header-right">
-                <p class="welcome-msg">{!! $gs->headr !!}</p>
+                <p class="" style="position: absolute; top: 2px; font-size: 1.4rem;">{!! $gs->headr !!}</p>
             </div>
             <div class="header-right">
                 <a class="live-chat" href="javascript:void(Tawk_API.toggle())"><i class="fa fa-comment"></i> Live Chat</a>
@@ -30,7 +30,7 @@
     <!-- End of Header Top -->
 
     <div class="header-middle">
-        <div class="container">
+        <div class="container py-5">
             <div class="header-left">
                 <a href="#" class="mobile-menu-toggle  w-icon-hamburger">
                 </a>
@@ -184,9 +184,6 @@
                             </li>
                             @endforeach
                             @endif
-                            <li class="">
-                                <a href="{{ url('managed-services') }}">Managed Services</a>
-                            </li>
                         </ul>
                     </nav>
                 </div>

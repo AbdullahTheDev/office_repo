@@ -38,7 +38,7 @@ class GeniusMailer
         Config::set('mail.username', $gs->smtp_user);
         Config::set('mail.password', $gs->smtp_pass);
         Config::set('mail.from.address', $gs->smtp_user);
-        Config::set('mail.from.name', 'JBS-Devices');
+        Config::set('mail.from.name', 'Deals On Drives');
     }
 
     public function sendAutoOrderMail(array $mailData,$id)

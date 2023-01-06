@@ -51,7 +51,7 @@
                                 <a href="https://pk.linkedin.com/company/jbsgloballive" aria-label="twitter" target="_blank" class="social-icon social-linkedin w-icon-linkedin">
                                 
                                 </a> --}}
-                                <a href="" style="background-color: #1b4f9b; min-width: '170px'; border-radius: 50%">
+                                <a href="https://www.linkedin.com/company/deals-on-drives/" target="_blank" style="background-color: #fff; border-radius: 50%">
                                     <img src="{{asset('assets/front/fonts/linkedin.svg')}}" alt="">
                                 </a>
                                 <!-- <a href="#" class="social-icon social-instagram w-icon-instagram"></a>

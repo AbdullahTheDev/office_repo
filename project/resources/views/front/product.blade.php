@@ -232,7 +232,7 @@
                                 <a href="javascript:;" class="cal-ship express-ship"><i class="w-icon-truck" style="font-size:20px;color:#fd7114"></i> Calculate Shipping</a>
                             </div>
                             <div class="widget_LBZszSyOnv">
-                               <div class="expert_LBZszSyOnv"><img alt="JBS Devices Computer Expert" title="JBS Devices Computer Expert" src="https://jbsdevices.com/assets/images/chat-expert1.png"></div>
+                               <div class="expert_LBZszSyOnv"><img alt="Deals On Drives" title="Deals On Drives Computer Expert" src="{{ asset('assets/images/chat-expert.png') }}"></div>
                                <section class="content_LBZszSyOnv">
                                   <header>
                                      <h2 class="title_LBZszSyOnv">We Are Here</h2>
@@ -243,10 +243,10 @@
                                      <a href="javascript:void(Tawk_API.toggle())" class="text_v_wGSQBcdt compact_v_wGSQBcdt sizeBody2_v_wGSQBcdt weightNormal_v_wGSQBcdt primaryLink_aEALyqkgyT hoverUnderline_v_wGSQBcdt">Live Chat</a>
                                      </span>
                                      <span class="caret_LBZszSyOnv">
-                                     <a href="tel:+1 469-459-9688" class="text_v_wGSQBcdt compact_v_wGSQBcdt sizeBody2_v_wGSQBcdt weightNormal_v_wGSQBcdt primary_aEALyqkgyT">+1 469-459-9688</a>
+                                     <a href="tel:+1 469-459-9688" class="text_v_wGSQBcdt compact_v_wGSQBcdt sizeBody2_v_wGSQBcdt weightNormal_v_wGSQBcdt primary_aEALyqkgyT">+1 847-677-2771</a>
                                      </span>
                                      <div>
-                                        <div class="button_rqpY_qfrS7"><a href="mailto:sales@jbsdevices.com" class="text_v_wGSQBcdt compact_v_wGSQBcdt sizeBody2_v_wGSQBcdt weightNormal_v_wGSQBcdt primaryLink_aEALyqkgyT hoverUnderline_v_wGSQBcdt">Email</a>
+                                        <div class="button_rqpY_qfrS7"><a href="mailto:orders@dealsondrives.com" class="text_v_wGSQBcdt compact_v_wGSQBcdt sizeBody2_v_wGSQBcdt weightNormal_v_wGSQBcdt primaryLink_aEALyqkgyT hoverUnderline_v_wGSQBcdt">Email</a>
                                         </div>
                                      </div>
                                   </div>
