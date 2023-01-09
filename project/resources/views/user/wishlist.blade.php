@@ -83,7 +83,7 @@
 
                                                             <td class="product-thumbnail">
                                                                 <a href="{{ route('front.product', $prodd->slug) }}">
-                                                                    <img width="180" height="180" alt="" class="wp-post-image" src="{{ $prodd->photo ? asset('assets/images/products/'.$prodd->photo):asset('assets/images/noimage.png') }}">                            
+                                                                    <img width="180" height="180" alt="" class="wp-post-image" src="{{ $prodd->photo ? $prodd->photo : asset('assets/images/noimage.pngp') }}">                            
                                                                 </a>
                                                             </td>
 

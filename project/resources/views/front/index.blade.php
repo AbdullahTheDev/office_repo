@@ -233,6 +233,9 @@
                         @foreach($section_products as $prod)
                         <div class="product product-slideup-content">
                             <figure class="product-media">
+                                {{-- {{
+                                    $prod
+                                }} --}}
                                  <a href="{{ route('front.product', $prod->slug) }}">
                                      <img src="{{ $prod->photo  }}" alt="{{ $prod->showName() }}" width="295" height="335">
                                  </a>

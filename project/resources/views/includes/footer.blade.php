@@ -1,5 +1,5 @@
 <footer class="footer">
-    <div class="footer-newsletter bg-main">
+    {{-- <div class="footer-newsletter bg-main">
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col-xl-5 col-lg-6">
@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="container">
         <div class="footer-top">
             <div class="row">
