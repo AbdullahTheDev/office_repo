@@ -3,14 +3,14 @@
 <div id="content" class="site-content" tabindex="-1">
   <div class="col-full">
      <div class="row">
-        <nav class="breadcrumb-nav">
+        {{-- <nav class="breadcrumb-nav">
            <div class="container">
               <ul class="breadcrumb bb-no">
                  <li><a href="{{ url('/') }}">Home</a></li>
                  <li><a href="javascript:;">Orders</a></li>
               </ul>
            </div>
-        </nav>
+        </nav> --}}
         <div id="primary" class="content-area">
            <main id="main" class="site-main">
               <div id="post-7" class="container">
