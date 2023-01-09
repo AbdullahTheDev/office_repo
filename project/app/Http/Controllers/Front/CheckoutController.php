@@ -434,9 +434,17 @@ class CheckoutController extends Controller
 
     public function cashondelivery(Request $request)
     {
-        // $rand = rand();
-        // return redirect()->back()->with('success', $rand);
-        // return redirect()->back()->with('success', 'ful');
+        // $getLastRecord = Order::all()->last();
+        // $getLastRecord->increment_number = $getLastRecord->increment_number + 1;
+        // $getLastRecord->order_number = $getLastRecord->increment_number;
+        // $getLastRecord->save();
+        
+        // $getDoubleLastRecord = Order::all()->last();
+        // $getDoubleLastRecord->order_number = $getDoubleLastRecord->increment_number;
+        // $getDoubleLastRecord->save();
+
+        // $getRecord = Order::all()->last();
+        // return $getRecord;
         $u_id = $request->user_id;
         if ($request->pass_check) {
             $users = User::where('email', '=', $request->personal_email)->get();
@@ -497,8 +505,12 @@ class CheckoutController extends Controller
             }
         }
 
-        //find last order
-        // $last_order = Order::orderBy('id','desc')->first();
+        // Custom Increment
+        $getLastRecord = Order::all()->last();
+        $getIncrement_number = $getLastRecord->increment_number + 1;
+        $getOrder_number =  $getLastRecord->increment_number + 1;
+        $getLastRecord->order_number = $getLastRecord->increment_number;
+
         $order = new Order;
 
 
@@ -518,7 +530,8 @@ class CheckoutController extends Controller
         $order['packing_cost'] = $request->packing_cost;
         $order['tax'] = $request->tax;
         $order['customer_phone'] = $request->phone;
-        // $order['order_number'] = rand() . time();
+        $order['order_number'] = $getOrder_number;
+        $order['increment_number'] = $getIncrement_number;
         $order['customer_address'] = $request->address;
         $order['customer_country'] = $request->customer_country;
         $order['customer_state'] = $request->state;
@@ -554,12 +567,12 @@ class CheckoutController extends Controller
         }
         $order->save();
 
-        // Custom Increment
-        $prev_order_id = $order->id;
-        $prev_order = Order::find($prev_order_id);
-        $prev_order_increment_value = $prev_order->increment_number;
-        $prev_order->order_number = $prev_order_increment_value;
-        $order->save();
+        
+
+        // $double_prev_order_id = $order->id;
+        // $double_prev_order = Order::find($prev_order_id);
+        // $double_prev_order->order_number = $double_prev_order->increment_number;
+        // $order->save();
 
         // $increment = 
         $track = new OrderTrack;

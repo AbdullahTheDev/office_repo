@@ -81,16 +81,23 @@ class StripeController extends Controller
             }
 
         $settings = Generalsetting::findOrFail(1);
+        
+         // Custom Increment
+         $getLastRecord = Order::all()->last();
+         $getIncrement_number = $getLastRecord->increment_number + 1;
+         $getOrder_number =  $getLastRecord->increment_number + 1;
+         $getLastRecord->order_number = $getLastRecord->increment_number;
+
         $order = new Order;
         $success_url = action('Front\PaymentController@payreturn');
         $item_name = $settings->title." Order";
         //get last order
-        $last_order = Order::orderBy("id","desc")->first();
-        $item_number = "DOD-100001";
-        if($last_order){
-            $last_order_no = explode("-",$last_order->order_number);
-            $item_number = "DOD-".(intval($last_order_no[1]) + 1);
-        }
+        // $last_order = Order::orderBy("id","desc")->first();
+        // $item_number = "DOD-100001";
+        // if($last_order){
+        //     $last_order_no = explode("-",$last_order->order_number);
+        //     $item_number = "DOD-".(intval($last_order_no[1]) + 1);
+        // }
         // $item_number = str_random(4).time();
         $item_amount = (float)$request->total;
 
@@ -188,7 +195,8 @@ class StripeController extends Controller
                     $order['customer_email'] = $request->email;
                     $order['customer_name'] = $request->name;
                     $order['customer_phone'] = $request->phone;
-                    $order['order_number'] = $item_number;
+                    $order['order_number'] = $getOrder_number;
+                    $order['increment_number'] = $getIncrement_number;
                     $order['shipping'] = $request->shipping;
                     $order['ship_name'] = $shipping_service[0];
                     $order['ship_amount'] = $shipping_service[1];
