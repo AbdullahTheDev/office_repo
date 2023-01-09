@@ -51,6 +51,10 @@
                                                 <tbody>
                                                    @foreach(Auth::user()->orders()->latest()->take(5)->get() as $order)
                                                     <tr>
+                                                      {{-- {{$random}} --}}
+                                                      {{-- {{
+                                                         $order
+                                                      }} --}}
                                                       <td>
                                                           {{$order->order_number}}
                                                       </td>

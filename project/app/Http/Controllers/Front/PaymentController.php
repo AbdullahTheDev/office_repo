@@ -95,7 +95,7 @@ class PaymentController extends Controller
      $notify_url = action('Front\PaymentController@notify');
 
      $item_name = $settings->title." Order";
-     $item_number = str_random(4).time();
+     $item_number = rand().time();
      $item_amount = $request->total;
 
      $querystring = '';

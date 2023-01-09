@@ -50,7 +50,7 @@ class PaystackController extends Controller
         $settings = Generalsetting::findOrFail(1);
         $success_url = action('User\UserController@index');
         $item_name = $subs->title." Plan";
-        $item_number = str_random(4).time();
+        $item_number = rand().time();
         $item_amount = $subs->price;
         $item_currency = $subs->currency_code;
 

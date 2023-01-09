@@ -14,6 +14,7 @@ use App\Models\Subscription;
 use App\Models\Generalsetting;
 use App\Models\UserSubscription;
 use App\Models\FavoriteSeller;
+use Illuminate\Support\Str; 
 
 class UserController extends Controller
 {
@@ -24,6 +25,7 @@ class UserController extends Controller
 
     public function index()
     {
+        // $random = Str::random(4);
         $user = Auth::user();  
         return view('user.dashboard',compact('user'));
     }

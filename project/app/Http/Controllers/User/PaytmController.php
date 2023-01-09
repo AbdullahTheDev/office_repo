@@ -37,7 +37,7 @@ class PaytmController extends Controller
      $cancel_url = action('User\PaypalController@paycancle');
      $notify_url = action('User\PaytmController@notify');
      $item_name = $subs->title." Plan";
-     $item_number = str_random(4).time();
+     $item_number = rand().time();
      $item_amount = $subs->price;
 
 

@@ -518,7 +518,7 @@ class CheckoutController extends Controller
         $order['packing_cost'] = $request->packing_cost;
         $order['tax'] = $request->tax;
         $order['customer_phone'] = $request->phone;
-        $order['order_number'] = rand() . time();
+        // $order['order_number'] = rand() . time();
         $order['customer_address'] = $request->address;
         $order['customer_country'] = $request->customer_country;
         $order['customer_state'] = $request->state;
@@ -554,6 +554,14 @@ class CheckoutController extends Controller
         }
         $order->save();
 
+        // Custom Increment
+        $prev_order_id = $order->id;
+        $prev_order = Order::find($prev_order_id);
+        $prev_order_increment_value = $prev_order->increment_number;
+        $prev_order->order_number = $prev_order_increment_value;
+        $order->save();
+
+        // $increment = 
         $track = new OrderTrack;
         $track->title = 'Pending';
         $track->text = 'You have successfully placed your order.';
