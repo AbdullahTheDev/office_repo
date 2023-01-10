@@ -1,5 +1,28 @@
 @extends('layouts.jbs')
 @section('content')
+
+@if(Session::has('msg'))
+
+<div class="alert alert-success validation" id="alert">
+    <button onclick="alert()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+            aria-hidden="true">×</span></button>
+    <h3 class="text-center">{{ Session::get("msg") }}</h3>
+</div>
+
+
+@endif
+
+@if(Session::has('success'))
+
+<div class="alert alert-success validation" id="alert">
+    <button onclick="alert()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+            aria-hidden="true">×</span></button>
+    <h3 class="text-center">{{ Session::get("success") }}</h3>
+</div>
+
+
+@endif
+
 <section class="intro-section">
    <div class="owl-carousel owl-theme owl-nav-inner owl-dot-inner owl-nav-lg gutter-no row cols-1"
       data-owl-options="{
@@ -453,3 +476,10 @@
    @endif
 </div>
 @endsection
+
+<script>
+    function alert() {
+        var alert = document.getElementById('alert');
+        alert.style.display = 'none';
+    }
+</script>

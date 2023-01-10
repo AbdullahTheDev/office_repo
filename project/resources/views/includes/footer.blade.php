@@ -47,10 +47,6 @@
                             
 
                             <div class="social-icons social-icons-colored">
-                                {{-- <a href="https://www.facebook.com/jbsgloballive" aria-label="facebook" target="_blank" class="social-icon social-facebook w-icon-facebook"></a>
-                                <a href="https://pk.linkedin.com/company/jbsgloballive" aria-label="twitter" target="_blank" class="social-icon social-linkedin w-icon-linkedin">
-                                
-                                </a> --}}
                                 <a href="https://www.linkedin.com/company/deals-on-drives/" target="_blank" style="background-color: #fff; border-radius: 50%">
                                     <img src="{{asset('assets/front/fonts/linkedin.svg')}}" alt="">
                                 </a>
@@ -111,7 +107,7 @@
             <div class="footer-right">
                 <span class="payment-label mr-lg-8">We're using safe payment for</span>
                 <figure class="payment">
-                    <img src="{{ asset('assets/jbs') }}/images/payments.png" alt="payment"  />
+                    <img src="{{ asset('assets/dod') }}/images/payments.png" alt="payment"  />
                 </figure>
             </div>
         </div>
