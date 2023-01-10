@@ -423,7 +423,8 @@ class FrontendController extends Controller
         // Login Section Ends
 
         // Redirect Section
-        return response()->json($ps->contact_success);
+        return redirect('/')->with('msg', $ps->contact_success);
+        // return response()->json($ps->contact_success);
     }
 
 

@@ -12,7 +12,7 @@ Route::get('/clear', function(){
 });
 
 
-Route::get('/testMail', 'Front\FrontendController@TestMail');
+// Route::get('/testMail', 'Front\FrontendController@TestMail');
 // use Illuminate\Routing\Route;
 // use Illuminate\Support\Facades\Auth;
 

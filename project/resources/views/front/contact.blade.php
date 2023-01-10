@@ -86,7 +86,7 @@
                                 </span>
                                 <div class="icon-box-content">
                                     <h4 class="icon-box-title">Fax</h4>
-                                    <p>1-800-570-7777</p>
+                                    <p>{{$gs->phone}}</p>
                                 </div>
                             </div>
                         </div>
