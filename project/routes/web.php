@@ -1284,12 +1284,12 @@ Route::get('/package/delete/{id}', 'Vendor\PackageController@destroy')->name('ve
   Route::get('/language/{id}', 'Front\FrontendController@language')->name('front.language');
 
   // BLOG SECTION
-  Route::get('/blog','Front\FrontendController@blog')->name('front.blog');
-  Route::get('/blog/{id}','Front\FrontendController@blogshow')->name('front.blogshow');
-  Route::get('/blog/category/{slug}','Front\FrontendController@blogcategory')->name('front.blogcategory');
-  Route::get('/blog/tag/{slug}','Front\FrontendController@blogtags')->name('front.blogtags');
-  Route::get('/blog-search','Front\FrontendController@blogsearch')->name('front.blogsearch');
-  Route::get('/blog/archive/{slug}','Front\FrontendController@blogarchive')->name('front.blogarchive');
+  // Route::get('/blog','Front\FrontendController@blog')->name('front.blog');
+  // Route::get('/blog/{id}','Front\FrontendController@blogshow')->name('front.blogshow');
+  // Route::get('/blog/category/{slug}','Front\FrontendController@blogcategory')->name('front.blogcategory');
+  // Route::get('/blog/tag/{slug}','Front\FrontendController@blogtags')->name('front.blogtags');
+  // Route::get('/blog-search','Front\FrontendController@blogsearch')->name('front.blogsearch');
+  // Route::get('/blog/archive/{slug}','Front\FrontendController@blogarchive')->name('front.blogarchive');
   // BLOG SECTION ENDS
 
   // FAQ SECTION
