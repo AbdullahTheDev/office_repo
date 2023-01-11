@@ -462,7 +462,7 @@ class FrontendController extends Controller
         // Login Section Ends
 
         // Redirect Section
-        return response()->json("Your Request is submitted Successfully");
+        return redirect('/')->with("msg", "Your Request is submitted Successfully");
     }
     
     //home sales inquiry
@@ -519,7 +519,7 @@ class FrontendController extends Controller
         $subscribe->fill($request->all());
         $subscribe->save();
         // Session()->flash('msg','You Have Subscribed Successfully.');
-        return redirect('/');
+        return redirect('/')->with('msg','You Have Subscribed Successfully.');
     }
 
 // Maintenance Mode
@@ -594,38 +594,38 @@ class FrontendController extends Controller
     // Capcha Code Image
     private function  code_image()
     {
-        // $actual_path = str_replace('project','',public_path());
-        // $image = imagecreatetruecolor(200, 50);
-        // $background_color = imagecolorallocate($image, 255, 255, 255);
-        // imagefilledrectangle($image,0,0,200,50,$background_color);
+        $actual_path = public_path() . '/';
+        $image = imagecreatetruecolor(200, 50);
+        $background_color = imagecolorallocate($image, 255, 255, 255);
+        imagefilledrectangle($image,0,0,200,50,$background_color);
 
-        // $pixel = imagecolorallocate($image, 0,0,255);
-        // for($i=0;$i<500;$i++)
-        // {
-        //     imagesetpixel($image,rand()%200,rand()%50,$pixel);
-        // }
+        $pixel = imagecolorallocate($image, 0,0,255);
+        for($i=0;$i<500;$i++)
+        {
+            imagesetpixel($image,rand()%200,rand()%50,$pixel);
+        }
 
-        // $font = $actual_path.'assets/front/fonts/NotoSans-Bold.ttf';
-        // $allowed_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        // $length = strlen($allowed_letters);
-        // $letter = $allowed_letters[rand(0, $length-1)];
-        // $word='';
-        // //$text_color = imagecolorallocate($image, 8, 186, 239);
-        // $text_color = imagecolorallocate($image, 0, 0, 0);
-        // $cap_length=6;// No. of character in image
-        // for ($i = 0; $i< $cap_length;$i++)
-        // {
-        //     $letter = $allowed_letters[rand(0, $length-1)];
-        //     imagettftext($image, 25, 1, 35+($i*25), 35, $text_color, $font, $letter);
-        //     $word.=$letter;
-        // }
-        // $pixels = imagecolorallocate($image, 8, 186, 239);
-        // for($i=0;$i<500;$i++)
-        // {
-        //     imagesetpixel($image,rand()%200,rand()%50,$pixels);
-        // }
-        // session(['captcha_string' => $word]);
-        // imagepng($image, $actual_path."assets/images/capcha_code.png");
+        $font = $actual_path.'assets/front/fonts/NotoSans-Bold.ttf';
+        $allowed_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        $length = strlen($allowed_letters);
+        $letter = $allowed_letters[rand(0, $length-1)];
+        $word='';
+        //$text_color = imagecolorallocate($image, 8, 186, 239);
+        $text_color = imagecolorallocate($image, 0, 0, 0);
+        $cap_length=6;// No. of character in image
+        for ($i = 0; $i< $cap_length;$i++)
+        {
+            $letter = $allowed_letters[rand(0, $length-1)];
+            imagettftext($image, 25, 1, 35+($i*25), 35, $text_color, $font, $letter);
+            $word.=$letter;
+        }
+        $pixels = imagecolorallocate($image, 8, 186, 239);
+        for($i=0;$i<500;$i++)
+        {
+            imagesetpixel($image,rand()%200,rand()%50,$pixels);
+        }
+        session(['captcha_string' => $word]);
+        imagepng($image, $actual_path."assets/images/capcha_code.png");
     }
 
 // -------------------------------- CONTACT SECTION ENDS----------------------------------------

@@ -295,7 +295,7 @@
                                     @if(Auth::guard('web')->check())
                                     <a data-href="{{ route('user-wishlist-add',$prod->id) }}" rel="nofollow" class="btn-product-icon btn-wishlist w-icon-heart add-to-wish add_to_wishlist" title="Add to wishlist"></a>
                                     @endif
-                                     <a data-href="{{ route('product.compare.add',$prod->id) }}" class="btn-product-icon btn-compare w-icon-compare add-to-compare add-to-compare-link" title="Compare"></a>
+                                     {{-- <a data-href="{{ route('product.compare.add',$prod->id) }}" class="btn-product-icon btn-compare w-icon-compare add-to-compare add-to-compare-link" title="Compare"></a> --}}
                                  </div>
                              </div>
                         </div>
