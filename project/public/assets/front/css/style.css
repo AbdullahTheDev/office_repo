@@ -624,6 +624,7 @@ Breadcrumb Area Start
 Logo Header Area Start
 --------------------------*/
 .logo-header {
+  /* background-color: red; */
   padding: 20px 0px 20px;
   }
   .logo-header .search-box {

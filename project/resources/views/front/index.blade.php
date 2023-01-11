@@ -6,7 +6,7 @@
 <div class="alert alert-success validation" id="alert">
     <button onclick="alert()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span
             aria-hidden="true">×</span></button>
-    <h3 class="text-center">{{ Session::get("msg") }}</h3>
+    <h3 class="text-center" style="color: #fff">{{ Session::get("msg") }}</h3>
 </div>
 
 
@@ -17,7 +17,7 @@
 <div class="alert alert-success validation" id="alert">
     <button onclick="alert()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span
             aria-hidden="true">×</span></button>
-    <h3 class="text-center">{{ Session::get("success") }}</h3>
+    <h3 class="text-center" style="color: #fff">{{ Session::get("success") }}</h3>
 </div>
 
 

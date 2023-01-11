@@ -101,8 +101,6 @@
 						<div class="left-content">
 							<div class="list">
 								<ul>
-
-
 									@if($gs->is_language == 1)
 									<li>
 										<div class="language-selector">
