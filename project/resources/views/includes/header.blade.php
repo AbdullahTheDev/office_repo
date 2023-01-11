@@ -115,7 +115,10 @@
                                             <ul class="megamenu">
                                                 @foreach($category->subs as $subcat)
                                                 <li class="col-md-{{$colls}} col-sm-12">
-                                                    <h4 class="menu-title"><a href="{{ route('front.subcat' , ['slug1' => $category->slug, 'slug2' => $subcat->slug]) }}">{{$subcat->name}}</a></h4>
+                                                    <h4 class="menu-title">
+                                                        <a href="{{ route('front.subcat' , ['slug1' => $category->slug, 'slug2' => $subcat->slug]) }}">{{$subcat->name}}
+                                                        </a>
+                                                    </h4>
                                                     <hr class="divider">
                                                     <ul>
                                                         @if(count($subcat->childs) > 0)
