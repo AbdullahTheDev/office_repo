@@ -69,7 +69,7 @@
                   }"style="font-size: {{ $data->details_size }} !important; color: {{ $data->details_color }} !important;">{{ $data->details_text }}
                </p>
                <a href="javascript:void(0)"
-                  class="btn btn-dark btn-outline btn-rounded btn-icon-right slide-animate"
+                  class="btn btn-outline-custom btn-rounded btn-icon-right slide-animate"
                   data-animation-options="{
                   'name': 'fadeInRightShorter',
                   'duration': '1s',
@@ -130,7 +130,7 @@
 @if($ps->featured_category == 1)
 <section class="category-section top-category bg-grey pt-10 pb-10">
    <div class="container pb-2">
-      <h2 data-aos="fade-up" data-aos-duration="3000" class="title justify-content-center pt-1 ls-normal mb-5">Our Featured Categories</h2>
+      <h2 data-aos="fade-up" data-aos-duration="3000" class="title justify-content-center pt-1 ls-normal mb-5">Our <span style="color: #9e1d14; margin: 0px 6px">Featured</span> Categories</h2>
       <div class="owl-carousel owl-theme row cols-lg-6 cols-md-5 cols-sm-3 cols-2" data-owl-options="{
          'nav': false,
          'dots': false,
@@ -169,7 +169,7 @@
 {{-- <h1>Hello World</h1> --}}
 <div class="container">
     <div class="row pt-10 pb-10">
-        <div class="col-lg-3 col-sm-3 mb-4">
+        <div class="col-lg-4 col-sm-3 mb-4">
             <div class="sales-inquiry">
                 <div class="container-fluid">
                 <h2 class="inquiry-title">Sales Inquiry</h2>
@@ -223,7 +223,7 @@
             </div>
         </div>
         <!-- End of Inquiry Form -->
-        <div class="col-lg-9 col-sm-12">
+        <div class="col-lg-8 col-sm-12">
             @php
             $multiple_sections = $sections->whereIn("sort",[2,3,4])->where("status",1);
             @endphp

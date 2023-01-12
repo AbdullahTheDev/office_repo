@@ -4188,6 +4188,11 @@ blockquote {
   border-color: #9e1d14;
   background-color: transparent;
 }
+.btn-outline-custom {
+  color: #fff;
+  border: 2px solid #fff;
+  background-color: transparent;
+}
 .btn-dark.btn-outline:hover, .btn-dark.btn-outline:active, .btn-dark.btn-outline:focus {
   background-color: #9e1d14;
   color: #fff;
@@ -13800,14 +13805,17 @@ aside .sp-sidebar-banner span {
     letter-spacing: -.01em;
     text-align: center;
 }
-
+/* 9e1d14 */
 .sales-inquiry {
-    border: 1px solid lightgray;
+    border: 1.5px solid #9e1d14;
     padding: 10px;
     border-radius: 8px;
     background-color: #f9f9f9;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-
+.sales-inquiry .inquiry-title{
+  margin: 10px 0px;
+}
 .call_price, .out_stock{
   font-size: 1.5rem;
   padding: 0.77em 1.4em;
