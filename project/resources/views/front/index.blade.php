@@ -88,7 +88,7 @@
    <!-- End of .owl-carousel -->
 </section>
 <div class="container">
-   <div class="owl-carousel owl-theme row cols-md-4 cols-sm-3 cols-1icon-box-wrapper br-sm mt-6 mb-6"
+   <div class="owl-carousel owl-theme row cols-md-4 cols-sm-3 cols-1 br-sm mt-6 mb-6"
       data-owl-options="{
       'nav': false,
       'dots': false,
@@ -130,7 +130,7 @@
 @if($ps->featured_category == 1)
 <section class="category-section top-category bg-grey pt-10 pb-10">
    <div class="container pb-2">
-      <h2 class="title justify-content-center pt-1 ls-normal mb-5">Our Featured Categories</h2>
+      <h2 data-aos="fade-up" data-aos-duration="3000" class="title justify-content-center pt-1 ls-normal mb-5">Our Featured Categories</h2>
       <div class="owl-carousel owl-theme row cols-lg-6 cols-md-5 cols-sm-3 cols-2" data-owl-options="{
          'nav': false,
          'dots': false,
@@ -151,7 +151,7 @@
          }
          }">
          @foreach($categories->where('is_featured','=',1) as $cat)
-         <div class="category category-classic category-absolute overlay-zoom br-xs">
+         <div class="category category-classic category-absolute overlay-zoom radius-10">
             <a href="{{ route('front.category',$cat->slug) }}" class="category-media">
             <img src="{{ asset('assets/images/categories') }}/{{ $cat->image }}" alt="{{ $cat->name }}">
             </a>
@@ -250,7 +250,7 @@
                     <div class="row cols-xl-4 cols-md-4 cols-sm-3 cols-2">
                         @if($section_products->count())
                         @foreach($section_products as $prod)
-                        <div class="product product-slideup-content">
+                        <div class="product product-slideup-content radius-10" style="background-color: #f5f5f5; padding-bottom: 10px">
                             <figure class="product-media">
                                 {{-- {{
                                     $prod

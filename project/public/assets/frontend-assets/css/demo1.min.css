@@ -7548,7 +7548,26 @@ body .product-popup {
   font-size: 1.8rem;
   margin-bottom: 0.4rem;
 }
-
+.product-hidden-details{
+  background-color: #f5f5f5;
+  padding: 10px;
+}
+.product-hidden-details .btn-product-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.6rem;
+  height: 3.6rem;
+  margin-bottom: 0.5rem;
+  background-color: #f5f5f5;
+  border: 1px solid #eee;
+  color: #999;
+  font-size: 1.8em;
+  font-weight: 400;
+  line-height: 3.5rem;
+  overflow: hidden;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s, visibility 0.3s, opacity 0.3s, transform 0.3s;
+}
 .btn-product-icon {
   display: flex;
   align-items: center;
@@ -7596,7 +7615,7 @@ body .product-popup {
   bottom: 0;
   display: flex;
   align-items: center;
-  background-color: transparent;
+  background-color: #f5f5f5;
   z-index: 10;
   transition: opacity 0.3s, visibility 0.3s, bottom 0.3s;
   opacity: 0;
@@ -7893,10 +7912,9 @@ body .product-popup {
   /*padding-top: 1.5rem;*/
   transform: translateY(0);
   transition: transform 0.3s;
-  background-color: #fff;
 }
 .product-slideup-content .product-details {
-  background-color: #fff;
+  background-color: #f5f5f5;
   transition: transform 0.3s;
 }
 .product-slideup-content .btn-wishlist {
@@ -11345,6 +11363,7 @@ aside .sp-sidebar-banner span {
   padding: 0.9rem;
   border: 2px solid #9e1d14;
   border-right: 0;
+  border-radius: 30px 0px 0px 30px;
   font-size: 1.2rem;
   letter-spacing: 0;
   font-family: Poppins, sans-serif;
@@ -11363,6 +11382,7 @@ aside .sp-sidebar-banner span {
   font-weight: normal;
   letter-spacing: -0.025em;
   text-transform: none;
+  border-radius: 0px 30px 30px 0px;
 }
 .header-search .btn-search i {
   font-size: 1.7rem;
@@ -11491,26 +11511,26 @@ aside .sp-sidebar-banner span {
 }
 .header-search.hs-rounded .select-box,
 .header-search.hs-rounded .form-control {
-  border-radius: 0.5rem 0 0 0.5rem;
+  /* border-radius: 0.5rem 0 0 0.5rem; */
 }
 .header-search.hs-rounded .btn-search {
-  border-radius: 0 0.5rem 0.5rem 0;
+  /* border-radius: 0 0.5rem 0.5rem 0; */
 }
 .header-search.hs-rounded.hs-simple input.form-control {
-  border-radius: 5rem;
+  /* border-radius: 5rem; */
 }
 .header-search.hs-rounded.hs-expanded .form-control {
-  border-radius: 0;
+  /* border-radius: 0; */
 }
 .header-search.hs-round .select-box,
 .header-search.hs-round .form-control {
-  border-radius: 0.3rem 0 0 0.3rem;
+  /* border-radius: 0.3rem 0 0 0.3rem; */
 }
 .header-search.hs-round .btn-search {
-  border-radius: 0 0.3rem 0.3rem 0;
+  /* border-radius: 0 0.3rem 0.3rem 0; */
 }
 .header-search.hs-round.hs-simple input.form-control {
-  border-radius: 3rem;
+  /* border-radius: 3rem; */
 }
 .header-search.hs-round.hs-expanded .form-control {
   /*border-radius: 0;*/
@@ -14201,4 +14221,7 @@ aside .sp-sidebar-banner span {
 
 .summary-section {
   margin-bottom: 3.7rem;
+}
+.radius-10{
+  border-radius: 10px;
 }

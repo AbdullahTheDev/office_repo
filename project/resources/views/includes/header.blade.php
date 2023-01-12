@@ -63,7 +63,7 @@
                     <a href="tel:#" class="w-icon-call" aria-label="phone-num"></a>
                     <div class="call-info d-lg-show">
                         <h4 class="chat font-weight-normal font-size-md text-normal ls-normal text-light mb-0">
-                            <a href="javascript:void(Tawk_API.toggle())" class="text-capitalize">Live Chat</a> or :</h4>
+                            <a href="javascript:void(Tawk_API.toggle())" class="text-capitalize" style="font-size: 1.4rem; font-weight: 500;">Call Us Now</a></h4>
                         <a href="tel:{{ $gs->phone }}" class="phone-number font-weight-bolder ls-50">{{ $gs->phone }}</a>
                     </div>
                 </div>

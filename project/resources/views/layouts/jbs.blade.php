@@ -56,6 +56,7 @@
 	</script> --}}
 	@include('includes.styles')
 	@yield('styles')
+	
 </head>
 
 <body class="home">
@@ -274,8 +275,16 @@
 		</div>
 	</div>
 
+
+
+	{{-- Aos Animation --}}
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script>
+		AOS.init();
+	</script>
 	<!-- End of Scroll Top -->
 	<script type="text/javascript">
+		
 		var mainurl = "{{url('/')}}";
 		var gs = {
 			!!json_encode($gs) !!
