@@ -172,7 +172,7 @@
         <div class="col-lg-4 col-sm-3 mb-4">
             <div class="sales-inquiry">
                 <div class="container-fluid">
-                <h2 class="inquiry-title">Sales Inquiry</h2>
+                <h2 class="inquiry-title">Sales <span class="theme_color">Inquiry</span></h2>
                 <p>Our Dedicated Account Manager will get in touch with you shortly</p>
                 <div class="alert alert-success validation" style="display: none; width:100%;">
                     <button type="button" class="close alert-close"><span>×</span></button>
@@ -216,7 +216,7 @@
                         </div>
                     </div>
                     <p class="form-submit mt-2">
-                        <input type="submit" class="btn btn-dark btn-outline btn-rounded btn-sm" value="Submit" class="submit" id="submit" name="submit"> 
+                        <input type="submit" class="btn btn-dark btn-outline btn-sm radius-10" value="Submit" class="submit" id="submit" name="submit"> 
                     </p>
                 </form>
                 </div>

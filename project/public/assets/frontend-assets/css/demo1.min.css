@@ -5572,14 +5572,14 @@ input:-internal-autofill-selected {
   width: 100%;
   /*min-height: 4.7rem;*/
   padding: 0.85rem 2rem;
-  border: 1px solid #d3d3d3;
+  border: 2px solid #d3d3d3;
   font-size: 1.4rem;
   font-family: Poppins, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: #999;
   background-color: transparent;
-  border-radius: 0;
+  border-radius: 10px;
   box-shadow: none;
   outline: 0;
 }
@@ -13807,11 +13807,11 @@ aside .sp-sidebar-banner span {
 }
 /* 9e1d14 */
 .sales-inquiry {
-    border: 1.5px solid #9e1d14;
+    border: 2px solid #9e1d14;
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: #f9f9f9;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    box-shadow: #9e1d1463 0px 2px 8px 0px;
 }
 .sales-inquiry .inquiry-title{
   margin: 10px 0px;
@@ -14238,4 +14238,7 @@ aside .sp-sidebar-banner span {
 }
 .right-bottom-radius-10{
   border-radius: 0px 0px 10px 0px;
+}
+.theme_color{
+  color: #9e1d14;
 }
