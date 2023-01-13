@@ -24,6 +24,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+      // Str::random($length)
         //--- Validation Section
         $rules = [
                   'email'   => 'required|email',
@@ -57,22 +58,23 @@ class LoginController extends Controller
           // Login Via Modal
           if(!empty($request->modal))
           {
+            // return Auth::guard('web')->user()->is_vendor;
              // Login as Vendor
             if(!empty($request->vendor))
             {
               if(Auth::guard('web')->user()->is_vendor == 2)
               {
-                return response()->json(route('vendor-dashboard'));
+                return response()->redirectToRoute('vendor-dashboard');
               }
               else {
-                return response()->json(route('user-package'));
+                return response()->redirectToRoute('user-package');
                 }
             }
           // Login as User
-          return response()->json(route('user-dashboard'));          
+          return response()->redirectToRoute('user-dashboard');          
           }
           // Login as User
-          return response()->json(route('user-dashboard'));
+          return response()->redirectToRoute('user-dashboard');
       }
 
       // if unsuccessful, then redirect back to the login with the form data

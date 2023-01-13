@@ -65,7 +65,7 @@
 										</div>
 										<div class="col-lg-12">
 											<input type="text" class="input-field" placeholder="{{ $langg->lang632 }}"
-												name="name" required="">
+												name="name" rop="">
 										</div>
 									</div>
 		
@@ -78,8 +78,8 @@
 										</div>
 										<div class="col-lg-12">
 											<input type="text" class="input-field" placeholder="{{ $langg->lang794 }}"
-												name="sku" required=""
-												value="{{ str_random(3).substr(time(), 6,8).str_random(3) }}">
+												name="sku" rop=""
+												value="{{ Str::random(3).substr(time(), 6,8).Str::random(3) }}">
 		
 											<div class="checkbox-wrapper">
 												<input type="checkbox" name="product_condition_check" class="checkclick"
@@ -117,7 +117,7 @@
 											</div>
 										</div>
 										<div class="col-lg-12">
-												<select name="brand_id" required="">
+												<select name="brand_id" rop="">
 														<option>{{ __('Select Brand') }}</option>
 													@foreach($brands as $brand)
 		                                                  <option value="{{$brand->id}}">{{$brand->link}}</option>
@@ -133,7 +133,7 @@
 											</div>
 										</div>
 										<div class="col-lg-12">
-											<select id="cat" name="category_id" required="">
+											<select id="cat" name="category_id" rop="">
 												<option value="">{{ $langg->lang691 }}</option>
 												@foreach($cats as $cat)
 												<option data-href="{{ route('vendor-subcat-load',$cat->id) }}"
@@ -538,7 +538,7 @@
 													<label for="image-upload" class="img-label" id="image-label"><i
 															class="icofont-upload-alt"></i>{{ $langg->lang512 }}</label>
 													<input type="file" name="photo" class="img-upload-p" id="image-upload"
-														required>
+														rop>
 												</div>
 												<p class="img-alert mt-2 text-danger d-none"></p>
 												<p class="text">
@@ -582,7 +582,7 @@
 										</div>
 										<div class="col-lg-12">
 											<input name="price" step="0.1" type="number" class="input-field"
-												placeholder="{{ $langg->lang666 }}" required="" min="0">
+												placeholder="{{ $langg->lang666 }}" rop="" min="0">
 										</div>
 									</div>
 		

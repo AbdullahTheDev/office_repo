@@ -41,9 +41,10 @@
                             placeholder="{{ $langg->lang174 }}">
                     </div>
                     <input type="hidden" name="modal" value="1">
+                    <input type="hidden" name="vendor" value="1">
                     <input class="mauthdata" type="hidden" value="{{ $langg->lang177 }}">
                     <div class="form-checkbox d-flex align-items-center justify-content-between mb-2">
-                        <input type="checkbox" class="custom-checkbox" id="remember1" name="remember1" required="" {{
+                        <input type="checkbox" class="custom-checkbox" id="remember1" name="remember1" {{
                             old('remember') ? 'checked' : '' }}>
                         <label for="remember1">Remember me</label>
                         <a href="{{ route('user-forgot') }}">Lost your password?</a>

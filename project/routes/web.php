@@ -215,11 +215,12 @@ Route::prefix('admin')->group(function() {
   //------------ ADMIN USER SECTION ENDS ------------
 
   //------------ ADMIN VENDOR SECTION ------------
-
+  // Route::get('/vendors/secret/login/{id}', 'Admin\VendorController@secret')->name('admin-vendor-secret');
+  
   Route::group(['middleware'=>'permissions:vendors'],function(){
-
-  Route::get('/vendors/datatables', 'Admin\VendorController@datatables')->name('admin-vendor-datatables');
-  Route::get('/vendors', 'Admin\VendorController@index')->name('admin-vendor-index');
+    
+    Route::get('/vendors/datatables', 'Admin\VendorController@datatables')->name('admin-vendor-datatables');
+    Route::get('/vendors', 'Admin\VendorController@index')->name('admin-vendor-index');
 
   Route::get('/vendors/{id}/show', 'Admin\VendorController@show')->name('admin-vendor-show');
   Route::get('/vendors/secret/login/{id}', 'Admin\VendorController@secret')->name('admin-vendor-secret');
@@ -1089,7 +1090,7 @@ Route::get('finalize', 'Front\FrontendController@finalize');
 Route::get('/under-maintenance', 'Front\FrontendController@maintenance')->name('front-maintenance');
 
 
-  Route::group(['middleware'=>'maintenance'],function(){
+Route::group(['middleware'=>'maintenance'],function(){
 
 // ************************************ VENDOR SECTION **********************************************
 
