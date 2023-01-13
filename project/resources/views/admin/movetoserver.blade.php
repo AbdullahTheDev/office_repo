@@ -27,9 +27,6 @@
 
 
                         @include('includes.admin.form-both')
-
-
-
 												<div style="padding: 10px;" class="text-center">
 													@if($bkuplink == "")
 														<span id="bkupData">{{ __('No Backup File Generated.') }}</span>

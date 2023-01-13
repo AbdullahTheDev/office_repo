@@ -123,8 +123,10 @@ class DashboardController extends Controller
 
     public function generate_bkup()
     {
+        // return 324;
+        $bckup =  public_path().'/backkup/backup.txt';
         $bkuplink = "";
-        $chk = file_get_contents('backup.txt');
+        $chk = file_get_contents($bckup);
         if ($chk != ""){
             $bkuplink = url($chk);
         }
@@ -134,9 +136,10 @@ class DashboardController extends Controller
 
     public function clear_bkup()
     {
+        $bckup =  public_path().'/backkup/backup.txt';
         $destination  = public_path().'/install';
         $bkuplink = "";
-        $chk = file_get_contents('backup.txt');
+        $chk = file_get_contents($bckup);
         if ($chk != ""){
             unlink(public_path($chk));
         }
@@ -144,7 +147,7 @@ class DashboardController extends Controller
         if (is_dir($destination)) {
             $this->deleteDir($destination);
         }
-        $handle = fopen('backup.txt','w+');
+        $handle = fopen($bckup,'w+');
         fwrite($handle,"");
         fclose($handle);
         //return "No Backup File Generated.";
@@ -159,9 +162,10 @@ class DashboardController extends Controller
 
     public function movescript(){
         ini_set('max_execution_time', 3000);
+        $bckup =  public_path().'/backkup/backup.txt';
 
         $destination  = public_path().'/install';
-        $chk = file_get_contents('backup.txt');
+        $chk = file_get_contents($bckup);
         if ($chk != ""){
             unlink(public_path($chk));
         }
@@ -183,7 +187,7 @@ class DashboardController extends Controller
 
         $zipper->close();
 
-        $handle = fopen('backup.txt','w+');
+        $handle = fopen($bckup,'w+');
         fwrite($handle,$bkupname);
         fclose($handle);
 

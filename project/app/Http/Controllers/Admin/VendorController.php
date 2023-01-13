@@ -124,6 +124,7 @@ class VendorController extends Controller
 	//*** GET Request
     public function verify($id)
     {
+        return "hi";
         $data = User::findOrFail($id);
         return view('admin.vendor.verification',compact('data'));
     }
