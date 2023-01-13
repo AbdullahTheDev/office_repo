@@ -12510,7 +12510,7 @@ body .product-popup {
 .header-search input.form-control {
   flex: 1;
   min-width: 40px;
-  padding: 0.9rem;
+  padding: 1rem 1.6rem;
   border: 2px solid #c32228;
   border-right: 0;
   font-size: 1.2rem;
@@ -18884,4 +18884,10 @@ button{
 
 .radius-10{
   border-radius: 10px;
+}
+.bottom-radius-10{
+  border-radius: 0px 0px 10px 10px;
+}
+.right-bottom-radius-10{
+  border-radius: 0px 0px 10px 0px;
 }

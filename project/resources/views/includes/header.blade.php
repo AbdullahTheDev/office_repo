@@ -6,15 +6,15 @@
             </div>
             <div class="header-right">
                 <a class="live-chat" href="javascript:void(Tawk_API.toggle())"><i class="fa fa-comment"></i> Live Chat</a>
-                <span class="divider d-lg-show"></span>
-                @if($gs->is_currency == 1)
+                {{-- <span class="divider d-lg-show"></span> --}}
+                {{-- @if($gs->is_currency == 1)
                 <a href="javascript:;">{{ Session::has('currency') ?   DB::table('currencies')->where('id','=',Session::get('currency'))->first()->sign   : DB::table('currencies')->where('is_default','=',1)->first()->sign }}</a>
                 <select name="currency" class="currency selectors nice">
                 @foreach(DB::table('currencies')->get() as $currency)
                     <option value="{{route('front.currency',$currency->id)}}" {{ Session::has('currency') ? ( Session::get('currency') == $currency->id ? 'selected' : '' ) : (DB::table('currencies')->where('is_default','=',1)->first()->id == $currency->id ? 'selected' : '') }} >{{$currency->name}}</option>
                 @endforeach
                 </select>
-                @endif
+                @endif --}}
                 <!-- End of DropDown Menu -->
                 <span class="divider d-lg-show"></span>
                 @if(Auth::guard('web')->check())
@@ -93,8 +93,8 @@
                             <span>Browse Categories</span>
                         </a>
 
-                        <div class="dropdown-box">
-                            <ul class="menu vertical-menu category-menu">
+                        <div class="dropdown-box bottom-radius-10">
+                            <ul class="menu vertical-menu category-menu bottom-radius-10">
                                 @php
                                 $i=1;
                                 @endphp
@@ -112,7 +112,7 @@
                                             <a href="{{ route('front.main_category', ['category' => $category->slug]) }}">
                                                 {{ $category->name }}
                                             </a>
-                                            <ul class="megamenu">
+                                            <ul class="megamenu right-bottom-radius-10">
                                                 @foreach($category->subs as $subcat)
                                                 <li class="col-md-{{$colls}} col-sm-12">
                                                     <h4 class="menu-title">
@@ -136,20 +136,20 @@
                                                 @endforeach
                                                 <li>
                                                     <div class="banner-fixed menu-banner menu-banner2">
-                                                        <figure>
+                                                        {{-- <figure>
                                                             <img src="{{ asset('assets/images/megamenu.jpg') }}" alt="Menu Banner"
                                                                 width="235" height="347" />
-                                                        </figure>
+                                                        </figure> --}}
                                                         <div class="banner-content">
                                                             <!-- <div class="banner-price-info mb-1 ls-normal">Get up to
                                                                 <strong
                                                                     class="text-primary text-uppercase">20%Off</strong>
                                                             </div>
                                                             <h3 class="banner-title ls-normal">Hot Sales</h3> -->
-                                                            <a href="{{ route('front.category',$category->slug) }}"
+                                                            {{-- <a href="{{ route('front.category',$category->slug) }}"
                                                                 class="btn btn-dark btn-sm btn-link btn-slide-right btn-icon-right">
                                                                 All in {{$category->name}}<i class="w-icon-long-arrow-right"></i>
-                                                            </a>
+                                                            </a> --}}
                                                         </div>
                                                     </div>
                                                 </li>

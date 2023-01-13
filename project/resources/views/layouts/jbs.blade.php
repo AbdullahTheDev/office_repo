@@ -132,7 +132,7 @@
 					@foreach($brands as $brand)
 					<div class="brand-col">
 						<a href="{{url('category?brand='.$brand->id)}}" aria-label="partners">
-							<figure class="brand-wrapper">
+							<figure class="">
 								<img src="{{ asset('assets/images/partner/'.$brand->photo) }}" alt="{{ $brand->name }}" width="410" height="186" />
 							</figure>
 						</a>
