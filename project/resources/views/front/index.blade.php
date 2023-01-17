@@ -166,7 +166,6 @@
    </div>
 </section>
 @endif
-{{-- <h1>Hello World</h1> --}}
 <div class="container">
     <div class="row pt-10 pb-10">
         <div class="col-lg-4 col-sm-3 mb-4">
@@ -472,10 +471,3 @@
    @endif
 </div>
 @endsection
-
-{{-- <script>
-    function alert() {
-        var alert = document.getElementById('alert');
-        alert.style.display = 'none';
-    }
-</script> --}}

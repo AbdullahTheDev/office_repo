@@ -86,11 +86,11 @@
                                             @endif
                                             <tr>
                                                 <td>Payment</td>
-                                                <td><img src="{{ asset('assets/images/stripe.jpeg') }}" alt="" class="hover-img" width="180" height="28"></td>
+                                                <td><img src="{{ asset('assets/images/stripe.jpeg') }}" alt="Payment Methods" class="hover-img" width="180" height="28"></td>
                                             </tr>
                                             <tr>
                                                 <td>Express Shipping to</td>
-                                                <td><img src="{{ asset('assets/images/united-states.png') }}" style="display:inline-block" width="25"/><a href="javascript:;" class="express-ship"> United States</a></td>
+                                                <td><img src="{{ asset('assets/images/united-states.png') }}" style="display:inline-block" width="25" alt="Shipping"/><a href="javascript:;" class="express-ship"> United States</a></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -193,10 +193,10 @@
                                     	 @if($productt->product_type != "affiliate")
                                         <div class="product-qty-form {{ $productt->type == 'Physical' ? '' : 'd-none' }}">
                                             <div class="input-group">
-                                                <input class="quantity form-control qttotal" type="number" min="1"
+                                                <input class="quantity form-control qttotal" type="number" placeholder="Total" min="1"
                                                     max="10000000">
-                                                <button class="quantity-plus w-icon-plus" type="button"></button>
-                                                <button class="quantity-minus w-icon-minus" type="button"></button>
+                                                <button aria-label="Increament" class="quantity-plus w-icon-plus" type="button"></button>
+                                                <button aria-label="Decreament" class="quantity-minus w-icon-minus" type="button"></button>
                                             </div>
                                         </div>
                                          @endif
@@ -232,7 +232,7 @@
                                 <a href="javascript:;" class="cal-ship express-ship"><i class="w-icon-truck" style="font-size:20px;color:#fd7114"></i> Calculate Shipping</a>
                             </div>
                             <div class="widget_LBZszSyOnv">
-                               <div class="expert_LBZszSyOnv"><img alt="Deals On Drives" title="Deals On Drives Computer Expert" src="{{ asset('assets/images/chat-expert.png') }}"></div>
+                               <div class="expert_LBZszSyOnv"><img alt="Deals On Drives" title="Deals On Drives Computer Expert" src="{{ asset('assets/images/chat-expert.png') }}" alt="Deals On Drives"></div>
                                <section class="content_LBZszSyOnv">
                                   <header>
                                      <h2 class="title_LBZszSyOnv">We Are Here</h2>
@@ -317,24 +317,24 @@
                 </div>
                 <div class="tab tab-nav-boxed tab-nav-underline product-tabs mt-5">
                     <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item">
+                        <li class="nav-item" role="tablist">
                             <a href="#product-tab-description" class="nav-link active">Overview</a>
                         </li>
                          @if(!empty($productt->specs))
-                        <li class="nav-item">
+                        <li class="nav-item" role="tablist">
                             <a href="#product-tab-specification" class="nav-link">Specs</a>
                         </li>
                          @endif
-                        <li class="nav-item">
+                        <li class="nav-item" role="tablist">
                             <a href="#product-tab-policy" class="nav-link">Warranty</a>
                         </li>
-                        <li class="nav-item shipping_tab">
+                        <li class="nav-item shipping_tab" role="tablist">
                             <a href="#product-tab-shipping" class="nav-link">Shipping</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" role="tablist">
                             <a href="#product-tab-qa" class="nav-link">Q&A</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" role="tablist">
                             <a href="#product-tab-reviews" class="nav-link">Reviews</a>
                         </li>
                     </ul>
@@ -422,7 +422,7 @@
                                                 <div class="col-lg-12">
                                                     <p id="billing_country_field" class="validate-required validate-email">
                                                         <label class="" for="billing_country">Country Code<abbr title="required" class="required">*</abbr></label>
-                                                         <select class="select2 ship-field form-control" name="customer_country" required="" id="country">
+                                                         <select class="select2 ship-field form-control" name="customer_country" aria-labelledBy="Country" required="" id="country">
                                                             <option value="">Select Country</option>
                                                             @foreach(\DB::table('countries')->whereIn('country_code',['US','CA','GB'])->get() as $country)
                                                             <option data-id="{{ $country->id }}" value="{{ $country->country_code }}" {{ $country->country_code == "US" ? 'selected' : '' }}>{{ $country->country_name }}</option>
@@ -433,7 +433,7 @@
                                                 <div class="col-lg-12">
                                                     <p id="billing_state_field" class="address-field validate-required" data-o_class="form-row form-row form-row-wide address-field validate-required">
                                                         <label class="" for="billing_city">State Code <abbr title="required" class="required">*</abbr></label>
-                                                        <select class="select2 ship-field form-control" name="state" required="" id="administrative_area_level_1">
+                                                        <select class="select2 ship-field form-control" aria-labelledBy="State" name="state" required="" id="administrative_area_level_1">
                                                             <option value="">Select Country First!</option>
                                                         </select>
                                                     </p>
@@ -441,13 +441,13 @@
                                                 <div class="col-lg-12">
                                                     <p id="billing_city_field" class="address-field validate-required" data-o_class="form-row form-row form-row-wide address-field validate-required">
                                                         <label class="" for="billing_city">Town / City <abbr title="required" class="required">*</abbr></label>
-                                                        <input class="form-control form-control-sm ship-field" placeholder="City" type="text" required id="locality" name="city" spellcheck="true" value="{{ old('city') }}">
+                                                        <input class="form-control form-control-sm ship-field" aria-labelledBy="city" placeholder="City" type="text" required id="locality" name="city" spellcheck="true" value="{{ old('city') }}">
                                                     </p>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <p id="billing_postcode_field" class="address-field validate-postcode validate-required" data-o_class="form-row form-row form-row-last address-field validate-required validate-postcode">
                                                         <label class="" for="billing_postcode">Postcode / ZIP <abbr title="required" class="required">*</abbr></label>
-                                                        <input class="form-control form-control-sm ship-field" placeholder="Zip Code" type="text" required id="postal_code" name="zip" spellcheck="true" value="{{ old('zip') }}">
+                                                        <input class="form-control form-control-sm ship-field" aria-labelledBy="Zip Code" placeholder="Zip Code" type="text" required id="postal_code" name="zip" spellcheck="true" value="{{ old('zip') }}">
                                                     </p>  
                                                 </div>
                                                 <div class="col-lg-12">
@@ -686,15 +686,15 @@
                                             </div>
                                             <p class="comment-form-comment">
                                                 <label for="comment">Your Review</label>
-                                                <textarea aria-required="true" rows="8" cols="45" name="review" id="comment" class="form-control"></textarea>
+                                                <textarea aria-required="true" rows="8" cols="45" name="review" id="comment" class="form-control" aria-labelledBy="Review"></textarea>
                                             </p>
                                             <p class="comment-form-author">
                                                 <label for="author">Name <span class="required">*</span></label> 
-                                                <input type="text" aria-required="true" class="form-control" size="30" value="{{Auth::guard('web')->user()->name ?? ''}}" name="author" id="author">
+                                                <input type="text" aria-required="true" class="form-control"aria-labelledBy="Name" size="30" value="{{Auth::guard('web')->user()->name ?? ''}}" name="author" id="author">
                                             </p>
                                             <p class="comment-form-email">
                                                 <label for="email">Email <span class="required">*</span></label> 
-                                                <input type="text" aria-required="true" class="form-control" size="30" value="{{Auth::guard('web')->user()->email ?? ''}}" name="email" id="email">
+                                                <input type="text" aria-required="true" class="form-control" size="30"aria-labelledBy="Email" value="{{Auth::guard('web')->user()->email ?? ''}}" name="email" id="email">
                                             </p>
                                             <p class="form-submit">
                                                 <input type="submit" value="Add Review" class="submit submit-btn btn btn-dark" id="submit" name="submit"> 
@@ -766,7 +766,7 @@
                         <div class="product product-slideup-content">
                             <figure class="product-media">
                                  <a href="{{ route('front.product', $prod->slug) }}">
-                                     <img src="{{ $prod->photo  }}" alt="{{ $prod->showName() }}" width="295" height="335">
+                                     <img src="{{ $prod->photo  }}" alt="{{ $prod->showName() }}" width="295" height="335" alt="Product">
                                  </a>
                              </figure>
                              <div class="product-details">
@@ -830,23 +830,23 @@
                                        </div>
                                        <p class="comment-form-author">
                                           <label for="author">Name <span class="required">*</span></label> 
-                                          <input type="text" class="form-control" aria-required="true" size="30" value="" name="name" id="author">
+                                          <input type="text" class="form-control" aria-labelledBy="Name" aria-required="true" size="30" value="" name="name" id="author">
                                        </p>
                                        <p class="comment-form-author">
                                           <label for="email">Email <span class="required">*</span></label> 
-                                          <input type="text" class="form-control" aria-required="true" size="30" value="" name="email" id="email">
+                                          <input type="text" class="form-control" aria-labelledBy="Email" aria-required="true" size="30" value="" name="email" id="email">
                                        </p>
                                        <p class="comment-form-author">
                                           <label for="author">Phone <span class="required">*</span></label> 
-                                          <input type="text" class="form-control" aria-required="true" size="30" value="" name="phone" id="">
+                                          <input type="text" class="form-control" aria-labelledBy="Phone" aria-required="true" size="30" value="" name="phone" id="">
                                        </p>
                                        <p class="comment-form-author">
                                           <label for="email">Target Price <span class="required">*</span></label> 
-                                          <input type="text" class="form-control" aria-required="true" size="30" value="" name="target_price" id="">
+                                          <input type="text" class="form-control" aria-labelledBy="Target Price" aria-required="true" size="30" value="" name="target_price" id="">
                                        </p>
                                        <p class="comment-form-comment">
                                           <label for="comment">Quantity</label>
-                                          <input type="text" class="form-control" class="qty-num" aria-required="true" size="30" value="" name="quantity" id="">
+                                          <input type="text" class="form-control" aria-labelledBy="Quantity" class="qty-num" aria-required="true" size="30" value="" name="quantity" id="">
                                        </p>
                                        <p class="form-submit">
                                           <input type="submit" value="Get a Quote" class="submit btn btn-dark btn-outline" id="submit" name="submit"> 
