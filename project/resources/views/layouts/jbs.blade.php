@@ -28,7 +28,7 @@
 	@endif
 	@yield('meta_tags')
 	<script src="{{asset('assets/frontend-assets/fonts/webfont.js')}}" async="defer"></script>
-	 <script>
+	 {{-- <script>
 		WebFontConfig = {
 			google: {
 				families: ['Poppins:400,500,600,700,800']
@@ -41,7 +41,7 @@
 			wf.async = true;
 			s.parentNode.insertBefore(wf, s);
 		})(document);
-	</script>
+	</script> --}}
 	<!-- Global site tag (gtag.js) - Google Ads: 383955002 -->
 	{{-- <script async src="https://www.googletagmanager.com/gtag/js?id=AW-383955002"></script> --}}
 	{{-- <script>
@@ -286,12 +286,14 @@
 	<script type="text/javascript">
 		
 		var mainurl = "{{url('/')}}";
-		var gs = {
-			!!json_encode($gs) !!
-		};
-		var langg = {
-			!!json_encode($langg) !!
-		};
+		var gs = `<?php echo json_encode($gs); ?>;`;
+		var langg = `<?php echo json_encode($langg); ?>;`;
+		// var gs = {
+		// 	!!json_encode($gs) !!
+		// };
+		// var langg = {
+		// 	!!json_encode($langg) !!
+		// };
 	</script>
 	@include('includes.scripts')
 	{!! $seo->google_analytics !!}

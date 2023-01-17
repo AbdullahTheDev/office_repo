@@ -4974,6 +4974,14 @@ blockquote {
     padding-left: 1.5rem;
   }
 }
+/* @font-face {
+  font-family: "wolmart";
+  src: url("../fonts/wolmart.eot");
+  src: url("../fonts/wolmart.woff") format("woff"), url("../fonts/wolmart.eot") format("embedded-opentype"), url("../fonts/wolmart.ttf") format("truetype"), url("../fonts/wolmart.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+} */
 @font-face {
   font-family: "wolmart";
   src: url("../fonts/wolmart.eot?png09e");
