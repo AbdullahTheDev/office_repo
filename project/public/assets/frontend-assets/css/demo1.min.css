@@ -5585,7 +5585,7 @@ input:-internal-autofill-selected {
   font-family: Poppins, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #999;
+  color: #625e5e;
   background-color: transparent;
   border-radius: 10px;
   box-shadow: none;
@@ -7086,7 +7086,7 @@ body .product-popup {
 .product-single .product-price {
   margin-bottom: 1.1rem;
   font-size: 3rem;
-  color: #333;
+  color: rgb(64, 55, 55);
   font-weight: 700;
   line-height: 1.2;
 }
@@ -14249,4 +14249,7 @@ aside .sp-sidebar-banner span {
 }
 .theme_color{
   color: #9e1d14;
+}
+.hidden_a{
+  color: #725d5d !important;
 }

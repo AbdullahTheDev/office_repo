@@ -261,7 +261,7 @@
                              </figure>
                              <div class="product-details">
                                  <div class="product-cat">
-                                     <a href="{{ route('front.category',$prod->category->slug) }}">{{ $prod->category->name }}</a>
+                                     <a class="hidden_a" href="{{ route('front.category',$prod->category->slug) }}">{{ $prod->category->name }}</a>
                                  </div>
                                  <h3 class="product-name">
                                      <a href="{{ route('front.product', $prod->slug) }}">{{ $prod->showName() }}</a>

