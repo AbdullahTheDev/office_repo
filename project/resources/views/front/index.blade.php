@@ -222,7 +222,7 @@
             </div>
         </div>
         <!-- End of Inquiry Form -->
-        <div class="col-lg-8 col-sm-12">
+        <div class="col-12 col-lg-8 col-sm-12">
             @php
             $multiple_sections = $sections->whereIn("sort",[2,3,4])->where("status",1);
             @endphp
@@ -245,11 +245,12 @@
               $section->category_id, $section->sub_category_id, $section->child_category_id
               );
               @endphp
-                <div class="tab-pane  pt-4 {{ $key == 1 ? 'active' : '' }}" id="tab{{ $key }}">
-                    <div class="row cols-xl-4 cols-md-4 cols-sm-3 cols-2">
+                <div class="tab-pane pt-4 {{ $key == 1 ? 'active' : '' }}" id="tab{{ $key }}">
+                    {{-- <div class="row cols-xl-3 cols-md-3 cols-sm-2 cols-2"> --}}
+                        <div class="row cols-xl-4 cols-md-3 cols-sm-2 cols-2">
                         @if($section_products->count())
                         @foreach($section_products as $prod)
-                        <div class="product product-slideup-content radius-10" style="background-color: #f5f5f5; padding-bottom: 10px">
+                        <div class="product product-slideup-content">
                             <figure class="product-media">
                                 {{-- {{
                                     $prod

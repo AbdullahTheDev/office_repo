@@ -316,25 +316,25 @@
                     </div>
                 </div>
                 <div class="tab tab-nav-boxed tab-nav-underline product-tabs mt-5">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item" role="tablist">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
                             <a href="#product-tab-description" class="nav-link active">Overview</a>
                         </li>
                          @if(!empty($productt->specs))
-                        <li class="nav-item" role="tablist">
+                        <li class="nav-item">
                             <a href="#product-tab-specification" class="nav-link">Specs</a>
                         </li>
                          @endif
-                        <li class="nav-item" role="tablist">
+                        <li class="nav-item">
                             <a href="#product-tab-policy" class="nav-link">Warranty</a>
                         </li>
-                        <li class="nav-item shipping_tab" role="tablist">
+                        <li class="nav-item shipping_tab">
                             <a href="#product-tab-shipping" class="nav-link">Shipping</a>
                         </li>
-                        <li class="nav-item" role="tablist">
+                        <li class="nav-item">
                             <a href="#product-tab-qa" class="nav-link">Q&A</a>
                         </li>
-                        <li class="nav-item" role="tablist">
+                        <li class="nav-item">
                             <a href="#product-tab-reviews" class="nav-link">Reviews</a>
                         </li>
                     </ul>
