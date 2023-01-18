@@ -250,31 +250,31 @@
                         <div class="row cols-xl-4 cols-md-3 cols-sm-2 cols-2">
                         @if($section_products->count())
                         @foreach($section_products as $prod)
-                        <div class="product product-slideup-content">
-                            <figure class="product-media">
+                        <div class="custom_feature">
+                            <figure class="custom_feature_image">
                                 {{-- {{
                                     $prod
                                 }} --}}
-                                 <a href="{{ route('front.product', $prod->slug) }}">
-                                     <img src="{{ $prod->photo  }}" alt="{{ $prod->showName() }}" width="295" height="335">
+                                 <a class="" href="{{ route('front.product', $prod->slug) }}">
+                                     <img src="{{ $prod->photo  }}" alt="{{ $prod->showName() }}">
                                  </a>
                              </figure>
-                             <div class="product-details">
+                             <div class="custom_feature_details">
                                  <div class="product-cat">
                                      <a class="hidden_a" href="{{ route('front.category',$prod->category->slug) }}">{{ $prod->category->name }}</a>
                                  </div>
                                  <h3 class="product-name">
-                                     <a href="{{ route('front.product', $prod->slug) }}">{{ $prod->showName() }}</a>
+                                     <a href="{{ route('front.product', $prod->slug) }}" class=" text_ellipse">{{ $prod->showName() }}</a>
                                  </h3>
                                  <div class="product-price">
                                      <ins class="new-price">{{ $prod->showPrice() }}</ins><del class="old-price">{{ $prod->showPreviousPrice() }}</del>
                                  </div>
                              </div>
-                             <div class="product-hidden-details">
-                                 <div class="product-action">
+                             <div class="custom_feature_details_hidden">
+                                 <div class="custom_feature_div">
                                     @if($prod->stock !== 0)
                                     @if($prod->price != 0)
-                                    <a data-href="{{ route('product.cart.add',$prod->id) }}" class="button btn-product btn btn-dark btn-outline btn-rounded btn-sm btn-cart" title="Add to Cart">
+                                    <a data-href="{{ route('product.cart.add',$prod->id) }}" class="button custom_btn_add_to_cart" title="Add to Cart">
                                          <i class="w-icon-cart"></i>
                                          <span>Add To Cart</span>
                                     </a>
@@ -289,7 +289,7 @@
                                     </a>
                                     @endif
                                     @if(Auth::guard('web')->check())
-                                    <a data-href="{{ route('user-wishlist-add',$prod->id) }}" rel="nofollow" class="btn-product-icon btn-wishlist w-icon-heart add-to-wish add_to_wishlist" title="Add to wishlist"></a>
+                                    <a data-href="{{ route('user-wishlist-add',$prod->id) }}" rel="nofollow" class="custom_btn_wishlist btn-wishlist w-icon-heart add-to-wish add_to_wishlist" title="Add to wishlist"></a>
                                     @endif
                                      {{-- <a data-href="{{ route('product.compare.add',$prod->id) }}" class="btn-product-icon btn-compare w-icon-compare add-to-compare add-to-compare-link" title="Compare"></a> --}}
                                  </div>
