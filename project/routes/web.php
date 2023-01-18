@@ -10,6 +10,7 @@ Route::get('/clear', function () {
   Artisan::call('config:clear');
   return '<h1>All Cache cleared</h1>';
 });
+Route::get('/google-feed', 'Admin\FeedController@Feed');
 
 
 // Route::get('/testMail', 'Front\FrontendController@TestMail');
@@ -1434,3 +1435,4 @@ Route::group(['middleware' => 'maintenance'], function () {
 
 
 });
+
