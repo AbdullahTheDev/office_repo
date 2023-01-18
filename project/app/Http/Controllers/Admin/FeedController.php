@@ -11,16 +11,35 @@ class FeedController extends Controller
 {
     public function Feed()
     {
+        ini_set('display_errors', '1');
+        ini_set('max_execution_time', 500);
+        ini_set('max_execution_time', -1);
         $sql = DB::table('products')
             ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
             ->leftJoin('childcategories', 'products.childcategory_id', '=', 'childcategories.id')
             ->leftJoin('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
             ->leftJoin('partners', 'products.brand_id', '=', 'partners.id')
+            ->select('products.name as product_name','products.slug as product_slug','products.photo as product_photo','products.*','categories.name as categories_name', 'childcategories.name as childcategory_name', 'subcategories.name as subcategory_name', 'partners.link as brand_name')
             ->where('show_in_feed', '=', '1')
             ->where('price', '>=', '80')
             ->where('price', '<=', '300')
             ->get();
 
+            // $sql = DB::table('products')
+            // ->select(['name as product_name'], ['slug as product_slug'], ['photo as product_photo'], ['*'])
+            // ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
+            // ->select(['categories.name as categories_name'])
+            // ->leftJoin('childcategories', 'products.childcategory_id', '=', 'childcategories.id')
+            // ->select(['childcategories.name as childcategory_name'])
+            // ->leftJoin('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+            // ->select(['subcategories.name as subcategory_name'], ['partners.link as brand_name'])
+            // ->leftJoin('partners', 'products.brand_id', '=', 'partners.id')
+            // ->where('show_in_feed', '=', '1')
+            // ->where('price', '>=', '80')
+            // ->where('price', '<=', '300')
+            // ->get();
+
+            // return $sql;
         $row_count = DB::table('products')
             ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
             ->leftJoin('childcategories', 'products.childcategory_id', '=', 'childcategories.id')
@@ -34,16 +53,17 @@ class FeedController extends Controller
         // $sql = "Hello World";
         // return $sql[6]->id;
         // $result = $sql;
-        // $row_count = $sql.count();
+        // $sql[$i]->_count = $sql.count();
 
         // print_r($result);
         if ($row_count > 0) {
 
             $data = "id \ttitle \tdescription \tlink \tprice \tsale_price \tmpn \tbrand \tgtin \tidentifier_exists \tcondition \timage_link \tproduct_type \tquantity \tshipping \ttax \tshipping_weight \tavailability \tgoogle_product_category \tcustom_label_0 \tcustom_label_1 \tcustom_label_2\n";
-            // $iterate = $row_count;
+            // $iterate = $sql[$i]->_count;
             for ($i = 0; $i <= $row_count; $i++) {
                 // return $sql[$i];
                 while ($sql[$i]) {
+                    // return $sql[$i];
                     if ($sql[$i]->product_condition == 1) {
                         $condition = "Refurbished";
                     } else {
@@ -91,7 +111,9 @@ class FeedController extends Controller
                     }
                     $custom_label_0 = $col_val;
 
-                    $data .= $sql[$i]->sku . "\t" . $sql[$i]->product_name . "\t" . $sql[$i]->product_name . "\thttp://127.0.0.1:8000/item/" . $sql[$i]->product_slug . "\t" . number_format($sql[$i]->price, 2) . " USD\t" . number_format($sql[$i]->price, 2) . " USD\t" . $sql[$i]->sku . "\t" . $sql[$i]->brand_name . "\t" . $sql[$i]->gtin . "\t" . $sql[$i]->identifier . "\t" . $condition . "\thttp://127.0.0.1:8000/assets/images/products/" . $sql[$i]->product_photo . "\t" . $sql[$i]->categories_name . "\x20>\x20" . $sql[$i]->childcategory_name . "\x20>\x20" . $sql[$i]->subcategory_name . "\t" . $sql[$i]->stock . "\tUS:::0 USD\tUS:TX:9.5:yes\t" . number_format($sql[$i]->weight, 6) . "" . $sql[$i]->measure . "\tin_stock\t" . $sql[$i]->google_product_categor . "\t" . $custom_label_0 . "\t" . $sql[$i]->custom_label_1 . "\t" . $sql[$i]->custom_label_2 . "\r\n";
+                    // $data .= $sql[$i]->sku . "\t" . $sql[$i]->product_name . "\t" . $sql[$i]->product_name . "\thttp://127.0.0.1:8000/item/" . $sql[$i]->product_slug . "\t" . number_format($sql[$i]->price, 2) . " USD\t" . number_format($sql[$i]->price, 2) . " USD\t" . $sql[$i]->sku . "\t" . $sql[$i]->brand_name . "\t" . $sql[$i]->gtin . "\t" . $sql[$i]->identifier . "\t" . $condition . "\thttp://127.0.0.1:8000/assets/images/products/" . $sql[$i]->product_photo . "\t" . $sql[$i]->categories_name . "\x20>\x20" . $sql[$i]->childcategory_name . "\x20>\x20" . $sql[$i]->subcategory_name . "\t" . $sql[$i]->stock . "\tUS:::0 USD\tUS:TX:9.5:yes\t" . number_format($sql[$i]->weight, 6) . "" . $sql[$i]->measure . "\tin_stock\t" . $sql[$i]->google_product_category . "\t" . $custom_label_0 . "\t" . $sql[$i]->custom_label_1 . "\t" . $sql[$i]->custom_label_2 . "\r\n";
+
+                        $data .= $sql[$i]->sku."\t".$sql[$i]->product_name."\t".$sql[$i]->product_name."\thttp://127.0.0.1:8000/item/".$sql[$i]->product_slug."\t".number_format($sql[$i]->price,2)." USD\t".number_format($sql[$i]->price,2);
 
                     //run $data;
 
@@ -100,7 +122,7 @@ class FeedController extends Controller
                 }
             }
 
-            return $data;
+            return 'hi';
 
             //  file_put_contents("googlefeed/google-shopping-feed.txt",$data);
 
