@@ -247,7 +247,7 @@
               @endphp
                 <div class="tab-pane pt-4 {{ $key == 1 ? 'active' : '' }}" id="tab{{ $key }}">
                     {{-- <div class="row cols-xl-3 cols-md-3 cols-sm-2 cols-2"> --}}
-                        <div class="row cols-xl-4 cols-md-3 cols-sm-2 cols-2">
+                        <div class="grid-container">
                         @if($section_products->count())
                         @foreach($section_products as $prod)
                         <div class="custom_feature">

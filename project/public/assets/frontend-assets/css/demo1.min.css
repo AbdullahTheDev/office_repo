@@ -14262,9 +14262,12 @@ aside .sp-sidebar-banner span {
   max-height: 100%;
   border: 1px solid #ccc;
   padding: 0px 0px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 .custom_feature:hover .custom_feature_details_hidden{
-  display: flex;
+  display: block;
+  /* background-color: red; */
 }
 .custom_feature .custom_feature_image{
   width: 100%;
@@ -14321,4 +14324,11 @@ aside .sp-sidebar-banner span {
     max-width: 100%;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  column-gap: 5px;
+  padding: 0px 7px;
 }
