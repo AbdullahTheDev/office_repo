@@ -214,9 +214,9 @@ class FrontendController extends Controller
         $top_products = Product::where('top', '=', 1)->where('price', '!=', 0)->where('status', '=', 1)->select($selectable)->orderBy('id', 'desc')->take(6)->get();;
         $big_products = Product::where('big', '=', 1)->where('price', '!=', 0)->where('status', '=', 1)->select($selectable)->orderBy('id', 'desc')->take(6)->get();;
         $hot_products =  Product::where('hot', '=', 1)->where('price', '!=', 0)->where('status', '=', 1)->select($selectable)->orderBy('id', 'desc')->take(9)->get();
-        $latest_products =  Product::where('latest', '=', 1)->where('price', '!=', 0)->where('status', '=', 1)->select($selectable)->orderBy('id', 'desc')->take(9)->get();
-        $trending_products =  Product::where('trending', '=', 1)->where('price', '!=', 0)->where('status', '=', 1)->select($selectable)->orderBy('id', 'desc')->take(9)->get();
-        $sale_products =  Product::where('sale', '=', 1)->where('price', '!=', 0)->where('status', '=', 1)->select($selectable)->orderBy('id', 'desc')->take(9)->get();
+        $latest_products =  Product::where('latest', '=', 1)->where('price', '!=', 0)->where('status', '=', 1)->select($selectable)->orderBy('id', 'desc')->take(2)->get();
+        $trending_products =  Product::where('trending', '=', 1)->where('price', '!=', 0)->where('status', '=', 1)->select($selectable)->orderBy('id', 'desc')->take(2)->get();
+        $sale_products =  Product::where('sale', '=', 1)->where('price', '!=', 0)->where('status', '=', 1)->select($selectable)->orderBy('id', 'desc')->take(2)->get();
         return view('front.extraindex', compact('ps', 'services', 'reviews', 'large_banners', 'bottom_small_banners', 'best_products', 'top_products', 'hot_products', 'latest_products', 'big_products', 'trending_products', 'sale_products', 'discount_products', 'partners'));
     }
 

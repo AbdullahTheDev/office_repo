@@ -18971,6 +18971,7 @@ button{
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   column-gap: 5px;
+  row-gap: 5px;
   padding: 0px 7px;
 }
 .grid-container-6 {
