@@ -18977,5 +18977,6 @@ button{
   display: grid;
   grid-template-columns: auto auto auto auto auto auto;
   column-gap: 5px;
+  row-gap: 5px;
   padding: 0px 7px;
 }
