@@ -95,21 +95,16 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="footer-middle">
-            <div class="widget widget-category">
-               
-            </div>
-        </div> -->
         <div class="footer-bottom">
             <div class="footer-left">
                 <p class="copyright">{!! $gs->copyright !!}</p>
             </div>
-            <div class="footer-right">
+            {{-- <div class="footer-right">
                 <span class="payment-label mr-lg-8">We're using safe payment for</span>
                 <figure class="payment">
-                    <img src="{{ asset('assets/dod') }}/images/payments.png" alt="payment"  />
+                    <img src="{{ asset('assets/dod') }}/images/payments.png" width="100%" height="auto" alt="payment"  />
                 </figure>
-            </div>
+            </div> --}}
         </div>
     </div>
 </footer>

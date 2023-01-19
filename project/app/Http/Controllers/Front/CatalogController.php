@@ -15,6 +15,7 @@ use App\Models\Reply;
 use App\Models\Report;
 use App\Models\Subcategory;
 use App\Models\Partner;
+use App\Models\Url_Redirection;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -349,13 +350,20 @@ class CatalogController extends Controller
     public function product($slug)
     {   
         //check if product has new url
-        $urls = \DB::table('url_redirections')->get();
+        // $urls = \DB::table('url_redirections')->get();
+        // foreach($urls as $url){
+        //     if($slug == $url->old_slug){
+        //         return \Redirect::to(url('/item/'.$url->new_slug));
+        //     }
+        // }
+        $urls = Url_Redirection::all();
         foreach($urls as $url){
             if($slug == $url->old_slug){
                 return \Redirect::to(url('/item/'.$url->new_slug));
             }
         }
-        $this->code_image();
+        // return $urls;
+        // $this->code_image();
         $productt = \Cache::remember($slug, 6*3600, function() use ($slug){ 
                         return Product::with("brand:id,link")->with("category")->with('childcategory')->where('slug','=',$slug)->firstOrFail();
                     });

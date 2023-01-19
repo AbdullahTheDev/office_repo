@@ -232,7 +232,7 @@
                                 <a href="javascript:;" class="cal-ship express-ship"><i class="w-icon-truck" style="font-size:20px;color:#fd7114"></i> Calculate Shipping</a>
                             </div>
                             <div class="widget_LBZszSyOnv">
-                               <div class="expert_LBZszSyOnv"><img alt="Deals On Drives" title="Deals On Drives Computer Expert" src="{{ asset('assets/images/chat-expert.png') }}" alt="Deals On Drives"></div>
+                               <div class="expert_LBZszSyOnv"><img alt="Deals On Drives" title="Deals On Drives Computer Expert" width="60px" height="60px" src="{{ asset('assets/images/chat-expert.png') }}" alt="Deals On Drives"></div>
                                <section class="content_LBZszSyOnv">
                                   <header>
                                      <h2 class="title_LBZszSyOnv">We Are Here</h2>
