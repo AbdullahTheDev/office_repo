@@ -44,8 +44,8 @@
                                   </div>
                                 @endforeach
                                </div>
-                               <button class="thumb-up disabled"><i class="w-icon-angle-left"></i></button>
-                               <button class="thumb-down disabled"><i
+                               <button aria-label="Disable btn" class="thumb-up disabled"><i class="w-icon-angle-left"></i></button>
+                               <button aria-label="Disable button" class="thumb-down disabled"><i
                                   class="w-icon-angle-right"></i></button>
                             </div>
                             <p class="text-center small text-muted">** The image may not match the actual product. Look for part number to identify the right product. **</p>
@@ -697,7 +697,7 @@
                                                 <input type="text" aria-required="true" class="form-control" size="30"aria-labelledBy="Email" value="{{Auth::guard('web')->user()->email ?? ''}}" name="email" id="email">
                                             </p>
                                             <p class="form-submit">
-                                                <input type="submit" value="Add Review" class="submit submit-btn btn btn-dark" id="submit" name="submit"> 
+                                                <input type="submit" value="Add Review" class="submit submit-btn btn btn-dark" id="submit2" name="submit"> 
                                             </p>
                                         </form>
                                     </div>
@@ -830,27 +830,27 @@
                                        </div>
                                        <p class="comment-form-author">
                                           <label for="author">Name <span class="required">*</span></label> 
-                                          <input type="text" class="form-control" aria-labelledBy="Name" aria-required="true" size="30" value="" name="name" id="author">
+                                          <input type="text" class="form-control" placeholder="Enter name" aria-labelledBy="Name" aria-required="true" size="30" value="" name="name" id="author">
                                        </p>
                                        <p class="comment-form-author">
                                           <label for="email">Email <span class="required">*</span></label> 
-                                          <input type="text" class="form-control" aria-labelledBy="Email" aria-required="true" size="30" value="" name="email" id="email">
+                                          <input type="text" class="form-control" placeholder="Enter email" aria-labelledBy="Email" aria-required="true" size="30" value="" name="email" id="email">
                                        </p>
                                        <p class="comment-form-author">
                                           <label for="author">Phone <span class="required">*</span></label> 
-                                          <input type="text" class="form-control" aria-labelledBy="Phone" aria-required="true" size="30" value="" name="phone" id="">
+                                          <input type="text" class="form-control" placeholder="Enter phone" aria-labelledBy="Phone" aria-required="true" size="30" value="" name="phone" id="">
                                        </p>
                                        <p class="comment-form-author">
                                           <label for="email">Target Price <span class="required">*</span></label> 
-                                          <input type="text" class="form-control" aria-labelledBy="Target Price" aria-required="true" size="30" value="" name="target_price" id="">
+                                          <input type="text" class="form-control" placeholder="Enter target price" aria-labelledBy="Target Price" aria-required="true" size="30" value="" name="target_price" id="">
                                        </p>
                                        <p class="comment-form-comment">
                                           <label for="comment">Quantity</label>
-                                          <input type="text" class="form-control" aria-labelledBy="Quantity" class="qty-num" aria-required="true" size="30" value="" name="quantity" id="">
+                                          <input type="text" class="form-control" placeholder="Enter quantity" aria-labelledBy="Quantity" class="qty-num" aria-required="true" size="30" value="" name="quantity" id="">
                                        </p>
                                        <p class="form-submit">
                                           <input type="submit" value="Get a Quote" class="submit btn btn-dark btn-outline" id="submit" name="submit"> 
-                                          <input type="hidden" id="" value="{{ $productt->id }}" name="product_id">
+                                          <input type="hidden" id="" placeholder="quote" value="{{ $productt->id }}" name="product_id">
                                        </p>
                                     </form>
                                  </div>
