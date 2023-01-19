@@ -14326,9 +14326,15 @@ aside .sp-sidebar-banner span {
     -webkit-box-orient: vertical;
 }
 
-.grid-container {
+.grid-container-4 {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
+  column-gap: 5px;
+  padding: 0px 7px;
+}
+.grid-container-6 {
+  display: grid;
+  grid-template-columns: 15% 15% 15% 15% 15% 15%;
   column-gap: 5px;
   padding: 0px 7px;
 }
