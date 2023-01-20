@@ -59,7 +59,7 @@ class AppServiceProvider extends ServiceProvider
                         }));   
             $settings->with('brands', 
                         \Cache::remember('brands', 6*3600, function() { 
-                            return Partner::limit(8)->get();
+                            return Partner::limit(6)->get();
                         }));   
             if (Session::has('language')) 
             {

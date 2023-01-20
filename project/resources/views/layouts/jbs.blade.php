@@ -103,9 +103,9 @@
 			@yield('content')
 
 			<!-- #content -->
-			<div class="container">
+			<div class="container"style="padding: 10px 0px;">
 				@if(!empty($brands))
-				<h2 class="title title-underline mb-4 ls-normal">Our Partners</h2>
+				<h2 class="title" style="justify-content: center; padding: 8px 0px">Our Partners</h2>
 				<div class="owl-carousel owl-theme brands-wrapper mb-9 row gutter-no cols-xl-6 cols-lg-5 cols-md-4 cols-sm-3 cols-2" data-owl-options="{
 		                    'nav': false,
 		                    'dots': false,
@@ -122,10 +122,10 @@
 		                            'items': 6
 		                        },
 		                        '992': {
-		                            'items': 8
+		                            'items': 6
 		                        },
 		                        '1200': {
-		                            'items': 10
+		                            'items': 6
 		                        }
 		                    }
 		                }">

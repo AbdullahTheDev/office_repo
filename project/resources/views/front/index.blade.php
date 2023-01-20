@@ -104,7 +104,9 @@
         @foreach($services as $service)
         <div class="icon-box icon-box-side icon-box-primary">
             <span class="icon-box-icon icon-shipping">
-                <img src="{{ asset('assets/images/services') }}/{{ $service->photo }}" width="42" height="45" alt="services">
+                {{-- <img src="{{ asset('assets/images/services') }}/{{ $service->photo }}" width="42" height="45" alt="services"> --}}
+                {{-- <i class="w-icon-chat"></i> --}}
+                {!! $service->photo !!}
             </span>
             <div class="icon-box-content">
                 <h4 class="icon-box-title font-weight-bold mb-1">{{ $service->title }}</h4>
@@ -294,8 +296,8 @@
             <!-- End of Tab Content -->
             @endif
         </div>
+        </div>
     </div>
-</div>
 {{-- Sales End  --}}
 <div class="container-fluid">
     @php
@@ -378,7 +380,10 @@
     </section>
     @endif
 </div>
-<div class="container">
+</div>
+<div class="container-fluid" style="background-color: #f8f8f8;">
+    <div class="container" style="padding: 10px 0px">
+
     <h2 class="title justify-content-center ls-normal mb-4 mt-10 pt-1">Popular Products
     </h2>
     @php
@@ -394,7 +399,7 @@
             @endforeach
         </ul>
     </div>
-    <div class="tab-content product-wrapper">
+    <div style="background-color: transparent !important;" class="tab-content product-wrapper">
         @foreach($multiple_sections as $key => $section)
         @php
         $section_products = $section->products(
@@ -459,5 +464,6 @@
     </div>
     <!-- End of Tab Content -->
     @endif
+    </div>
 </div>
 @endsection
