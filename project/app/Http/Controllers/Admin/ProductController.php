@@ -761,10 +761,17 @@ class ProductController extends Controller
                         }
                     });
 
-        $file = fopen(storage_path('test.csv'), 'w');
-        foreach ($list as $row) {
-            fputcsv($file, $row);
+                    // return $list;
+                    $file = fopen('../storage/app/test.csv', 'w');
+                    // return $file;
+                    echo '<pre>';
+        foreach ($list as $key => $row) {
+            print_r($row);
+            // echo $row[$key];
+            // fputcsv($file, $row);
         }
+        echo '</pre>';
+        return 1;
         $headers = array(
             'Content-Type' => 'text/csv',
         );
