@@ -698,7 +698,7 @@ class FrontendController extends Controller
                     'updated_at' => $row->updated_at
                 );
             }
-            $content = view('front.sitemap.sitemap1', compact('product'))->render();
+            $content = view('sitemap.sitemap1', compact('product'))->render();
             $file_name = 'sitemap' . $i . '.xml';
             \File::put(public_path() . '/assets/' . $file_name, $content);
             $i++;

@@ -730,48 +730,91 @@ class ProductController extends Controller
                             }
                 
                 
-                            $list[] = [
-                                $product->sku,
-                                $product->gtin,
-                                $product->identifier,
-                                $product->name,
-                                $product->details,
-                                $product->slug,
-                                $price,
-                                $sale_price == 0 ? "" : $sale_price,
-                                $product->brand->link ?? "",
-                                $product->product_condition == 2 ? "New" : "Refurbished",
-                                $product->getOriginal("photo"),
-                                $galleries,
-                                $category,
-                                $product->stock,
-                                $product->weight,
-                                $product->measure,
-                                $product->length,
-                                $product->width,
-                                $product->height,
-                                $product->google_product_category,
-                                $product->getOriginal("meta_tag"),
-                                $product->meta_description,
-                                $product->show_in_feed,
-                                $product->custom_label_1,
-                                $product->custom_label_2,
-                                $product->specs
-                            ];
+                            $list[] = array(
+                                array($product->sku),
+                                array($product->gtin),
+                            );
+                            // $list[] = [
+                            //     $product->sku,
+                            //     $product->gtin,
+                            //     $product->identifier,
+                            //     $product->name,
+                            //     $product->details,
+                            //     $product->slug,
+                            //     $price,
+                            //     $sale_price == 0 ? "" : $sale_price,
+                            //     $product->brand->link ?? "",
+                            //     $product->product_condition == 2 ? "New" : "Refurbished",
+                            //     $product->getOriginal("photo"),
+                            //     $galleries,
+                            //     $category,
+                            //     $product->stock,
+                            //     $product->weight,
+                            //     $product->measure,
+                            //     $product->length,
+                            //     $product->width,
+                            //     $product->height,
+                            //     $product->google_product_category,
+                            //     $product->getOriginal("meta_tag"),
+                            //     $product->meta_description,
+                            //     $product->show_in_feed,
+                            //     $product->custom_label_1,
+                            //     $product->custom_label_2,
+                            //     $product->specs
+
+                            // ];
                         }
                     });
 
+                    // $product->sku,
+                    //             $product->gtin,
+                    //             $product->identifier,
+                    //             $product->name,
+                    //             $product->details,
+                    //             $product->slug,
+                    //             $price,
+                    //             $sale_price == 0 ? "" : $sale_price,
+                    //             $product->brand->link ?? "",
+                    //             $product->product_condition == 2 ? "New" : "Refurbished",
+                    //             $product->getOriginal("photo"),
+                    //             $galleries,
+                    //             $category,
+                    //             $product->stock,
+                    //             $product->weight,
+                    //             $product->measure,
+                    //             $product->length,
+                    //             $product->width,
+                    //             $product->height,
+                    //             $product->google_product_category,
+                    //             $product->getOriginal("meta_tag"),
+                    //             $product->meta_description,
+                    //             $product->show_in_feed,
+                    //             $product->custom_label_1,
+                    //             $product->custom_label_2,
+                    //             $product->specs
+
                     // return $list;
-                    $file = fopen('../storage/app/test.csv', 'w');
+                    // $liste = array (
+                    //     array('aaa', 'bbb', 'ccc', 'dddd'),
+                    //     array('123', '456', '789'),
+                    //     array('"aaa"', '"bbb"')
+                    // );
+                    
+                    $fp = fopen(storage_path('test.csv'), 'w');
+                    
+                    foreach ($list as $fields) {
+                        fputcsv($fp, $fields);
+                    }
+                    
+                    fclose($fp);
+
+                    // return $fp;
+                    // return $list;
+                    // $file = fopen(storage_path('test.csv'), 'w');
                     // return $file;
-                    echo '<pre>';
-        foreach ($list as $key => $row) {
-            print_r($row);
-            // echo $row[$key];
-            // fputcsv($file, $row);
-        }
-        echo '</pre>';
-        return 1;
+        // foreach ($list as $row) {
+        //     fputcsv($file, $row);
+        // }
         $headers = array(
             'Content-Type' => 'text/csv',
         );
