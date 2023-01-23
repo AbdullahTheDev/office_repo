@@ -394,7 +394,7 @@
         <ul class="nav nav-tabs" role="tablist">
             @foreach($multiple_sections as $key => $section)
             <li role="tab" class="nav-item mr-2 mb-2">
-                <a class="nav-link br-sm font-size-md ls-normal {{ $key == 7 ? 'active' : '' }}" href="#{{ $section->id }}{{ $key }}">{{ $section->heading }}</a>
+                <a class="nav-link br-sm font-size-md ls-normal {{ $key == 7 ? 'active' : '' }}" href="#{{ $section->id }}g{{ $key }}">{{ $section->heading }}</a>
             </li>
             @endforeach
         </ul>

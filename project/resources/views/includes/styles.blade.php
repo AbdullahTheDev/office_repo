@@ -1,12 +1,14 @@
 <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend-assets/css/all.min.css')}}">
 <!-- Plugins CSS -->
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend-assets/css/owl.carousel.min.css')}}">
+{{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend-assets/css/owl.carousel.min.css')}}"> --}}
+{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend-assets/css/animate.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend-assets/css/magnific-popup.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend-assets/css/swiper-bundle.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend-assets/css/photoswipe.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend-assets/css/default-skin.min.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/frontend-assets/css/swiper-bundle.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/frontend-assets/css/swiper-bundle.min.css')}}"> --}}
+<link rel="stylesheet" type="text/css" href="{{asset('assets/frontend-assets/css/plugin.min.css')}}">
 <!-- Default CSS -->
 @if(url()->current() == route('front.index'))
 <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend-assets/css/demo1.min.css')}}">
