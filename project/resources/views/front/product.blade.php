@@ -689,12 +689,12 @@
                                                 <textarea aria-required="true" rows="8" cols="45" name="review" id="comment" class="form-control" aria-labelledBy="Review"></textarea>
                                             </p>
                                             <p class="comment-form-author">
-                                                <label for="author">Name <span class="required">*</span></label> 
-                                                <input type="text" aria-required="true" class="form-control"aria-labelledBy="Name" size="30" value="{{Auth::guard('web')->user()->name ?? ''}}" name="author" id="author">
+                                                <label for="author-name">Name <span class="required">*</span></label> 
+                                                <input type="text" aria-required="true" class="form-control"aria-labelledBy="author-name" size="30" value="{{Auth::guard('web')->user()->name ?? ''}}" name="author" id="author">
                                             </p>
                                             <p class="comment-form-email">
-                                                <label for="email">Email <span class="required">*</span></label> 
-                                                <input type="text" aria-required="true" class="form-control" size="30"aria-labelledBy="Email" value="{{Auth::guard('web')->user()->email ?? ''}}" name="email" id="email">
+                                                <label for="author-email">Email <span class="required">*</span></label> 
+                                                <input type="text" aria-required="true" class="form-control" size="30"aria-labelledBy="author-email" value="{{Auth::guard('web')->user()->email ?? ''}}" name="email" id="email">
                                             </p>
                                             <p class="form-submit">
                                                 <input type="submit" value="Add Review" class="submit submit-btn btn btn-dark" id="submit2" name="submit"> 
@@ -829,20 +829,20 @@
                                           <label>Request a quote below or call <a href="tel:{{ $gs->phone }}">{{ $gs->phone }}</a> for further assistance with this part number</label>
                                        </div>
                                        <p class="comment-form-author">
-                                          <label for="author">Name <span class="required">*</span></label> 
-                                          <input type="text" class="form-control" placeholder="Enter name" aria-labelledBy="Name" aria-required="true" size="30" value="" name="name" id="author">
+                                          <label for="name">Name <span class="required">*</span></label> 
+                                          <input type="text" class="form-control" placeholder="Enter name" aria-labelledBy="name" aria-required="true" size="30" value="" name="name" id="name">
                                        </p>
                                        <p class="comment-form-author">
-                                          <label for="email">Email <span class="required">*</span></label> 
+                                          <label for="Email">Email <span class="required">*</span></label> 
                                           <input type="text" class="form-control" placeholder="Enter email" aria-labelledBy="Email" aria-required="true" size="30" value="" name="email" id="email">
                                        </p>
                                        <p class="comment-form-author">
-                                          <label for="author">Phone <span class="required">*</span></label> 
-                                          <input type="text" class="form-control" placeholder="Enter phone" aria-labelledBy="Phone" aria-required="true" size="30" value="" name="phone" id="">
+                                          <label for="author-phone">Phone <span class="required">*</span></label> 
+                                          <input type="text" class="form-control" placeholder="Enter phone" aria-labelledBy="author-hone" aria-required="true" size="30" value="" name="phone" id="">
                                        </p>
                                        <p class="comment-form-author">
-                                          <label for="email">Target Price <span class="required">*</span></label> 
-                                          <input type="text" class="form-control" placeholder="Enter target price" aria-labelledBy="Target Price" aria-required="true" size="30" value="" name="target_price" id="">
+                                          <label for="Target-Price">Target Price <span class="required">*</span></label> 
+                                          <input type="text" class="form-control" placeholder="Enter target price" aria-labelledBy="Target-Price" aria-required="true" size="30" value="" name="target_price" id="">
                                        </p>
                                        <p class="comment-form-comment">
                                           <label for="comment">Quantity</label>
