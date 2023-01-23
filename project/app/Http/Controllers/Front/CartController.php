@@ -16,7 +16,7 @@ class CartController extends Controller
 
     public function cart()
     {
-        $this->code_image();
+        // // $this->code_image();
         if (!Session::has('cart')) {
             return view('front.cart');
         }

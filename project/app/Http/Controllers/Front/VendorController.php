@@ -22,7 +22,7 @@ class VendorController extends Controller
 
     public function index(Request $request,$slug)
     {
-        $this->code_image();
+        // $this->code_image();
         // $sort = "";
         $minprice = $request->min;
         $maxprice = $request->max;

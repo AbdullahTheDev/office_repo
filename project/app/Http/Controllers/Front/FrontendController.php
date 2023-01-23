@@ -143,7 +143,7 @@ class FrontendController extends Controller
         // dd("done");
         //\Artisan::call("cache:clear");
         //dd("done");
-        // $this->code_image();
+        // // $this->code_image();
         if (!empty($request->reff)) {
             $affilate_user = User::where('affilate_code', '=', $request->reff)->first();
             if (!empty($affilate_user)) {
@@ -227,7 +227,7 @@ class FrontendController extends Controller
 
     public function language($id)
     {
-        $this->code_image();
+        // // $this->code_image();
         Session::put('language', $id);
         return redirect()->back();
     }
@@ -239,7 +239,7 @@ class FrontendController extends Controller
 
     public function currency($id)
     {
-        $this->code_image();
+        // // $this->code_image();
         if (Session::has('coupon')) {
             Session::forget('coupon');
             Session::forget('coupon_code');
@@ -279,7 +279,7 @@ class FrontendController extends Controller
 
     public function blog(Request $request)
     {
-        $this->code_image();
+        // $this->code_image();
         $blogs = Blog::orderBy('created_at', 'desc')->paginate(9);
         if ($request->ajax()) {
             return view('front.pagination.blog', compact('blogs'));
@@ -289,7 +289,7 @@ class FrontendController extends Controller
 
     public function blogcategory(Request $request, $slug)
     {
-        $this->code_image();
+        // $this->code_image();
         $bcat = BlogCategory::where('slug', '=', str_replace(' ', '-', $slug))->first();
         $blogs = $bcat->blogs()->orderBy('created_at', 'desc')->paginate(9);
         if ($request->ajax()) {
@@ -300,7 +300,7 @@ class FrontendController extends Controller
 
     public function blogtags(Request $request, $slug)
     {
-        $this->code_image();
+        // $this->code_image();
         $blogs = Blog::where('tags', 'like', '%' . $slug . '%')->paginate(9);
         if ($request->ajax()) {
             return view('front.pagination.blog', compact('blogs'));
@@ -310,7 +310,7 @@ class FrontendController extends Controller
 
     public function blogsearch(Request $request)
     {
-        $this->code_image();
+        // $this->code_image();
         $search = $request->search;
         $blogs = Blog::where('title', 'like', '%' . $search . '%')->orWhere('details', 'like', '%' . $search . '%')->paginate(9);
         if ($request->ajax()) {
@@ -321,7 +321,7 @@ class FrontendController extends Controller
 
     public function blogarchive(Request $request, $slug)
     {
-        $this->code_image();
+        // $this->code_image();
         $date = \Carbon\Carbon::parse($slug)->format('Y-m');
         $blogs = Blog::where('created_at', 'like', '%' . $date . '%')->paginate(9);
         if ($request->ajax()) {
@@ -332,7 +332,7 @@ class FrontendController extends Controller
 
     public function blogshow($id)
     {
-        $this->code_image();
+        // $this->code_image();
         $tags = null;
         $tagz = '';
         $bcats = BlogCategory::all();
@@ -361,7 +361,7 @@ class FrontendController extends Controller
     // -------------------------------- FAQ SECTION ----------------------------------------
     public function faq()
     {
-        $this->code_image();
+        // $this->code_image();
         if (DB::table('generalsettings')->find(1)->is_faq == 0) {
             return redirect()->back();
         }
@@ -374,7 +374,7 @@ class FrontendController extends Controller
     // -------------------------------- PAGE SECTION ----------------------------------------
     public function page($slug)
     {
-        $this->code_image();
+        // $this->code_image();
         $page =  DB::table('pages')->where('slug', $slug)->first();
         if (empty($page)) {
             return response()->view('errors.404')->setStatusCode(404);
@@ -388,7 +388,7 @@ class FrontendController extends Controller
     // -------------------------------- CONTACT SECTION ----------------------------------------
     public function contact()
     {
-        $this->code_image();
+        // $this->code_image();
         if (DB::table('generalsettings')->find(1)->is_contact == 0) {
             return redirect()->back();
         }
@@ -509,7 +509,7 @@ class FrontendController extends Controller
     // Refresh Capcha Code
     public function refresh_code()
     {
-        $this->code_image();
+        // $this->code_image();
         return "done";
     }
 
@@ -604,7 +604,7 @@ class FrontendController extends Controller
             imagesetpixel($image, rand() % 200, rand() % 50, $pixel);
         }
 
-        $font = $actual_path . 'assets/front/fonts/NotoSans-Bold.ttf';
+        $font = 'assets/front/fonts/NotoSans-Bold.ttf';
         $allowed_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         $length = strlen($allowed_letters);
         $letter = $allowed_letters[rand(0, $length - 1)];
@@ -622,7 +622,7 @@ class FrontendController extends Controller
             imagesetpixel($image, rand() % 200, rand() % 50, $pixels);
         }
         session(['captcha_string' => $word]);
-        imagepng($image, $actual_path . "assets/images/capcha_code.png");
+        imagepng($image, "assets/images/capcha_code.png");
     }
 
     // -------------------------------- CONTACT SECTION ENDS----------------------------------------

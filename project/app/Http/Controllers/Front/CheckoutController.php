@@ -173,7 +173,7 @@ class CheckoutController extends Controller
     public function checkout()
     {
 
-        $this->code_image();
+        // // $this->code_image();
         if (!Session::has('cart')) {
             return redirect()->route('front.cart')->with('success', "You don't have any product to checkout.");
         }

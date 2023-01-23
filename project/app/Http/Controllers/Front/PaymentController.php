@@ -260,13 +260,13 @@ class PaymentController extends Controller
 
     public function paycancle()
     {
-        $this->code_image();
+        // $this->code_image();
         return redirect()->route('front.checkout')->with('unsuccess', 'Payment Cancelled.');
     }
 
     public function payreturn()
     {
-        $this->code_image();
+        // $this->code_image();
         if (Session::has('tempcart')) {
             $oldCart = Session::get('tempcart');
             $tempcart = new Cart($oldCart);

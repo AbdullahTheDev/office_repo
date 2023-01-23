@@ -18,7 +18,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-      $this->code_image();
+      // $this->code_image();
       return view('user.login');
     }
 

@@ -363,7 +363,7 @@ class CatalogController extends Controller
             }
         }
         // return $urls;
-        // $this->code_image();
+        // // $this->code_image();
         $productt = \Cache::remember($slug, 6*3600, function() use ($slug){ 
                         return Product::with("brand:id,link")->with("category")->with('childcategory')->where('slug','=',$slug)->firstOrFail();
                     });
