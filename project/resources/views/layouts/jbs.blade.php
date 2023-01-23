@@ -18,7 +18,7 @@
 	<meta property="og:title" content="{{$productt->name}}" />
 	<meta property="og:description" content="{{ $productt->meta_description != null ? $productt->meta_description : strip_tags($productt->description) }}" />
 	<meta property="og:image" content="{{asset('assets/images/thumbnails/'.$productt->thumbnail)}}" />
-	<meta name="author" content="EezeSolutions">
+	<meta name="author" content="Deals on Drives">
 	<title>{{$productt->name}}</title>
 	@else
 	<meta name="keywords" content="{{ $seo->meta_keys }}">

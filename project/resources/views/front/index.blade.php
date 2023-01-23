@@ -264,7 +264,7 @@
                                 <div class="custom_feature_div">
                                     @if($prod->stock !== 0)
                                     @if($prod->price != 0)
-                                    <a data-href="{{ route('product.cart.add',$prod->id) }}" class="button custom_btn_add_to_cart" title="Add to Cart">
+                                    <a href="{{ route('product.cart.add',$prod->id) }}" class="button single_add_to_cart_button custom_btn_add_to_cart" name="add-to-cart" title="Add to Cart">
                                         <i class="w-icon-cart"></i>
                                         <span>Add To Cart</span>
                                     </a>
@@ -435,7 +435,7 @@
                             @if($prod->price != 0)
                             <a data-href="{{ route('product.cart.add',$prod->id) }}" class="button custom_btn_add_to_cart" title="Add to Cart">
                                 <i class="w-icon-cart"></i>
-                                <span>Add To Cart</span>
+                                <span>Add To Cart ff</span>
                             </a>
                             @else
                             <a href="#" class="call_price" title="Call Of Price">
