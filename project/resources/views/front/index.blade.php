@@ -20,9 +20,9 @@
     <div class="owl-carousel owl-theme owl-nav-inner owl-dot-inner owl-nav-lg gutter-no row cols-1" data-owl-options="{
       'nav': false,
       'dots': false,
-      'loop': false,
+      'loop': true,
       'items': 1,
-      'autoplay':false,
+      'autoplay':true,
         'autoplayTimeout':2200,
         'autoplaySpeed': 2200,
         'autoplayHoverPause':true,
