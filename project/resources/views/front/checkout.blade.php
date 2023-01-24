@@ -367,6 +367,7 @@
    var langg    = {!! json_encode($langg) !!};
  </script>
 <script type="text/javascript">
+
     loadShipping();
     
     function loadShipping(){
@@ -380,8 +381,6 @@
     }
     
    function shipments() {
-      // alert($("input[name='address']").val());
-
       $("#final-btn").prop("disabled", true);
       let street = country = state = city = zip = "";
       var shipping_service = '{{ old('shipping_service') }}';

@@ -694,13 +694,16 @@ class ProductController extends Controller
 
     //*** POST Request
     public function export(Request $request){
+
         $list = [ 0 => ["sku", "gtin", "identifier", "title", "description", "slug", "price", "sale_price", "brand", "condition", "photo", "gallery", "product_type", "quantity", "weight", "measure", "length", "width", "height", "google_product_category", "meta_tag", "meta_description", "show_in_feed", "custom_label_1", "custom_label_2", "specs"]];
+        
         $products = Product::with(["category", "subcategory", "childcategory","brand","galleries"])
                     ->where("category_id",$request->category)
                     ->orWhere("subcategory_id",$request->category)
                     ->orWhere("childcategory_id",$request->category)
                     ->chunk(50, function($products) use (&$list){
                         foreach ($products as $key => $product) {
+                            // return $product;
                             // apply some action to the chunked results here
                             $price = $product->price;
                             $sale_price = $product->previous_price;
@@ -730,81 +733,52 @@ class ProductController extends Controller
                             }
                 
                 
-                            $list[] = array(
-                                array($product->sku),
-                                array($product->gtin),
-                            );
-                            // $list[] = [
-                            //     $product->sku,
-                            //     $product->gtin,
-                            //     $product->identifier,
-                            //     $product->name,
-                            //     $product->details,
-                            //     $product->slug,
-                            //     $price,
-                            //     $sale_price == 0 ? "" : $sale_price,
-                            //     $product->brand->link ?? "",
-                            //     $product->product_condition == 2 ? "New" : "Refurbished",
-                            //     $product->getOriginal("photo"),
-                            //     $galleries,
-                            //     $category,
-                            //     $product->stock,
-                            //     $product->weight,
-                            //     $product->measure,
-                            //     $product->length,
-                            //     $product->width,
-                            //     $product->height,
-                            //     $product->google_product_category,
-                            //     $product->getOriginal("meta_tag"),
-                            //     $product->meta_description,
-                            //     $product->show_in_feed,
-                            //     $product->custom_label_1,
-                            //     $product->custom_label_2,
-                            //     $product->specs
+                            // $list[] = array(
+                            //     array($product->sku),
+                            //     array($product->gtin),
+                            // );
+                            $list[] = [
+                                $product->sku,
+                                $product->gtin,
+                                $product->identifier,
+                                $product->name,
+                                $product->details,
+                                $product->slug,
+                                $price,
+                                $sale_price == 0 ? "" : $sale_price,
+                                $product->brand->link ?? "",
+                                $product->product_condition == 2 ? "New" : "Refurbished",
+                                $product->getOriginal("photo"),
+                                $galleries,
+                                $category,
+                                $product->stock,
+                                $product->weight,
+                                $product->measure,
+                                $product->length,
+                                $product->width,
+                                $product->height,
+                                $product->google_product_category,
+                                $product->getOriginal("meta_tag"),
+                                $product->meta_description,
+                                $product->show_in_feed,
+                                $product->custom_label_1,
+                                $product->custom_label_2,
+                                $product->specs
 
-                            // ];
+                            ];
                         }
                     });
 
-                    // $product->sku,
-                    //             $product->gtin,
-                    //             $product->identifier,
-                    //             $product->name,
-                    //             $product->details,
-                    //             $product->slug,
-                    //             $price,
-                    //             $sale_price == 0 ? "" : $sale_price,
-                    //             $product->brand->link ?? "",
-                    //             $product->product_condition == 2 ? "New" : "Refurbished",
-                    //             $product->getOriginal("photo"),
-                    //             $galleries,
-                    //             $category,
-                    //             $product->stock,
-                    //             $product->weight,
-                    //             $product->measure,
-                    //             $product->length,
-                    //             $product->width,
-                    //             $product->height,
-                    //             $product->google_product_category,
-                    //             $product->getOriginal("meta_tag"),
-                    //             $product->meta_description,
-                    //             $product->show_in_feed,
-                    //             $product->custom_label_1,
-                    //             $product->custom_label_2,
-                    //             $product->specs
-
-                    // return $list;
-                    // $liste = array (
-                    //     array('aaa', 'bbb', 'ccc', 'dddd'),
-                    //     array('123', '456', '789'),
-                    //     array('"aaa"', '"bbb"')
-                    // );
-                    
                     $fp = fopen(storage_path('test.csv'), 'w');
                     
-                    foreach ($list as $fields) {
+                    // echo '<pre>';
+                    foreach ($list as $key => $fields) {
+                        // echo $fields;
+                        // print_r($fields[$key][0]);
+                        // echo '123  -' . $key . '--' . $fields[$key] . '<br>';
                         fputcsv($fp, $fields);
                     }
+                    // echo '</pre>';
                     
                     fclose($fp);
 
@@ -820,6 +794,7 @@ class ProductController extends Controller
         );
 
         $path = storage_path('test.csv');
+        return '';
         return response()->download($path, 'products.csv', $headers);
     }
 
