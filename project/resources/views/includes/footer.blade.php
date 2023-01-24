@@ -48,7 +48,7 @@
 
                             <div class="social-icons social-icons-colored">
                                 <a href="https://www.linkedin.com/company/deals-on-drives/" aria-label="LinkedIn" target="_blank" style="background-color: #fff; border-radius: 50%">
-                                    <img src="{{asset('assets/front/fonts/linkedin.svg')}}" alt="LinkedIn">
+                                    <img width="25" height="8" src="{{asset('assets/front/fonts/linkedin.svg')}}" alt="LinkedIn">
                                 </a>
                                 <!-- <a href="#" class="social-icon social-instagram w-icon-instagram"></a>
                                 <a href="#" class="social-icon social-youtube w-icon-youtube"></a>

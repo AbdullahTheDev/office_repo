@@ -20,9 +20,9 @@
     <div class="owl-carousel owl-theme owl-nav-inner owl-dot-inner owl-nav-lg gutter-no row cols-1" data-owl-options="{
       'nav': false,
       'dots': false,
-      'loop': true,
+      'loop': false,
       'items': 1,
-      'autoplay':true,
+      'autoplay':false,
         'autoplayTimeout':2200,
         'autoplaySpeed': 2200,
         'autoplayHoverPause':true,
@@ -246,7 +246,7 @@
                         <div class="custom_feature">
                             <figure class="custom_feature_image">
                                 <a class="" href="{{ route('front.product', $prod->slug) }}">
-                                    <img src="{{ $prod->photo  }}" alt="{{ $prod->showName() }}">
+                                    <img width="400" height="200" src="{{ $prod->photo  }}" alt="{{ $prod->showName() }}">
                                 </a>
                             </figure>
                             <div class="custom_feature_details">
@@ -415,7 +415,7 @@
                 <div class="custom_feature">
                     <figure class="custom_feature_image">
                         <a href="{{ route('front.product', $prod->slug) }}">
-                            <img src="{{ $prod->photo  }}" alt="{{ $prod->showName() }}" width="295" height="335">
+                            <img width="400" height="200" src="{{ $prod->photo  }}" alt="{{ $prod->showName() }}" width="295" height="335">
                         </a>
                     </figure>
                     <div class="custom_feature_details">

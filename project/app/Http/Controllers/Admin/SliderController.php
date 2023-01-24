@@ -54,7 +54,7 @@ class SliderController extends Controller
     {
         //--- Validation Section
         $rules = [
-               'photo'      => 'required|mimes:jpeg,jpg,png,svg,gif,webp',
+               'photo'      => 'required|mimes:jpeg,jpg,png,svg,gif,webp,wbmp',
                 ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -94,7 +94,7 @@ class SliderController extends Controller
     {
         //--- Validation Section
         $rules = [
-               'photo'      => 'mimes:jpeg,jpg,png,svg,gif,webp',
+               'photo'      => 'mimes:jpeg,jpg,png,svg,gif,webp,wbmp',
                 ];
 
         $validator = Validator::make($request->all(), $rules);
