@@ -25,7 +25,6 @@
 
 				                        <div class="gocover" style="background: url({{asset('assets/images/'.$gs->admin_loader)}}) no-repeat scroll center center rgba(45, 45, 45, 0.5);"></div>
 
-
                         @include('includes.admin.form-both')
 												<div style="padding: 10px;" class="text-center">
 													@if($bkuplink == "")
@@ -58,7 +57,7 @@
                 url: "{{url('admin/check/movescript')}}",
                 success: function(result){
                     if(result.status == 'success'){
-                        $("#bkupData").html('<a href="'+result.backupfile+'">'+result.filename+'</a>');
+                        $("#bkupData").html('<a href="'+result.backupfile+'">'+result.filename+' ji</a>');
                     }
                 }
             });
