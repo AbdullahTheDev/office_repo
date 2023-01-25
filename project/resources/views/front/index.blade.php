@@ -1,6 +1,7 @@
 @extends('layouts.jbs')
 
 @section('content')
+<h1>sd {{ Session::get("msg") }}</h1>
 
 @if(Session::has('msg'))
 <div class="alert alert-success validation" id="alert">
