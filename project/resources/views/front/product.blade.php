@@ -873,11 +873,14 @@
 <!-- #content -->
 @endsection
 @section('styles')
+@endsection
+@section('scripts')
 <script>
     function addToCartClick(){
         const product = {!! $productt !!};
         gtag("event", "add_to_cart", {
         currency: "USD",
+        value: '',
         items: [
             {
             id: product.id,
@@ -890,6 +893,7 @@
     const product = {!! $productt !!};
     gtag("event", "view_item", {
        currency: "USD",
+        value: '',
        items: [
         {
          id: product.id,
@@ -899,8 +903,6 @@
       }]
    });
 </script>
-@endsection
-@section('scripts')
 <script type="text/javascript">
    // $(document).ready(function () {
    // 	quote_form();
