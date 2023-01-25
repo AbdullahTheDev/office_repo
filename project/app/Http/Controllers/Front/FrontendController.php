@@ -137,10 +137,6 @@ class FrontendController extends Controller
     //     return "Mail Sended";
     // }
 
-    public function Randomize()
-    {
-        return redirect('/')->with('msg', 'Hii');
-    }
     public function index(Request $request)
     {
         // \Cache::flush();
