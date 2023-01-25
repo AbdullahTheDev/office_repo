@@ -653,13 +653,13 @@ class CheckoutController extends Controller
         Session::put('temporder', $order);
         Session::put('tempcart', $cart);
 
-        // Session::forget('cart');
+        Session::forget('cart');
 
-        // Session::forget('already');
-        // Session::forget('coupon');
-        // Session::forget('coupon_total');
-        // Session::forget('coupon_total1');
-        // Session::forget('coupon_percentage');
+        Session::forget('already');
+        Session::forget('coupon');
+        Session::forget('coupon_total');
+        Session::forget('coupon_total1');
+        Session::forget('coupon_percentage');
 
         //Sending Email To Buyer
 
@@ -676,8 +676,8 @@ class CheckoutController extends Controller
                 'onumber' => $order->order_number,
             ];
 
-            // $mailer = new GeniusMailer();
-            // $mailer->sendAutoOrderMail($data, $order->id);
+            $mailer = new GeniusMailer();
+            $mailer->sendAutoOrderMail($data, $order->id);
         } else {
             $to = $request->email;
             $subject = "Your Order Placed!!";
@@ -693,8 +693,8 @@ class CheckoutController extends Controller
                 'body' => "Hello Admin!<br>Your store has received a new order.<br>Order Number is " . $order->order_number . ".Please login to your panel to check. <br>Thank you.",
             ];
 
-            // $mailer = new GeniusMailer();
-            // $mailer->sendCustomMail($data, $order->id);
+            $mailer = new GeniusMailer();
+            $mailer->sendCustomMail($data, $order->id);
         } else {
             $to = Pagesetting::find(1)->contact_email;
             $subject = "New Order Recieved!!";
