@@ -42,18 +42,6 @@
 			s.parentNode.insertBefore(wf, s);
 		})(document);
 	</script> --}}
-	<!-- Global site tag (gtag.js) - Google Ads: 383955002 -->
-	{{-- <script async src="https://www.googletagmanager.com/gtag/js?id=AW-383955002"></script> --}}
-	{{-- <script>
-		window.dataLayer = window.dataLayer || [];
-
-		function gtag() {
-			dataLayer.push(arguments);
-		}
-		gtag('js', new Date());
-
-		gtag('config', 'AW-383955002');
-	</script> --}}
 	@include('includes.styles')
 	@yield('styles')
 	

@@ -246,32 +246,33 @@
 </div>
 <!-- #content -->
 @endsection
-@section('ga_script')
+@section('scripts')
+{{-- @section('ga_script') --}}
 <!-- Event snippet for Purchase conversion page -->
 @php
- $coupon = Session::has('coupon') ? Session::get('coupon') : '0.00';   
+$coupon = Session::has('coupon') ? Session::get('coupon') : '0.00';   
 @endphp
 <script>
-   let productArr = <?php echo json_encode(tempcart->items); ?>;
+	
+//    let productArr = {!!$tempcart!!};
+   let productArr = <?php echo json_encode($tempcart->items); ?>;
 //    console.log(productArr);
    
-   for(const key in productArr){
+for(const key in productArr){
       const element = productArr[key];
-//    gtag("event", "purchase", {
-//        tax: {!!$gs->tax!!},
-//        currency: "USD",
-//        coupon: {!!$coupon!!},
-//        items: [
-//         {
-//          id: element.item.id,
-//          name: element.item.name,
-//          slug: element.item.slug,
-//          price: element.item.price,
-//          quantity: element.item.qty
-//       }]
-//    });
+   gtag("event", "purchase", {
+       tax: {!!$gs->tax!!},
+       currency: "USD",
+       coupon: {!!$coupon!!},
+       items: [
+        {
+         id: element.item.id,
+         name: element.item.name,
+         slug: element.item.slug,
+         price: element.item.price,
+      }]
+   });
 }
-// console.log(items);
    </script>
 
 @endsection

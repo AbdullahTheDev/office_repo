@@ -42,6 +42,15 @@
 		<link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,900" rel="stylesheet">
 		<link rel="shortcut icon" href="{{asset('assets/images/'.$gs->favicon)}}">
 		@yield('styles')
+		<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-254869751-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-254869751-1');
+</script>
         <script type="text/javascript" src="https://cdn.ywxi.net/js/1.js" async></script>
         @yield('ga_script')
 	</head>
