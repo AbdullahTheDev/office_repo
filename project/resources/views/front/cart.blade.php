@@ -39,7 +39,7 @@
                                                             width="300" height="338">
                                                     </figure>
                                                 </a>
-                                                <a href="javascript:void(0)" class="btn btn-close   cart-remove" data-class="cremove{{ $product['item']['id'].$product['size'].$product['color'].str_replace(str_split(' ,'),'',$product['values']) }}" data-href="{{ route('product.cart.remove',$product['item']['id'].$product['size'].$product['color'].str_replace(str_split(' ,'),'',$product['values'])) }}"><i
+                                                <a href="javascript:void(0)" class="btn btn-close cart-remove" data-class="cremove{{ $product['item']['id'].$product['size'].$product['color'].str_replace(str_split(' ,'),'',$product['values']) }}" data-href="{{ route('product.cart.remove',$product['item']['id'].$product['size'].$product['color'].str_replace(str_split(' ,'),'',$product['values'])) }}"><i
                                                         class="fas fa-times"></i></a>
                                             </div>
                                         </td>

@@ -467,3 +467,8 @@
     </div>
 </div>
 @endsection
+<script>
+    function alert(){
+        document.getElementById("alert").style.display = 'none';
+    }
+</script>

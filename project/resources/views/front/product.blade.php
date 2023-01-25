@@ -206,7 +206,7 @@
                                             <span>Out of Stock</span>
                                         </button>
                                         @else
-                                        <button class="single_add_to_cart_button btn-dark btn-outline btn-cart"  name="add-to-cart" type="button">
+                                        <button class="single_add_to_cart_button btn-dark btn-outline btn-cart" onclick="addToCartClick()"  name="add-to-cart" type="button">
                                             <i class="w-icon-cart"></i>
                                             <span>Add to Cart</span>
                                         </button>
@@ -874,14 +874,30 @@
 @endsection
 @section('styles')
 <script>
-  gtag('event', 'page_view', {
-    'send_to': 'AW-383955002',
-    'value': '{{ $productt->price }}',
-    'items': [{
-      'id': '{{ $productt->sku }}',
-      'google_business_vertical': 'retail'
-    }]
-  });
+    function addToCartClick(){
+        const product = {!! $productt !!};
+        gtag("event", "add_to_cart", {
+        currency: "USD",
+        items: [
+            {
+            id: product.id,
+            name: product.name,
+            slug: product.slug,
+            price: product.price
+        }]
+    });
+    }
+    const product = {!! $productt !!};
+    gtag("event", "view_item", {
+       currency: "USD",
+       items: [
+        {
+         id: product.id,
+         name: product.name,
+         slug: product.slug,
+         price: product.price
+      }]
+   });
 </script>
 @endsection
 @section('scripts')

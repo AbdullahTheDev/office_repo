@@ -370,7 +370,7 @@
    
    for(const key in productArr){
       const element = productArr[key];
-   gtag("event", "purchase", {
+   gtag("event", "begin_checkout", {
        transaction_id: "T_12345_1",
        value: 25.42,
        tax: {!!$gs->tax!!},

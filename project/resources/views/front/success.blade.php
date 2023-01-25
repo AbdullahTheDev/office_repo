@@ -248,13 +248,32 @@
 @endsection
 @section('ga_script')
 <!-- Event snippet for Purchase conversion page -->
+@php
+ $coupon = Session::has('coupon') ? Session::get('coupon') : '0.00';   
+@endphp
 <script>
-  gtag('event', 'conversion', {
-      'send_to': 'AW-383955002/0etSCPLI56gCELrgircB',
-      'value': '{{ round($order->pay_amount * $order->currency_value , 2) }}',
-      'currency': 'USD',
-      'transaction_id': '{{ $order->order_number }}'
-  });
-</script>
+   let productArr = <?php echo json_encode($products); ?>;
+   // console.log(productArr);
+   
+   for(const key in productArr){
+      const element = productArr[key];
+   gtag("event", "purchase", {
+       transaction_id: "T_12345_1",
+       value: 25.42,
+       tax: {!!$gs->tax!!},
+       currency: "USD",
+       coupon: {!!$coupon!!},
+       items: [
+        {
+         id: element.item.id,
+         name: element.item.name,
+         slug: element.item.slug,
+         price: element.item.price,
+         quantity: element.item.qty
+      }]
+   });
+}
+// console.log(items);
+   </script>
 
 @endsection
