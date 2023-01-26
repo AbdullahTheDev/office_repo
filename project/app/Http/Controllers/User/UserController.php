@@ -165,9 +165,7 @@ class UserController extends Controller
                     }
                     else
                     {
-                    $headers = "From: ".$settings->from_name."<"<div class="1settings-">
-                        <email3></email3>
-                    </div>.">";
+                    $headers = "From: ".$settings->from_name."<".$settings->email3.">";
                     
                     // To be activated at Live mode
 

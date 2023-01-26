@@ -137,24 +137,24 @@ class FrontendController extends Controller
     //     return "Mail Sended";
     // }
 
-    public function MailTester()
-    {
-            $data = [
-            'to' => 'abdullahwaseem.4401@gmail.com',
-            'cc' => 'orders@dealsondrives.com',
-            'type' => "new_order",
-            'cname' => 'Abdullah',
-            'oamount' => "",
-            'aname' => "",
-            'aemail' => "",
-            'wtitle' => "",
-            'onumber' => '$order->order_number',
-        ];
+    // public function MailTester()
+    // {
+    //         $data = [
+    //         'to' => 'abdullahwaseem.4401@gmail.com',
+    //         'cc' => 'orders@dealsondrives.com',
+    //         'type' => "new_order",
+    //         'cname' => 'Abdullah',
+    //         'oamount' => "",
+    //         'aname' => "",
+    //         'aemail' => "",
+    //         'wtitle' => "",
+    //         'onumber' => '$order->order_number',
+    //     ];
 
-        $mailer = new GeniusMailer();
-        $mailer->sendQuoteMail($data);
-        return 'Done';
-    }
+    //     $mailer = new GeniusMailer();
+    //     $mailer->sendQuoteMail($data);
+    //     return 'Done';
+    // }
     public function index(Request $request)
     {
         // \Cache::flush();
@@ -447,7 +447,7 @@ class FrontendController extends Controller
             $mailer = new GeniusMailer();
             $mailer->sendQuoteMail($data);
         } else {
-            $headers = "From: " . $gs->from_name . "<" . $gs->from_email . ">";
+            $headers = "From: " . $gs->from_name . "<" . $gs->email3 . ">";
             mail($to, $subject, $msg, $headers);
         }
         // Login Section Ends
@@ -483,7 +483,7 @@ class FrontendController extends Controller
             $mailer = new GeniusMailer();
             $mailer->sendQuoteMail($data);
         } else {
-            $headers = "From: " . $gs->from_name . "<" . $gs->from_email . ">";
+            $headers = "From: " . $gs->from_name . "<" . $gs->email1 . ">";
             mail($to, $subject, $msg, $headers);
         }
         // Login Section Ends
@@ -515,7 +515,7 @@ class FrontendController extends Controller
             $mailer = new GeniusMailer();
             $mailer->sendQuoteMail($data);
         } else {
-            $headers = "From: " . $gs->from_name . "<" . $gs->from_email . ">";
+            $headers = "From: " . $gs->from_name . "<" . $gs->email1 . ">";
             mail($to, $subject, $msg, $headers);
         }
         // Login Section Ends
@@ -587,7 +587,7 @@ class FrontendController extends Controller
                         $mailer = new GeniusMailer();
                         $mailer->sendAutoMail($data);
                     } else {
-                        $headers = "From: " . $settings->from_name . "<" . $settings->from_email . ">";
+                        $headers = "From: " . $settings->from_name . "<" . $settings->email3 . ">";
                         mail($user->email, 'Your subscription plan duration will end after five days. Please renew your plan otherwise all of your products will be deactivated.Thank You.', $headers);
                     }
                     DB::table('users')->where('id', $user->id)->update(['mail_sent' => 0]);

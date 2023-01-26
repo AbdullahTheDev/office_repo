@@ -152,7 +152,7 @@ class VendorController extends Controller
                     }
                     else
                     {
-                    $headers = "From: ".$settings->from_name."<".$settings->from_email.">";
+                    $headers = "From: ".$settings->from_name."<".$settings->email3.">";
                     mail($user->email,'Request for verification.','You are requested verify your account. Please send us photo of your passport.Thank You.',$headers);
                     }
 

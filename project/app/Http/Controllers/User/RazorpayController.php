@@ -226,7 +226,7 @@ $order = UserSubscription::where('user_id','=',Session::get('item_number'))
         }
         else
         {
-            $headers = "From: ".$settings->from_name."<".$settings->from_email.">";
+            $headers = "From: ".$settings->from_name."<".$settings->email3.">";
             mail($user->email,'Your Vendor Account Activated','Your Vendor Account Activated Successfully. Please Login to your account and build your own shop.',$headers);
         }
         return redirect()->route('user-dashboard')->with('success','Vendor Account Activated Successfully');

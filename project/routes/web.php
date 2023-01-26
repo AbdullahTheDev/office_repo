@@ -12,6 +12,7 @@ Route::get('/clear', function () {
   Artisan::call('config:clear');
   return '<h1>All Cache cleared</h1>';
 });
+
 Route::get('/ExportNoImgProducts', 'Admin\DashboardController@ExportNonImgProducts');
 Route::get('/MailTester', 'Front\FrontendController@MailTester');
 Route::get('/google-feed', 'Admin\FeedController@Feed');
