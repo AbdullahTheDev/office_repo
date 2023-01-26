@@ -8,6 +8,8 @@ return [
     'mode'    => env('PAYPAL_MODE', 'sandbox'), // Can only be 'sandbox' Or 'live'. If empty or invalid, 'live' will be used.
     'sandbox' => [
         'username'    => env('PAYPAL_SANDBOX_API_USERNAME', ''),
+        'client_id'    => env('PAYPAL_CLIENT_ID', ''),
+        'client_secret'    => env('PAYPAL_SANDBOX_API_SECRET', ''),
         'password'    => env('PAYPAL_SANDBOX_API_PASSWORD', ''),
         'secret'      => env('PAYPAL_SANDBOX_API_SECRET', ''),
         'certificate' => env('PAYPAL_SANDBOX_API_CERTIFICATE', ''),

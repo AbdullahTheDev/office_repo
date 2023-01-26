@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PaymentController extends Controller
 {
@@ -256,7 +257,52 @@ class PaymentController extends Controller
 
         // Session::forget('cart');
 
-        return $querystring;
+
+
+
+
+        $provider = new PayPalClient;
+        $provider->setApiCredentials(config('paypal'));
+        $paypalToken = $provider->getAccessToken();
+
+        $response = $provider->createOrder([
+            "intent" => "CAPTURE",
+            "application_context" => [
+                "return_url" => route('payment.return'),
+                "cancel_url" => route('payment.cancle'),
+            ],
+            "purchase_units" => [
+                0 => [
+                    "amount" => [
+                        "currency_code" => "USD",
+                        "value" => $item_amount
+                    ]
+                ]
+            ]
+        ]);
+
+        if (isset($response['id']) && $response['id'] != null) {
+
+            // redirect to approve href
+            foreach ($response['links'] as $links) {
+                if ($links['rel'] == 'approve') {
+                    return redirect()->away($links['href']);
+                }
+            }
+
+            return redirect()
+                ->route('paypal.submit')
+                ->with('error', 'Something went wrong.');
+
+        } else {
+            return redirect()
+                ->route('paypal.submit')
+                ->with('error', $response['message'] ?? 'Something went wrong.');
+        }
+
+
+
+        return $item_amount;
         return redirect('https://www.paypal.com/cgi-bin/webscr' . $querystring);
     }
 
