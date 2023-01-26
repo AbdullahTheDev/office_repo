@@ -3,13 +3,13 @@
 
 
 @endif
-@if($payment == 'paypal') 
+@if($payment == 'paypal')
                                 <input type="hidden" name="method" value="Paypal">
                                 <input type="hidden" name="cmd" value="_xclick">
                                 <input type="hidden" name="no_note" value="1">
-                                <input type="hidden" name="lc" value="UK">
+                                <input type="hidden" name="lc" value="USA">
                                 <input type="hidden" name="currency_code" value="{{$curr->name}}">
-                                <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest">
+                                <input type="hidden" name="bn" value="FLAVORsb-dzrii24937800_MP">
 
 @endif
 

@@ -912,12 +912,12 @@ class CheckoutController extends Controller
 
         Session::put('temporder', $order);
         Session::put('tempcart', $cart);
-        Session::forget('cart');
-        Session::forget('already');
-        Session::forget('coupon');
-        Session::forget('coupon_total');
-        Session::forget('coupon_total1');
-        Session::forget('coupon_percentage');
+        // Session::forget('cart');
+        // Session::forget('already');
+        // Session::forget('coupon');
+        // Session::forget('coupon_total');
+        // Session::forget('coupon_total1');
+        // Session::forget('coupon_percentage');
 
 
 

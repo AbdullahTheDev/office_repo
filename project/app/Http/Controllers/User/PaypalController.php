@@ -22,22 +22,21 @@ class PaypalController extends Controller
 
 
  public function store(Request $request){
-    return 1;
         $this->validate($request, [
             'shop_name'   => 'unique:users',
            ],[ 
                'shop_name.unique' => 'This shop name has already been taken.'
             ]);
-    $user = Auth::user();
-     $subs = Subscription::findOrFail($request->subs_id);
-     $settings = Generalsetting::findOrFail(1);
-     $paypal_email = $settings->paypal_business;
-     $return_url = action('User\PaypalController@payreturn');
-     $cancel_url = action('User\PaypalController@paycancle');
-     $notify_url = action('User\PaypalController@notify');
-     $item_name = $subs->title." Plan";
-     $item_number = rand().time();
-     $item_amount = $subs->price;
+        $user = Auth::user();
+        $subs = Subscription::findOrFail($request->subs_id);
+        $settings = Generalsetting::findOrFail(1);
+        $paypal_email = $settings->paypal_business;
+        $return_url = action('User\PaypalController@payreturn');
+        $cancel_url = action('User\PaypalController@paycancle');
+        $notify_url = action('User\PaypalController@notify');
+        $item_name = $subs->title." Plan";
+        $item_number = rand().time();
+        $item_amount = $subs->price;
 
      //return $item_amount;
 
@@ -85,7 +84,7 @@ class PaypalController extends Controller
 
  }
 
-
+ }
      public function paycancle(){
          return redirect()->back()->with('unsuccess','Payment Cancelled.');
      }

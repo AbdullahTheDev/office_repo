@@ -25,6 +25,8 @@ class PaymentController extends Controller
 
     public function store(Request $request)
     {
+        // $settings = Generalsetting::findOrFail(1);
+        // return $settings->paypal_business;
         if (!Session::has('cart')) {
             return redirect()->route('front.cart')->with('success', "You don't have any product to checkout.");
         }
@@ -252,8 +254,9 @@ class PaymentController extends Controller
 
 
 
-        Session::forget('cart');
+        // Session::forget('cart');
 
+        return $querystring;
         return redirect('https://www.paypal.com/cgi-bin/webscr' . $querystring);
     }
 
