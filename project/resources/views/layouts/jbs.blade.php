@@ -101,30 +101,30 @@
 		                    'loop': true,
 		                    'responsive': {
 		                        '0': {
-		                            'items': 3
-		                        },
-		                        '576': {
 		                            'items': 4
 		                        },
-		                        '768': {
+		                        '576': {
 		                            'items': 6
+		                        },
+		                        '768': {
+		                            'items': 8
 		                        },
 		                        '992': {
-		                            'items': 6
+		                            'items': 10
 		                        },
 		                        '1200': {
-		                            'items': 6
+		                            'items': 12
 		                        }
 		                    }
 		                }">
 					@foreach($brands as $brand)
-					<div class="brand-col">
+					{{-- <div class="brand-col"> --}}
 						<a href="{{url('category?brand='.$brand->id)}}" aria-label="partners">
-							<figure class="">
-								<img src="{{ asset('assets/images/partner/'.$brand->photo) }}" alt="{{ $brand->name }}" width="410" height="186" />
-							</figure>
+							{{-- <figure class=""> --}}
+								<img src="{{ asset('assets/images/partner/'.$brand->photo) }}" alt="{{ $brand->name }}" width="400" height="200" />
+							{{-- </figure> --}}
 						</a>
-					</div>
+					{{-- </div> --}}
 					@endforeach
 				</div>
 

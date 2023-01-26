@@ -231,6 +231,12 @@ class DashboardController extends Controller
         rmdir($dirPath);
     }
 
+    public function ExportNonImgProducts()
+    {
+        $products = Product::where('photo','=',null)->get();
+        // $products = "";
+        return response()->json($products);
+    }
     public function clear_cache(){
         \Artisan::call('cache:clear');
         \Artisan::call('config:clear');

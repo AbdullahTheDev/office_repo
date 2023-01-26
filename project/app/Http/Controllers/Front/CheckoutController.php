@@ -573,8 +573,9 @@ class CheckoutController extends Controller
         // $double_prev_order = Order::find($prev_order_id);
         // $double_prev_order->order_number = $double_prev_order->increment_number;
         // $order->save();
-
+        
         // $increment = 
+
         $track = new OrderTrack;
         $track->title = 'Pending';
         $track->text = 'You have successfully placed your order.';
