@@ -30,9 +30,9 @@
                         <div class="product-gallery product-gallery-sticky">
                             <div class="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1 gutter-no">
                                <figure class="product-image">
-                                  <img src="{{$productt->photo}}"
+                                  <img src="{{$productt->photo}}d"
                                         data-zoom-image="{{$productt->photo}}"
-                                        alt="{{ $productt->name }}" width="800" height="900">
+                                        alt="{{ $productt->photo }}" width="800" height="900">
                                </figure>
                             </div>
                             <div class="product-thumbs-wrap">

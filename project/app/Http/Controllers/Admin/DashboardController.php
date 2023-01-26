@@ -233,7 +233,8 @@ class DashboardController extends Controller
 
     public function ExportNonImgProducts()
     {
-        $products = Product::where('photo','=',null)->get();
+        // $products = Product::all();
+        $products = Product::where('photo','=','M474A2K43DB1-CTD.jpg')->get();
         // $products = "";
         return response()->json($products);
     }
