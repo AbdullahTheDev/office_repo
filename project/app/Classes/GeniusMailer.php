@@ -174,7 +174,7 @@ class GeniusMailer
 
         $objDemo = new \stdClass();
         $objDemo->to = $setup->email2;
-        $objDemo->from = $setup->from_email;
+        $objDemo->from = $setup->email1;
         $objDemo->title = $setup->from_name;
         $objDemo->subject = $mailData['subject'];
 

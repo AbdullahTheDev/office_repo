@@ -137,6 +137,24 @@ class FrontendController extends Controller
     //     return "Mail Sended";
     // }
 
+    public function MailTester()
+    {
+            $data = [
+            'to' => 'abdullahwaseem.4401@gmail.com',
+            'cc' => 'orders@dealsondrives.com',
+            'type' => "new_order",
+            'cname' => 'Abdullah',
+            'oamount' => "",
+            'aname' => "",
+            'aemail' => "",
+            'wtitle' => "",
+            'onumber' => '$order->order_number',
+        ];
+
+        $mailer = new GeniusMailer();
+        $mailer->sendQuoteMail($data);
+        return 'Done';
+    }
     public function index(Request $request)
     {
         // \Cache::flush();
