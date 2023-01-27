@@ -156,7 +156,7 @@
 					                                                                            {{$order->method}} {{ $langg->lang295 }} <p>{{$order->charge_id}}</p>
 					                                                                        @endif
 					                                                                        @if($order->method=="Paypal")
-					                                                                        {{$order->method}} {{ $langg->lang296 }} <p id="ttn">{{ isset($_GET['tx']) ? $_GET['tx'] : '' }}</p>
+					                                                                        {{$order->method}} {{ $langg->lang296 }} <p id="ttn">{{ isset($_GET['token']) ? $_GET['token'] : '' }}</p>
 					                                                                        @else
 					                                                                        {{$order->method}} {{ $langg->lang296 }} <p id="ttn">{{$order->txnid}}</p>
 					                                                                        @endif
