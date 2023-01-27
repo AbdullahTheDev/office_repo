@@ -233,10 +233,9 @@ class DashboardController extends Controller
 
     public function ExportNonImgProducts()
     {
-        // $products = Product::all();
-        $products = Product::where('photo','=',null)->limit(5)->get();
-        // $products = Product::where('photo','=','http://127.0.0.1:8000/assets/images/noimage.png')->get();
-        // $products = "";
+        $products = Product::where('photo','=',null)->get('sku');
+
+
         return response()->json($products);
     }
     public function clear_cache(){

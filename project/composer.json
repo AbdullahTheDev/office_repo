@@ -18,6 +18,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
+        "maatwebsite/excel": "*",
         "mollie/laravel-mollie": "^2.15",
         "razorpay/razorpay": "^2.7",
         "srmklive/paypal": "^3.0",
