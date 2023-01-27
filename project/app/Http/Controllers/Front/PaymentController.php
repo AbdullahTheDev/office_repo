@@ -272,7 +272,23 @@ class PaymentController extends Controller
                 "cancel_url" => route('payment.cancle'),
             ],
             "purchase_units" => [
+                // "item_name" => $item_name,
+                // "amount" => $item_amount,
+                // "item_number" => $item_number,
+                // "currency_code" => $request->currency_code,
+                // "cmd" => $request->cmd,
+                // "bn" => $request->bn,
+                // "lc" => $request->lc,
+                // "custom" => $request->user_id
                 0 => [
+                    "item_name" => $item_name,
+                    // "amount" => $item_amount,
+                    "item_number" => $item_number,
+                    // "currency_code" => $request->currency_code,
+                    "cmd" => $request->cmd,
+                    "bn" => $request->bn,
+                    "lc" => $request->lc,
+                    // "custom" => $request->user_id
                     "amount" => [
                         "currency_code" => "USD",
                         "value" => $item_amount
@@ -281,24 +297,25 @@ class PaymentController extends Controller
             ]
         ]);
 
-        if (isset($response['id']) && $response['id'] != null) {
+        return $response;
+        // if (isset($response['id']) && $response['id'] != null) {
 
-            // redirect to approve href
-            foreach ($response['links'] as $links) {
-                if ($links['rel'] == 'approve') {
-                    return redirect()->away($links['href']);
-                }
-            }
+        //     // redirect to approve href
+        //     foreach ($response['links'] as $links) {
+        //         if ($links['rel'] == 'approve') {
+        //             return redirect()->away($links['href']);
+        //         }
+        //     }
 
-            return redirect()
-                ->route('paypal.submit')
-                ->with('error', 'Something went wrong.');
+        //     return redirect()
+        //         ->route('paypal.submit')
+        //         ->with('error', 'Something went wrong.');
 
-        } else {
-            return redirect()
-                ->route('paypal.submit')
-                ->with('error', $response['message'] ?? 'Something went wrong.');
-        }
+        // } else {
+        //     return redirect()
+        //         ->route('paypal.submit')
+        //         ->with('error', $response['message'] ?? 'Something went wrong.');
+        // }
 
 
 
