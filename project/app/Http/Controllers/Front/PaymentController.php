@@ -255,7 +255,7 @@ class PaymentController extends Controller
 
 
 
-        // Session::forget('cart');
+        Session::forget('cart');
 
 
 
@@ -270,6 +270,7 @@ class PaymentController extends Controller
             "application_context" => [
                 "return_url" => route('payment.return'),
                 "cancel_url" => route('payment.cancle'),
+                "notify_url" => route('payment.notify'),
             ],
             "purchase_units" => [
                 // "item_name" => $item_name,

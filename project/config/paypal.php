@@ -23,10 +23,10 @@ return [
         'app_id'      => '', // Used for Adaptive Payments API
     ],
 
-    'payment_action' => 'Sale', // Can only be 'Sale', 'Authorization' or 'Order'
+    'payment_action' => 'Order', // Can only be 'Sale', 'Authorization' or 'Order'
     'currency'       => env('PAYPAL_CURRENCY', 'USD'),
     'billing_type'   => 'MerchantInitiatedBilling',
-    'notify_url'     => '', // Change this accordingly for your application.
+    'notify_url'     => 'http://127.0.0.1:8000/checkout/payment/notify', // Change this accordingly for your application.
     'locale'         => '', // force gateway language  i.e. it_IT, es_ES, en_US ... (for express checkout only)
     'validate_ssl'   => true, // Validate SSL when creating api client.
 ];
