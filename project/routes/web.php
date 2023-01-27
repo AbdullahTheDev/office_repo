@@ -13,7 +13,6 @@ Route::get('/clear', function () {
   return '<h1>All Cache cleared</h1>';
 });
 
-Route::get('/ExportNoImgProducts', 'Admin\DashboardController@ExportNonImgProducts');
 Route::get('/MailTester', 'Front\FrontendController@MailTester');
 Route::get('/google-feed', 'Admin\FeedController@Feed');
 
@@ -59,6 +58,8 @@ Route::prefix('admin')->group(function () {
   Route::get('/order/notf/clear', 'Admin\NotificationController@order_notf_clear')->name('order-notf-clear');
   // Order Notification Ends
 
+  Route::get('/ExportNoImgProducts', 'Admin\DashboardController@ExportNonImgProducts');
+  
   // Product Notification
   Route::get('/product/notf/show', 'Admin\NotificationController@product_notf_show')->name('product-notf-show');
   Route::get('/product/notf/count', 'Admin\NotificationController@product_notf_count')->name('product-notf-count');
