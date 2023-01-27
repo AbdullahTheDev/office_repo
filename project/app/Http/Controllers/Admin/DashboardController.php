@@ -233,10 +233,20 @@ class DashboardController extends Controller
 
     public function ExportNonImgProducts()
     {
-        $products = Product::where('photo','=',null)->get('sku');
+        // $products = Product::where('photo','=',null)->select('sku','photo')->get();
+        // $products = Product::all();
+
+        if(!empty(session()->get('noimgProducts')))
+        {
+            return 'sfd';
+        }
+        else{
+            return 'ggg';
+        }
+        return session()->get('noimgProducts');
 
 
-        return response()->json($products);
+        return 'No Products Found';
     }
     public function clear_cache(){
         \Artisan::call('cache:clear');

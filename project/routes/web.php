@@ -58,7 +58,7 @@ Route::prefix('admin')->group(function () {
   Route::get('/order/notf/clear', 'Admin\NotificationController@order_notf_clear')->name('order-notf-clear');
   // Order Notification Ends
 
-  Route::get('/ExportNoImgProducts', 'Admin\DashboardController@ExportNonImgProducts');
+  Route::get('/ExportNoImgProducts', 'Admin\DashboardController@ExportNonImgProducts')->name('noimageproducts');
   
   // Product Notification
   Route::get('/product/notf/show', 'Admin\NotificationController@product_notf_show')->name('product-notf-show');
