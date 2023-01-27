@@ -10,18 +10,18 @@ use Illuminate\Support\Facades\Session;
 class Product extends Model
 {
 
-    protected $fillable = ['user_id', 'category_id', 'brand_id', 'product_type', 'affiliate_link', 'sku', 'subcategory_id', 'childcategory_id', 'attributes', 'name', 'photo', 'size', 'size_qty', 'size_price', 'color', 'details', 'price', 'previous_price', 'stock', 'policy', 'specs', 'status', 'views', 'tags', 'featured', 'best', 'top', 'hot', 'latest', 'big', 'trending', 'sale', 'features', 'colors', 'product_condition', 'ship', 'meta_tag', 'meta_description', 'youtube', 'type', 'file', 'license', 'license_qty', 'link', 'platform', 'region', 'licence_type', 'weight', 'measure', 'length', 'width', 'height', 'gtin', 'identifier', 'discount_date', 'is_discount', 'whole_sell_qty', 'whole_sell_discount', 'catalog_id', 'slug', 'google_product_category'];
+    protected $fillable = ['user_id','category_id','brand_id','product_type','affiliate_link','sku', 'subcategory_id', 'childcategory_id', 'attributes', 'name', 'photo', 'size','size_qty','size_price', 'color', 'details','price','previous_price','stock','policy','specs','status', 'views','tags','featured','best','top','hot','latest','big','trending','sale','features','colors','product_condition','ship','meta_tag','meta_description','youtube','type','file','license','license_qty','link','platform','region','licence_type','weight','measure','length','width','height','gtin','identifier','discount_date','is_discount','whole_sell_qty','whole_sell_discount','catalog_id','slug', 'google_product_category'];
 
     public static function filterProducts($collection)
     {
         foreach ($collection as $key => $data) {
-            if ($data->user_id != 0) {
-                if ($data->user->is_vendor != 2) {
+            if($data->user_id != 0){
+                if($data->user->is_vendor != 2){
                     unset($collection[$key]);
                 }
             }
-            if (isset($_GET['max'])) {
-                if ($data->vendorSizePrice() >= $_GET['max']) {
+            if(isset($_GET['max'])){
+                 if($data->vendorSizePrice() >= $_GET['max']) {
                     unset($collection[$key]);
                 }
             }
@@ -33,28 +33,28 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo('App\Models\Category')->withDefault(function ($data) {
-            foreach ($data->getFillable() as $dt) {
-                $data[$dt] = __('Deleted');
-            }
-        });
+			foreach($data->getFillable() as $dt){
+				$data[$dt] = __('Deleted');
+			}
+		});
     }
 
     public function subcategory()
     {
         return $this->belongsTo('App\Models\Subcategory')->withDefault(function ($data) {
-            foreach ($data->getFillable() as $dt) {
-                $data[$dt] = __('Deleted');
-            }
-        });
+			foreach($data->getFillable() as $dt){
+				$data[$dt] = __('Deleted');
+			}
+		});
     }
 
     public function childcategory()
     {
         return $this->belongsTo('App\Models\Childcategory')->withDefault(function ($data) {
-            foreach ($data->getFillable() as $dt) {
-                $data[$dt] = __('Deleted');
-            }
-        });
+			foreach($data->getFillable() as $dt){
+				$data[$dt] = __('Deleted');
+			}
+		});
     }
 
     public function brand()
@@ -90,273 +90,292 @@ class Product extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User')->withDefault(function ($data) {
-            foreach ($data->getFillable() as $dt) {
-                $data[$dt] = __('Deleted');
-            }
-        });
+			foreach($data->getFillable() as $dt){
+				$data[$dt] = __('Deleted');
+			}
+		});
     }
 
     public function reports()
     {
-        return $this->hasMany('App\Models\Report', 'user_id');
+        return $this->hasMany('App\Models\Report','user_id');
     }
 
-    public function vendorPrice()
-    {
+    public function vendorPrice() {
         $gs = Generalsetting::findOrFail(1);
         $price = $this->price;
-        if ($this->user_id != 0) {
-            $price = $this->price + $gs->fixed_commission + ($this->price / 100) * $gs->percentage_commission;
+        if($this->user_id != 0){
+        $price = $this->price + $gs->fixed_commission + ($this->price/100) * $gs->percentage_commission ;
         }
 
 
         return $price;
     }
 
-    public function vendorSizePrice()
-    {
+    public function vendorSizePrice() {
         $gs = Generalsetting::findOrFail(1);
         $price = $this->price;
-        if ($this->user_id != 0) {
-            $price = $this->price + $gs->fixed_commission + ($this->price / 100) * $gs->percentage_commission;
+        if($this->user_id != 0){
+        $price = $this->price + $gs->fixed_commission + ($this->price/100) * $gs->percentage_commission ;
         }
-        if (!empty($this->size)) {
+        if(!empty($this->size)){
             $price += $this->size_price[0];
         }
 
-        // Attribute Section
+    // Attribute Section
 
-        $attributes = $this->attributes["attributes"];
-        if (!empty($attributes)) {
-            $attrArr = json_decode($attributes, true);
-        }
+    $attributes = $this->attributes["attributes"];
+      if(!empty($attributes)) {
+          $attrArr = json_decode($attributes, true);
+      }
 
-        if (!empty($attrArr)) {
-            foreach ($attrArr as $attrKey => $attrVal) {
-                if (is_array($attrVal) && array_key_exists("details_status", $attrVal) && $attrVal['details_status'] == 1) {
+      if (!empty($attrArr)) {
+          foreach ($attrArr as $attrKey => $attrVal) {
+            if (is_array($attrVal) && array_key_exists("details_status",$attrVal) && $attrVal['details_status'] == 1) {
 
-                    foreach ($attrVal['values'] as $optionKey => $optionVal) {
-                        $price += $attrVal['prices'][$optionKey];
-                        // only the first price counts
-                        break;
-                    }
+                foreach ($attrVal['values'] as $optionKey => $optionVal) {
+                  $price += $attrVal['prices'][$optionKey];
+                  // only the first price counts
+                  break;
                 }
+
             }
-        }
+          }
+      }
 
 
-        // Attribute Section Ends
+    // Attribute Section Ends
 
 
         return $price;
     }
 
 
-    public  function setCurrency()
-    {
+    public  function setCurrency() {
         $gs = Generalsetting::findOrFail(1);
         $price = $this->price;
-        if (Session::has('currency')) {
+        if (Session::has('currency'))
+        {
             $curr = Currency::find(Session::get('currency'));
-        } else {
-            $curr = Currency::where('is_default', '=', 1)->first();
         }
-        $price = round($price * $curr->value, 2);
-        if ($gs->currency_format == 0) {
-            return $curr->sign . $price;
-        } else {
-            return $price . $curr->sign;
+        else
+        {
+            $curr = Currency::where('is_default','=',1)->first();
+        }
+        $price = round($price * $curr->value,2);
+        if($gs->currency_format == 0){
+            return $curr->sign.$price;
+        }
+        else{
+            return $price.$curr->sign;
         }
     }
 
 
-    public function showPrice()
-    {
+    public function showPrice() {
         $gs = Generalsetting::findOrFail(1);
         $price = $this->price;
 
-        if ($this->user_id != 0) {
-            $price = $this->price + $gs->fixed_commission + ($this->price / 100) * $gs->percentage_commission;
+        if($this->user_id != 0){
+        $price = $this->price + $gs->fixed_commission + ($this->price/100) * $gs->percentage_commission ;
         }
 
-        if (!empty($this->size)) {
+        if(!empty($this->size)){
             $price += $this->size_price[0];
         }
 
-        // Attribute Section
+    // Attribute Section
 
-        $attributes = $this->attributes["attributes"];
-        if (!empty($attributes)) {
-            $attrArr = json_decode($attributes, true);
-        }
-        // dd($attrArr);
-        if (!empty($attrArr)) {
-            foreach ($attrArr as $attrKey => $attrVal) {
-                if (is_array($attrVal) && array_key_exists("details_status", $attrVal) && $attrVal['details_status'] == 1) {
+    $attributes = $this->attributes["attributes"];
+      if(!empty($attributes)) {
+          $attrArr = json_decode($attributes, true);
+      }
+      // dd($attrArr);
+      if (!empty($attrArr)) {
+          foreach ($attrArr as $attrKey => $attrVal) {
+            if (is_array($attrVal) && array_key_exists("details_status",$attrVal) && $attrVal['details_status'] == 1) {
 
-                    foreach ($attrVal['values'] as $optionKey => $optionVal) {
-                        $price += $attrVal['prices'][$optionKey];
-                        // only the first price counts
-                        break;
-                    }
+                foreach ($attrVal['values'] as $optionKey => $optionVal) {
+                  $price += $attrVal['prices'][$optionKey];
+                  // only the first price counts
+                  break;
                 }
+
             }
-        }
+          }
+      }
 
 
-        // Attribute Section Ends
+    // Attribute Section Ends
 
 
-        if (Session::has('currency')) {
+        if (Session::has('currency'))
+        {
             $curr = Currency::find(Session::get('currency'));
-        } else {
-            $curr = Currency::where('is_default', '=', 1)->first();
         }
+        else
+        {
+            $curr = Currency::where('is_default','=',1)->first();
+        }
+ 
 
 
+        $price = round(($price) * $curr->value,2);
+        if($gs->currency_format == 0){
 
-        $price = round(($price) * $curr->value, 2);
-        if ($gs->currency_format == 0) {
+            return $curr->sign.number_format($price,2);
 
-            return $curr->sign . number_format($price, 2);
-        } else {
+        }
+        else{
 
-            return $price . number_format($curr->sign, 2);
+            return $price.number_format($curr->sign,2);
+
         }
     }
 
-    public function showPreviousPrice()
-    {
+    public function showPreviousPrice() {
         $gs = Generalsetting::findOrFail(1);
         $price = $this->previous_price;
-        if (!$price) {
+        if(!$price){
             return '';
         }
-        if ($this->user_id != 0) {
-            $price = $this->previous_price + $gs->fixed_commission + ($this->previous_price / 100) * $gs->percentage_commission;
+        if($this->user_id != 0){
+        $price = $this->previous_price + $gs->fixed_commission + ($this->previous_price/100) * $gs->percentage_commission ;
         }
 
-        if (!empty($this->size)) {
+        if(!empty($this->size)){
             $price += $this->size_price[0];
         }
 
-        // Attribute Section
+    // Attribute Section
 
-        $attributes = $this->attributes["attributes"];
-        if (!empty($attributes)) {
-            $attrArr = json_decode($attributes, true);
-        }
-        // dd($attrArr);
-        if (!empty($attrArr)) {
-            foreach ($attrArr as $attrKey => $attrVal) {
-                if (is_array($attrVal) && array_key_exists("details_status", $attrVal) && $attrVal['details_status'] == 1) {
+    $attributes = $this->attributes["attributes"];
+      if(!empty($attributes)) {
+          $attrArr = json_decode($attributes, true);
+      }
+      // dd($attrArr);
+      if (!empty($attrArr)) {
+          foreach ($attrArr as $attrKey => $attrVal) {
+            if (is_array($attrVal) && array_key_exists("details_status",$attrVal) && $attrVal['details_status'] == 1) {
 
-                    foreach ($attrVal['values'] as $optionKey => $optionVal) {
-                        $price += $attrVal['prices'][$optionKey];
-                        // only the first price counts
-                        break;
-                    }
+                foreach ($attrVal['values'] as $optionKey => $optionVal) {
+                  $price += $attrVal['prices'][$optionKey];
+                  // only the first price counts
+                  break;
                 }
+
             }
-        }
+          }
+      }
 
 
-        // Attribute Section Ends
+    // Attribute Section Ends
 
 
-        if (Session::has('currency')) {
+        if (Session::has('currency'))
+        {
             $curr = Currency::find(Session::get('currency'));
-        } else {
-            $curr = Currency::where('is_default', '=', 1)->first();
         }
-        $price = round($price * $curr->value, 2);
-        if ($gs->currency_format == 0) {
-            return $curr->sign . $price;
-        } else {
-            return $price . $curr->sign;
+        else
+        {
+            $curr = Currency::where('is_default','=',1)->first();
+        }
+        $price = round($price * $curr->value,2);
+        if($gs->currency_format == 0){
+            return $curr->sign.$price;
+        }
+        else{
+            return $price.$curr->sign;
         }
     }
 
-    public static function convertPrice($price)
-    {
+    public static function convertPrice($price) {
         $gs = Generalsetting::findOrFail(1);
-        if (Session::has('currency')) {
+        if (Session::has('currency'))
+        {
             $curr = Currency::find(Session::get('currency'));
-        } else {
-            $curr = Currency::where('is_default', '=', 1)->first();
         }
-        $price = round($price * $curr->value, 2);
-        if ($gs->currency_format == 0) {
-            return $curr->sign . $price;
-        } else {
-            return $price . $curr->sign;
+        else
+        {
+            $curr = Currency::where('is_default','=',1)->first();
         }
-    }
-
-    public static function vendorConvertPrice($price)
-    {
-        $gs = Generalsetting::findOrFail(1);
-
-        $curr = Currency::where('is_default', '=', 1)->first();
-        $price = round($price * $curr->value, 2);
-        if ($gs->currency_format == 0) {
-            return $curr->sign . $price;
-        } else {
-            return $price . $curr->sign;
+        $price = round($price * $curr->value,2);
+        if($gs->currency_format == 0){
+            return $curr->sign.$price;
+        }
+        else{
+            return $price.$curr->sign;
         }
     }
 
-    public static function convertPreviousPrice($price)
-    {
+    public static function vendorConvertPrice($price) {
         $gs = Generalsetting::findOrFail(1);
-        if (Session::has('currency')) {
+
+        $curr = Currency::where('is_default','=',1)->first();
+        $price = round($price * $curr->value,2);
+        if($gs->currency_format == 0){
+            return $curr->sign.$price;
+        }
+        else{
+            return $price.$curr->sign;
+        }
+    }
+
+    public static function convertPreviousPrice($price) {
+        $gs = Generalsetting::findOrFail(1);
+        if (Session::has('currency'))
+        {
             $curr = Currency::find(Session::get('currency'));
-        } else {
-            $curr = Currency::where('is_default', '=', 1)->first();
         }
-        $price = round($price * $curr->value, 2);
-        if ($gs->currency_format == 0) {
-            return $curr->sign . $price;
-        } else {
-            return $price . $curr->sign;
+        else
+        {
+            $curr = Currency::where('is_default','=',1)->first();
+        }
+        $price = round($price * $curr->value,2);
+        if($gs->currency_format == 0){
+            return $curr->sign.$price;
+        }
+        else{
+            return $price.$curr->sign;
         }
     }
 
-    public function showName()
-    {
-        $name = mb_strlen($this->name, 'utf-8') > 55 ? mb_substr($this->name, 0, 55, 'utf-8') . '...' : $this->name;
+    public function showName() {
+        $name = mb_strlen($this->name,'utf-8') > 55 ? mb_substr($this->name,0,55,'utf-8').'...' : $this->name;
         return $name;
     }
 
 
-    public function emptyStock()
-    {
+    public function emptyStock() {
         $stck = (string)$this->stock;
-        if ($stck == "0") {
-            return true;
+        if($stck == "0"){
+            return true;            
         }
     }
 
-    public static function showTags()
-    {
+    public static function showTags() {
         $tags = null;
         $tagz = '';
-        $name = Product::where('status', '=', 1)->pluck('tags')->toArray();
-        foreach ($name as $nm) {
-            if (!empty($nm)) {
-                foreach ($nm as $n) {
-                    $tagz .= $n . ',';
+        $name = Product::where('status','=',1)->pluck('tags')->toArray();
+        foreach($name as $nm)
+        {
+            if(!empty($nm))
+            {
+                foreach($nm as $n)
+                {
+                    $tagz .= $n.',';
                 }
             }
         }
-        $tags = array_unique(explode(',', $tagz));
+        $tags = array_unique(explode(',',$tagz));
         return $tags;
     }
 
 
     public function getSizeAttribute($value)
     {
-        if ($value == null) {
+        if($value == null)
+        {
             return '';
         }
         return explode(',', $value);
@@ -364,7 +383,8 @@ class Product extends Model
 
     public function getSizeQtyAttribute($value)
     {
-        if ($value == null) {
+        if($value == null)
+        {
             return '';
         }
         return explode(',', $value);
@@ -372,7 +392,8 @@ class Product extends Model
 
     public function getSizePriceAttribute($value)
     {
-        if ($value == null) {
+        if($value == null)
+        {
             return '';
         }
         return explode(',', $value);
@@ -380,7 +401,8 @@ class Product extends Model
 
     public function getColorAttribute($value)
     {
-        if ($value == null) {
+        if($value == null)
+        {
             return '';
         }
         return explode(',', $value);
@@ -388,7 +410,8 @@ class Product extends Model
 
     public function getTagsAttribute($value)
     {
-        if ($value == null) {
+        if($value == null)
+        {
             return '';
         }
         return explode(',', $value);
@@ -396,7 +419,8 @@ class Product extends Model
 
     public function getMetaTagAttribute($value)
     {
-        if ($value == null) {
+        if($value == null)
+        {
             return '';
         }
         return explode(',', $value);
@@ -404,7 +428,8 @@ class Product extends Model
 
     public function getFeaturesAttribute($value)
     {
-        if ($value == null) {
+        if($value == null)
+        {
             return '';
         }
         return explode(',', $value);
@@ -412,7 +437,8 @@ class Product extends Model
 
     public function getColorsAttribute($value)
     {
-        if ($value == null) {
+        if($value == null)
+        {
             return '';
         }
         return explode(',', $value);
@@ -420,7 +446,8 @@ class Product extends Model
 
     public function getLicenseAttribute($value)
     {
-        if ($value == null) {
+        if($value == null)
+        {
             return '';
         }
         return explode(',,', $value);
@@ -428,7 +455,8 @@ class Product extends Model
 
     public function getLicenseQtyAttribute($value)
     {
-        if ($value == null) {
+        if($value == null)
+        {
             return '';
         }
         return explode(',', $value);
@@ -436,7 +464,8 @@ class Product extends Model
 
     public function getWholeSellQtyAttribute($value)
     {
-        if ($value == null) {
+        if($value == null)
+        {
             return '';
         }
         return explode(',', $value);
@@ -444,28 +473,28 @@ class Product extends Model
 
     public function getWholeSellDiscountAttribute($value)
     {
-        if ($value == null) {
+        if($value == null)
+        {
             return '';
         }
         return explode(',', $value);
     }
 
-    public function get_percent()
-    {
+    public function get_percent() {
         $gs = Generalsetting::findOrFail(1);
         $show_price = $this->price;
 
         $previous_price = $this->previous_price;
-        if (!$previous_price) {
+        if(!$previous_price){
             $previous_price = 0;
         }
 
-        if ($this->user_id != 0) {
-            $show_price = $this->price + $gs->fixed_commission + ($this->price / 100) * $gs->percentage_commission;
-            $previous_price = $this->previous_price + $gs->fixed_commission + ($this->previous_price / 100) * $gs->percentage_commission;
+        if($this->user_id != 0){
+            $show_price = $this->price + $gs->fixed_commission + ($this->price/100) * $gs->percentage_commission ;
+            $previous_price = $this->previous_price + $gs->fixed_commission + ($this->previous_price/100) * $gs->percentage_commission ;
         }
 
-        if (!empty($this->size)) {
+        if(!empty($this->size)){
             $show_price += $this->size_price[0];
             $previous_price += $this->size_price[0];
         }
@@ -473,46 +502,51 @@ class Product extends Model
         // Attribute Section
 
         $attributes = $this->attributes["attributes"];
-        if (!empty($attributes)) {
+        if(!empty($attributes)) {
             $attrArr = json_decode($attributes, true);
         }
         // dd($attrArr);
         if (!empty($attrArr)) {
-            foreach ($attrArr as $attrKey => $attrVal) {
-                if (is_array($attrVal) && array_key_exists("details_status", $attrVal) && $attrVal['details_status'] == 1) {
+          foreach ($attrArr as $attrKey => $attrVal) {
+            if (is_array($attrVal) && array_key_exists("details_status",$attrVal) && $attrVal['details_status'] == 1) {
 
-                    foreach ($attrVal['values'] as $optionKey => $optionVal) {
-                        $show_price += $attrVal['prices'][$optionKey];
-                        $previous_price += $attrVal['prices'][$optionKey];
-                        // only the first price counts
-                        break;
-                    }
+                foreach ($attrVal['values'] as $optionKey => $optionVal) {
+                  $show_price += $attrVal['prices'][$optionKey];
+                  $previous_price += $attrVal['prices'][$optionKey];
+                  // only the first price counts
+                  break;
                 }
+
             }
+          }
         }
 
-        if (Session::has('currency')) {
+        if (Session::has('currency'))
+        {
             $curr = Currency::find(Session::get('currency'));
-        } else {
-            $curr = Currency::where('is_default', '=', 1)->first();
+        }
+        else
+        {
+            $curr = Currency::where('is_default','=',1)->first();
         }
 
         $show_price = (($show_price) * $curr->value);
         $previous_price = ($previous_price * $curr->value);
 
-        return round($previous_price != 0 ? (100 - (($show_price / $previous_price) * 100)) : 0);
+        return round($previous_price != 0 ? (100-(($show_price/$previous_price)*100)) : 0);
+        
     }
 
-    public function getPhotoAttribute($value)
-    {
-        if ($value) {
-            if (file_exists(public_path() . '/assets/images/products/' . $value)) {
-                return asset('/assets/images/products/' . $value);
-            } else {
+    public function getPhotoAttribute($value){
+        if($value){
+            if(file_exists(public_path().'/assets/images/products/'.$value)){
+                return asset('/assets/images/products/'.$value);
+            }else{
                 return asset('/assets/images/noimage.png');
             }
-        } else {
+        }else{
             return asset('/assets/images/noimage.png');
         }
     }
+
 }
