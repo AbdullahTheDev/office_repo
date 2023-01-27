@@ -297,30 +297,30 @@ class PaymentController extends Controller
             ]
         ]);
 
-        return $response;
-        // if (isset($response['id']) && $response['id'] != null) {
+        // return $response;
+        if (isset($response['id']) && $response['id'] != null) {
 
-        //     // redirect to approve href
-        //     foreach ($response['links'] as $links) {
-        //         if ($links['rel'] == 'approve') {
-        //             return redirect()->away($links['href']);
-        //         }
-        //     }
+            // redirect to approve href
+            foreach ($response['links'] as $links) {
+                if ($links['rel'] == 'approve') {
+                    return redirect()->away($links['href']);
+                }
+            }
 
-        //     return redirect()
-        //         ->route('paypal.submit')
-        //         ->with('error', 'Something went wrong.');
+            return redirect()
+                ->route('paypal.submit')
+                ->with('error', 'Something went wrong.');
 
-        // } else {
-        //     return redirect()
-        //         ->route('paypal.submit')
-        //         ->with('error', $response['message'] ?? 'Something went wrong.');
-        // }
+        } else {
+            return redirect()
+                ->route('paypal.submit')
+                ->with('error', $response['message'] ?? 'Something went wrong.');
+        }
 
 
 
-        return $item_amount;
-        return redirect('https://www.paypal.com/cgi-bin/webscr' . $querystring);
+        // return $item_amount;
+        // return redirect('https://www.paypal.com/cgi-bin/webscr' . $querystring);
     }
 
 
