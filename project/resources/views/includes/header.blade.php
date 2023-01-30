@@ -32,7 +32,7 @@
     <div class="header-middle">
         <div class="container py-5">
             <div class="header-left">
-                <a href="#" class="mobile-menu-toggle  w-icon-hamburger">
+                <a href="#" aria-label="Hamburger" class="mobile-menu-toggle  w-icon-hamburger">
                 </a>
                 <a href="{{url('')}}" class="logo ml-lg-0">
                     <img src="{{ asset('assets/images') }}/{{$gs->logo}}" alt="logo" width="190" height="45" />
@@ -67,7 +67,7 @@
                         <a href="tel:{{ $gs->phone }}" class="phone-number font-weight-bolder ls-50">{{ $gs->phone }}</a>
                     </div>
                 </div>
-                <a class="wishlist label-down link d-xs-show" href="{{ route('user-wishlists') }}">
+                <a class="wishlist label-down link d-xs-show" aria-label="Wishlist" href="{{ route('user-wishlists') }}">
                     <i class="w-icon-heart"></i>
                     <span class="wishlist-label d-lg-show">Wishlist</span>
                 </a>

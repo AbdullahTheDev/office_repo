@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
 	@if(isset($page->meta_tag) && isset($page->meta_description))
 	<meta name="keywords" content="{{ $page->meta_tag }}">
 	<meta name="description" content="{{ $page->meta_description }}">
