@@ -20,6 +20,7 @@ use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Illuminate\Support\Facades\Input;
 use Validator;
@@ -83,12 +84,14 @@ class CatalogController extends Controller
         $data["latest"] = Product::where("category_id", $cat->id)->where("status",1)->paginate(6);
       }
       if (!empty($slug1)) {
+        // return 4;
         $subcat = Subcategory::where('slug', $slug1)->firstOrFail();
         $data['subcat'] = $subcat;
         $data["title"] = $subcat->name;
         $data["latest"] = Product::where("subcategory_id", $subcat->id)->where("price",'!=',0)->where("status",1)->paginate(6);
       }
       if (!empty($slug2)) {
+        return 2;
         $childcat = Childcategory::where('slug', $slug2)->firstOrFail();
         $data['childcat'] = $childcat;
         $data["title"] = $childcat->name;
@@ -97,7 +100,7 @@ class CatalogController extends Controller
       if($request->has("brand")){
         $brand = $request->brand;
       }
-      $prods = Product::with("brand")->when($cat, function ($query, $cat) {
+      $prods = Product::orderBy(DB::raw('RAND()'))->with("brand")->when($cat, function ($query, $cat) {
                                       return $query->where('category_id', $cat->id);
                                   })
                                   ->when($subcat, function ($query, $subcat) {
