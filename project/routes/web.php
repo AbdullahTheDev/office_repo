@@ -15,6 +15,7 @@ Route::get('/clear', function () {
 
 Route::get('/MailTester', 'Front\FrontendController@MailTester');
 Route::get('/google-feed', 'Admin\FeedController@Feed');
+Route::get('/ConvertJpgToWebp', 'Admin\DashboardController@ConvertJpgToWebp');
 
 
 // Route::get('/testMail', 'Front\FrontendController@TestMail');
