@@ -39,7 +39,7 @@
         <div class="banner banner-fixed intro-slide intro-slide1" style="background-color: #020300;">
             <div class="container">
                 <figure class="slide-image skrollable custom_added_carousel">
-                    <img src="{{ asset('assets/images/sliders') }}/{{ $data->photo }}" alt="Banner" data-bottom-top="transform: translateY(10vh);" data-top-bottom="transform: translateY(-10vh);" width="474" height="397">
+                    <img loading="lazy" src="{{ asset('assets/images/sliders') }}/{{ $data->photo }}" alt="Banner" data-bottom-top="transform: translateY(10vh);" data-top-bottom="transform: translateY(-10vh);" width="474" height="397">
                 </figure>
                 <div class="banner-content y-50">
                     <h5 class="banner-subtitle font-weight-normal text-default ls-50 lh-1 mb-2 slide-animate" data-animation-options="{
@@ -144,7 +144,7 @@
             @foreach($categories->where('is_featured','=',1) as $cat)
             <div class="category category-classic category-absolute overlay-zoom radius-10">
                 <a href="{{ route('front.category',$cat->slug) }}" class="category-media">
-                    <img src="{{ asset('assets/images/categories') }}/{{ $cat->image }}" alt="{{ $cat->name }}">
+                    <img loading="lazy" src="{{ asset('assets/images/categories') }}/{{ $cat->image }}" alt="{{ $cat->name }}">
                 </a>
                 <div class="category-content">
                     <h4 class="category-name">{{ $cat->name }}</h4>
@@ -246,7 +246,7 @@
                         <div class="custom_feature">
                             <figure class="custom_feature_image">
                                 <a class="" href="{{ route('front.product', $prod->slug) }}">
-                                    <img width="400" height="200" src="{{ $prod->photo  }}" alt="{{ $prod->showName() }}">
+                                    <img loading="lazy" width="400" height="200" src="{{ $prod->photo  }}" alt="{{ $prod->showName() }}">
                                 </a>
                             </figure>
                             <div class="custom_feature_details">
@@ -334,7 +334,7 @@
                 <div class="product product-slideup-content">
                     <figure class="product-media">
                         <a href="{{ route('front.product', $prod->slug) }}">
-                            <img src="{{ $prod->photo  }}" alt="{{ $prod->showName() }}" width="295" height="335">
+                            <img loading="lazy" src="{{ $prod->photo  }}" alt="{{ $prod->showName() }}" width="295" height="335">
                         </a>
                     </figure>
                     <div class="product-details">
@@ -415,7 +415,7 @@
                 <div class="custom_feature">
                     <figure class="custom_feature_image">
                         <a href="{{ route('front.product', $prod->slug) }}">
-                            <img width="400" height="200" src="{{ $prod->photo  }}" alt="{{ $prod->showName() }}" width="295" height="335">
+                            <img loading="lazy" width="400" height="200" src="{{ $prod->photo  }}" alt="{{ $prod->showName() }}" width="295" height="335">
                         </a>
                     </figure>
                     <div class="custom_feature_details">
