@@ -100,8 +100,8 @@ class CatalogController extends Controller
       if($request->has("brand")){
         $brand = $request->brand;
       }
-      $prods = Product::orderBy(DB::raw('RAND()'))->with("brand")->when($cat, function ($query, $cat) {
-                                      return $query->where('category_id', $cat->id);
+      $prods = Product::with("brand")->when($cat, function ($query, $cat) {
+                                      return $query->orderBy(DB::raw('RAND()'))->where('category_id', $cat->id);
                                   })
                                   ->when($subcat, function ($query, $subcat) {
                                       return $query->where('subcategory_id', $subcat->id);
@@ -216,6 +216,8 @@ class CatalogController extends Controller
 
         return view('includes.product.filtered-products', $data);
       }
+      // $prods = Product::orderBy(DB::raw('RAND()'))->with("brand");
+      // $data['prods'] = $prods;
       return view('front.category', $data);
     }
     

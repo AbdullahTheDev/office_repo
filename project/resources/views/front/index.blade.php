@@ -38,7 +38,7 @@
         @foreach($sliders as $data)
         <div class="banner banner-fixed intro-slide intro-slide1" style="background-color: #020300;">
             <div class="container">
-                <figure class="slide-image skrollable">
+                <figure class="slide-image skrollable custom_added_carousel">
                     <img src="{{ asset('assets/images/sliders') }}/{{ $data->photo }}" alt="Banner" data-bottom-top="transform: translateY(10vh);" data-top-bottom="transform: translateY(-10vh);" width="474" height="397">
                 </figure>
                 <div class="banner-content y-50">

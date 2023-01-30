@@ -181,7 +181,7 @@
                             </div>
                             <div class="toolbox toolbox-pagination justify-content-between">
                                 <div class="toolbox-item toolbox-show select-box">
-                                        <select  class="form-control disp-prod2">
+                                        <select class="form-control disp-prod2">
                                              <option value="50" {{ request()->display_prods == "50" ? 'selected' : '' }}>Show 50</option>
                                               <option value="100" {{ request()->display_prods == "100" ? 'selected' : '' }}>Show 100</option>
                                               <option value="-1" {{ request()->display_prods == "-1" ? 'selected' : '' }}>Show All</option>
