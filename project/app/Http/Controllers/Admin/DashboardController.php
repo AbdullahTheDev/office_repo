@@ -236,16 +236,6 @@ class DashboardController extends Controller
         // $products = Product::where('photo','=',null)->select('sku','photo')->get();
         // $products = Product::all();
 
-        if(!empty(session()->get('noimgProducts')))
-        {
-            return 'Avaiabe';
-        }
-        else{
-            return 'Not available';
-        }
-        return session()->get('noimgProducts');
-
-
         return 'No Products Found';
     }
     public function clear_cache(){
