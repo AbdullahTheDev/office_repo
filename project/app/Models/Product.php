@@ -506,18 +506,19 @@ class Product extends Model
 
     public function getPhotoAttribute($value)
     {
-        if ($value) {
-            $extension = str_replace($value, '.', 'webp');
-            $normal = Str::before($value, '.');
-            $combine = $normal.$extension;
-            if (file_exists(public_path() . '/assets/images/products/' . $combine)) {
-                return asset('/assets/images/products/' . $combine);
-            } else {
-                // Session::put('noimgProducts', $value);
-                return asset('/assets/images/noimage.png');
-            }
-        } else {
-            return asset('/assets/images/noimage.png');
+         if ($value) {
+             $extension = str_replace($value, '.', '.webp');
+             $normal = Str::before($value, '.');
+             $combine = $normal.$extension;
+             if (file_exists(public_path() . '/assets/images/products/' . $combine)) {
+                // return asset('/assets/images/products/' . $combine);
+                return asset('/assets/images/products/'.$combine);
+             } else {
+                 // Session::put('noimgProducts', $value);
+                 return asset('/assets/images/noimage.png');
+             }
+         } else {
+             return asset('/assets/images/noimage.png');
         }
     }
 }
