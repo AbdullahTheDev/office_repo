@@ -238,10 +238,10 @@ class DashboardController extends Controller
 
         if(!empty(session()->get('noimgProducts')))
         {
-            return 'sfd';
+            return 'Avaiabe';
         }
         else{
-            return 'ggg';
+            return 'Not available';
         }
         return session()->get('noimgProducts');
 
