@@ -1047,17 +1047,23 @@ class ProductController extends Controller
         while (($line = fgetcsv($file)) !== FALSE) {
             if ($i != 1) {
                 $pro = Product::where('sku', '=', $line[0])->get('sku');
+                $proLength = Product::where('sku', '=', $line[0])->count();
                 // echo $getDbProducts[0]->sku;
                 // echo $line[0];
                 // echo $pro;
                 if ($pro != null) {
-                    if($pro == $line[0])
-                    {
-                        echo $pro;
+                    for ($ib=0; $ib <= 2; $ib++) { 
+                        if($pro === $line[0])
+                        {
+                            echo ' Pro ' . $pro . ' ';
+                        }
+                        else{
+                            "not matched";
+                        }
+                        // echo "hel -" . $pro . ' line ' . $line[0] . ' - ';
                     }
-                    else{
-                        "not matched";
-                    }
+                    // echo $proLength;
+                    // echo $pro . ' - ' . $line[0] . ' * ';
                 }
                 else{
                     echo $pro . ' - ' . $line[0] . ' * ';
@@ -1274,7 +1280,7 @@ class ProductController extends Controller
                 // if($line[0] != )
                 // echo $line[0] . ' - ' . $getDbProducts[$i]->sku . ' / ';
             } else {
-                echo "nope ";
+                echo " ";
             }
             // if ($i != 1) {
 
