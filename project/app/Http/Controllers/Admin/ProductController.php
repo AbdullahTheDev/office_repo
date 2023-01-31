@@ -1057,15 +1057,15 @@ class ProductController extends Controller
                     // if(Product::where('sku',$line[0])->exists()){
                     //     dd(2);
                     // }
-    
+
                     $input = [];
-    
+
                     //--- Validation Section Ends
-    
+
                     //--- Logic Section
-    
+
                     $sign = Currency::where('is_default', '=', 1)->first();
-    
+
                     $input['type'] = 'Physical';
                     if (!empty($line[0])) {
                         $input['sku'] = $line[0];
@@ -1076,54 +1076,54 @@ class ProductController extends Controller
                     if (!empty($line[2])) {
                         $input['identifier'] = $line[2];
                     }
-    
+
                     // $input['category_id'] = "";
                     // $input['subcategory_id'] = "";
                     // $input['childcategory_id'] = "";
-    
+
                     if (!empty($line[12])) {
                         $categoriess = explode("/", $line[12]);
                         $mcat = Category::where(DB::raw('lower(name)'), strtolower($categoriess[0]));
                         // $mcat = Category::where(DB::raw('lower(name)'), strtolower($line[1]));
                         //$mcat = Category::where("name", $line[1]);
-    
+
                         if ($mcat->exists()) {
                             $input['category_id'] = $mcat->first()->id;
-    
+
                             // if($line[2] != ""){
                             //     $scat = Subcategory::where(DB::raw('lower(name)'), strtolower($line[2]));
-    
+
                             //     if($scat->exists()) {
                             //         $input['subcategory_id'] = $scat->first()->id;
                             //     }
                             // }
                             if (array_key_exists(1, $categoriess)) {
                                 $scat = Subcategory::where(DB::raw('lower(name)'), strtolower($categoriess[1]));
-    
+
                                 if ($scat->exists()) {
                                     $input['subcategory_id'] = $scat->first()->id;
                                 }
                             }
                             // if($line[3] != ""){
                             //     $chcat = Childcategory::where(DB::raw('lower(name)'), strtolower($line[3]));
-    
+
                             //     if($chcat->exists()) {
                             //         $input['childcategory_id'] = $chcat->first()->id;
                             //     }
                             // }
                             if (array_key_exists(2, $categoriess)) {
                                 $chcat = Childcategory::where(DB::raw('lower(name)'), strtolower($categoriess[2]));
-    
+
                                 if ($chcat->exists()) {
                                     $input['childcategory_id'] = $chcat->first()->id;
                                 }
                             }
                         }
                     }
-    
+
                     if (!empty($line[8])) {
                         $brand = Partner::where(DB::raw('lower(link)'), strtolower($line[8]));
-    
+
                         if ($brand->exists()) {
                             $input['brand_id'] = $brand->first()->id;
                         } else {
@@ -1131,7 +1131,7 @@ class ProductController extends Controller
                             $input['brand_id'] = $brand->id;
                         }
                     }
-    
+
                     if (!empty($line[9])) {
                         if (strtolower($line[9]) == "new") {
                             $input['product_condition'] = 2;
@@ -1139,7 +1139,7 @@ class ProductController extends Controller
                             $input['product_condition'] = 1;
                         }
                     }
-    
+
                     if (!empty($line[10])) {
                         $input['photo'] = $input['thumbnail'] = $line[10];
                     }
@@ -1152,7 +1152,7 @@ class ProductController extends Controller
                     if (!empty($line[4])) {
                         $input['details'] = $line[4];
                     }
-    
+
                     if (!empty($line[6])) {
                         if (!empty($line[7])) {
                             $input['price'] = $line[7];
@@ -1167,7 +1167,7 @@ class ProductController extends Controller
                             $input['previous_price'] = null;
                         }
                     }
-    
+
                     if (!empty($line[13])) {
                         $input['stock'] = $line[13];
                     }
@@ -1215,23 +1215,23 @@ class ProductController extends Controller
                     if (!empty($line[25])) {
                         $input['specs'] = $line[25];
                     }
-    
-    
+
+
                     // Conert Price According to Currency
                     // $input['price'] = ($input['price'] / $sign->value);
                     // $input['previous_price'] = ($input['previous_price'] / $sign->value);
-    
+
                     // Save Data
-    
+
                     if (!Product::where('sku', $line[0])->exists()) {
                         $data->fill($input)->save();
                     } else {
                         Product::where("sku", $line[0])->update($input);
                         $data = Product::where("sku", $line[0])->first();
                     }
-    
+
                     $prod = Product::find($data->id);
-    
+
                     if (!empty($line[11])) {
                         $gallery = explode(",", $line[11]);
                         Gallery::where("product_id", $prod->id)->delete();
@@ -1239,13 +1239,11 @@ class ProductController extends Controller
                             Gallery::create(["product_id" => $prod->id, "photo" => $gallery_img]);
                         }
                     }
+                } else {
+                    echo " This product is not found <strong>" . $line[0] . '</strong> <br>';
                 }
-                else{
-                    echo "This product is not found " . $line[0];
-                }
-                // echo $line[0] . ' = ' . $pro . ' / ';
             } else {
-                echo " Not Found ";
+                echo " Not Found <br>";
             }
             $i++;
         }
@@ -1253,8 +1251,8 @@ class ProductController extends Controller
         \DB::commit();
 
         //--- Redirect Section
-        $msg = 'Bulk Product File Imported Successfully.<a href="' . route('admin-prod-index') . '">View Product Lists.</a>';
-        return response()->json($msg);
+        $msg = '<br><br> Bulk Product File Imported Successfully.<a href="' . route('admin-prod-index') . '">View Product Lists.</a>';
+        return $msg;
     }
 
 
