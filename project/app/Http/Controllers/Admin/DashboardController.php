@@ -233,22 +233,30 @@ class DashboardController extends Controller
 
     public function ExportNonImgProducts()
     {
-        $getProducts = Product::where('id','=','372391')->get();
-        // $getProducts = Product::all();
+        $getProducts = Product::all();
+        $path = public_path('assets/noimg/noimg.csv');
 
         foreach($getProducts as $pro)
         {
-            $products = Product::where('photo','=',null)->value('photo');
-            // $products = Product::all();
-            echo $pro->photo . '<br>';
-            // $file = public_path('assets/images/products/' . $pro->photo);
-            // if(file_exists($file))
-            // {
-            //     echo 'yes';
-            // }
-            // echo $products . '<br>';
+            if($pro->photo == 'http://127.0.0.1:8000/assets/images/noimage.png')
+            {
+                $list[] = [
+                    $pro->sku
+                ];
+                $content = $pro->sku;
+                // \File::append($path, $content);
+            }
         }
-        return 'No Products Found';
+        $fp = fopen($path, 'w');
+
+        // echo '<pre>';
+        foreach ($list as $key => $fields) {
+            fputcsv($fp, $fields);
+        }
+
+        fclose($fp);
+        // return $list;
+        return 'Done. You can download the file by clicking <a download href="http://127.0.0.1:8000/assets/noimg/noimg.csv">here</a>';
     }
     public function clear_cache(){
         \Artisan::call('cache:clear');
