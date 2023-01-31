@@ -1040,222 +1040,232 @@ class ProductController extends Controller
         //return response()->json($filename);
         $datas = "";
         \DB::beginTransaction();
+        $getDbProducts = Product::limit(10)->get();
         $file = fopen(public_path('assets/temp_files/' . $filename), "r");
         $i = 1;
-        while (($line = fgetcsv($file)) !== FALSE) {
-            // echo $line;
-            if ($i != 1) {
-
-                if (!Product::where('sku', $line[0])->exists()) {
-                    // dd(1);
-                    $data = new Product;
+        // foreach ($getDbProducts as $dbproducts) {
+            while (($line = fgetcsv($file)) !== FALSE) {
+                if ($i != 1) {
+                    // echo $dbproducts->sku . ' - ';
+                    // if($line[0] != )
+                    echo $line[0] . ' - ' . $getDbProducts[$i]->sku . ' / ';
+                } else {
+                    echo "nope ";
                 }
-                // if(Product::where('sku',$line[0])->exists()){
-                //     dd(2);
+                // if ($i != 1) {
+
+                //     if (!Product::where('sku', $line[0])->exists()) {
+                //         // dd(1);
+                //         $data = new Product;
+                //     }
+                //     // if(Product::where('sku',$line[0])->exists()){
+                //     //     dd(2);
+                //     // }
+
+                //     $input = [];
+
+                //     //--- Validation Section Ends
+
+                //     //--- Logic Section
+
+                //     $sign = Currency::where('is_default', '=', 1)->first();
+
+                //     $input['type'] = 'Physical';
+                //     if (!empty($line[0])) {
+                //         $input['sku'] = $line[0];
+                //     }
+                //     if (!empty($line[1])) {
+                //         $input['gtin'] = $line[1];
+                //     }
+                //     if (!empty($line[2])) {
+                //         $input['identifier'] = $line[2];
+                //     }
+
+                //     // $input['category_id'] = "";
+                //     // $input['subcategory_id'] = "";
+                //     // $input['childcategory_id'] = "";
+
+                //     if (!empty($line[12])) {
+                //         $categoriess = explode("/", $line[12]);
+                //         $mcat = Category::where(DB::raw('lower(name)'), strtolower($categoriess[0]));
+                //         // $mcat = Category::where(DB::raw('lower(name)'), strtolower($line[1]));
+                //         //$mcat = Category::where("name", $line[1]);
+
+                //         if ($mcat->exists()) {
+                //             $input['category_id'] = $mcat->first()->id;
+
+                //             // if($line[2] != ""){
+                //             //     $scat = Subcategory::where(DB::raw('lower(name)'), strtolower($line[2]));
+
+                //             //     if($scat->exists()) {
+                //             //         $input['subcategory_id'] = $scat->first()->id;
+                //             //     }
+                //             // }
+                //             if (array_key_exists(1, $categoriess)) {
+                //                 $scat = Subcategory::where(DB::raw('lower(name)'), strtolower($categoriess[1]));
+
+                //                 if ($scat->exists()) {
+                //                     $input['subcategory_id'] = $scat->first()->id;
+                //                 }
+                //             }
+                //             // if($line[3] != ""){
+                //             //     $chcat = Childcategory::where(DB::raw('lower(name)'), strtolower($line[3]));
+
+                //             //     if($chcat->exists()) {
+                //             //         $input['childcategory_id'] = $chcat->first()->id;
+                //             //     }
+                //             // }
+                //             if (array_key_exists(2, $categoriess)) {
+                //                 $chcat = Childcategory::where(DB::raw('lower(name)'), strtolower($categoriess[2]));
+
+                //                 if ($chcat->exists()) {
+                //                     $input['childcategory_id'] = $chcat->first()->id;
+                //                 }
+                //             }
+                //         }
+                //     }
+
+                //     if (!empty($line[8])) {
+                //         $brand = Partner::where(DB::raw('lower(link)'), strtolower($line[8]));
+
+                //         if ($brand->exists()) {
+                //             $input['brand_id'] = $brand->first()->id;
+                //         } else {
+                //             $brand = Partner::create(["link" => $line[8]]);
+                //             $input['brand_id'] = $brand->id;
+                //         }
+                //     }
+
+                //     if (!empty($line[9])) {
+                //         if (strtolower($line[9]) == "new") {
+                //             $input['product_condition'] = 2;
+                //         } else {
+                //             $input['product_condition'] = 1;
+                //         }
+                //     }
+
+                //     if (!empty($line[10])) {
+                //         $input['photo'] = $input['thumbnail'] = $line[10];
+                //     }
+                //     if (!empty($line[3])) {
+                //         $input['name'] = $line[3];
+                //     }
+                //     if (!empty($line[5])) {
+                //         $input['slug'] = $line[5];
+                //     }
+                //     if (!empty($line[4])) {
+                //         $input['details'] = $line[4];
+                //     }
+
+                //     if (!empty($line[6])) {
+                //         if (!empty($line[7])) {
+                //             $input['price'] = $line[7];
+                //             $input['previous_price'] = $line[6];
+                //         } else {
+                //             $input['price'] = $line[6];
+                //             $input['previous_price'] = null;
+                //         }
+                //     } else {
+                //         if (!empty($line[7])) {
+                //             $input['price'] = 0;
+                //             $input['previous_price'] = null;
+                //         }
+                //     }
+
+                //     if (!empty($line[13])) {
+                //         $input['stock'] = $line[13];
+                //     }
+                //     if (!empty($line[14])) {
+                //         $input['weight'] = $line[14];
+                //     }
+                //     if (!empty($line[15])) {
+                //         $input['measure'] = $line[15];
+                //     }
+                //     if (!empty($line[16])) {
+                //         $input['length'] = $line[16] != "" ? $line[16] : 0;
+                //     }
+                //     if (!empty($line[17])) {
+                //         $input['width'] = $line[17] != "" ? $line[17] : 0;
+                //     }
+                //     if (!empty($line[18])) {
+                //         $input['height'] = $line[18] != "" ? $line[18] : 0;
+                //     }
+                //     if (!empty($line[19])) {
+                //         $input['google_product_category'] = $line[19];
+                //     }
+                //     // $input['size'] = $line[10];
+                //     // $input['size_qty'] = $line[11];
+                //     // $input['size_price'] = $line[12];
+                //     // $input['youtube'] = $line[15];
+                //     // $input['policy'] = $line[16];
+                //     if (!empty($line[20])) {
+                //         $input['meta_tag'] = $line[20];
+                //     }
+                //     if (!empty($line[21])) {
+                //         $input['meta_description'] = $line[21];
+                //     }
+                //     // $input['tags'] = $line[14];
+                //     // $input['product_type'] = $line[19];
+                //     // $input['affiliate_link'] = $line[20];
+                //     if (!empty($line[22])) {
+                //         $input['show_in_feed'] = $line[22];
+                //     }
+                //     if (!empty($line[23])) {
+                //         $input['custom_label_1'] = $line[23];
+                //     }
+                //     if (!empty($line[24])) {
+                //         $input['custom_label_2'] = $line[24];
+                //     }
+                //     if (!empty($line[25])) {
+                //         $input['specs'] = $line[25];
+                //     }
+
+
+                //     // Conert Price According to Currency
+                //     // $input['price'] = ($input['price'] / $sign->value);
+                //     // $input['previous_price'] = ($input['previous_price'] / $sign->value);
+
+                //     // Save Data
+
+                //     if (!Product::where('sku', $line[0])->exists()) {
+                //         $data->fill($input)->save();
+                //     } else {
+                //         Product::where("sku", $line[0])->update($input);
+                //         $data = Product::where("sku", $line[0])->first();
+                //     }
+
+                //     $prod = Product::find($data->id);
+
+                //     if (!empty($line[11])) {
+                //         $gallery = explode(",", $line[11]);
+                //         Gallery::where("product_id", $prod->id)->delete();
+                //         foreach ($gallery as $gallery_img) {
+                //             Gallery::create(["product_id" => $prod->id, "photo" => $gallery_img]);
+                //         }
+                //     }
+                //     // Set SLug
+
+
+                //     // $prod->slug = \Str::slug($data->name,'-').'-'.strtolower($data->sku);
+
+                //     // Set Thumbnail
+
+
+                //     // $img = Image::make($line[5])->resize(285, 285);
+                //     // $thumbnail = time().\Str::random(8).'.jpg';
+                //     // $img->save(public_path().'/assets/images/thumbnails/'.$thumbnail);
+                //     // $prod->thumbnail  = $thumbnail;
+                //     // $prod->update();
+
+
+                // } else {
+                //     $log .= "<br>Row No: " . $i . " - No Category Found!<br>";
                 // }
 
-                $input = [];
-
-                //--- Validation Section Ends
-
-                //--- Logic Section
-
-                $sign = Currency::where('is_default', '=', 1)->first();
-
-                $input['type'] = 'Physical';
-                if (!empty($line[0])) {
-                    $input['sku'] = $line[0];
-                }
-                if (!empty($line[1])) {
-                    $input['gtin'] = $line[1];
-                }
-                if (!empty($line[2])) {
-                    $input['identifier'] = $line[2];
-                }
-
-                // $input['category_id'] = "";
-                // $input['subcategory_id'] = "";
-                // $input['childcategory_id'] = "";
-
-                if (!empty($line[12])) {
-                    $categoriess = explode("/", $line[12]);
-                    $mcat = Category::where(DB::raw('lower(name)'), strtolower($categoriess[0]));
-                    // $mcat = Category::where(DB::raw('lower(name)'), strtolower($line[1]));
-                    //$mcat = Category::where("name", $line[1]);
-
-                    if ($mcat->exists()) {
-                        $input['category_id'] = $mcat->first()->id;
-
-                        // if($line[2] != ""){
-                        //     $scat = Subcategory::where(DB::raw('lower(name)'), strtolower($line[2]));
-
-                        //     if($scat->exists()) {
-                        //         $input['subcategory_id'] = $scat->first()->id;
-                        //     }
-                        // }
-                        if (array_key_exists(1, $categoriess)) {
-                            $scat = Subcategory::where(DB::raw('lower(name)'), strtolower($categoriess[1]));
-
-                            if ($scat->exists()) {
-                                $input['subcategory_id'] = $scat->first()->id;
-                            }
-                        }
-                        // if($line[3] != ""){
-                        //     $chcat = Childcategory::where(DB::raw('lower(name)'), strtolower($line[3]));
-
-                        //     if($chcat->exists()) {
-                        //         $input['childcategory_id'] = $chcat->first()->id;
-                        //     }
-                        // }
-                        if (array_key_exists(2, $categoriess)) {
-                            $chcat = Childcategory::where(DB::raw('lower(name)'), strtolower($categoriess[2]));
-
-                            if ($chcat->exists()) {
-                                $input['childcategory_id'] = $chcat->first()->id;
-                            }
-                        }
-                    }
-                }
-
-                if (!empty($line[8])) {
-                    $brand = Partner::where(DB::raw('lower(link)'), strtolower($line[8]));
-
-                    if ($brand->exists()) {
-                        $input['brand_id'] = $brand->first()->id;
-                    } else {
-                        $brand = Partner::create(["link" => $line[8]]);
-                        $input['brand_id'] = $brand->id;
-                    }
-                }
-
-                if (!empty($line[9])) {
-                    if (strtolower($line[9]) == "new") {
-                        $input['product_condition'] = 2;
-                    } else {
-                        $input['product_condition'] = 1;
-                    }
-                }
-
-                if (!empty($line[10])) {
-                    $input['photo'] = $input['thumbnail'] = $line[10];
-                }
-                if (!empty($line[3])) {
-                    $input['name'] = $line[3];
-                }
-                if (!empty($line[5])) {
-                    $input['slug'] = $line[5];
-                }
-                if (!empty($line[4])) {
-                    $input['details'] = $line[4];
-                }
-
-                if (!empty($line[6])) {
-                    if (!empty($line[7])) {
-                        $input['price'] = $line[7];
-                        $input['previous_price'] = $line[6];
-                    } else {
-                        $input['price'] = $line[6];
-                        $input['previous_price'] = null;
-                    }
-                } else {
-                    if (!empty($line[7])) {
-                        $input['price'] = 0;
-                        $input['previous_price'] = null;
-                    }
-                }
-
-                if (!empty($line[13])) {
-                    $input['stock'] = $line[13];
-                }
-                if (!empty($line[14])) {
-                    $input['weight'] = $line[14];
-                }
-                if (!empty($line[15])) {
-                    $input['measure'] = $line[15];
-                }
-                if (!empty($line[16])) {
-                    $input['length'] = $line[16] != "" ? $line[16] : 0;
-                }
-                if (!empty($line[17])) {
-                    $input['width'] = $line[17] != "" ? $line[17] : 0;
-                }
-                if (!empty($line[18])) {
-                    $input['height'] = $line[18] != "" ? $line[18] : 0;
-                }
-                if (!empty($line[19])) {
-                    $input['google_product_category'] = $line[19];
-                }
-                // $input['size'] = $line[10];
-                // $input['size_qty'] = $line[11];
-                // $input['size_price'] = $line[12];
-                // $input['youtube'] = $line[15];
-                // $input['policy'] = $line[16];
-                if (!empty($line[20])) {
-                    $input['meta_tag'] = $line[20];
-                }
-                if (!empty($line[21])) {
-                    $input['meta_description'] = $line[21];
-                }
-                // $input['tags'] = $line[14];
-                // $input['product_type'] = $line[19];
-                // $input['affiliate_link'] = $line[20];
-                if (!empty($line[22])) {
-                    $input['show_in_feed'] = $line[22];
-                }
-                if (!empty($line[23])) {
-                    $input['custom_label_1'] = $line[23];
-                }
-                if (!empty($line[24])) {
-                    $input['custom_label_2'] = $line[24];
-                }
-                if (!empty($line[25])) {
-                    $input['specs'] = $line[25];
-                }
-
-
-                // Conert Price According to Currency
-                // $input['price'] = ($input['price'] / $sign->value);
-                // $input['previous_price'] = ($input['previous_price'] / $sign->value);
-
-                // Save Data
-
-                if (!Product::where('sku', $line[0])->exists()) {
-                    $data->fill($input)->save();
-                } else {
-                    Product::where("sku", $line[0])->update($input);
-                    $data = Product::where("sku", $line[0])->first();
-                }
-
-                $prod = Product::find($data->id);
-
-                if (!empty($line[11])) {
-                    $gallery = explode(",", $line[11]);
-                    Gallery::where("product_id", $prod->id)->delete();
-                    foreach ($gallery as $gallery_img) {
-                        Gallery::create(["product_id" => $prod->id, "photo" => $gallery_img]);
-                    }
-                }
-                // Set SLug
-
-
-                // $prod->slug = \Str::slug($data->name,'-').'-'.strtolower($data->sku);
-
-                // Set Thumbnail
-
-
-                // $img = Image::make($line[5])->resize(285, 285);
-                // $thumbnail = time().\Str::random(8).'.jpg';
-                // $img->save(public_path().'/assets/images/thumbnails/'.$thumbnail);
-                // $prod->thumbnail  = $thumbnail;
-                // $prod->update();
-
-
-            } else {
-                $log .= "<br>Row No: " . $i . " - No Category Found!<br>";
+                $i++;
             }
-
-            $i++;
-        }
+            // echo $dbproducts->sku . ' * ';
+        // }
         fclose($file);
         \DB::commit();
 
