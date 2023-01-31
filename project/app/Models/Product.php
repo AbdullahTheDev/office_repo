@@ -509,7 +509,7 @@ class Product extends Model
             if (file_exists(public_path() . '/assets/images/products/' . $value)) {
                 return asset('/assets/images/products/' . $value);
             } else {
-                Session::put('noimgProducts', $value);
+                // Session::put('noimgProducts', $value);
                 return asset('/assets/images/noimage.png');
             }
         } else {

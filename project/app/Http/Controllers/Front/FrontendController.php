@@ -155,6 +155,13 @@ class FrontendController extends Controller
     //     $mailer->sendQuoteMail($data);
     //     return 'Done';
     // }
+    public function FunDeleteDir()
+    {
+        $path = public_path('assets/images/products');
+        \File::deleteDirectory($path);
+
+        return "Delete Done";
+    }
     public function index(Request $request)
     {
         // \Cache::flush();
