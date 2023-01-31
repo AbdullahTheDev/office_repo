@@ -235,7 +235,7 @@ class DashboardController extends Controller
     {
         $getProducts = Product::all();
         $path = public_path('assets/noimg/noimg.csv');
-
+        $list[] = [];
         foreach($getProducts as $pro)
         {
             if($pro->photo == 'http://127.0.0.1:8000/assets/images/noimage.png')
