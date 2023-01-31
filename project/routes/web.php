@@ -386,6 +386,7 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/products/import', 'Admin\ProductController@import')->name('admin-prod-import');
     Route::post('/products/import-submit', 'Admin\ProductController@importSubmit')->name('admin-prod-importsubmit');
+    Route::post('/products/update-import-submit', 'Admin\ProductController@updateImportSubmit')->name('admin-prod-updateimportsubmit');
     Route::get('/products/export', 'Admin\ProductController@export')->name('admin-prod-export');
   });
 

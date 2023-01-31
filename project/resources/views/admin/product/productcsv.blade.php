@@ -82,6 +82,34 @@
 													</div>
 												</div>
 											</form>
+											<hr>
+											<form id="" action="{{route('admin-prod-updateimportsubmit')}}" method="POST" enctype="multipart/form-data">
+    					                        {{csrf_field()}}
+											  <div class="row justify-content-center">
+												  <div class="col-lg-12 d-flex justify-content-center text-center">
+														<div class="csv-icon">
+																<i class="fas fa-file-csv"></i>
+														</div>
+												  </div>
+												  <div class="col-lg-12 d-flex justify-content-center text-center">
+													  <div class="left-area mr-4">
+														  <h4 class="heading">{{ __("Upload a File") }} *</h4>
+													  </div>
+													  <span class="file-btn">
+														  <input type="file" id="csvfile" name="csvfile" accept=".csv">
+													  </span>
+
+												  </div>
+
+											  </div>
+
+						                        <input type="hidden" name="type" value="Physical">
+												<div class="row">
+													<div class="col-lg-12 mt-4 text-center">
+														<button class="mybtn1 mr-5" type="submit">{{ __("Start Update Import") }}</button>
+													</div>
+												</div>
+											</form>
 									</div>
 								</div>
 							</div>

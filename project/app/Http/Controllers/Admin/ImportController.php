@@ -121,6 +121,7 @@ class ImportController extends Controller
     //*** POST Request
     public function store(Request $request)
     {
+        // return "H";
         if($request->image_source == 'file')
         {
             //--- Validation Section
