@@ -59,7 +59,21 @@ class AppServiceProvider extends ServiceProvider
                         }));   
             $settings->with('brands', 
                         \Cache::remember('brands', 6*3600, function() { 
-                            return Partner::limit(4)->get();
+                            return Partner::limit(6)->get();
+                        }));   
+            $settings->with('showBrands', 
+                        \Cache::remember('showBrands', 6*3600, function() { 
+                            return Partner::wherein('id', [25,10,32,34,8,60,50,82,48,57,40,49,43,27,83,18,113,95])
+                            // where('id','25')->where('id','10')
+                            // ->where('id','32')->where('id','34')
+                            // ->where('id','8')->where('id','60')
+                            // ->where('id','50')->where('id','82')
+                            // ->where('id','48')->where('id','57')
+                            // ->where('id','40')->where('id','49')
+                            // ->where('id','43')->where('id','27')
+                            // ->where('id','83')->where('id','18')
+                            // ->where('id','113')->where('id','95')
+                            ->get();
                         }));   
             if (Session::has('language')) 
             {

@@ -92,16 +92,37 @@
 
 			<!-- #content -->
 			<div class="container"style="padding: 10px 0px;">
-				@if(!empty($brands))
+				@if(!empty($showBrands))
 				<style>
 					/* .t */
 				</style>
 				<h2 class="title" style="justify-content: center; padding: 8px 0px">Our Partners</h2>
-				<div class="owl-carousel owl-theme brands-wrapper mb-9 row gutter-no cols-xl-6 cols-lg-5 cols-md-4 cols-sm-3 cols-2" data-owl-options="{
-		                    'nav': false,
-		                    'dots': false,
-		                    'margin': 0,
-		                    'loop': true,
+				<div style="margin: auto; border: 1px solid #ccc; border-radius: 9px; width: 90%;" class="owl-carousel owl-theme owl-loaded" data-owl-options="{
+					'margin': 30,
+					'responsive': {
+						'0': {
+							'items': 5
+						},
+						'576': {
+							'items': 5
+						},
+						'768': {
+							'items': 5
+						},
+						'992': {
+							'items': 5
+						},
+						'1200': {
+							'items': 5
+						}
+					}
+				}">
+				{{-- <div class="owl-carousel owl-theme brands-wrapper mb-9 row gutter-no cols-xl-6 cols-lg-5 cols-md-4 cols-sm-3 cols-2" data-owl-options="{
+		                    'dots': true,
+		                    'margin': 50px,
+		                    'loop': false,
+							'center': true,
+							'nav': true,
 		                    'responsive': {
 		                        '0': {
 		                            'items': 4
@@ -116,19 +137,20 @@
 		                            'items': 10
 		                        },
 		                        '1200': {
-		                            'items': 12
+		                            'items': 5
 		                        }
 		                    }
-		                }">
-					@foreach($brands as $brand)
-					{{-- <div class="brand-col"> --}}
+		                }"> --}}
+					@foreach($showBrands as $brand)
+					<div class="brand-col">
 						<a href="{{url('category?brand='.$brand->id)}}" aria-label="partners">
-							{{-- <figure class=""> --}}
-								<img src="{{ asset('assets/images/partner/'.$brand->photo) }}" alt="{{ $brand->name }}" width="400" height="200" />
-							{{-- </figure> --}}
+							<figure class="">
+								<img style="aspect-ratio: 2 / 1; object-fit: contain !important;" src="{{ asset('assets/images/partner/'.$brand->photo) }}" alt="{{ $brand->name }}" width="400" height="20" />
+							</figure>
 						</a>
-					{{-- </div> --}}
+					</div>
 					@endforeach
+
 				</div>
 
 				@endif
