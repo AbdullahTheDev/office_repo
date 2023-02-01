@@ -93,6 +93,9 @@
 			<!-- #content -->
 			<div class="container"style="padding: 10px 0px;">
 				@if(!empty($brands))
+				<style>
+					/* .t */
+				</style>
 				<h2 class="title" style="justify-content: center; padding: 8px 0px">Our Partners</h2>
 				<div class="owl-carousel owl-theme brands-wrapper mb-9 row gutter-no cols-xl-6 cols-lg-5 cols-md-4 cols-sm-3 cols-2" data-owl-options="{
 		                    'nav': false,
