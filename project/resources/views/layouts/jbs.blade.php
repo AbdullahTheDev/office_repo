@@ -26,22 +26,13 @@
 	<meta name="description" content="deals on drive provide best hardwares">
 	<title>{{$gs->title}}</title>
 	@endif
+	
 	@yield('meta_tags')
 	<script src="{{asset('assets/frontend-assets/fonts/webfont.js')}}" async="defer"></script>
-	 {{-- <script>
-		WebFontConfig = {
-			google: {
-				families: ['Poppins:400,500,600,700,800']
-			}
-		};
-		(function(d) {
-			var wf = d.createElement('script'),
-				s = d.scripts[0];
-			wf.src = '{{asset("assets/frontend-assets/fonts/webfont.js")}}';
-			wf.async = true;
-			s.parentNode.insertBefore(wf, s);
-		})(document);
-	</script> --}}
+
+	@if(url()->current() == 'http://127.0.0.1:8000/test-checkout')
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	@endif
 	@include('includes.styles')
 	@yield('styles')
 	
