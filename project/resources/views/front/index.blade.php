@@ -22,6 +22,7 @@
       'dots': false,
       'loop': true,
       'items': 1,
+      'height': 100%,
       'autoplay':true,
         'autoplayTimeout':2200,
         'autoplaySpeed': 2200,
@@ -36,7 +37,7 @@
       }">
         @if($ps->slider == 1)
         @foreach($sliders as $data)
-        <div class="banner banner-fixed intro-slide intro-slide1" style="background-color: #020300;">
+        <div class="banner banner-fixed intro-slide intro-slide1" style="background-color: #000000;">
             <div class="container">
                 <figure class="slide-image skrollable custom_added_carousel">
                     <img loading="lazy" src="{{ asset('assets/images/sliders') }}/{{ $data->photo }}" alt="Banner" data-bottom-top="transform: translateY(10vh);" data-top-bottom="transform: translateY(-10vh);" width="474" height="397">

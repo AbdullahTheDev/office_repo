@@ -325,7 +325,7 @@ class CartController extends Controller
         $cart->totalPrice += $data['price'];
         Session::put('cart',$cart);
         $data[0] = count($cart->items);        
-        return redirect()->back();           
+        return redirect('/carts');           
     }  
 
     public function addnumcart()
