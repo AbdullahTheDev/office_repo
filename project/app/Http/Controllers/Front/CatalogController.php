@@ -49,6 +49,9 @@ class CatalogController extends Controller
 
     public function category(Request $request, $slug=null, $slug1=null, $slug2=null)
     {   
+      // $capacity = '4TB';
+      // $qury = Product::where('category_id','=','33')->whereRaw("(name) LIKE ('%".$capacity."%')")->get();
+      // return $qury;
       if (Session::has('currency')) 
       {
         $curr = Currency::find(Session::get('currency'));
@@ -63,6 +66,8 @@ class CatalogController extends Controller
       $brand = $request->brand;
       $minprice = $request->min;
       $maxprice = $request->max;
+      $capacity = $request->capacity;
+      // return $capacity;
       $sort = $request->sort;
       $display_prods = $request->display_prods;
       $search = $request->search;
@@ -120,6 +125,12 @@ class CatalogController extends Controller
                                   })
                                   ->when($maxprice, function($query, $maxprice) {
                                     return $query->where('price', '<=', $maxprice);
+                                  })
+                                  ->when($capacity, function($query, $capacity) {
+                                      // return $query->where('brand_id', '10');
+                                      return $query->whereRaw("(name LIKE '%" . $capacity . "%')");
+                                    // return $query->whereRaw("(name) LIKE ('%".$capacity."%')");
+                                    // return $query->where("name","like","%".$capacity."%");
                                   })
                                    ->when($sort, function ($query, $sort) {
                                       if ($sort=='date_desc') {

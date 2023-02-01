@@ -60,6 +60,38 @@
                                     </div>
                                     <!-- End of Collapsible Widget -->
 
+                                    @php
+                                        $getUrl = url()->current();
+                                        $fineUrl = \Str::afterLast($getUrl, '/category/');
+                                        $finestUrl = \Str::before($fineUrl, '/');
+                                    @endphp
+                                    @if($finestUrl == 'storage-devices')
+                                    <div class="widget widget-collapsible">
+                                        <h3 class="widget-title"><span>Capacity</span></h3>
+                                        <ul class="widget-body filter-items item-check mt-1" style="height:500px;overflow-y: scroll;padding-top: 10px;">
+                                            <li>
+                                                <input value="4TB" type="checkbox" id="capacity" name="capacity" {{ request()->get('capacity') == $element->id ? 'checked' : '' }}>
+                                                <label>4TB</label>
+                                            </li>
+                                            <li>
+                                                <input value="3TB" type="checkbox" id="capacity" name="capacity" {{ request()->get('capacity') == $element->id ? 'checked' : '' }}>
+                                                <label>3TB</label>
+                                            </li>
+                                            <li>
+                                                <input value="4TB" type="checkbox" id="capacity" name="capacity" {{ request()->get('capacity') == $element->id ? 'checked' : '' }}>
+                                                <label>2TB</label>
+                                            </li>
+                                            @foreach (\App\Models\Product::where('name', 'LIKE', '%' . request()->get('capacity') . '%')->get('name') as $element)
+                                            <li class="">
+                                                <label class="">
+                                                    <input type="radio" class="" name="capacity" value="{{ $element->id }}" {{ request()->get('capacity') == $element->id ? 'checked' : '' }}/>
+                                                    {{$element->name}}
+                                                </label>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    @endif
                                     <!-- Start of Collapsible Widget -->
                                     <div class="widget widget-collapsible">
                                         <h3 class="widget-title"><span>Price</span></h3>
@@ -235,6 +267,9 @@ $('.brand_filter3').on("click", function () {
     $("#cat-prods-form")[0].submit();//Apply the filter
 });
 
+$('#capacity').on("click", function () {
+    $("#cat-prods-form")[0].submit();//Apply the filter
+});
   $("#goto-page").change(function () {
     let page = $(this).val();
     let max = $(this).data("max");
