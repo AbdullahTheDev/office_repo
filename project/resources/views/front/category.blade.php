@@ -79,14 +79,13 @@
                                         <h3 class="widget-title"><span>Brand</span></h3>
                                         <ul class="widget-body filter-items item-check mt-1" style="height:500px;overflow-y: scroll;padding-top: 10px;">
                                             @foreach (\App\Models\Partner::get() as $element)
-                                            <li>
-                                                <label class="">
-                                                    <input type="radio" id="brand_filter" name="brand" value="{{ $element->id }}" {{ request()->get('brand') == $element->id ? 'checked' : '' }}/>
+                                            <li class="brand_filter">
+                                                <label class="brand_filter2">
+                                                    <input type="radio" class="brand_filter3" name="brand" value="{{ $element->id }}" {{ request()->get('brand') == $element->id ? 'checked' : '' }}/>
                                                     {{$element->link}}
                                                 </label>
                                             </li>
                                             @endforeach
-                                            
                                         </ul>
                                     </div>
                                     <!-- End of Collapsible Widget -->
@@ -226,8 +225,13 @@
 $('#max-price').on("change", function () {
     $("#cat-prods-form")[0].submit();//Apply the filter
 });
-$('#brand_filter').on("change", function () {
-    alert("HH");
+$('.brand_filter').on("click", function () {
+    $("#cat-prods-form")[0].submit();//Apply the filter
+});
+$('.brand_filter2').on("click", function () {
+    $("#cat-prods-form")[0].submit();//Apply the filter
+});
+$('.brand_filter3').on("click", function () {
     $("#cat-prods-form")[0].submit();//Apply the filter
 });
 
