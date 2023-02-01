@@ -243,18 +243,19 @@ class DashboardController extends Controller
                 $list[] = [
                     $pro->sku
                 ];
-                $content = $pro->sku;
-                // \File::append($path, $content);
             }
         }
-        $fp = fopen($path, 'w');
-
+        
         // echo '<pre>';
-        foreach ($list as $key => $fields) {
-            fputcsv($fp, $fields);
+        if($list != null)
+        {
+            $fp = fopen($path, 'w');
+            foreach ($list as $key => $fields) {
+                fputcsv($fp, $fields);
+            }
+            fclose($fp);
         }
 
-        fclose($fp);
         // return $list;
         return 'Done. You can download the file by clicking <a download href="http://127.0.0.1:8000/assets/noimg/noimg.csv">here</a>';
     }
