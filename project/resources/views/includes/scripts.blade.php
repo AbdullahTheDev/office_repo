@@ -1,4 +1,4 @@
-<script async defer src="{{asset('assets/frontend-assets/js/jquery.min.js')}}"></script>
+<script src="{{asset('assets/frontend-assets/js/jquery.min.js')}}"></script>
 <script async defer src="{{asset('assets/frontend-assets/js/sticky.js')}}"></script>
 <script async defer src="{{asset('assets/frontend-assets/js/jquery.plugin.min.js')}}"></script>
 <script async defer src="{{asset('assets/frontend-assets/js/imagesloaded.pkgd.min.js')}}"></script>
@@ -15,5 +15,5 @@
 {{-- <script src="{{ asset('assets/dod/js/toastr.min.js') }}"></script> --}}
 
     <!-- Main JS -->
-<script async defer src="{{asset('assets/frontend-assets/js/main.min.js')}}"></script>
-<script async defer src="{{asset('assets/frontend-assets/js/custom.js')}}?{{ rand(1111,9999) }}"></script>
+<script src="{{asset('assets/frontend-assets/js/main.min.js')}}"></script>
+<script src="{{asset('assets/frontend-assets/js/custom.js')}}?{{ rand(1111,9999) }}"></script>

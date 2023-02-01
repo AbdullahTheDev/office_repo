@@ -64,9 +64,10 @@
                                     <div class="widget widget-collapsible">
                                         <h3 class="widget-title"><span>Price</span></h3>
                                         <div class="widget-body price-range">
-                                           <input type="number" name="min" class="min_price" placeholder="500">
+                                           <input type="number" id="min-price" value="{{ request('min') }}" name="min" class="min_price min-price" placeholder="500">
                                            <span class="delimiter">-</span>
-                                           <input type="number" name="max" class="max_price" placeholder="10000">
+                                           <input type="number" id="max-price" value="{{ request('max') }}" name="max" class="max_price" placeholder="10000">
+                                           {{-- <button type="submit">OK</button> --}}
                                         </div>
                                     </div>
                                     <!-- End of Collapsible Widget -->
@@ -78,9 +79,12 @@
                                         <h3 class="widget-title"><span>Brand</span></h3>
                                         <ul class="widget-body filter-items item-check mt-1" style="height:500px;overflow-y: scroll;padding-top: 10px;">
                                             @foreach (\App\Models\Partner::get() as $element)
-                                            <li> <label class="">
-                            <input type="radio" name="brand" value="{{ $element->id }}" {{ request()->get('brand') == $element->id ? 'checked' : '' }}/>
-                            {{$element->link}}</label></li>
+                                            <li>
+                                                <label class="">
+                                                    <input type="radio" id="brand_filter" name="brand" value="{{ $element->id }}" {{ request()->get('brand') == $element->id ? 'checked' : '' }}/>
+                                                    {{$element->link}}
+                                                </label>
+                                            </li>
                                             @endforeach
                                             
                                         </ul>
@@ -212,6 +216,20 @@
      $(".disp-prod1").val($(this).val());
      $("#cat-prods-form")[0].submit();
   });
+
+  $('#min-price').on("change", function () {
+    min_price = parseInt($('#min-price').val());//Get the value
+    $('#min-price-txt').text('$' + min_price);//Set the value
+    $("#cat-prods-form")[0].submit();//Apply the filter
+});
+
+$('#max-price').on("change", function () {
+    $("#cat-prods-form")[0].submit();//Apply the filter
+});
+$('#brand_filter').on("change", function () {
+    alert("HH");
+    $("#cat-prods-form")[0].submit();//Apply the filter
+});
 
   $("#goto-page").change(function () {
     let page = $(this).val();
