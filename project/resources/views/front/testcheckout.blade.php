@@ -2,6 +2,7 @@
 @section('body-class')
 @section('content')
 <style>
+    /* Global  */
     .checkout{
         min-height: 100vh;
         padding: 20px 0px
@@ -34,6 +35,13 @@
         font-size: 1em;
         margin: 5px 0px;
     }
+    .checkout .grid-container h3{
+        font-weight: 500 !important;
+        font-size: 1.6em;
+        padding-top: 8px;
+    }
+    /* Global End  */
+    /* Contact Info  */
     .checkout .grid-container .contact_info .sub_contact_info .more_sub_contact_info{
         padding: 5px 0px;
     }
@@ -53,14 +61,91 @@
         width: max-content;
         margin-right: 4px;
     }
-    .checkout .grid-container h3{
-        font-weight: 500 !important;
-        font-size: 1.6em;
-        padding-top: 8px;
-    }
     .checkout .grid-container .contact_info .second_more_sub_contact_info h5{
         font-weight: 500;
         font-size: 1.4em;
+    }
+    /* End Contact info  */
+    /* Order_Info  */
+    .checkout .order_info{
+
+    }
+    .checkout .order_info hr{
+        background-color: #ccc;
+        height: 2px; 
+    }
+    .checkout .order_info .sub_order_info{
+        background-color: #f8f8f8;
+        padding: 8px 2em;
+        border-radius: 6px;
+        cursor: default;
+    }
+    .checkout .order_info .checkout_order{
+        background-color: #fff;
+        padding: 8px 0px;
+        margin-top: 10px;
+    }
+    .checkout .order_info .sub_order_info .order_img_box{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 10px 0px;
+    }
+    .checkout .order_info .sub_order_info .order_img_box figure{
+        width: 100%;
+    }
+    .checkout .order_info .sub_order_info .order_img_box .order_description_box{
+        width: 98%;
+        margin: 0 2%;
+    }
+    .checkout .order_info .sub_order_info .order_img_box .order_price_box{
+        width: 100%;
+        text-align: end
+    }
+    .checkout .order_info .sub_order_info .order_img_box img{
+        aspect-ratio: 2/1;
+        object-fit: fill;
+        width: 100%;
+    }
+    .checkout .order_info .sub_order_info .order_amount_box{
+        width: 100%;
+        margin: 10px 0px;
+        padding-top: 10px;
+    }
+    .checkout .order_info .sub_order_info .order_amount_box .inside_order_amount_box{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .checkout .order_info .sub_order_info .order_amount_box .inside_order_amount_box p span{
+        font-weight: bold;
+    }
+    .checkout .order_info .sub_order_info .order_total{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .checkout .order_info .sub_order_info .order_total p{
+        font-size: 1.4em;
+    }
+    .checkout .order_info .sub_order_info .order_total p span{
+        font-weight: bolder;
+        /* font-size: 1.3em; */
+    }
+    .checkout .order_info .checkout_order button{
+        background-color: #c51b23;
+        padding: 10px 0px;
+        width: 100%;
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+        border: 1px solid #c51b23;
+        color: #fff;
+        border-radius: 6px;
+        transition: 0.3s;
+    }
+    .checkout .order_info .checkout_order button:hover{
+        background-color: #cf1e27;
     }
 </style>
 <main class="checkout">
@@ -112,9 +197,54 @@
                 </h3>
             </div>
             <div class="box order_info">
-                <h3>
-                    order_info
-                </h3>
+                <div class="sub_order_info">
+                    <h3>
+                        order_info
+                    </h3>
+                    <div class="order_img_box">
+                        <figure>
+                            <img src="{{ asset('assets/images/noimage.png') }}" width="100" height="80" alt="Product Image">
+                        </figure>
+                        <div class="order_description_box">
+                            <p>Description</p>
+                        </div>
+                        <div class="order_price_box">
+                            <span>$59.68</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="order_amount_box">
+                        <div class="inside_order_amount_box">
+                            <p>Subtotal</p>
+                            <p>
+                                <span>    
+                                    $70.43
+                                </span>
+                            </p>
+                        </div>
+                        <div class="inside_order_amount_box">
+                            <p>Shipping</p>
+                            <p>
+                                <span> 
+                                    -- 
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="order_total">
+                        <p>Total</p>
+                        <p>
+                            <span>
+                                $98.69
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="checkout_order">
+                    <button type="submit">Complete Purchase</button>
+                </div>
+                {{-- <hr> --}}
             </div>
         </div>
     </div>
