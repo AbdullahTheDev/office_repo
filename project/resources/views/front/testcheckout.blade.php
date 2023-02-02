@@ -209,18 +209,31 @@
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     }
     .checkout .grid-container .payment_info .billing_address .sub_billing_address .same_billing{
-        background-color: #fff;
-        border-bottom: 1px solid #f8f8f8;
-        padding-top: 19px;
-        padding-left: 13px;
-    }
-    .checkout .grid-container .payment_info .billing_address .sub_billing_address .different_billing{
         background-color: #f8f8f8;
         border-bottom: 1px solid #f8f8f8;
         padding-top: 19px;
         padding-left: 13px;
     }
-    .checkout .grid-container .payment_info .billing_address .sub_billing_address .same_billing 
+    .checkout .grid-container .payment_info .billing_address .sub_billing_address .different_billing{
+        background-color: #fff;
+        border-bottom: 1px solid #f8f8f8;
+        padding-top: 19px;
+        /* padding-left: 13px; */
+    }
+    .checkout .grid-container .payment_info .billing_address .sub_billing_address .different_billing .inner_different_billing{
+        padding: 0px 13px;
+    }
+    .checkout .grid-container .payment_info .billing_address .sub_billing_address .different_billing .extended_billing_address{
+        border-top: 1px solid #f8f8f8;
+        padding: 10px 10px;
+        background-color: #f8f8f8;
+    }
+    #extended_billing_address{
+        display: none;
+    }
+    .extended_billing_address_show{
+        display: block !important;
+    }
     /* End Payment Info  */
     /* Order_Info  */
     .checkout .order_info{
@@ -422,14 +435,40 @@
                                 </div>
                             </div>
                             <div id="different_billing" class="different_billing">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <input type="radio" name="bill_address" id="diff_bill">
+                                <div id="inner_different_billing" class="inner_different_billing">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <input type="radio" name="bill_address" id="diff_bill">
+                                        </div>
+                                        <div class="col-10">
+                                           <p>    
+                                                Use A Different Billing Address
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div class="col-10">
-                                       <p>    
-                                            Use A Different Billing Address
-                                        </p>
+                                </div>
+                                <div id="extended_billing_address" class="extended_billing_address">
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input type="text" placeholder="First name" name="fname" id="">
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="text" placeholder="Last name" name="lname" id="">
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="text" placeholder="Address" name="address" id="">
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="text" placeholder="City" name="city" id="">
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="text" placeholder="Country" name="country" id="">
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="text" placeholder="Zipcode" name="zipcode" id="">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -514,8 +553,12 @@
 @section('scripts')
 <script>
     $('#stripe').click(function() {
-        $('#stripe_card').toggleClass('stripe_card_show');
+        $('#stripe_card').addClass('stripe_card_show');
     });
+    $('#inner_different_billing').click(function() {
+        $('#extended_billing_address').addClass('extended_billing_address_show');
+    });
+
     $('.paypal').click(function(){
         $('#paypal').prop("checked", true);
         $('#stripe_card').removeClass('stripe_card_show');
@@ -523,8 +566,10 @@
     $('#stripe').click(function(){
         $('#stripe_radio').prop("checked", true);
     });
+
     $('#same_billing').click(function(){
         $('#same_bill').prop("checked", true);
+        $('#extended_billing_address').removeClass('extended_billing_address_show');
     });
     $('#different_billing').click(function(){
         $('#diff_bill').prop("checked", true);
