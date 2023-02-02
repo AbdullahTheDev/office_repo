@@ -192,7 +192,35 @@
         height: 100%;
         position: relative;
         padding: 13px 0px;
-    }    
+    }
+    .checkout .grid-container .payment_info .billing_address{
+        padding: 10px 0px;
+    }
+    .checkout .grid-container .payment_info .billing_address h5{
+        font-weight: 500;
+        font-size: 1.2em;
+    }
+    .checkout .grid-container .payment_info .billing_address .sub_billing_address{
+        border: 2px solid #f1efef;
+        border-radius: 6px;
+        overflow: hidden;
+        width: 100%;
+        background-color: #f8f8f8;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+    .checkout .grid-container .payment_info .billing_address .sub_billing_address .same_billing{
+        background-color: #fff;
+        border-bottom: 1px solid #f8f8f8;
+        padding-top: 19px;
+        padding-left: 13px;
+    }
+    .checkout .grid-container .payment_info .billing_address .sub_billing_address .different_billing{
+        background-color: #f8f8f8;
+        border-bottom: 1px solid #f8f8f8;
+        padding-top: 19px;
+        padding-left: 13px;
+    }
+    .checkout .grid-container .payment_info .billing_address .sub_billing_address .same_billing 
     /* End Payment Info  */
     /* Order_Info  */
     .checkout .order_info{
@@ -378,6 +406,35 @@
                             </div>
                         </div>
                     </div>
+                    <div class="billing_address">
+                        <h5>Billing Address</h5>
+                        <div class="sub_billing_address">
+                            <div id="same_billing" class="same_billing">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <input type="radio" name="bill_address" id="same_bill">
+                                    </div>
+                                    <div class="col-10">
+                                        <p>
+                                            Same As Shipping Address
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="different_billing" class="different_billing">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <input type="radio" name="bill_address" id="diff_bill">
+                                    </div>
+                                    <div class="col-10">
+                                       <p>    
+                                            Use A Different Billing Address
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="box order_info">
                     <div class="sub_order_info">
@@ -462,10 +519,16 @@
     $('.paypal').click(function(){
         $('#paypal').prop("checked", true);
         $('#stripe_card').removeClass('stripe_card_show');
-    })
+    });
     $('#stripe').click(function(){
         $('#stripe_radio').prop("checked", true);
-    })
+    });
+    $('#same_billing').click(function(){
+        $('#same_bill').prop("checked", true);
+    });
+    $('#different_billing').click(function(){
+        $('#diff_bill').prop("checked", true);
+    });
 </script>
 @endsection
 {{-- 
