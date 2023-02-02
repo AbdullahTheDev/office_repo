@@ -20,7 +20,6 @@
         grid-template-columns: 33.33% 33.33% 33.33%;
     }
     .checkout .grid-container .box{
-
         /* text-align: center;         */
     }
     .checkout .grid-container .contact_info .sub_contact_info{
