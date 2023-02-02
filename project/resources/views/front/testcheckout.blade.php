@@ -359,6 +359,22 @@
                         <hr>
                         <div class="second_more_sub_contact_info">
                             <h6>Shipping Method</h6>
+                            <div class="shipping_display">
+                                <div id="shipments" class="mt-3">
+                                    @foreach($shipping_data as $data)
+                                       <!-- <div class="radio-design">
+                                             <input type="radio" class="shipping" id="free-shepping{{ $data->id }}" name="ship_type" value="{{ round($data->price * $curr->value,2) }}" {{ ($loop->first) ? 'checked' : '' }}> 
+                                             <label for="free-shepping{{ $data->id }}"> 
+                                                   {{ $data->title }}
+                                                   @if($data->price != 0)
+                                                   + {{ $curr->sign }}{{ round($data->price * $curr->value,2) }}
+                                                   @endif
+                                                   <small>{{ $data->subtitle }}</small>
+                                             </label>
+                                       </div> -->
+                                    @endforeach
+                                 </div>
+                            </div>
                         </div>
                     </div>
                     <hr>
@@ -577,7 +593,7 @@
     });
 </script>
 @endsection
-{{-- 
+
 @section('scripts')
 @php
  $coupon = Session::has('coupon') ? Session::get('coupon') : '0.00';   
@@ -1275,5 +1291,5 @@ var ck = 0;
             $('input[name="month"]').removeAttr('placeholder').attr('placeholder','02');       
         });
 
-</script> --}}
-{{-- @endsection --}}
+</script>
+@endsection
