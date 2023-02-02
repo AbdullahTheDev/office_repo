@@ -12,7 +12,7 @@
 <script async defer src="{{asset('assets/frontend-assets/js/photoswipe.js')}}"></script>
 <script async defer src="{{asset('assets/frontend-assets/js/photoswipe-ui-default.js')}}"></script>
 
-{{-- <script src="{{ asset('assets/dod/js/toastr.min.js') }}"></script> --}}
+<script src="{{ asset('assets/dod/js/toastr.min.js') }}"></script>
 
     <!-- Main JS -->
 <script src="{{asset('assets/frontend-assets/js/main.min.js')}}"></script>
