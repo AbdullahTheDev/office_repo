@@ -98,6 +98,25 @@
         font-weight: 500;
         font-size: 1.4em;
     }
+    .checkout .grid-container .contact_info .sub_contact_info .second_more_sub_contact_info .shipping_display .un_shippment{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+    }
+    .checkout .grid-container .contact_info .sub_contact_info .second_more_sub_contact_info .shipping_display .un_shippment .un_shippment_text label{
+        display: flex;
+        flex-direction: row;
+    }
+    .checkout .grid-container .contact_info .sub_contact_info .second_more_sub_contact_info .shipping_display .un_shippment .un_shippment_text span{
+        font-weight: bold;
+        margin: 0px 10px;
+    }
+    .checkout .grid-container .contact_info .sub_contact_info .second_more_sub_contact_info .shipping_display .un_shippment .un_shippment_price input{
+        width: 15px;
+        height: 15px;
+        margin: 0 !important;
+    }
     /* End Contact info  */
     /* Payment Info */
     .checkout .grid-container .payment_info{
@@ -397,6 +416,18 @@
                             <h6>Shipping Method</h6>
                             <div class="shipping_display">
                                 <div id="shipments" class="mt-3">
+                                    {{-- <div class="un_shippment" >
+                                        <div class="un_shippment_text">
+                                            <label for="free-shepping">
+                                            <p>Ground</p>
+                                            <span>+ $15.45</span>
+                                            </label>
+                                        </div>
+                                        <div class="un_shippment_price">
+                                            <input type="radio" name="" id="">
+                                        </div>
+                                    </div> --}}
+                                    
                                     @foreach($shipping_data as $data)
                                        <!-- <div class="radio-design">
                                              <input type="radio" class="shipping" id="free-shepping{{ $data->id }}" name="ship_type" value="{{ round($data->price * $curr->value,2) }}" {{ ($loop->first) ? 'checked' : '' }}> 
@@ -756,10 +787,11 @@
     }
     
    function shipments() {
+    // alert("D");
       $("#final-btn").prop("disabled", true);
       let street = country = state = city = zip = "";
       var shipping_service = '{{ old('shipping_service') }}';
-      if($("#ship-to-different-address-checkbox").is(":checked")){
+      if($("#extended_billing_address").is(":checked")){
          street = $("input[name='shipping_address']").val();
          country = $("select[name='shipping_country'] option:selected").val();
          state = $("select[name='shipping_state'] option:selected").val();
@@ -773,11 +805,11 @@
          zip = $("input[name='zip']").val();
       }
 
-      // alert(street)
-      // alert(country)
-      // alert(state)
-      // alert(city)
-      // alert(zip)
+    //   alert(street)
+    //   alert(country)
+    //   alert(state)
+    //   alert(city)
+    //   alert(zip)
 
       if(street != "" || country != "" || state != "" || city != "" || zip != ""){
          $("#preloader").show();
@@ -789,30 +821,40 @@
                     data:{street, country, state, city, zip},
                     success:function(data){
                         if(data.status){
-                           var opts = `<h4 class="title font-weight-bold ls-25 mt-3">Shipping Methods</h4>`;
+                           var opts = ``;
                            $("#shipments").empty();
                            $.each(data.rates, function (i, rate) {
                                if(rate.name == "FedEx Ground"){
                                    rate.name = "Ground";
                                }
                                if(shipping_service == rate.name+"___"+rate.amount){
-                                   opts += `<div class="radio-design">
-                                 <input type="radio" required class="shipping" id="free-shepping${i}" checked name="shipping_service" value="${rate.name+"___"+rate.amount}"> 
-                                 <label for="free-shepping${i}"> 
-                                       ${rate.name}
-                                       + {{ $curr->sign }}
-                                       <small>${rate.amount}</small>
-                                 </label>
-                              </div>`;   
+                                   opts += `
+                                   <div class="un_shippment" >
+                                        <div class="un_shippment_text">
+                                            <label for="free-shepping${i}">
+                                            <p>${rate.name}
+                                       + </p>
+                                            <span>+ {{ $curr->sign }}${rate.amount}</span>
+                                            </label>
+                                        </div>
+                                        <div class="un_shippment_price">
+                                            <input type="radio" required class="shipping" id="free-shepping${i}" checked name="shipping_service" value="${rate.name+"___"+rate.amount}">
+                                        </div>
+                                    </div>`;   
                                }else{
-                                   opts += `<div class="radio-design">
-                                 <input type="radio" required class="shipping" id="free-shepping${i}" name="shipping_service" value="${rate.name+"___"+rate.amount}"> 
-                                 <label for="free-shepping${i}"> 
-                                       ${rate.name}
-                                       + {{ $curr->sign }}
-                                       <small>${rate.amount}</small>
-                                 </label>
-                              </div>`;
+                                   opts += `
+                                   <div class="un_shippment" >
+                                        <div class="un_shippment_text">
+                                            <label for="free-shepping${i}">
+                                            <p>${rate.name}
+                                       + </p>
+                                            <span>+ {{ $curr->sign }}${rate.amount}</span>
+                                            </label>
+                                        </div>
+                                        <div class="un_shippment_price">
+                                            <input type="radio" required class="shipping" id="free-shepping${i}" name="shipping_service" value="${rate.name+"___"+rate.amount}">
+                                        </div>
+                                    </div>`;
                                }
                               $("#shipments").html(opts);
                            });
