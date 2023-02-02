@@ -153,9 +153,9 @@
         margin: 0px 6px;
 
     }
-    .checkout.grid-container .payment_info .sub_payment_box .paypal .row .paypal_image img{
-        object-fit: fill;
+    .checkout .grid-container .payment_info .sub_payment_box .paypal .row .paypal_image img{
         aspect-ratio: 2/1;
+        object-fit: fill;
     }
     .checkout .grid-container .payment_info .sub_payment_box .paypal .row picture{
         width: 100%;
