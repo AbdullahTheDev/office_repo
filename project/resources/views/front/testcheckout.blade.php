@@ -51,6 +51,14 @@
         font-size: 1em;
         margin: 7px 0px;
     }
+    .checkout .grid-container select{
+        padding: 15px 6px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        width: 100%;
+        font-size: 1em;
+        margin: 7px 0px;
+    }
     .checkout .grid-container h3{
         font-weight: 500 !important;
         font-size: 1.5em;
@@ -271,10 +279,21 @@
         display: flex;
         align-content: center;
         height: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    .checkout .order_info .sub_order_info .order_img_box span{
+        display: flex;
+        align-content: center;
+        height: 100%;
+        justify-content: end;
     }
     .checkout .order_info .sub_order_info .order_img_box .order_price_box{
-        width: 100%;
-        text-align: end
+        /* width: 100%;
+        text-align: end */
     }
     .checkout .order_info .sub_order_info .order_img_box img{
         aspect-ratio: 2/1;
@@ -325,33 +344,50 @@
 <main class="checkout">
     <div class="container">
         <form class="form checkout-form checkoutform" action="" method="post" name="checkout">
+            @csrf
             <div class="grid-container">
                 <div class="box contact_info">
                     <h3>Contact Information</h3>
                     <div class="sub_contact_info">
-                        <input class="name-email" type="text" placeholder="Email" name="" id="">
+                        <input class="name-email" type="email" name="email"
+                        placeholder="{{ $langg->lang154 }}" required=""
+                        value="{{ Auth::guard('web')->check() ? Auth::guard('web')->user()->email : old('email') }}">
                         <hr>
                         <div class="more_sub_contact_info">
                             <h6>Shipping Details</h6>
                             <div>
                                 <div class="row">
                                     <div class="col-6">
-                                        <input type="text" placeholder="First name" name="fname" id="">
+                                        <input type="text" name="name"
+                                        placeholder="{{ $langg->lang152 }}" required=""
+                                        value="{{ Auth::guard('web')->check() ? Auth::guard('web')->user()->name : old('name') }}" >
                                     </div>
                                     <div class="col-6">
-                                        <input type="text" placeholder="Last name" name="lname" id="">
+                                        <input type="text" name="phone"
+                                        placeholder="{{ $langg->lang153 }}" required=""
+                                        onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"
+                                        value="{{ Auth::guard('web')->check() ? Auth::guard('web')->user()->phone : old('phone') }}">
+                                    </div>
+                                    <div class="col-12">
+                                        <input placeholder="Please Enter Your Complete Address" required type="text" name="address" spellcheck="true"  autocomplete="nope" value="{{ old('address') }}">
                                     </div>
                                     <div class="col-6">
-                                        <input type="text" placeholder="Address" name="address" id="">
+                                        <select class="select2 form-control form-control-md ship-field" name="state" required="" id="administrative_area_level_1">
+                                            <option value="">Select Country First!</option>
+                                         </select>
                                     </div>
                                     <div class="col-6">
                                         <input type="text" placeholder="City" name="city" id="">
                                     </div>
                                     <div class="col-6">
-                                        <input type="text" placeholder="Country" name="country" id="">
+                                        <select class="select2 form-control form-control-md ship-field" name="customer_country" required="" id="country">
+                                            @foreach(\DB::table('countries')->whereIn('country_code',['US','CA','GB','DE','AN','NL','FR','IT','IE','DK','BE','SE','FI','LU'])->get() as $country)
+                                            <option data-id="{{ $country->id }}" value="{{ $country->country_code }}" {{ $country->country_code == "US" ? 'selected' : '' }}>{{ $country->country_name }}</option>
+                                            @endforeach
+                                         </select>
                                     </div>
                                     <div class="col-6">
-                                        <input type="text" placeholder="Zipcode" name="zipcode" id="">
+                                        <input placeholder="{{ $langg->lang159 }}" type="text" required id="postal_code" name="zip" spellcheck="true" value="{{ old('zip') }}">
                                     </div>
                                 </div>
                             </div>
@@ -420,7 +456,7 @@
                             <div class="row">
                                 <div class="col-1">
                                     <div class="paypal_bundle">
-                                        <input type="radio" name="pay" id="paypal">
+                                        <input  type="radio" required name="pay" class="payment" data-val="" data-show="no" data-form="{{route('paypal.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'paypal','slug2' => 0]) }}" id="paypal" data-toggle="pill" href="#v-pills-tab1" role="tab" aria-controls="v-pills-tab1" aria-selected="true">
                                     </div>
                                 </div>
                                 <div class="col-4">
@@ -471,22 +507,35 @@
                                     <div>
                                         <div class="row">
                                             <div class="col-6">
-                                                <input type="text" placeholder="First name" name="fname" id="">
+                                                <input type="text" name="shipping_name"
+                                                id="shippingFull_name" placeholder="{{ $langg->lang152 }}" value="{{ old('shipping_name') }}">
+                                                <input type="hidden" name="shipping_email" value="">
                                             </div>
                                             <div class="col-6">
-                                                <input type="text" placeholder="Last name" name="lname" id="">
+                                                <input type="number" name="shipping_phone"
+                                                id="shipingPhone_number" placeholder="{{ $langg->lang153 }}" value="{{ old('shipping_phone') }}">
+                                            </div>
+                                            <div class="col-12">
+                                                <input placeholder="Please Enter Your Complete Address" type="text" name="shipping_address" spellcheck="true"  autocomplete="nope" value="{{ old('shipping_address') }}">
                                             </div>
                                             <div class="col-6">
-                                                <input type="text" placeholder="Address" name="address" id="">
+                                                <select class="form-control" name="shipping_country" required="" id="country_2">
+                                                    <option value="">Select Country</option>
+                                                    @foreach(\DB::table('countries')->whereIn('country_code',['US','CA','GB','DE','AN','NL','FR','IT','IE','DK','BE','SE','FI','LU'])->get() as $country)
+                                                    <option data-id="{{ $country->id }}" value="{{ $country->country_code }}" {{ $country->country_code == "US" ? 'selected' : '' }}>{{ $country->country_name }}</option>
+                                                    @endforeach
+                                                 </select>
                                             </div>
                                             <div class="col-6">
-                                                <input type="text" placeholder="City" name="city" id="">
+                                                <select class="form-control" name="shipping_state" id="administrative_area_level_1_2">
+                                                    <option value="">Select Country First!</option>
+                                                 </select>
                                             </div>
                                             <div class="col-6">
-                                                <input type="text" placeholder="Country" name="country" id="">
+                                                <input placeholder="{{ $langg->lang158 }}" type="text" id="locality_2" name="shipping_city" spellcheck="true" value="{{ old('shipping_city') }}">
                                             </div>
                                             <div class="col-6">
-                                                <input type="text" placeholder="Zipcode" name="zipcode" id="">
+                                                <input placeholder="{{ $langg->lang159 }}" type="text" id="postal_code_2" name="shipping_zip" spellcheck="true" value="{{ old('shipping_zip') }}">
                                             </div>
                                         </div>
                                     </div>
@@ -500,24 +549,46 @@
                         <h3>
                             Order Summary
                         </h3>
+                        @foreach($products as $product)
                         <div class="order_img_box">
-                            <figure>
-                                <img src="{{ asset('assets/images/products/1672854016SsAK7iqH.png') }}" width="100" height="80" alt="Product Image">
-                            </figure>
-                            <div class="order_description_box">
-                                <p>Description</p>
-                            </div>
-                            <div class="order_price_box">
-                                <span>$59.68</span>
-                            </div>
+                                <figure>
+                                    <img src="{{ asset('assets/images/products/1672854016SsAK7iqH.png') }}" width="100" height="80" alt="Product Image">
+                                </figure>
+                                <div class="order_description_box">
+                                    <p>
+                                        {{ $product['qty'] }} X {{ $product['item']['name'] }} 
+                                    </p>
+                                </div>
+                                <div class="order_price_box">
+                                    <span>{{ App\Models\Product::convertPrice($product['price']) }}</span>
+                                </div>
                         </div>
+                        @endforeach
+                        
                         <hr>
                         <div class="order_amount_box">
                             <div class="inside_order_amount_box">
                                 <p>Subtotal</p>
                                 <p>
                                     <span>    
-                                        $70.43
+                                        {{ Session::has('cart') ? App\Models\Product::convertPrice(Session::get('cart')->totalPrice) : '0.00' }}
+                                       @php
+                                           if (Session::has('currency'))
+                                           {
+                                                $curr = \App\Models\Currency::find(\Session::get('currency'));
+                                            }
+                                            else
+                                            {
+                                                $curr = \App\Models\Currency::where('is_default','=',1)->first();
+                                            }
+                                            if(\Session::has('cart')){
+                                                $subtotal = round(\Session::get('cart')->totalPrice * $curr->value,2);
+                                            }else{
+                                                $subtotal = 0.00;
+                                            }
+                                       @endphp
+                                       <input type="hidden" name="subtotal" value="{{ $subtotal }}"/>
+                                       <input type="hidden" name="sub_tax" value="" />
                                     </span>
                                 </p>
                             </div>
@@ -533,7 +604,11 @@
                                 <p>Tax</p>
                                 <p>
                                     <span> 
-                                        -- 
+                                        @if($gs->tax != 0)
+                                        {{$gs->tax}}% 
+                                        @else
+                                        --
+                                        @endif
                                     </span>
                                 </p>
                             </div>
