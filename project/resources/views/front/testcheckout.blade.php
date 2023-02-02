@@ -125,6 +125,10 @@
         display: flex;
         flex-direction: row;
     }
+    .checkout .grid-container .payment_info .sub_payment_box .paypal .row .paypal_bundle{
+        display: flex;
+        flex-direction: row;
+    }
     .checkout .grid-container .payment_info .sub_payment_box .stripe .row .stripe_bundle h4{
         font-size: 1.1em;
     }
@@ -144,6 +148,21 @@
         justify-content: end;
     }
     .checkout .grid-container .payment_info .sub_payment_box .stripe .row picture img{
+        aspect-ratio: 2/1;
+        object-fit: fill;
+        margin: 0px 6px;
+
+    }
+    .checkout.grid-container .payment_info .sub_payment_box .paypal .row .paypal_image img{
+        object-fit: fill;
+        aspect-ratio: 2/1;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .paypal .row picture{
+        width: 100%;
+        display: flex;
+        justify-content: end;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .paypal .row picture img{
         aspect-ratio: 2/1;
         object-fit: fill;
         margin: 0px 6px;
@@ -339,12 +358,14 @@
                         <div class="paypal">
                             <div class="row">
                                 <div class="col-1">
-                                    <input type="radio" name="payment" id="paypal">
+                                    <div class="paypal_bundle">
+                                        <input type="radio" name="payment" id="paypal">
+                                    </div>
                                 </div>
                                 <div class="col-4">
-                                    <picture>
-                                        <img src="{{asset('assets/images/checkout/paypal.webp')}}" width="40" height="10" alt="">
-                                    </picture>
+                                    <div class="paypal_image">
+                                        <img src="{{asset('assets/images/checkout/paypal.png')}}" width="40" height="10" alt="">
+                                    </div>
                                 </div>
                                 <div class="col-7">
                                     <picture>
