@@ -14,7 +14,14 @@
 @endif
 
 @if($payment == 'stripe') 
-                                	<input type="hidden" name="method" value="Stripe">
+{{-- <div id="" class="stripe_card"> --}}
+                                    {{-- <input type="text" placeholder="Card Number" name="" id="">
+                                    <input type="text" placeholder="Name On Card" name="" id="">
+                                    <div class="flex_stripe_card">
+                                        <input type="text" placeholder="Expiration Date" name="" id="">
+                                        <input type="text" placeholder="Security Code" name="" id="">
+                                    </div> --}}
+                                    <input type="hidden" name="method" value="Stripe">
                                   <div class="row mt-2 stripe-payment" >
                                     <div class="col-lg-6">
                                       <input class="form-control card-elements" name="cardNumber" required type="text" placeholder="{{ $langg->lang163 }}" autocomplete="off" value="{{ old('cardNumber') }}"  autofocus oninput="validateCard(this.value);" />
@@ -56,8 +63,9 @@
                                         </select>
                                       <!--<input class="form-control card-elements" name="year" type="text" placeholder="{{ $langg->lang166 }}"  />-->
                                     </div>
-                                    <img src="{{ asset('assets/front/images/stripe-payment.png') }}">
                                   </div>
+                                {{-- </div> --}}
+                                	
 
 
                                 <script type="text/javascript" src="{{ asset('assets/front/js/payvalid.js') }}"></script>

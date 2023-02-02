@@ -385,23 +385,11 @@
                     </h3>
                     <div class="sub_payment_box">
                         <div class="stripe">
-                            <div class="card">
-                                <div class="card-header">
-                                   <input type="radio" required name="pay" class="payment" data-val="" data-show="yes" data-form="{{route('stripe.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'stripe','slug2' => 0]) }}" id="v-pills-tab2-tab" data-toggle="pill" href="#v-pills-tab2" role="tab" aria-controls="v-pills-tab2" aria-selected="false"> {{ $langg->lang761 }}
-                                   @if($gs->stripe_text != null)
-                                   <small>
-                                      {{ $gs->stripe_text }}
-                                   </small>
-                                   @endif
-                                </div>
-                                <div id="v-pills-tab2" class="card-body payarea">
-                                </div>
-                             </div>
-                            <div id="stripe" class="row">
+                                <div id="stripe" class="row">
                                     <div class="col-1">
                                         <div class="stripe_bundle">
-                                            {{-- <input type="radio" name="payment" id="stripe_radio"> --}}
-                                            <input type="radio" required name="pay" class="payment" data-val="" data-show="yes" data-form="{{route('stripe.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'stripe','slug2' => 0]) }}" id="v-pills-tab2-tab" data-toggle="pill" href="#v-pills-tab2" role="tab" aria-controls="v-pills-tab2" aria-selected="false"> {{ $langg->lang761 }}
+                                            <input type="radio" required name="pay" class="payment" data-val="" data-show="yes" data-form="{{route('stripe.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'stripe','slug2' => 0]) }}" id="v-pills-tab2-tab" data-toggle="pill" href="#stripe_card" role="tab" aria-controls="stripe_card" aria-selected="false">
+                                            {{-- <input type="radio" required name="pay" class="payment" data-val="" data-show="yes" data-form="{{route('stripe.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'stripe','slug2' => 0]) }}" id="v-pills-tab2-tab" data-toggle="pill" href="#v-pills-tab2" role="tab" aria-controls="v-pills-tab2" aria-selected="false"> {{ $langg->lang761 }} --}}
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -417,6 +405,8 @@
                                         </picture>
                                     </div>
                                 </div>
+                                <div id="stripe_card" class="stripe_card">
+                                </div>
                                 {{-- <div id="stripe_card" class="stripe_card">
                                     <input type="text" placeholder="Card Number" name="" id="">
                                     <input type="text" placeholder="Name On Card" name="" id="">
@@ -430,7 +420,7 @@
                             <div class="row">
                                 <div class="col-1">
                                     <div class="paypal_bundle">
-                                        <input type="radio" name="payment" id="paypal">
+                                        <input type="radio" name="pay" id="paypal">
                                     </div>
                                 </div>
                                 <div class="col-4">
@@ -622,7 +612,7 @@
         $('#stripe_card').removeClass('stripe_card_show');
     });
     $('#stripe').click(function(){
-        $('#stripe_radio').prop("checked", true);
+        $('#v-pills-tab2-tab').prop("checked", true);
     });
 
     $('#same_billing').click(function(){
