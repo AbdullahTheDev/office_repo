@@ -355,7 +355,7 @@
                     </h3>
                     <div class="sub_payment_box">
                         <div class="stripe">
-                                <div id="stripe" class="row">
+                            <div id="stripe" class="row">
                                     <div class="col-1">
                                         <div class="stripe_bundle">
                                             <input type="radio" name="payment" id="stripe_radio">
@@ -374,16 +374,16 @@
                                         </picture>
                                     </div>
                                 </div>
-                            <div id="stripe_card" class="stripe_card">
-                                <input type="text" placeholder="Card Number" name="" id="">
-                                <input type="text" placeholder="Name On Card" name="" id="">
-                                <div class="flex_stripe_card">
-                                    <input type="text" placeholder="Expiration Date" name="" id="">
-                                    <input type="text" placeholder="Security Code" name="" id="">
+                                <div id="stripe_card" class="stripe_card">
+                                    <input type="text" placeholder="Card Number" name="" id="">
+                                    <input type="text" placeholder="Name On Card" name="" id="">
+                                    <div class="flex_stripe_card">
+                                        <input type="text" placeholder="Expiration Date" name="" id="">
+                                        <input type="text" placeholder="Security Code" name="" id="">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="paypal">
+                            <div class="paypal">
                             <div class="row">
                                 <div class="col-1">
                                     <div class="paypal_bundle">
@@ -404,7 +404,7 @@
                                 </div>                 
                                 {{-- <input type="radio" name="" id=""> --}}
                             </div>
-                        </div>
+                            </div>
                     </div>
                     <div class="billing_address">
                         <h5>Billing Address</h5>
