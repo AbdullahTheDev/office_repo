@@ -20,6 +20,26 @@
         /* gap: 5px; */
         grid-template-columns: 33.33% 33.33% 33.33%;
     }
+    /* @media screen and (max-width: 1000px)
+    {
+        .checkout .grid-container{
+            grid-template-columns: auto auto auto;
+        }
+    } */
+    @media screen and (max-width: 1000px)
+    {
+        .checkout .grid-container{
+            grid-template-columns: auto auto;
+            grid-row-gap: 20px;
+        }
+    }
+    @media screen and (max-width: 700px)
+    {
+        .checkout .grid-container{
+            grid-template-columns: auto;
+            grid-row-gap: 50px;
+        }
+    }
     .checkout .grid-container .box{
         /* text-align: center;         */
     }
@@ -30,7 +50,6 @@
         width: 100%;
         font-size: 1em;
         margin: 7px 0px;
-        font-family: cursive;
     }
     .checkout .grid-container h3{
         font-weight: 500 !important;
@@ -92,25 +111,34 @@
         /* padding: 5px 0px; */
         background-color: #fff;
         border-bottom: 1px solid #f8f8f8;
+        padding-top: 19px;
     }
-    .checkout .grid-container .payment_info .sub_payment_box .stripe .flex_stripe{
-        /* display: flex; */
+    .checkout .grid-container .payment_info .sub_payment_box .stripe .row{
         border-bottom: 1px solid #f8f8f8;
-        padding: 10px 20px;
+        padding: 0px 20px;
     }
-    .checkout .grid-container .payment_info .sub_payment_box .stripe .flex_stripe .stripe_bundle{
+    .checkout .grid-container .payment_info .sub_payment_box .stripe .row .stripe_bundle{
         display: flex;
         flex-direction: row;
-        height: 100%;
-        align-content: center
     }
-    .checkout .grid-container .payment_info .sub_payment_box .stripe .flex_stripe .stripe_bundle h4{
+    .checkout .grid-container .payment_info .sub_payment_box .stripe .row .stripe_bundle h4{
         font-size: 1.1em;
-        display: block;
     }
-    .checkout .grid-container .payment_info .sub_payment_box .stripe .flex_stripe .stripe_bundle input{
+    .checkout .grid-container .payment_info .sub_payment_box .stripe .row .stripe_bundle input{
         height: 15px;
         width: 15px;
+        margin: 0;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .stripe .row picture{
+        width: 100%;
+        display: flex;
+        justify-content: end;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .stripe .row picture img{
+        aspect-ratio: 2/1;
+        object-fit: fill;
+        margin: 0px 6px;
+
     }
     .checkout .grid-container .payment_info .sub_payment_box .stripe_card{
         background-color:#f8f8f8;
@@ -268,6 +296,7 @@
                             <h6>Shipping Method</h6>
                         </div>
                     </div>
+                    <hr>
                 </div>
                 <div class="box payment_info">
                     <h3>
@@ -275,14 +304,23 @@
                     </h3>
                     <div class="sub_payment_box">
                         <div class="stripe">
-                                <div id="stripe" class="flex_stripe">
-                                    <div class="">
+                                <div id="stripe" class="row">
+                                    <div class="col-1">
                                         <div class="stripe_bundle">
                                             <input type="radio" name="payment" id="stripe_radio">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="stripe_bundle">
                                             <h4>Credit Card</h4>
                                         </div>
                                     </div>
-                                    <div class="">
+                                    <div class="col-7">
+                                        <picture>
+                                            <img width="40" height="10" src="{{asset('assets/images/checkout/visa.webp')}}" alt="">
+                                            <img width="40" height="10" src="{{asset('assets/images/checkout/mastercard.png')}}" alt="">
+                                            <img width="40" height="10" src="{{asset('assets/images/checkout/unionpay.png')}}" alt="">
+                                        </picture>
                                     </div>
                                 </div>
                             <div id="stripe_card" class="stripe_card">
@@ -335,6 +373,14 @@
                             </div>
                             <div class="inside_order_amount_box">
                                 <p>Shipping</p>
+                                <p>
+                                    <span> 
+                                        -- 
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="inside_order_amount_box">
+                                <p>Tax</p>
                                 <p>
                                     <span> 
                                         -- 
