@@ -324,7 +324,7 @@
 </style>
 <main class="checkout">
     <div class="container">
-        <form >
+        <form class="form checkout-form checkoutform" action="" method="post" name="checkout">
             <div class="grid-container">
                 <div class="box contact_info">
                     <h3>Contact Information</h3>
@@ -385,10 +385,23 @@
                     </h3>
                     <div class="sub_payment_box">
                         <div class="stripe">
+                            <div class="card">
+                                <div class="card-header">
+                                   <input type="radio" required name="pay" class="payment" data-val="" data-show="yes" data-form="{{route('stripe.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'stripe','slug2' => 0]) }}" id="v-pills-tab2-tab" data-toggle="pill" href="#v-pills-tab2" role="tab" aria-controls="v-pills-tab2" aria-selected="false"> {{ $langg->lang761 }}
+                                   @if($gs->stripe_text != null)
+                                   <small>
+                                      {{ $gs->stripe_text }}
+                                   </small>
+                                   @endif
+                                </div>
+                                <div id="v-pills-tab2" class="card-body payarea">
+                                </div>
+                             </div>
                             <div id="stripe" class="row">
                                     <div class="col-1">
                                         <div class="stripe_bundle">
-                                            <input type="radio" name="payment" id="stripe_radio">
+                                            {{-- <input type="radio" name="payment" id="stripe_radio"> --}}
+                                            <input type="radio" required name="pay" class="payment" data-val="" data-show="yes" data-form="{{route('stripe.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'stripe','slug2' => 0]) }}" id="v-pills-tab2-tab" data-toggle="pill" href="#v-pills-tab2" role="tab" aria-controls="v-pills-tab2" aria-selected="false"> {{ $langg->lang761 }}
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -404,14 +417,14 @@
                                         </picture>
                                     </div>
                                 </div>
-                                <div id="stripe_card" class="stripe_card">
+                                {{-- <div id="stripe_card" class="stripe_card">
                                     <input type="text" placeholder="Card Number" name="" id="">
                                     <input type="text" placeholder="Name On Card" name="" id="">
                                     <div class="flex_stripe_card">
                                         <input type="text" placeholder="Expiration Date" name="" id="">
                                         <input type="text" placeholder="Security Code" name="" id="">
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="paypal">
                             <div class="row">
@@ -545,8 +558,36 @@
                             </p>
                         </div>
                     </div>
+                    {{-- Hidden Inputs --}}
+                    <input type="hidden" value="1" name="terms-field"> 
+                                 <input type="hidden" id="shipping-cost" name="shipping_cost" value="0">
+                                        <input type="hidden" id="packing-cost" name="packing_cost" value="0">
+                                        <input type="hidden" name="dp" value="{{$digital}}">
+                                        <input type="hidden" name="tax" value="{{$gs->tax}}">
+                                        <input type="hidden" name="totalQty" value="{{$totalQty}}">
+                                        <input type="hidden" name="shipping" value="shipto">
+
+                                        <input type="hidden" name="vendor_shipping_id" value="{{ $vendor_shipping_id }}">
+                                        <input type="hidden" name="vendor_packing_id" value="{{ $vendor_packing_id }}">
+                                        @if(Session::has('coupon_total'))
+                                          <input type="hidden" name="total" id="grandtotal" value="{{ $totalPrice }}">
+                                          <input type="hidden" id="tgrandtotal" value="{{ $totalPrice }}">
+                                 @elseif(Session::has('coupon_total1'))
+                                    <input type="hidden" name="total" id="grandtotal" value="{{ preg_replace("/[^0-9,.]/", "", Session::get('coupon_total1') ) }}">
+                                    <input type="hidden" id="tgrandtotal" value="{{ preg_replace("/[^0-9,.]/", "", Session::get('coupon_total1') ) }}">
+                                 @else
+                                          <input type="hidden" name="total" id="grandtotal" value="{{round($totalPrice * $curr->value,2)}}">
+                                          <input type="hidden" id="tgrandtotal" value="{{round($totalPrice * $curr->value,2)}}">
+                                 @endif
+
+
+                                        <input type="hidden" name="coupon_code" id="coupon_code" value="{{ Session::has('coupon_code') ? Session::get('coupon_code') : '' }}">
+                                        <input type="hidden" name="coupon_discount" id="coupon_discount" value="{{ Session::has('coupon') ? Session::get('coupon') : '' }}">
+                                        <input type="hidden" name="coupon_id" id="coupon_id" value="{{ Session::has('coupon') ? Session::get('coupon_id') : '' }}">
+                                        <input type="hidden" name="user_id" id="user_id" value="{{ Auth::guard('web')->check() ? Auth::guard('web')->user()->id : '' }}">
+                    {{-- Finish Hidden Inputs --}}
                     <div class="checkout_order">
-                        <button type="submit">Complete Purchase</button>
+                        <button type="submit" id="final-btn">Complete Purchase</button>
                     </div>
                     {{-- <hr> --}}
                 </div>
@@ -592,9 +633,9 @@
         $('#diff_bill').prop("checked", true);
     });
 </script>
-@endsection
+{{-- @endsection
 
-@section('scripts')
+@section('scripts') --}}
 @php
  $coupon = Session::has('coupon') ? Session::get('coupon') : '0.00';   
 @endphp

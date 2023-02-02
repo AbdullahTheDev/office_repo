@@ -32,6 +32,7 @@ class CheckoutController extends Controller
 {
     public function loadpayment($slug1, $slug2)
     {
+        return 2;
         if (Session::has('currency')) {
             $curr = Currency::find(Session::get('currency'));
         } else {
