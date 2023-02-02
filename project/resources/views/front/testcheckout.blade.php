@@ -24,17 +24,19 @@
         /* text-align: center;         */
     }
     .checkout .grid-container input{
-        padding: 9px 6px;
+        padding: 15px 6px;
         border-radius: 6px;
         border: 1px solid #ccc;
         width: 100%;
         font-size: 1em;
-        margin: 5px 0px;
+        margin: 7px 0px;
+        font-family: cursive;
     }
     .checkout .grid-container h3{
         font-weight: 500 !important;
         font-size: 1.5em;
         padding-top: 8px;
+        font-family: ui-monospace;
     }
     /* Global End  */
     /* Contact Info  */
@@ -74,27 +76,48 @@
     .checkout .grid-container .payment_info{
         width: 90%;
         margin: auto;
+        height: 100%;
+        cursor: default;
     }
     .checkout .grid-container .payment_info .sub_payment_box{
         /* padding: 10px 7px; */
         border: 2px solid #f1efef;
         border-radius: 6px;
+        overflow: hidden;
         width: 100%;
-        height: 100%;
+        background-color: #f8f8f8;
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     }
-    .checkout .grid-container .payment_info .sub_payment_box .stripe_card_heading{
-        width: 100%;
-        height: 100%;
-        display: flex;
+    .checkout .grid-container .payment_info .sub_payment_box .stripe{
+        /* padding: 5px 0px; */
+        background-color: #fff;
+        border-bottom: 1px solid #f8f8f8;
     }
-    .checkout .grid-container .payment_info .sub_payment_box .stripe_card_heading h5{
-        padding: 5px 0px;
+    .checkout .grid-container .payment_info .sub_payment_box .stripe .flex_stripe{
+        /* display: flex; */
+        border-bottom: 1px solid #f8f8f8;
+        padding: 10px 20px;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .stripe .flex_stripe .stripe_bundle{
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        align-content: center
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .stripe .flex_stripe .stripe_bundle h4{
+        font-size: 1.1em;
+        display: block;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .stripe .flex_stripe .stripe_bundle input{
+        height: 15px;
+        width: 15px;
     }
     .checkout .grid-container .payment_info .sub_payment_box .stripe_card{
         background-color:#f8f8f8;
         /* display: none; */
-        padding: 14px 7px;
+        padding: 18px 9px;
+        border-top: 1px solid #d5d2d2;
+        border-bottom: 1px solid #d5d2d2;
 
     }
     #stripe_card{
@@ -108,6 +131,17 @@
         flex-direction: row;
         gap: 5px;
     }
+    .checkout .grid-container .payment_info .sub_payment_box .paypal{
+        width: 100%;
+        height: 100%;
+        padding: 14px 0px;
+        position: relative;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .paypal{
+        width: 100%;
+        padding: 10px 20px;
+    }
+    
     /* End Payment Info  */
     /* Order_Info  */
     .checkout .order_info{
@@ -193,118 +227,138 @@
 </style>
 <main class="checkout">
     <div class="container">
-        <div class="grid-container">
-            <div class="box contact_info">
-                <h3>contact_info</h3>
-                <div class="sub_contact_info">
-                    <input class="name-email" type="text" placeholder="Email" name="" id="">
-                    <div class="under_email">
-                        <input type="checkbox" name="" id="under_email_input">
-                        <span>We will never share your email with others.</span>
-                    </div>
-                    <hr>
-                    <div class="more_sub_contact_info">
-                        <h6>Shipping Details</h6>
-                        <div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <input type="text" placeholder="First name" name="fname" id="">
-                                </div>
-                                <div class="col-6">
-                                    <input type="text" placeholder="Last name" name="lname" id="">
-                                </div>
-                                <div class="col-6">
-                                    <input type="text" placeholder="Address" name="address" id="">
-                                </div>
-                                <div class="col-6">
-                                    <input type="text" placeholder="City" name="city" id="">
-                                </div>
-                                <div class="col-6">
-                                    <input type="text" placeholder="Country" name="country" id="">
-                                </div>
-                                <div class="col-6">
-                                    <input type="text" placeholder="Zipcode" name="zipcode" id="">
+        <form >
+            <div class="grid-container">
+                <div class="box contact_info">
+                    <h3>Contact Information</h3>
+                    <div class="sub_contact_info">
+                        <input class="name-email" type="text" placeholder="Email" name="" id="">
+                        <div class="under_email">
+                            <input type="checkbox" name="" id="under_email_input">
+                            <span>We will never share your email with others.</span>
+                        </div>
+                        <hr>
+                        <div class="more_sub_contact_info">
+                            <h6>Shipping Details</h6>
+                            <div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="text" placeholder="First name" name="fname" id="">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" placeholder="Last name" name="lname" id="">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" placeholder="Address" name="address" id="">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" placeholder="City" name="city" id="">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" placeholder="Country" name="country" id="">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" placeholder="Zipcode" name="zipcode" id="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="second_more_sub_contact_info">
-                        <h6>Shipping Method</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="box payment_info">
-                <h3>
-                    payment_info
-                </h3>
-                <div class="sub_payment_box">
-                    <div class="stripe">
-                        <div id="stripe" class="stripe_card_heading">
-                            <h5>Stripe</h5>
-                        </div>
-                        <div id="stripe_card" class="stripe_card">
-                            <input type="text" placeholder="Card Number" name="" id="">
-                            <input type="text" placeholder="Name On Card" name="" id="">
-                            <div class="flex_stripe_card">
-                                <input type="text" placeholder="Expiration Date" name="" id="">
-                                <input type="text" placeholder="Security Code" name="" id="">
-                            </div>
+                        <hr>
+                        <div class="second_more_sub_contact_info">
+                            <h6>Shipping Method</h6>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="box order_info">
-                <div class="sub_order_info">
+                <div class="box payment_info">
                     <h3>
-                        order_info
+                        Payment Method
                     </h3>
-                    <div class="order_img_box">
-                        <figure>
-                            <img src="{{ asset('assets/images/noimage.png') }}" width="100" height="80" alt="Product Image">
-                        </figure>
-                        <div class="order_description_box">
-                            <p>Description</p>
+                    <div class="sub_payment_box">
+                        <div class="stripe">
+                                <div id="stripe" class="flex_stripe">
+                                    <div class="">
+                                        <div class="stripe_bundle">
+                                            <input type="radio" name="payment" id="stripe_radio">
+                                            <h4>Credit Card</h4>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                    </div>
+                                </div>
+                            <div id="stripe_card" class="stripe_card">
+                                <input type="text" placeholder="Card Number" name="" id="">
+                                <input type="text" placeholder="Name On Card" name="" id="">
+                                <div class="flex_stripe_card">
+                                    <input type="text" placeholder="Expiration Date" name="" id="">
+                                    <input type="text" placeholder="Security Code" name="" id="">
+                                </div>
+                            </div>
                         </div>
-                        <div class="order_price_box">
-                            <span>$59.68</span>
+                        <div class="paypal">
+                            <div class="row">
+                                <div class="col-10">
+                                    <span>Paypal Express</span>
+                                </div>
+                                <div class="col-2">
+                                    <input type="radio" name="payment" id="paypal">
+                                </div>                   
+                                {{-- <input type="radio" name="" id=""> --}}
+                            </div>
                         </div>
                     </div>
-                    <hr>
-                    <div class="order_amount_box">
-                        <div class="inside_order_amount_box">
-                            <p>Subtotal</p>
+                </div>
+                <div class="box order_info">
+                    <div class="sub_order_info">
+                        <h3>
+                            Order Summary
+                        </h3>
+                        <div class="order_img_box">
+                            <figure>
+                                <img src="{{ asset('assets/images/noimage.png') }}" width="100" height="80" alt="Product Image">
+                            </figure>
+                            <div class="order_description_box">
+                                <p>Description</p>
+                            </div>
+                            <div class="order_price_box">
+                                <span>$59.68</span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="order_amount_box">
+                            <div class="inside_order_amount_box">
+                                <p>Subtotal</p>
+                                <p>
+                                    <span>    
+                                        $70.43
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="inside_order_amount_box">
+                                <p>Shipping</p>
+                                <p>
+                                    <span> 
+                                        -- 
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="order_total">
+                            <p>Total</p>
                             <p>
-                                <span>    
-                                    $70.43
+                                <span>
+                                    $98.69
                                 </span>
                             </p>
                         </div>
-                        <div class="inside_order_amount_box">
-                            <p>Shipping</p>
-                            <p>
-                                <span> 
-                                    -- 
-                                </span>
-                            </p>
-                        </div>
                     </div>
-                    <hr>
-                    <div class="order_total">
-                        <p>Total</p>
-                        <p>
-                            <span>
-                                $98.69
-                            </span>
-                        </p>
+                    <div class="checkout_order">
+                        <button type="submit">Complete Purchase</button>
                     </div>
+                    {{-- <hr> --}}
                 </div>
-                <div class="checkout_order">
-                    <button type="submit">Complete Purchase</button>
-                </div>
-                {{-- <hr> --}}
             </div>
-        </div>
+        </form>
     </div>
 </main>
 @endsection
@@ -325,6 +379,13 @@
     $('#stripe').click(function() {
         $('#stripe_card').toggleClass('stripe_card_show');
     });
+    $('.paypal').click(function(){
+        $('#paypal').prop("checked", true);
+        $('#stripe_card').removeClass('stripe_card_show');
+    })
+    $('#stripe').click(function(){
+        $('#stripe_radio').prop("checked", true);
+    })
 </script>
 @endsection
 {{-- 
