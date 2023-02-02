@@ -117,6 +117,10 @@
         border-bottom: 1px solid #f8f8f8;
         padding: 0px 20px;
     }
+    .checkout .grid-container .payment_info .sub_payment_box .paypal .row{
+        border-bottom: 1px solid #f8f8f8;
+        padding: 0px 20px;
+    }
     .checkout .grid-container .payment_info .sub_payment_box .stripe .row .stripe_bundle{
         display: flex;
         flex-direction: row;
@@ -125,6 +129,11 @@
         font-size: 1.1em;
     }
     .checkout .grid-container .payment_info .sub_payment_box .stripe .row .stripe_bundle input{
+        height: 15px;
+        width: 15px;
+        margin: 0;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .paypal .row input{
         height: 15px;
         width: 15px;
         margin: 0;
@@ -162,14 +171,9 @@
     .checkout .grid-container .payment_info .sub_payment_box .paypal{
         width: 100%;
         height: 100%;
-        padding: 14px 0px;
         position: relative;
-    }
-    .checkout .grid-container .payment_info .sub_payment_box .paypal{
-        width: 100%;
-        padding: 10px 20px;
-    }
-    
+        padding: 13px 0px;
+    }    
     /* End Payment Info  */
     /* Order_Info  */
     .checkout .order_info{
@@ -334,12 +338,21 @@
                         </div>
                         <div class="paypal">
                             <div class="row">
-                                <div class="col-10">
-                                    <span>Paypal Express</span>
-                                </div>
-                                <div class="col-2">
+                                <div class="col-1">
                                     <input type="radio" name="payment" id="paypal">
-                                </div>                   
+                                </div>
+                                <div class="col-4">
+                                    <picture>
+                                        <img src="{{asset('assets/images/checkout/paypal.webp')}}" width="40" height="10" alt="">
+                                    </picture>
+                                </div>
+                                <div class="col-7">
+                                    <picture>
+                                        <img width="40" height="10" src="{{asset('assets/images/checkout/visa.webp')}}" alt="">
+                                        <img width="40" height="10" src="{{asset('assets/images/checkout/mastercard.png')}}" alt="">
+                                        <img width="40" height="10" src="{{asset('assets/images/checkout/unionpay.png')}}" alt="">
+                                    </picture>
+                                </div>                 
                                 {{-- <input type="radio" name="" id=""> --}}
                             </div>
                         </div>
