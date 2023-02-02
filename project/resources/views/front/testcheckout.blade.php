@@ -389,7 +389,7 @@
                                     <div class="col-1">
                                         <div class="stripe_bundle">
                                             <input type="radio" required name="pay" class="payment" data-val="" data-show="yes" data-form="{{route('stripe.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'stripe','slug2' => 0]) }}" id="v-pills-tab2-tab" data-toggle="pill" href="#stripe_card" role="tab" aria-controls="stripe_card" aria-selected="false">
-                                            {{-- <input type="radio" required name="pay" class="payment" data-val="" data-show="yes" data-form="{{route('stripe.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'stripe','slug2' => 0]) }}" id="v-pills-tab2-tab" data-toggle="pill" href="#v-pills-tab2" role="tab" aria-controls="v-pills-tab2" aria-selected="false"> {{ $langg->lang761 }} --}}
+                                            <a style="display: none;" name="pay" class="payment" data-val="" data-show="yes" data-form="{{route('stripe.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'stripe','slug2' => 0]) }}" id="" data-toggle="pill" href="#stripe_card" role="tab" aria-controls="stripe_card" aria-selected="false">click</a>
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -602,7 +602,11 @@
 <script>
     $('#stripe').click(function() {
         $('#stripe_card').addClass('stripe_card_show');
+        $('#v-pills-tab2-tab').prop("checked", true);
     });
+    // $('#stripe').once(function() {
+    //     $('#stripe').find('a').trigger('click');
+    // });
     $('#inner_different_billing').click(function() {
         $('#extended_billing_address').addClass('extended_billing_address_show');
     });
@@ -611,9 +615,9 @@
         $('#paypal').prop("checked", true);
         $('#stripe_card').removeClass('stripe_card_show');
     });
-    $('#stripe').click(function(){
-        $('#v-pills-tab2-tab').prop("checked", true);
-    });
+    // $('#stripe').click(function(){
+    //     $('#v-pills-tab2-tab').prop("checked", true);
+    // });
 
     $('#same_billing').click(function(){
         $('#same_bill').prop("checked", true);
