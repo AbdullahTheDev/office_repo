@@ -17,15 +17,11 @@
     }
     .checkout .grid-container{
         display: grid;
-        gap: 5px;
+        /* gap: 5px; */
         grid-template-columns: 33.33% 33.33% 33.33%;
     }
     .checkout .grid-container .box{
         /* text-align: center;         */
-    }
-    .checkout .grid-container .contact_info .sub_contact_info{
-        padding: 5px 2px;
-        /* background-color: rgb(203, 202, 202); */
     }
     .checkout .grid-container input{
         padding: 9px 6px;
@@ -37,17 +33,25 @@
     }
     .checkout .grid-container h3{
         font-weight: 500 !important;
-        font-size: 1.6em;
+        font-size: 1.5em;
         padding-top: 8px;
     }
     /* Global End  */
     /* Contact Info  */
+    .checkout .grid-container .contact_info{
+        background-color: #fff;
+        padding: 0px  10px;
+    }
+    .checkout .grid-container .contact_info .sub_contact_info{
+        /* padding: 5px 2px; */
+        /* background-color: rgb(203, 202, 202); */
+    }
     .checkout .grid-container .contact_info .sub_contact_info .more_sub_contact_info{
         padding: 5px 0px;
     }
-    .checkout .grid-container .contact_info .sub_contact_info .more_sub_contact_info h5{
+    .checkout .grid-container .contact_info .sub_contact_info h6{
         font-weight: 500;
-        font-size: 1.4em;
+        font-size: 1.2em;
     }
     .checkout .grid-container .contact_info hr{
         background-color: #ccc;
@@ -66,6 +70,45 @@
         font-size: 1.4em;
     }
     /* End Contact info  */
+    /* Payment Info */
+    .checkout .grid-container .payment_info{
+        width: 90%;
+        margin: auto;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box{
+        /* padding: 10px 7px; */
+        border: 2px solid #f1efef;
+        border-radius: 6px;
+        width: 100%;
+        height: 100%;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .stripe_card_heading{
+        width: 100%;
+        height: 100%;
+        display: flex;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .stripe_card_heading h5{
+        padding: 5px 0px;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .stripe_card{
+        background-color:#f8f8f8;
+        /* display: none; */
+        padding: 14px 7px;
+
+    }
+    #stripe_card{
+        display: none;
+    }
+    .stripe_card_show{
+        display: block !important;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .stripe_card .flex_stripe_card{
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+    }
+    /* End Payment Info  */
     /* Order_Info  */
     .checkout .order_info{
 
@@ -161,7 +204,7 @@
                     </div>
                     <hr>
                     <div class="more_sub_contact_info">
-                        <h5>Shipping Details</h5>
+                        <h6>Shipping Details</h6>
                         <div>
                             <div class="row">
                                 <div class="col-6">
@@ -187,7 +230,7 @@
                     </div>
                     <hr>
                     <div class="second_more_sub_contact_info">
-                        <h5>Shipping Details</h5>
+                        <h6>Shipping Method</h6>
                     </div>
                 </div>
             </div>
@@ -195,6 +238,21 @@
                 <h3>
                     payment_info
                 </h3>
+                <div class="sub_payment_box">
+                    <div class="stripe">
+                        <div id="stripe" class="stripe_card_heading">
+                            <h5>Stripe</h5>
+                        </div>
+                        <div id="stripe_card" class="stripe_card">
+                            <input type="text" placeholder="Card Number" name="" id="">
+                            <input type="text" placeholder="Name On Card" name="" id="">
+                            <div class="flex_stripe_card">
+                                <input type="text" placeholder="Expiration Date" name="" id="">
+                                <input type="text" placeholder="Security Code" name="" id="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="box order_info">
                 <div class="sub_order_info">
@@ -261,6 +319,13 @@
 	    background-color: transparent !important;
 	}
 </style>
+@endsection
+@section('scripts')
+<script>
+    $('#stripe').click(function() {
+        $('#stripe_card').toggleClass('stripe_card_show');
+    });
+</script>
 @endsection
 {{-- 
 @section('scripts')
