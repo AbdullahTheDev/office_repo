@@ -267,6 +267,11 @@
         width: 98%;
         margin: 0 2%;
     }
+    .checkout .order_info .sub_order_info .order_img_box .order_description_box p{
+        display: flex;
+        align-content: center;
+        height: 100%;
+    }
     .checkout .order_info .sub_order_info .order_img_box .order_price_box{
         width: 100%;
         text-align: end
@@ -325,10 +330,6 @@
                     <h3>Contact Information</h3>
                     <div class="sub_contact_info">
                         <input class="name-email" type="text" placeholder="Email" name="" id="">
-                        <div class="under_email">
-                            <input type="checkbox" name="" id="under_email_input">
-                            <span>We will never share your email with others.</span>
-                        </div>
                         <hr>
                         <div class="more_sub_contact_info">
                             <h6>Shipping Details</h6>
@@ -482,7 +483,7 @@
                         </h3>
                         <div class="order_img_box">
                             <figure>
-                                <img src="{{ asset('assets/images/noimage.png') }}" width="100" height="80" alt="Product Image">
+                                <img src="{{ asset('assets/images/products/1672854016SsAK7iqH.png') }}" width="100" height="80" alt="Product Image">
                             </figure>
                             <div class="order_description_box">
                                 <p>Description</p>
