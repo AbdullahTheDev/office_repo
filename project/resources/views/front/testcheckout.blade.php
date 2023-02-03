@@ -365,6 +365,7 @@
         width: 70px;
         height: 30px;
         padding: 0px 0px;
+        text-align: end;
     }
 </style>
 <main class="checkout">
@@ -777,7 +778,7 @@
         $('#diff_bill').prop("checked", true);
     });
     // $('')
-
+    $('#taxtCalculate').val('0');
     $('#check_name_email').keyup(function(){
         let getEmailValue = $('#check_name_email').val();
         let afterAt = getEmailValue.split('@').pop();
