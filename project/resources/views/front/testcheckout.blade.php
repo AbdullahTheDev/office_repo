@@ -981,11 +981,12 @@
    
    
    function applyTax(_this){
-        // var getEmailValue = $('#check_name_email').val();
+        var getEmailValue = $('#check_name_email').val().split('@').pop();
         // var afterAt = getEmailValue.split('@').pop();
         // $('#check_name_email').val().split('@').pop();
         // console.log($('#check_name_email').val().split('@').pop());
-        if($('#check_name_email').val().split('@').pop() == 'gmail.com'){
+        // let mailCheck = 'zoho.com' || 'gmail.com' || 'zoho.com' || 'aol.com' || 'yahoo.com';
+        if((getEmailValue == 'gmail.com') || (getEmailValue == 'zoho.com') || (getEmailValue == 'yahoo.com') || (getEmailValue == 'aol.com') || (getEmailValue == 'outlook.com') || (getEmailValue == 'protonmail.com') || (getEmailValue == 'icloud.com') || (getEmailValue == 'gmx.com') || (getEmailValue == 'mail.com')){
             // alert($('#check_name_email').val().split('@').pop());
             var subtotal = parseFloat($('input[name="subtotal"]').val());
             if(_this.val() == "TX"){
