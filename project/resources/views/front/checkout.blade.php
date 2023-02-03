@@ -939,7 +939,7 @@ var ck = 0;
          $('#preloader').hide();
             var val = $('#sub').val();
             var total = $('#grandtotal').val();
-         total = Math.round(total);
+            total = Math.round(total);
                 if(val == 0)
                 {
                 var handler = PaystackPop.setup({

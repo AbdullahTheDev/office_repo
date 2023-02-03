@@ -333,9 +333,12 @@ class PaymentController extends Controller
 
     public function payreturn()
     {
+        $crt = Session::get('tempcart');
+        return $crt;
         // $this->code_image();
         if (Session::has('tempcart')) {
             $oldCart = Session::get('tempcart');
+            return $oldCart;
             $tempcart = new Cart($oldCart);
             $order = Session::get('temporder');
 
@@ -347,6 +350,7 @@ class PaymentController extends Controller
             return redirect()->back();
         }
 
+        // return $tempcart;
         return view('front.success', compact('tempcart', 'order'));
     }
 
