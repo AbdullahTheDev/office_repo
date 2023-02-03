@@ -359,6 +359,13 @@
     .checkout .order_info .checkout_order button:hover{
         background-color: #cf1e27;
     }
+    .checkout .order_info .inside_order_amount_box span input{
+        border: none;
+        background: transparent;
+        width: 70px;
+        height: 30px;
+        padding: 0px 0px;
+    }
 </style>
 <main class="checkout">
     <div class="container">
@@ -368,7 +375,7 @@
                 <div class="box contact_info">
                     <h3>Contact Information</h3>
                     <div class="sub_contact_info">
-                        <input class="name-email" type="email" name="email"
+                        <input class="name-email" type="email" id="check_name_email" name="email"
                         placeholder="{{ $langg->lang154 }}" required=""
                         value="{{ Auth::guard('web')->check() ? Auth::guard('web')->user()->email : old('email') }}">
                         <hr>
@@ -619,14 +626,13 @@
                                             }
                                        @endphp
                                        <input type="hidden" name="subtotal" value="{{ $subtotal }}"/>
-                                       <input type="hidden" name="sub_tax" value="" />
                                     </span>
                                 </p>
                             </div>
                             <div class="inside_order_amount_box">
                                 <p>Shipping</p>
                                 <p>
-                                    <span> 
+                                    <span id="shippment_price_display"> 
                                         -- 
                                     </span>
                                 </p>
@@ -636,9 +642,34 @@
                                 <p>
                                     <span> 
                                         @if($gs->tax != 0)
-                                        {{$gs->tax}}% 
+                                            <input name="sub_tax" id="taxtCalculate" value="" />
+                                            {{-- {{$gs->tax}}%  --}}
+                                            {{-- {{ Session::has('cart') ? App\Models\Product::convertPrice(Session::get('cart')->totalPrice) : '0.00' }} --}}
+                                            {{-- @php
+                                                $tax = $gs->tax;
+                                                if (Session::has('currency'))
+                                                {
+                                                    $curr = \App\Models\Currency::find(\Session::get('currency'));
+                                                }
+                                                else
+                                                {
+                                                    $curr = \App\Models\Currency::where('is_default','=',1)->first();
+                                                }
+                                                if(\Session::has('cart')){
+                                                    $subtotal = round(\Session::get('cart')->totalPrice * $curr->value,2);
+                                                    $dueTax = round($subtotal * ($tax / 100),2);
+                                                    $finalTax = round($subtotal * (1 + ($tax / 100)),2);
+                                                    // echo $subtotal . '<br />';
+                                                    echo '$' . $dueTax . '<br />';
+                                                    // echo  `<span id="finalTax_span">`.$finalTax.`</span>`;
+                                                    // echo $finalTax . '<br />';
+                                                }else{
+                                                    $subtotal = 0.00;
+                                                }
+                                            @endphp --}}
                                         @else
                                         --
+                                        <input type="hidden" name="sub_tax" value="" />
                                         @endif
                                     </span>
                                 </p>
@@ -649,7 +680,20 @@
                             <p>Total</p>
                             <p>
                                 <span>
-                                    $98.69
+                                           @if(Session::has('coupon_total'))
+                                              @if($gs->currency_format == 0)
+                                                 <span id="total-cost">{{ $curr->sign }}{{ $totalPrice }}</span>
+                                              @else 
+                                                 <span id="total-cost">{{ $totalPrice }}{{ $curr->sign }}</span>
+                                              @endif
+ 
+                                           @elseif(Session::has('coupon_total1'))
+                                              <span id="total-cost"> {{ Session::get('coupon_total1') }}</span>
+                                              @else
+                                              <span id="total-cost">
+                                                {{ App\Models\Product::convertPrice($totalPrice) }}
+                                            </span>
+                                           @endif
                                 </span>
                             </p>
                         </div>
@@ -731,6 +775,21 @@
     });
     $('#different_billing').click(function(){
         $('#diff_bill').prop("checked", true);
+    });
+    // $('')
+
+    $('#check_name_email').keyup(function(){
+        let getEmailValue = $('#check_name_email').val();
+        let afterAt = getEmailValue.split('@').pop();
+        console.log(getEmailValue);
+        console.log(afterAt);
+        if(afterAt == 'gmail.com')
+        {
+            $('#taxtCalculate').val('6');
+        }
+        else{
+            $('#taxtCalculate').val('0');
+        }
     });
 </script>
 {{-- @endsection
@@ -1082,6 +1141,7 @@ $(document).on('change','.shipping',function(){
          $('#final-cost').html(ttotal+'$');
       }
    $("#total-cost").text("$"+ttotal);
+   $("#shippment_price_display").text("$"+parseFloat(mship));
     $('#grandtotal').val(ttotal);
 
 })
