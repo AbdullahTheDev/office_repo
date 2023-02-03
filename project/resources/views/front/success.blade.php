@@ -1,6 +1,19 @@
 @extends('layouts.jbs')
-@section('body-class', 'page home page-template-default')
+@section('body-class')
 @section('content')
+@php
+	// $oldCart = Session::get('tempcart');
+    // $tempcart = new \App\Models\Cart($oldCart);
+	// $order = Session::get('temporder');
+
+	        // $oldCart = Session::get('tempcart');
+            // $tempcart = new \App\Models\Cart($oldCart);
+            // $order = Session::get('temporder');
+
+            // Session::forget('temporder');
+            // Session::forget('tempcart');
+            // Session::save();
+@endphp
 <div id="content" class="site-content">
 	<div class="col-full">
 		<div class="row">
@@ -252,27 +265,27 @@
 @php
 $coupon = Session::has('coupon') ? Session::get('coupon') : '0.00';   
 @endphp
-<script>
+{{-- <script> --}}
 	
-//    let productArr = {!!$tempcart!!};
-   let productArr = <?php echo json_encode($tempcart->items); ?>;
+{{-- //    let productArr = {!!$tempcart!!};
+//    let productArr = <?php echo json_encode($tempcart->items); ?>;
 //    console.log(productArr);
    
-for(const key in productArr){
-      const element = productArr[key];
-   gtag("event", "purchase", {
-       tax: {!!$gs->tax!!},
-       currency: "USD",
-       coupon: {!!$coupon!!},
-       items: [
-        {
-         id: element.item.id,
-         name: element.item.name,
-         slug: element.item.slug,
-         price: element.item.price,
-      }]
-   });
-}
-   </script>
+// for(const key in productArr){
+//       const element = productArr[key];
+//    		gtag("event", "purchase", {
+//        tax: {!!$gs->tax!!},
+//        currency: "USD",
+//        coupon: {!!$coupon!!},
+//        items: [
+//         {
+//          id: element.item.id,
+//          name: element.item.name,
+//          slug: element.item.slug,
+//          price: element.item.price,
+//       }]
+//    });
+// } --}}
+   {{-- </script> --}}
 
 @endsection

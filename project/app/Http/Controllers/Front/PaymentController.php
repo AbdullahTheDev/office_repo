@@ -333,18 +333,17 @@ class PaymentController extends Controller
 
     public function payreturn()
     {
-        $crt = Session::get('tempcart');
-        return $crt;
         // $this->code_image();
         if (Session::has('tempcart')) {
             $oldCart = Session::get('tempcart');
-            return $oldCart;
             $tempcart = new Cart($oldCart);
             $order = Session::get('temporder');
 
             Session::forget('temporder');
             Session::forget('tempcart');
             Session::save();
+            // $tempcart = '';
+            // $order = '';
         } else {
             $tempcart = '';
             return redirect()->back();

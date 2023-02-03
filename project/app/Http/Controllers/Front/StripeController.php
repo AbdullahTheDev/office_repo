@@ -42,6 +42,7 @@ class StripeController extends Controller
 
 
     public function store(Request $request){
+        // return $crt;
         if($request->pass_check) {
             $users = User::where('email','=',$request->personal_email)->get();
             if(count($users) == 0) {
@@ -359,8 +360,8 @@ class StripeController extends Controller
             'onumber' => $order->order_number,
         ];
 
-        $mailer = new GeniusMailer();
-        $mailer->sendAutoOrderMail($data,$order->id);            
+        // $mailer = new GeniusMailer();
+        // $mailer->sendAutoOrderMail($data,$order->id);            
         }
         else
         {
@@ -393,6 +394,7 @@ class StripeController extends Controller
 
             Session::put('temporder',$order);
             Session::put('tempcart',$cart);
+            // return $cart;
             Session::forget('cart');
 
             Session::forget('already');
