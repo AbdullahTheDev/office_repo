@@ -777,6 +777,13 @@
     $('#different_billing').click(function(){
         $('#diff_bill').prop("checked", true);
     });
+    $('#same_bill').click(function(){
+        if($('#same_bill').is(':checked'))
+        {
+            // alert("Same Bill");
+            $('select[name="shipping_state"] option').prop("selected", false);
+        }
+    })
     // $('')
     let taxJS = 6;
     let subTotalCustom = $('#subTotalCustom').val();
@@ -983,7 +990,7 @@
             var subtotal = parseFloat($('input[name="subtotal"]').val());
             if(_this.val() == "TX"){
                 // alert("Tx");
-                var tax = parseFloat(( 6.25 / 100 ) * subtotal).toFixed(2);
+                var tax = parseFloat(( 8.25 / 100 ) * subtotal).toFixed(2);
                 subtotal = parseFloat(subtotal) + parseFloat(tax);
 
                 $('input[name="sub_tax"]').val(tax);
@@ -995,7 +1002,7 @@
             }
             else if(_this.val() == "CA"){
                 // alert("CA");
-                var tax = parseFloat(( 7.25 / 100 ) * subtotal).toFixed(2);
+                var tax = parseFloat(( 10.25 / 100 ) * subtotal).toFixed(2);
                 subtotal = parseFloat(subtotal) + parseFloat(tax);
                 
                 $('input[name="sub_tax"]').val(tax);
@@ -1010,7 +1017,7 @@
             }
             else{
                 // alert("Diff state");
-                var tax = parseFloat(( 16.25 / 100 ) * subtotal).toFixed(2);
+                var tax = parseFloat(( 6 / 100 ) * subtotal).toFixed(2);
                 subtotal = parseFloat(subtotal) + parseFloat(tax);
 
                 $('input[name="sub_tax"]').val(tax);
@@ -1018,7 +1025,7 @@
                 $('#total-cost').text('$'+parseFloat(subtotal).toFixed(2));
                 $('#grandtotal').val(subtotal);
                 $('#tgrandtotal').val(subtotal);
-                $('input[name="tax"]').val(16.25);
+                $('input[name="tax"]').val(6);
             }
         }
         else{
@@ -1029,7 +1036,7 @@
                 $('#total-cost').text('$'+parseFloat(subtotal).toFixed(2));
                 $('#grandtotal').val(subtotal);
                 $('#tgrandtotal').val(subtotal);
-                $('input[name="tax"]').val(16.25);
+                $('input[name="tax"]').val(0);
         }
    }
    
@@ -1039,13 +1046,21 @@
    });
 
    $(document).on('change','select[name="state"]',function(e){
-       applyTax($(this));
+    let ShippingStateTax = $("select[name='shipping_state'] option:selected").val();
+    if(ShippingStateTax == '')
+    {
+        // alert(ShippingStateTax);
+        applyTax($(this));
+    }
    });
 
    $(document).on('change','select[name="shipping_state"]',function(e){
        applyTax($(this));
-   });
+    });
 
+   if(ShippingStateTax != null)
+   {
+    }
     clearTimeout(timer);
     timer = setTimeout(function() {
         loadTax(); 
