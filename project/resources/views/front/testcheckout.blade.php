@@ -626,7 +626,7 @@
                                                 $subtotal = 0.00;
                                             }
                                        @endphp
-                                       <input type="hidden" name="subtotal" value="{{ $subtotal }}"/>
+                                       <input type="hidden" id="subTotalCustom" name="subtotal" value="{{ $subtotal }}"/>
                                     </span>
                                 </p>
                             </div>
@@ -643,7 +643,7 @@
                                 <p>
                                     <span> 
                                         @if($gs->tax != 0)
-                                            <input name="sub_tax" id="taxtCalculate" value="" />
+                                            <input name="sub_tax" id="taxtCalculate" value="666" />
                                             {{-- {{$gs->tax}}%  --}}
                                             {{-- {{ Session::has('cart') ? App\Models\Product::convertPrice(Session::get('cart')->totalPrice) : '0.00' }} --}}
                                             {{-- @php
@@ -778,19 +778,26 @@
         $('#diff_bill').prop("checked", true);
     });
     // $('')
-    $('#taxtCalculate').val('0');
+    let taxJS = 6;
+    let subTotalCustom = $('#subTotalCustom').val();
+    // console.log(subTotalCustom);
+    let dueTaxJS = parseFloat(subTotalCustom * (taxJS / 100)).toFixed(2);
+    // let finalTaxJS = parseFloat(subTotalCustom * (1 + (taxJS / 100))).toFixed(2);
+    // console.log(finalTaxJS);
+    // console.log(dueTaxJS);
+    // $('#taxtCalculate').val('0');
     $('#check_name_email').keyup(function(){
         let getEmailValue = $('#check_name_email').val();
         let afterAt = getEmailValue.split('@').pop();
-        console.log(getEmailValue);
-        console.log(afterAt);
-        if(afterAt == 'gmail.com')
-        {
-            $('#taxtCalculate').val('6');
-        }
-        else{
-            $('#taxtCalculate').val('0');
-        }
+
+        applyTax($(this));
+        // if(afterAt == 'gmail.com')
+        // {
+        //     $('#taxtCalculate').val('6');
+        // }
+        // else{
+        //     $('#taxtCalculate').val('0');
+        // }
     });
 </script>
 {{-- @endsection
@@ -967,75 +974,77 @@
    
    
    function applyTax(_this){
-       var subtotal = parseFloat($('input[name="subtotal"]').val());
-       if(_this.val() == "TX"){
-           var tax = parseFloat(( 6.25 / 100 ) * subtotal).toFixed(2);
-           subtotal = parseFloat(subtotal) + parseFloat(tax);
-           
-           $('input[name="sub_tax"]').val(tax);
-           $('.cart-tax').remove();
-           $('.shop_table').find('tfoot tr:first').after(`<tr class="cart-tax">
-               <th>Tax</th>
-               <td>
-                  <span class="woocommerce-Price-amount amount">
-                  $${tax}
-                  </span>
-               </td>
-            </tr>`);
-            if($('.shipping').length > 0){
-                mship = $('.shipping:checked').val();
-                mship = mship.split("___");
-                mship_text = mship[0];
-                mship = mship[1];
-                subtotal = parseFloat(subtotal) + parseFloat(mship);
+        // var getEmailValue = $('#check_name_email').val();
+        // var afterAt = getEmailValue.split('@').pop();
+        // $('#check_name_email').val().split('@').pop();
+        // console.log($('#check_name_email').val().split('@').pop());
+        if($('#check_name_email').val().split('@').pop() == 'gmail.com'){
+            // alert($('#check_name_email').val().split('@').pop());
+            var subtotal = parseFloat($('input[name="subtotal"]').val());
+            if(_this.val() == "TX"){
+                // alert("Tx");
+                var tax = parseFloat(( 6.25 / 100 ) * subtotal).toFixed(2);
+                subtotal = parseFloat(subtotal) + parseFloat(tax);
+
+                $('input[name="sub_tax"]').val(tax);
+                $('#taxtCalculate').val('$'+tax);
+                $('#total-cost').text('$'+parseFloat(subtotal).toFixed(2));
+                $('#grandtotal').val(subtotal);
+                $('#tgrandtotal').val(subtotal);
+                $('input[name="tax"]').val(6.25);
             }
-           $('#total-cost').text('$'+parseFloat(subtotal).toFixed(2));
-           $('#grandtotal').val(subtotal);
-           $('#tgrandtotal').val(subtotal);
-           $('input[name="tax"]').val(6.25);
-       }else if(_this.val() == "CA"){
-           var tax = parseFloat(( 7.25 / 100 ) * subtotal).toFixed(2);
-           subtotal = parseFloat(subtotal) + parseFloat(tax);
-           
-           $('input[name="sub_tax"]').val(tax);
-           $('.cart-tax').remove();
-           $('.shop_table').find('tfoot tr:first').after(`<tr class="cart-tax">
-               <th>Tax</th>
-               <td>
-                  <span class="woocommerce-Price-amount amount">
-                  $${tax}
-                  </span>
-               </td>
-            </tr>`);
-            if($('.shipping').length > 0){
-                mship = $('.shipping:checked').val();
-                mship = mship.split("___");
-                mship_text = mship[0];
-                mship = mship[1];
-                subtotal = parseFloat(subtotal) + parseFloat(mship);
+            else if(_this.val() == "CA"){
+                // alert("CA");
+                var tax = parseFloat(( 7.25 / 100 ) * subtotal).toFixed(2);
+                subtotal = parseFloat(subtotal) + parseFloat(tax);
+                
+                $('input[name="sub_tax"]').val(tax);
+                $('.cart-tax').remove();
+
+                $('#taxtCalculate').val('$'+tax);
+                
+                $('#total-cost').text('$'+parseFloat(subtotal).toFixed(2));
+                $('#grandtotal').val(subtotal);
+                $('#tgrandtotal').val(subtotal);
+                $('input[name="tax"]').val(7.25);
             }
-           $('#total-cost').text('$'+parseFloat(subtotal).toFixed(2));
-           $('#grandtotal').val(subtotal);
-           $('#tgrandtotal').val(subtotal);
-           $('input[name="tax"]').val(7.25);
-       }else{
-           if($('.cart-tax').length > 0){
-              var subtotal = parseFloat($('input[name="subtotal"]').val());
-              var tax = parseFloat($('input[name="sub_tax"]').val());
-              var ototal = parseFloat($('#grandtotal').val());
-              var ntotal = ototal - tax;
-              $('#total-cost').text('$'+parseFloat(ntotal).toFixed(2));
-              $('#grandtotal').val(ntotal);
-              $('input[name="tax"]').val('');
-              $('.cart-tax').remove();
-           }
-       }
+            else{
+                // alert("Diff state");
+                var tax = parseFloat(( 16.25 / 100 ) * subtotal).toFixed(2);
+                subtotal = parseFloat(subtotal) + parseFloat(tax);
+
+                $('input[name="sub_tax"]').val(tax);
+                $('#taxtCalculate').val('$'+tax);
+                $('#total-cost').text('$'+parseFloat(subtotal).toFixed(2));
+                $('#grandtotal').val(subtotal);
+                $('#tgrandtotal').val(subtotal);
+                $('input[name="tax"]').val(16.25);
+            }
+        }
+        else{
+                var tax = '0';
+                subtotal = parseFloat(subtotal);
+                $('input[name="sub_tax"]').val(tax);
+                $('#taxtCalculate').val('$'+tax);
+                $('#total-cost').text('$'+parseFloat(subtotal).toFixed(2));
+                $('#grandtotal').val(subtotal);
+                $('#tgrandtotal').val(subtotal);
+                $('input[name="tax"]').val(16.25);
+        }
    }
    
+   $(document).on('change','input[name="email"]',function(e){
+    // alert("D");
+       applyTax($(this));
+   });
+
    $(document).on('change','select[name="state"]',function(e){
        applyTax($(this));
    });
 
+   $(document).on('change','select[name="shipping_state"]',function(e){
+       applyTax($(this));
+   });
 
     clearTimeout(timer);
     timer = setTimeout(function() {
