@@ -265,27 +265,25 @@
 @php
 $coupon = Session::has('coupon') ? Session::get('coupon') : '0.00';   
 @endphp
-{{-- <script> --}}
-	
-{{-- //    let productArr = {!!$tempcart!!};
-//    let productArr = <?php echo json_encode($tempcart->items); ?>;
-//    console.log(productArr);
+<script>
+    let productArr = <?php echo json_encode($tempcart->items); ?>;
+	 
    
-// for(const key in productArr){
-//       const element = productArr[key];
-//    		gtag("event", "purchase", {
-//        tax: {!!$gs->tax!!},
-//        currency: "USD",
-//        coupon: {!!$coupon!!},
-//        items: [
-//         {
-//          id: element.item.id,
-//          name: element.item.name,
-//          slug: element.item.slug,
-//          price: element.item.price,
-//       }]
-//    });
-// } --}}
-   {{-- </script> --}}
+for(const key in productArr){
+      const element = productArr[key];
+   		gtag("event", "purchase", {
+		tax: {!!$gs->tax!!},
+		currency: "USD",
+		coupon: {!!$coupon!!},
+		items: [
+        {
+         id: element.item.id,
+         name: element.item.name,
+         slug: element.item.slug,
+         price: element.item.price,
+      }]
+   });
+}
+   </script>
 
 @endsection
