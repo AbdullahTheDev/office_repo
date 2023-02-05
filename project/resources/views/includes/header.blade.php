@@ -89,8 +89,8 @@
                         <a href="#" class="category-toggle " role="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="true" data-display="static"
                             title="Browse Categories">
-                            <i class="w-icon-category"></i>
-                            <span>Browse Categories</span>
+                            <i style="color: #c12228" class="w-icon-category"></i>
+                            <span style="color: #c12228">Browse Categories</span>
                         </a>
 
                         <div class="dropdown-box bottom-radius-10">
@@ -124,13 +124,13 @@
                                                         @if(count($subcat->childs) > 0)
                                                             
                                                             @foreach($subcat->childs as $childcat)
-                                                            <li><a href="{{ route('front.childcat',['slug1' => $childcat->subcategory->category->slug, 'slug2' => $childcat->subcategory->slug, 'slug3' => $childcat->slug]) }}">{{$childcat->name}}</a>
+                                                            <li><a class="sub_ul_header" href="{{ route('front.childcat',['slug1' => $childcat->subcategory->category->slug, 'slug2' => $childcat->subcategory->slug, 'slug3' => $childcat->slug]) }}">{{$childcat->name}}</a>
                                                             </li>
                                                             
 
                                                             @endforeach
                                                         @endif
-                                                        <li><a href="{{ route('front.subcat',['slug1' => $subcat->category->slug, 'slug2' => $subcat->slug]) }}">All in {{$subcat->name}}</a></li>
+                                                        <li><a class="sub_ul_header" href="{{ route('front.subcat',['slug1' => $subcat->category->slug, 'slug2' => $subcat->slug]) }}">All in {{$subcat->name}}</a></li>
                                                     </ul>
                                                 </li>
                                                 @endforeach

@@ -477,9 +477,9 @@
                                     </div>
                                     <div class="col-7">
                                         <picture>
-                                            <img width="40" height="10" src="{{asset('assets/images/checkout/visa.webp')}}" alt="">
-                                            <img width="40" height="10" src="{{asset('assets/images/checkout/mastercard.png')}}" alt="">
-                                            <img width="40" height="10" src="{{asset('assets/images/checkout/unionpay.png')}}" alt="">
+                                            <img width="40" height="10" src="{{asset('assets/images/checkout/visa.webp')}}" alt="Visa">
+                                            <img width="40" height="10" src="{{asset('assets/images/checkout/mastercard.png')}}" alt="Mastercard">
+                                            <img width="40" height="10" src="{{asset('assets/images/checkout/unionpay.png')}}" alt="Union Pay">
                                         </picture>
                                     </div>
                                 </div>
@@ -503,14 +503,14 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="paypal_image">
-                                        <img src="{{asset('assets/images/checkout/paypal.png')}}" width="40" height="10" alt="">
+                                        <img src="{{asset('assets/images/checkout/paypal.png')}}" width="55" height="10" alt="Paypal">
                                     </div>
                                 </div>
                                 <div class="col-7">
                                     <picture>
-                                        <img width="40" height="10" src="{{asset('assets/images/checkout/visa.webp')}}" alt="">
-                                        <img width="40" height="10" src="{{asset('assets/images/checkout/mastercard.png')}}" alt="">
-                                        <img width="40" height="10" src="{{asset('assets/images/checkout/unionpay.png')}}" alt="">
+                                        <img width="40" height="10" src="{{asset('assets/images/checkout/visa.webp')}}" alt="Visa">
+                                        <img width="40" height="10" src="{{asset('assets/images/checkout/mastercard.png')}}" alt="Mastercard">
+                                        <img width="40" height="10" src="{{asset('assets/images/checkout/unionpay.png')}}" alt="Union Pay">
                                     </picture>
                                 </div>                 
                                 {{-- <input type="radio" name="" id=""> --}}
@@ -740,7 +740,7 @@
     </div>
 </main>
 <div id="preloader">
-    <img src="{{asset('assets/images/1560575570spinner.gif')}}" alt="">
+    <img src="{{asset('assets/images/1560575570spinner.gif')}}" alt="Loader">
 </div>
 @endsection
 @section('styles')
