@@ -42,7 +42,7 @@ class StripeController extends Controller
 
 
     public function store(Request $request){
-        // return $crt;
+        return $request;
         if($request->pass_check) {
             $users = User::where('email','=',$request->personal_email)->get();
             if(count($users) == 0) {
