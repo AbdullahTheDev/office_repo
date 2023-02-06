@@ -399,7 +399,7 @@
                                         value="{{ Auth::guard('web')->check() ? Auth::guard('web')->user()->phone : old('phone') }}">
                                     </div>
                                     <div class="col-12">
-                                        <input placeholder="Please Enter Your Complete Address" required type="text" name="address" spellcheck="true"  autocomplete="nope" value="{{ old('address') }}">
+                                        <input placeholder="Please Enter Your Complete Address" required type="text" name="address" spellcheck="true"  value="{{ old('address') }}">
                                     </div>
                                     <div class="col-6">
                                         <select class="select2 form-control form-control-md ship-field" name="state" required="" id="administrative_area_level_1">
@@ -523,7 +523,7 @@
                             <div id="same_billing" class="same_billing">
                                 <div class="row">
                                     <div class="col-2">
-                                        <input type="radio" name="bill_address" id="same_bill">
+                                        <input type="radio" name="bill_address" required id="same_bill">
                                     </div>
                                     <div class="col-10">
                                         <p>
@@ -536,7 +536,7 @@
                                 <div id="inner_different_billing" class="inner_different_billing">
                                     <div class="row">
                                         <div class="col-2">
-                                            <input type="radio" name="bill_address" id="diff_bill">
+                                            <input type="radio" name="bill_address" required id="diff_bill">
                                         </div>
                                         <div class="col-10">
                                            <p>    
@@ -558,7 +558,7 @@
                                                 id="shipingPhone_number" placeholder="{{ $langg->lang153 }}" value="{{ old('shipping_phone') }}">
                                             </div>
                                             <div class="col-12">
-                                                <input placeholder="Please Enter Your Complete Address" type="text" name="shipping_address" spellcheck="true"  autocomplete="nope" value="{{ old('shipping_address') }}">
+                                                <input placeholder="Please Enter Your Complete Address" type="text" name="shipping_address" spellcheck="true" value="{{ old('shipping_address') }}">
                                             </div>
                                             <div class="col-6">
                                                 <select class="form-control" name="shipping_country" required="" id="country_2">
@@ -1044,7 +1044,7 @@
             else{
                     var tax = 0;
                     // subtotal = parseFloat(subtotal).toFixed(2);
-                    alert(subtotal);
+                    // alert(subtotal);
                     $('input[name="sub_tax"]').val(tax);
                     $('#taxtCalculate').val('$'+tax);
                     $('#total-cost').text('$'+subtotal);
@@ -1150,7 +1150,7 @@
                 else{
                     $('#final-cost').html(ttotal+'$');
                 }
-                alert(ttotal);
+                // alert(ttotal);
                 $("#total-cost").text("$"+ttotal);
                 $("#shippment_price_display").text("$"+parseFloat(mship));
                 $('#grandtotal').val(ttotal);
@@ -1179,7 +1179,7 @@
             });
 
             $('.payment').on('click',function(){
-                    alert("Payment Click");
+                    // alert("Payment Click");
                     $('.submit-loader').show();
                     if($(this).data('val') == 'paystack'){
                         $('.checkoutform').prop('id','step1-form');
@@ -1204,7 +1204,7 @@
             });
 
             $(document).on('submit','#step1-form',function(){
-                alert('#step1-form');
+                // alert('#step1-form');
                 $('#preloader').hide();
                 var val = $('#sub').val();
                 var total = $('#grandtotal').val();
