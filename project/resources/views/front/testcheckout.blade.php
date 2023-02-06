@@ -467,7 +467,7 @@
                                     <div class="col-1">
                                         <div class="stripe_bundle">
                                             <input type="radio" required name="pay" class="payment" data-val="" data-show="yes" data-form="{{route('stripe.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'stripe','slug2' => 0]) }}" id="v-pills-tab2-tab" data-toggle="pill" href="#stripe_card" role="tab" aria-controls="stripe_card" aria-selected="false">
-                                            <a style="display: none;" name="pay" class="payment" data-val="" data-show="yes" data-form="{{route('stripe.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'stripe','slug2' => 0]) }}" id="" data-toggle="pill" href="#stripe_card" role="tab" aria-controls="stripe_card" aria-selected="false">click</a>
+                                            {{-- <a style="display: none;" name="pay" class="payment" data-val="" data-show="yes" data-form="{{route('stripe.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'stripe','slug2' => 0]) }}" id="" data-toggle="pill" href="#stripe_card" role="tab" aria-controls="stripe_card" aria-selected="false">click</a> --}}
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -703,8 +703,9 @@
                         </div>
                     </div>
                     {{-- Hidden Inputs --}}
-                                <input placeholder="terms-field" type="hidden" value="1" name="terms-field"> 
-                                <input placeholder="shipping-cost" type="hidden" id="shipping-cost" name="c" value="0">
+                                        <input placeholder="terms-field" type="hidden" value="1" name="terms-field"> 
+                                 {{-- <input type="hidden" id="shipping-cost" name="shipping_cost" value="0"> --}}
+                                 <input placeholder="shipping-cost" type="hidden" id="shipping-cost" name="shipping_cost" value="0">
                                         <input placeholder="packing-cost" type="hidden" id="packing-cost" name="packing_cost" value="0">
                                         <input placeholder="dp (Digital)" type="hidden" name="dp" value="{{$digital}}">
                                         <input placeholder="Tax" type="hidden" name="tax" value="{{$gs->tax}}">
@@ -713,15 +714,15 @@
 
                                         <input placeholder="vendor_shipping_id" type="hidden" name="vendor_shipping_id" value="{{ $vendor_shipping_id }}">
                                         <input placeholder="vendor_packing_id" type="hidden" name="vendor_packing_id" value="{{ $vendor_packing_id }}">
-                                        @if(Session::has('coupon_total'))
-                                          <input placeholder="grandtotal (coupon)" type="hidden" name="total" id="grandtotal" value="{{ $totalPrice }}">
-                                          <input placeholder="tgrandtotal (coupon)" type="hidden" id="tgrandtotal" value="{{ $totalPrice }}">
+                                    @if(Session::has('coupon_total'))
+                                        <input placeholder="grandtotal (coupon)" type="hidden" name="total" id="grandtotal" value="{{ $totalPrice }}">
+                                        <input placeholder="tgrandtotal (coupon)" type="hidden" id="tgrandtotal" value="{{ $totalPrice }}">
                                  @elseif(Session::has('coupon_total1'))
                                     <input placeholder="grandtotal (coupon1)" type="hidden" name="total" id="grandtotal" value="{{ preg_replace("/[^0-9,.]/", "", Session::get('coupon_total1') ) }}">
                                     <input placeholder="tgrandtotal (coupon2)" type="hidden" id="tgrandtotal" value="{{ preg_replace("/[^0-9,.]/", "", Session::get('coupon_total1') ) }}">
                                  @else
-                                          <input placeholder="grandtotal" type="hidden" name="total" id="grandtotal" value="{{round($totalPrice * $curr->value,2)}}">
-                                          <input placeholder="tgrandtotal" type="hidden" id="tgrandtotal" value="{{round($totalPrice * $curr->value,2)}}">
+                                        <input placeholder="grandtotal" type="hidden" name="total" id="grandtotal" value="{{round($totalPrice * $curr->value,2)}}">
+                                        <input placeholder="tgrandtotal" type="hidden" id="tgrandtotal" value="{{round($totalPrice * $curr->value,2)}}">
                                  @endif
 
 
@@ -767,7 +768,13 @@
     <script>
 
         $('#stripe').click(function() {
+            alert("Clickll");
             $('#stripe_card').addClass('stripe_card_show');
+            $('#stripe_month').prop('required', 'required');
+            $('#stripe_cardcvc').prop('required', 'required');
+            $('#stripe_cardnumber').prop('required', 'required');
+
+            // setRequired(true);
             $('#v-pills-tab2-tab').prop("checked", true);
         });
 

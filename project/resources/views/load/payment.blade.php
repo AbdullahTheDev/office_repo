@@ -24,15 +24,15 @@
                                     <input type="hidden" name="method" value="Stripe">
                                   <div class="row mt-2 stripe-payment" >
                                     <div class="col-lg-6">
-                                      <input class="form-control card-elements" name="cardNumber" required type="text" placeholder="{{ $langg->lang163 }}" autocomplete="off" value="{{ old('cardNumber') }}"  autofocus oninput="validateCard(this.value);" />
+                                      <input class="form-control card-elements" name="cardNumber" type="text" placeholder="{{ $langg->lang163 }}" autocomplete="off" value="{{ old('cardNumber') }}"  autofocus oninput="validateCard(this.value);" />
                                       <span id="errCard"></span>
                                     </div>
                                     <div class="col-lg-6">
-                                      <input class="form-control card-elements" name="cardCVC" required type="text" placeholder="{{ $langg->lang164 }}" autocomplete="off" value="{{ old('cardCVC') }}"  oninput="validateCVC(this.value);" />
+                                      <input class="form-control card-elements" name="cardCVC" type="text" placeholder="{{ $langg->lang164 }}" autocomplete="off" value="{{ old('cardCVC') }}"  oninput="validateCVC(this.value);" />
                                       <span id="errCVC"></span>
                                     </div>
                                     <div class="col-lg-6">
-                                        <select class="form-control card-elements" name="month" required>
+                                        <select class="form-control card-elements" name="month">
                                             <option value="01" {{ old('month') == "01" ? 'selected': '' }}>01</option>
                                             <option value="02" {{ old('month') == "02" ? 'selected': '' }}>02</option>
                                             <option value="03" {{ old('month') == "03" ? 'selected': '' }}>03</option>
@@ -49,7 +49,7 @@
                                       <!--<input class="form-control card-elements" name="month" type="text" placeholder="{{ $langg->lang165 }}"  />-->
                                     </div>
                                     <div class="col-lg-6">
-                                        <select class="form-control card-elements" name="year" required>
+                                        <select class="form-control card-elements" name="year">
                                             <option value="2021" {{ old('year') == "2021" ? 'selected': '' }}>2021</option>
                                             <option value="2022" {{ old('year') == "2022" ? 'selected': '' }}>2022</option>
                                             <option value="2023" {{ old('year') == "2023" ? 'selected': '' }}>2023</option>

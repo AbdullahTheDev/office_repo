@@ -12,11 +12,10 @@
             </nav>
             <!-- End of Breadcrumb -->
 
-            <!-- Start of PageContent -->
-            <div class="page-content">
-                <div class="container">
-                    <div class="row gutter-lg mb-10">
-                        <div class="col-lg-8 pr-lg-4 mb-6">
+                <!-- Start of PageContent -->
+                <div class="page-content">
+                    <div class="container">
+                        <div class="width: 60%; margin: auto;">
                             <table class="shop-table cart-table">
                                 <thead>
                                     <tr>
@@ -75,134 +74,22 @@
                                     @endif
                                 </tbody>
                             </table>
-                            
-                            <div class="cart-action mb-6">
-                                <a href="{{ route('front.category') }}" class="btn btn-dark btn-rounded btn-icon-left btn-shopping mr-auto"><i class="w-icon-long-arrow-left"></i>Continue Shopping</a>
+                            <div style="display: flex;">
+                                <a href="{{ route('front.category') }}" style="width: 100%; padding: 10px 0px; border: 3px solid #c12228; display:flex; align-items:center; justify-content: center; color:#c12228;">
+                                    <i class="w-icon-long-arrow-left"></i>
+                                    Continue Shopping
+                                </a>
+                                <a href="{{ route('check.guest') }}" style="background-color: #c12228; width: 100%; color: #fff; display:flex; align-items:center; justify-content: center; padding: 10px 0px;">
+                                    Proceed to checkout
+                                    <i class="w-icon-long-arrow-right"></i>
+                                </a>
                             </div>
                             
-                            <!-- <form class="coupon">
-                                <h5 class="title coupon-title font-weight-bold text-uppercase">Coupon Discount</h5>
-                                <input type="text" class="form-control mb-4" placeholder="Enter coupon code here..." required />
-                                <button class="btn btn-dark btn-outline btn-rounded">Apply Coupon</button>
-                            </form> -->
-                        </div>
-                        <div class="col-lg-4 sticky-sidebar-wrapper">
-                            <div class="sticky-sidebar">
-                                <div class="cart-summary mb-4">
-                                    <h3 class="cart-title text-uppercase">Cart Totals</h3>
-                                    <div class="cart-subtotal d-flex align-items-center justify-content-between ">
-                                        <label class="ls-25 ">Subtotal</label>
-                                        <span class="cart-total">{{ Session::has('cart') ? App\Models\Product::convertPrice($totalPrice) : '0.00' }}</span>
-                                    </div>
-                                     <div class="cart-subtotal d-flex align-items-center justify-content-between ">
-                                        <label class="ls-25 ">{{ $langg->lang129 }}</label>
-                                        <span class="discount">{{ App\Models\Product::convertPrice(0)}}</span>
-                                        <input type="hidden" id="d-val" value="{{ App\Models\Product::convertPrice(0)}}">
-                                    </div>
-                                    <div class="cart-subtotal d-flex align-items-center justify-content-between">
-                                        <label class="ls-25">{{ $langg->lang130 }}</label>
-                                        <span class="cart-subtotal">{{$tx ?? 0}}%</span>
-                                    </div>
-                                    
-
-                                    <hr class="divider">
-
-
-                                    <div class="shipping-calculator">
-                                        <form class="woocommerce-shipping-calculator d-none" method="post" action="#">
-                                            <p>
-                                                <a class="shipping-calculator-button" data-toggle="collapse" href="#shipping-form" aria-expanded="false" aria-controls="shipping-form">Calculate shipping</a>
-                                            </p>
-                                            <div class="collapse" id="shipping-form">
-                                                <div class="shipping-calculator-form">
-                                                    <p id="calc_shipping_country_field" class="form-row form-row-wide">
-                                                        <select rel="calc_shipping_state" class="country_to_state" id="calc_shipping_country" name="calc_shipping_country">
-                                                            <option value="">Select a country…</option>
-                                                            <option value="AX">Åland Islands</option>
-                                                            <option value="AF">Afghanistan</option>
-                                                            <option value="AL">Albania</option>
-                                                            <option value="DZ">Algeria</option>
-                                                            <option value="AS">American Samoa</option>
-                                                            <option value="AD">Andorra</option>
-                                                            <option value="AO">Angola</option>
-                                                            <option value="AI">Anguilla</option>
-                                                            <option value="AQ">Antarctica</option>
-                                                            <option value="AG">Antigua and Barbuda</option>
-                                                            <option value="AR">Argentina</option>
-                                                            <option value="AM">Armenia</option>
-                                                            <option value="AW">Aruba</option>
-                                                            <option value="AU">Australia</option>
-                                                            <option value="AT">Austria</option>
-                                                            <option value="AZ">Azerbaijan</option>
-                                                        </select>
-                                                    </p>
-                                                    <p id="calc_shipping_state_field" class="form-row form-row-wide validate-required">
-                                                        <span>
-                                                            <select id="calc_shipping_state" name="calc_shipping_state">
-                                                                <option value="">Select an option…</option>
-                                                                <option value="AP">Andhra Pradesh</option>
-                                                                <option value="AR">Arunachal Pradesh</option>
-                                                                <option value="AS">Assam</option>
-                                                                <option value="BR">Bihar</option>
-                                                                <option value="CT">Chhattisgarh</option>
-                                                                <option value="GA">Goa</option>
-                                                                <option value="GJ">Gujarat</option>
-                                                                <option value="HR">Haryana</option>
-                                                                <option value="HP">Himachal Pradesh</option>
-                                                                <option value="JK">Jammu and Kashmir</option>
-                                                                <option value="JH">Jharkhand</option>
-                                                                <option value="KA">Karnataka</option>
-                                                                <option value="KL">Kerala</option>
-                                                                <option value="MP">Madhya Pradesh</option>
-                                                                <option value="MH">Maharashtra</option>
-                                                                <option value="MN">Manipur</option>
-                                                                <option value="ML">Meghalaya</option>
-                                                                <option value="MZ">Mizoram</option>
-                                                                <option value="NL">Nagaland</option>
-                                                                <option value="OR">Orissa</option>
-                                                                <option value="PB">Punjab</option>
-                                                                <option value="RJ">Rajasthan</option>
-                                                                <option value="SK">Sikkim</option>
-                                                                <option value="TN">Tamil Nadu</option>
-                                                                <option value="TS">Telangana</option>
-                                                                <option value="TR">Tripura</option>
-                                                                <option value="UK">Uttarakhand</option>
-                                                                <option value="UP">Uttar Pradesh</option>
-                                                                <option value="WB">West Bengal</option>
-                                                                <option value="AN">Andaman and Nicobar Islands</option>
-                                                                <option value="CH">Chandigarh</option>
-                                                                <option value="DN">Dadra and Nagar Haveli</option>
-                                                                <option value="DD">Daman and Diu</option>
-                                                                <option value="DL">Delhi</option>
-                                                                <option value="LD">Lakshadeep</option>
-                                                                <option value="PY">Pondicherry (Puducherry)</option>
-                                                            </select>
-                                                        </span>
-                                                    </p>
-                                                    <p id="calc_shipping_postcode_field" class="form-row form-row-wide validate-required">
-                                                        <input type="text" id="calc_shipping_postcode" name="calc_shipping_postcode" placeholder="Postcode / ZIP" value="" class="input-text">
-                                                    </p>
-                                                    <p><button class="button" value="1" name="calc_shipping" type="submit">Update totals</button></p>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                    <hr class="divider mb-6">
-                                    <div class="cart-subtotal d-flex justify-content-between align-items-center">
-                                        <label>{{ $langg->lang131 }}</label>
-                                        <span class="ls-50 main-total">{{ Session::has('cart') ? App\Models\Product::convertPrice($mainTotal) : '0.00' }}</span>
-                                    </div>
-                                    <a href="{{ route('check.guest') }}"
-                                        class="btn btn-block btn-dark btn-icon-right btn-rounded  btn-checkout">
-                                        Proceed to checkout<i class="w-icon-long-arrow-right"></i></a>
-                                </div>
-                            </div>
+                           
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- End of PageContent -->
+                <!-- End of PageContent -->
 <!-- #content -->
 @endsection
 @section('scripts')
