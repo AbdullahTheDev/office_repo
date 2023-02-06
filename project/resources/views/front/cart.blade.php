@@ -2,20 +2,21 @@
 @section('body-class', 'page home page-template-default')
 @section('content')
 <!-- Start of Breadcrumb -->
-            <nav class="breadcrumb-nav">
-                <div class="container">
-                    <ul class="breadcrumb shop-breadcrumb bb-no">
-                        <li class="active"><a href="{{ url('') }}">Home</a></li>
-                        <li><a href="javascript:;">Cart</a></li>
-                    </ul>
-                </div>
-            </nav>
-            <!-- End of Breadcrumb -->
+<div style="padding: 40px 0px; margin-bottom: 30px;">
+                <nav class="breadcrumb-nav">
+                    <div class="container">
+                        <ul style="margin: 0 !important;" class="breadcrumb shop-breadcrumb bb-no">
+                            <li class="active"><a href="{{ url('') }}">Home</a></li>
+                            <li><a href="javascript:;">Cart</a></li>
+                        </ul>
+                    </div>
+                </nav>
+                <!-- End of Breadcrumb -->
 
                 <!-- Start of PageContent -->
                 <div class="page-content">
                     <div class="container">
-                        <div class="width: 60%; margin: auto;">
+                        <div style="width: 67%; margin: auto; border-radius: 8px; border: 2px solid #c12228; padding: 25px; box-shadow: rgba(93, 50, 50, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;">
                             <table class="shop-table cart-table">
                                 <thead>
                                     <tr>
@@ -75,11 +76,11 @@
                                 </tbody>
                             </table>
                             <div style="display: flex;">
-                                <a href="{{ route('front.category') }}" style="width: 100%; padding: 10px 0px; border: 3px solid #c12228; display:flex; align-items:center; justify-content: center; color:#c12228;">
+                                <a href="{{ route('front.category') }}" style="border-radius: 8px 0px 0px 8px; width: 100%; padding: 10px 0px; border: 3px solid #c12228; display:flex; align-items:center; justify-content: center; color:#c12228;">
                                     <i class="w-icon-long-arrow-left"></i>
                                     Continue Shopping
                                 </a>
-                                <a href="{{ route('check.guest') }}" style="background-color: #c12228; width: 100%; color: #fff; display:flex; align-items:center; justify-content: center; padding: 10px 0px;">
+                                <a href="{{ route('check.guest') }}" style="border-radius: 0px 8px 8px 0px;  background-color: #c12228; width: 100%; color: #fff; display:flex; align-items:center; justify-content: center; padding: 10px 0px;">
                                     Proceed to checkout
                                     <i class="w-icon-long-arrow-right"></i>
                                 </a>
@@ -89,6 +90,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
                 <!-- End of PageContent -->
 <!-- #content -->
 @endsection

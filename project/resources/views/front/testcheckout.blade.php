@@ -170,7 +170,7 @@
     .checkout .grid-container .payment_info .sub_payment_box .paypal .row input{
         height: 15px;
         width: 15px;
-        margin: 0;
+        margin-top: 4px;
     }
     .checkout .grid-container .payment_info .sub_payment_box .stripe .row picture{
         width: 100%;
@@ -185,7 +185,7 @@
     }
     .checkout .grid-container .payment_info .sub_payment_box .paypal .row .paypal_image img{
         aspect-ratio: 2/1;
-        object-fit: fill;
+        object-fit: contain;
     }
     .checkout .grid-container .payment_info .sub_payment_box .paypal .row picture{
         width: 100%;
@@ -503,7 +503,7 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="paypal_image">
-                                        <img src="{{asset('assets/images/checkout/paypal.png')}}" width="55" height="10" alt="Paypal">
+                                        <img src="{{asset('assets/images/paypal.webp')}}" width="55" height="10" alt="Paypal">
                                     </div>
                                 </div>
                                 <div class="col-7">
@@ -768,7 +768,7 @@
     <script>
 
         $('#stripe').click(function() {
-            alert("Clickll");
+            // alert("Clickll");
             $('#stripe_card').addClass('stripe_card_show');
             $('#stripe_month').prop('required', 'required');
             $('#stripe_cardcvc').prop('required', 'required');

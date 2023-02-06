@@ -34,6 +34,7 @@ class Admin extends Authenticatable
 
     public function sectionCheck($value){
         $sections = explode(" , ", $this->role->section);
+        // return $sections;
         if (in_array($value, $sections)){
             return true;
         }else{

@@ -43,17 +43,17 @@
                     <img loading="lazy" src="{{ asset('assets/images/sliders') }}/{{ $data->photo }}" alt="Banner" data-bottom-top="transform: translateY(10vh);" data-top-bottom="transform: translateY(-10vh);" width="474" height="397">
                 </figure>
                 <div class="banner-content y-50">
-                    <h5 class="banner-subtitle font-weight-normal text-default ls-50 lh-1 mb-2 slide-animate" data-animation-options="{
+                    <h1 class="banner-subtitle font-weight-normal text-default ls-50 lh-1 mb-2 slide-animate" data-animation-options="{
                   'name': 'fadeInRightShorter',
                   'duration': '1s',
                   'delay': '.2s'
                   }" style="font-size: {{ $data->title_size }} !important; color: {{ $data->title_color }} !important;">{{ $data->title_text }}
-                    </h5>
-                    <h2 class="banner-title font-weight-bolder ls-25 lh-1 slide-animate" data-animation-options="{
+                    </h1>
+                    <h2 class="banner-title ls-25 lh-1 slide-animate" data-animation-options="{
                   'name': 'fadeInRightShorter',
                   'duration': '1s',
                   'delay': '.4s'
-                  }" style="font-size: {{ $data->subtitle_size }} !important; color: {{ $data->subtitle_color }} !important;">{{ $data->subtitle_text }}
+                  }" style="font-weight: 500 !important; font-size: {{ $data->subtitle_size }} !important; color: {{ $data->subtitle_color }} !important;">{!! $data->subtitle_text !!}
                     </h2>
                     <p class="font-weight-normal text-default slide-animate" data-animation-options="{
                   'name': 'fadeInRightShorter',

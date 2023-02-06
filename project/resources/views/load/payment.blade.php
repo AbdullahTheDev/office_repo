@@ -13,26 +13,21 @@
 
 @endif
 
-@if($payment == 'stripe') 
-{{-- <div id="" class="stripe_card"> --}}
-                                    {{-- <input type="text" placeholder="Card Number" name="" id="">
-                                    <input type="text" placeholder="Name On Card" name="" id="">
-                                    <div class="flex_stripe_card">
-                                        <input type="text" placeholder="Expiration Date" name="" id="">
-                                        <input type="text" placeholder="Security Code" name="" id="">
-                                    </div> --}}
-                                    <input type="hidden" name="method" value="Stripe">
+                                @if($payment == 'stripe')
+
+                                <div>
+                                  <input type="hidden" name="method" value="Stripe">
                                   <div class="row mt-2 stripe-payment" >
                                     <div class="col-lg-6">
-                                      <input class="form-control card-elements" name="cardNumber" type="text" placeholder="{{ $langg->lang163 }}" autocomplete="off" value="{{ old('cardNumber') }}"  autofocus oninput="validateCard(this.value);" />
+                                      <input class="form-control card-elements" required name="cardNumber" type="text" placeholder="{{ $langg->lang163 }}" autocomplete="off" value="{{ old('cardNumber') }}"  autofocus oninput="validateCard(this.value);" />
                                       <span id="errCard"></span>
                                     </div>
                                     <div class="col-lg-6">
-                                      <input class="form-control card-elements" name="cardCVC" type="text" placeholder="{{ $langg->lang164 }}" autocomplete="off" value="{{ old('cardCVC') }}"  oninput="validateCVC(this.value);" />
+                                      <input class="form-control card-elements" required name="cardCVC" type="text" placeholder="{{ $langg->lang164 }}" autocomplete="off" value="{{ old('cardCVC') }}"  oninput="validateCVC(this.value);" />
                                       <span id="errCVC"></span>
                                     </div>
                                     <div class="col-lg-6">
-                                        <select class="form-control card-elements" name="month">
+                                        <select class="form-control card-elements" required name="month">
                                             <option value="01" {{ old('month') == "01" ? 'selected': '' }}>01</option>
                                             <option value="02" {{ old('month') == "02" ? 'selected': '' }}>02</option>
                                             <option value="03" {{ old('month') == "03" ? 'selected': '' }}>03</option>
@@ -49,7 +44,7 @@
                                       <!--<input class="form-control card-elements" name="month" type="text" placeholder="{{ $langg->lang165 }}"  />-->
                                     </div>
                                     <div class="col-lg-6">
-                                        <select class="form-control card-elements" name="year">
+                                        <select class="form-control card-elements" required name="year">
                                             <option value="2021" {{ old('year') == "2021" ? 'selected': '' }}>2021</option>
                                             <option value="2022" {{ old('year') == "2022" ? 'selected': '' }}>2022</option>
                                             <option value="2023" {{ old('year') == "2023" ? 'selected': '' }}>2023</option>
@@ -64,47 +59,44 @@
                                       <!--<input class="form-control card-elements" name="year" type="text" placeholder="{{ $langg->lang166 }}"  />-->
                                     </div>
                                   </div>
-                                {{-- </div> --}}
-                                	
+                                  <div style="margin-top: 10px;">
+                                    <img style="display: flex; width: 60%; height: 50px; object-fit: contain; margin:auto;" src="{{asset('assets/images/checkout/Powered_By_Stripe_edt.png')}}" width="100" height="10" alt="">
+                                  </div>
+                                <div>
 
 
-                                <script type="text/javascript" src="{{ asset('assets/front/js/payvalid.js') }}"></script>
-                                <script type="text/javascript" src="{{ asset('assets/front/js/paymin.js') }}"></script>
-                                <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-                                <script type="text/javascript" src="{{ asset('assets/front/js/payform.js') }}"></script>
+                                  <script type="text/javascript" src="{{ asset('assets/front/js/payvalid.js') }}"></script>
+                                  <script type="text/javascript" src="{{ asset('assets/front/js/paymin.js') }}"></script>
+                                  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+                                  <script type="text/javascript" src="{{ asset('assets/front/js/payform.js') }}"></script>
 
 
-                                <script type="text/javascript">
-                                  var cnstatus = false;
-                                  var dateStatus = false;
-                                  var cvcStatus = false;
-                              
-                                  function validateCard(cn) {
-                                    cnstatus = Stripe.card.validateCardNumber(cn);
-                                    if (!cnstatus) {
-                                      $("#errCard").html('{{ $langg->lang781 }}');
-                                    } else {
-                                      $("#errCard").html('');
-                                    }
+                                  <script type="text/javascript">
+                                      var cnstatus = false;
+                                      var dateStatus = false;
+                                      var cvcStatus = false;
+                                  
+                                      function validateCard(cn) {
+                                        cnstatus = Stripe.card.validateCardNumber(cn);
+                                        if (!cnstatus) {
+                                          $("#errCard").html('{{ $langg->lang781 }}');
+                                        } else {
+                                          $("#errCard").html('');
+                                        }
+                                      }
+                                  
+                                      function validateCVC(cvc) {
+                                        cvcStatus = Stripe.card.validateCVC(cvc);
+                                        if (!cvcStatus) {
+                                          $("#errCVC").html('{{ $langg->lang782 }}');
+                                        } else {
+                                          $("#errCVC").html('');
+                                        }
+                                      }
+                                
+                                  </script>
 
-                              
-                              
-                                  }
-                              
-                                  function validateCVC(cvc) {
-                                    cvcStatus = Stripe.card.validateCVC(cvc);
-                                    if (!cvcStatus) {
-                                      $("#errCVC").html('{{ $langg->lang782 }}');
-                                    } else {
-                                      $("#errCVC").html('');
-                                    }
-            
-                                  }
-                              
-                                </script>
-
-
-@endif
+                                @endif
 
 
 @if($payment == 'instamojo') 

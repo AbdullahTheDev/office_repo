@@ -32,6 +32,24 @@
     </li>
     
 @endif
+{{-- 
+@if(Auth::guard('admin')->user()->sectionCheck('seo_tools'))
+
+    <li>
+        <a href="#menu111" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
+            <i class="icofont-cart"></i>{{ __('SEO') }}
+        </a>
+        <ul class="collapse list-unstyled" id="menu111" data-parent="#accordion">
+            <li>
+                <a href="{{ route('admin-seotool-analytics') }}"><span>{{ __('SEO Analytics') }}</span></a>
+            </li>
+            <li>
+                <a href="{{ route('admin-seotool-keywords') }}"><span>{{ __('SEO Keywords') }}</span></a>
+            </li>
+        </ul>
+    </li>
+
+@endif --}}
 
 @if(Auth::guard('admin')->user()->sectionCheck('products'))
 

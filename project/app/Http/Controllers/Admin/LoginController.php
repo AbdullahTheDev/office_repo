@@ -80,8 +80,8 @@ class LoginController extends Controller
                   'body' => $msg,
           ];
 
-          $mailer = new GeniusMailer();
-          $mailer->sendCustomMail($data);                
+          // $mailer = new GeniusMailer();
+          // $mailer->sendCustomMail($data);                
       }
       else
       {
