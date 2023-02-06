@@ -1,4 +1,4 @@
-<a href="#" class="cart-toggle label-down link">
+<a href="#" id="inpage-cart-view" class="cart-toggle label-down link">
     <i class="w-icon-cart">
         <span class="cart-count cart-quantity" id="cart-count">{{ Session::has('cart') ? count(Session::get('cart')->items) : '0' }}</span>
     </i>
@@ -9,7 +9,7 @@
                                                 
 <div class="cart-header">
     <span>Shopping Cart</span>
-    <a href="#" class="btn-close">Close<i class="w-icon-long-arrow-right"></i></a>
+    <a href="#" id="cart-page-close" class="btn-close">Close<i class="w-icon-long-arrow-right"></i></a>
 </div>
 
 <div class="products">

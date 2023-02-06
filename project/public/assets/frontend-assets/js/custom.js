@@ -1557,5 +1557,14 @@ $(function ($) {
     });
 
     // TRACK ORDER ENDS
+
+    // $('#inpage-cart-view').click(function() {
+    //   $('#cart-items').css('right','0px');
+    //   alert("D");
+    // });
+    $('#cart-page-close').click(function() {
+      alert('Hello');
+      $('#cart-items').css('right','-34rem');
+    });
   });
 });
