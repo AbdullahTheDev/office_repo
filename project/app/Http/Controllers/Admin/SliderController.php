@@ -92,9 +92,11 @@ class SliderController extends Controller
     //*** POST Request
     public function update(Request $request, $id)
     {
+        // return response()->json($request);
         //--- Validation Section
         $rules = [
-               'photo'      => 'mimes:jpeg,jpg,png,svg,gif,webp,wbmp',
+               'photo' => 'mimes:jpeg,jpg,png,svg,gif,webp,wbmp',
+               'mob_photo' => 'mimes:jpeg,jpg,png,svg,gif,webp,wbmp',
                 ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -119,6 +121,19 @@ class SliderController extends Controller
                 }            
             $input['photo'] = $name;
             } 
+            // $data->update($input);
+            if ($mob_file = $request->file('mob_img')) 
+                {              
+                    $mob_name = time().$mob_file->getClientOriginalName();
+                    $mob_file->move('assets/images/sliders',$mob_name);
+                    if($data->mob_img != null)
+                    {
+                        if (file_exists(public_path().'/assets/images/sliders/'.$data->mob_img)) {
+                            unlink(public_path().'/assets/images/sliders/'.$data->mob_img);
+                        }
+                    }            
+                    $input['mob_img'] = $mob_name;
+                } 
         $data->update($input);
         //--- Logic Section Ends
 

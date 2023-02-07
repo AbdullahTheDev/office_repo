@@ -40,7 +40,10 @@
         <div class="banner banner-fixed intro-slide intro-slide1" style="background-color: #000000;">
             <div class="container">
                 <figure class="slide-image skrollable custom_added_carousel">
-                    <img loading="lazy" src="{{ asset('assets/images/sliders') }}/{{ $data->photo }}" alt="Banner" data-bottom-top="transform: translateY(10vh);" data-top-bottom="transform: translateY(-10vh);" width="474" height="397">
+                    <picture>
+                        <source media="(min-width:950px)" srcset="{{ asset('assets/images/sliders') }}/{{ $data->mob_img }}" alt="Banner" data-bottom-top="transform: translateY(10vh);" data-top-bottom="transform: translateY(-10vh);" width="474" height="397">
+                            <img src="{{ asset('assets/images/sliders') }}/{{ $data->photo }}" alt="Banner" data-bottom-top="transform: translateY(10vh);" data-top-bottom="transform: translateY(-10vh);" width="474" height="397">
+                        </picture>
                 </figure>
                 <div class="banner-content y-50">
                     <h1 class="banner-subtitle font-weight-normal text-default ls-50 lh-1 mb-2 slide-animate" data-animation-options="{

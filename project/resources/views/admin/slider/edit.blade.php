@@ -255,6 +255,24 @@
                         <div class="row">
                           <div class="col-lg-4">
                             <div class="left-area">
+                                <h4 class="heading">{{ __('Featured Image For Mobile') }} *</h4>
+                            </div>
+                          </div>
+                          <div class="col-lg-7">
+                            <div class="img-upload full-width-img">
+                                <div id="image-preview" class="img-preview" style="background: url({{ $data->photo ? asset('assets/images/sliders/'.$data->mob_img):asset('assets/images/noimage.png') }});">
+                                    <label for="image-upload" class="img-label" id="image-label"><i class="icofont-upload-alt"></i>{{ __('Upload Image') }}</label>
+                                    <input type="file" name="mob_img" class="img-upload" id="image-upload">
+                                  </div>
+                                  <p class="text">{{ __('Prefered Size: (640*320)') }}</p>
+                            </div>
+
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-lg-4">
+                            <div class="left-area">
                               
                             </div>
                           </div>
