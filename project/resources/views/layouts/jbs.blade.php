@@ -117,7 +117,7 @@
 													<div class="brand-col" style="margin-top: 10px;">
 														<a href="{{url('category?brand='.$brand->id)}}" aria-label="partners">
 															<figure class="">
-																<img style="aspect-ratio: 2 / 1; object-fit: contain !important;" src="{{ asset('assets/images/partner/'.$brand->photo) }}" alt="{{ $brand->link }}" width="400" height="20" />
+																<img style="aspect-ratio: 2 / 1; object-fit: contain !important; display:none;" src="" data-load="{{ asset('assets/images/partner/'.$brand->photo) }}" alt="{{ $brand->link }}" width="400" height="20" />
 															</figure>
 														</a>
 													</div>

@@ -737,7 +737,7 @@
                         </div>
                     </div>
                 </div>
-                <section class="related-product-section">
+                {{-- <section class="related-product-section">
                 	 
                     <div class="title-link-wrapper mb-4">
                         <h4 class="title">Related Products</h4>
@@ -762,52 +762,52 @@
                             }
                         }
                     }">
-                    @foreach($productt->category->products()->where('status','=',1)->where('id','!=',$productt->id)->take(8)->get() as $prod)
-                        <div class="product product-slideup-content">
-                            <figure class="product-media">
-                                 <a href="{{ route('front.product', $prod->slug) }}">
-                                     <img src="{{ $prod->photo  }}" alt="{{ $prod->showName() }}" width="295" height="335" alt="Product">
-                                 </a>
-                             </figure>
-                             <div class="product-details">
-                                 <div class="product-cat">
-                                     <a href="{{ route('front.category',$prod->category->slug) }}">{{ $prod->category->name }}</a>
-                                 </div>
-                                 <h3 class="product-name">
-                                     <a href="{{ route('front.product', $prod->slug) }}">{{ $prod->showName() }}</a>
-                                 </h3>
-                                 <div class="product-price">
-                                     <ins class="new-price">{{ $prod->showPrice() }}</ins><del class="old-price">{{ $prod->showPreviousPrice() }}</del>
-                                 </div>
-                             </div>
-                             <div class="product-hidden-details">
-                                 <div class="product-action">
-                                    @if($prod->stock !== 0)
-                                    @if($prod->price != 0)
-                                    <a data-href="{{ route('product.cart.add',$prod->id) }}" class="button btn-product btn btn-dark btn-outline btn-rounded btn-sm btn-cart" title="Add to Cart">
-                                         <i class="w-icon-cart"></i>
-                                         <span>Add To Cart</span>
+                        @foreach($productt->category->products()->where('status','=',1)->where('id','!=',$productt->id)->take(8)->get() as $prod)
+                            <div class="product product-slideup-content">
+                                <figure class="product-media">
+                                    <a href="{{ route('front.product', $prod->slug) }}">
+                                        <img src="{{ $prod->photo  }}" alt="{{ $prod->showName() }}" width="295" height="335" alt="Product">
                                     </a>
-                                    @else
-                                    <a href="#" class="call_price" title="Call Of Price">
-                                         <span>Call For Price</span>
-                                    </a>
-                                    @endif
-                                    @else
-                                    <a href="#" class="out_stock" title="{{ $langg->lang78 }}">
-                                         <span>{{ $langg->lang78 }}</span>
-                                    </a>
-                                    @endif
-                                    @if(Auth::guard('web')->check())
-                                    <a href="{{ route('user-wishlist-add',$prod->id) }}" class="btn-product-icon btn-wishlist w-icon-heart" title="Add to wishlist"></a>
-                                    @endif
-                                     <a href="{{ route('product.compare.add',$prod->id) }}" class="btn-product-icon btn-compare w-icon-compare" title="Compare"></a>
-                                 </div>
-                             </div>
-                        </div>
+                                </figure>
+                                <div class="product-details">
+                                    <div class="product-cat">
+                                        <a href="{{ route('front.category',$prod->category->slug) }}">{{ $prod->category->name }}</a>
+                                    </div>
+                                    <h3 class="product-name">
+                                        <a href="{{ route('front.product', $prod->slug) }}">{{ $prod->showName() }}</a>
+                                    </h3>
+                                    <div class="product-price">
+                                        <ins class="new-price">{{ $prod->showPrice() }}</ins><del class="old-price">{{ $prod->showPreviousPrice() }}</del>
+                                    </div>
+                                </div>
+                                <div class="product-hidden-details">
+                                    <div class="product-action">
+                                        @if($prod->stock !== 0)
+                                        @if($prod->price != 0)
+                                        <a data-href="{{ route('product.cart.add',$prod->id) }}" class="button btn-product btn btn-dark btn-outline btn-rounded btn-sm btn-cart" title="Add to Cart">
+                                            <i class="w-icon-cart"></i>
+                                            <span>Add To Cart</span>
+                                        </a>
+                                        @else
+                                        <a href="#" class="call_price" title="Call Of Price">
+                                            <span>Call For Price</span>
+                                        </a>
+                                        @endif
+                                        @else
+                                        <a href="#" class="out_stock" title="{{ $langg->lang78 }}">
+                                            <span>{{ $langg->lang78 }}</span>
+                                        </a>
+                                        @endif
+                                        @if(Auth::guard('web')->check())
+                                        <a href="{{ route('user-wishlist-add',$prod->id) }}" class="btn-product-icon btn-wishlist w-icon-heart" title="Add to wishlist"></a>
+                                        @endif
+                                        <a href="{{ route('product.compare.add',$prod->id) }}" class="btn-product-icon btn-compare w-icon-compare" title="Compare"></a>
+                                    </div>
+                                </div>
+                            </div>
                        @endforeach
                     </div>
-                </section>
+                </section> --}}
             </div>
             <br>
             <!-- End of Main Content -->
