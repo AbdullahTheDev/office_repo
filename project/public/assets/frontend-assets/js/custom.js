@@ -1496,6 +1496,12 @@ $(function ($) {
 
     // MESSAGE FORM ENDS
 
+    $('img[data-load]').each(function(){
+        setTimeout(() => { 
+          $(this).css('display', 'block');  
+          $(this).attr('src', $(this).data('load'));
+        }, 2000);
+    });
     //**************************** CUSTOM JS SECTION ENDS****************************************
 
     $(document).on("click", ".favorite-prod", function () {
@@ -1568,3 +1574,4 @@ $(function ($) {
     });
   });
 });
+
