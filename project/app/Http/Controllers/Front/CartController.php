@@ -56,7 +56,7 @@ class CartController extends Controller
         return view('load.cart'); 
     }
 
-   public function addtocart($id)
+    public function addtocart($id)
     {
         $prod = Product::where('id','=',$id)->first(['id','user_id','slug','name','photo','size','size_qty','size_price','color','price','stock','type','file','link','license','license_qty','measure','whole_sell_qty','whole_sell_discount','attributes']);
 
@@ -197,7 +197,139 @@ class CartController extends Controller
          return redirect()->route('front.cart');
     }  
 
-   public function addcart($id)
+    // Direct To Checkout
+    public function addcartcheckout($id)
+    {
+        $prod = Product::where('id','=',$id)->first(['id','user_id','slug','name','photo','size','size_qty','size_price','color','price','stock','type','file','link','license','license_qty','measure','whole_sell_qty','whole_sell_discount','attributes']);
+
+
+        // Set Attrubutes
+
+        $keys = '';
+        $values = '';
+        if(!empty($prod->license_qty))
+        {
+        $lcheck = 1;
+            foreach($prod->license_qty as $ttl => $dtl)
+            {
+                if($dtl < 1)
+                {
+                    $lcheck = 0;
+                }
+                else
+                {
+                    $lcheck = 1;
+                    break;
+                }                    
+            }
+                if($lcheck == 0)
+                {
+                    return 0;        
+                }
+        }
+
+        // Set Size
+
+        $size = '';
+        if(!empty($prod->size))
+        { 
+        $size = trim($prod->size[0]);
+        }  
+        $size = str_replace(' ','-',$size);
+
+        // Set Color
+
+        $color = '';
+        if(!empty($prod->color))
+        { 
+        $color = $prod->color[0];
+        $color = str_replace('#','',$color);
+        }  
+
+        // Vendor Comission
+
+        if($prod->user_id != 0){
+        $gs = Generalsetting::findOrFail(1);
+        $prc = $prod->price + $gs->fixed_commission + ($prod->price/100) * $gs->percentage_commission;
+        $prod->price = round($prc,2);
+        }
+
+
+        // Set Attribute
+
+
+            if (!empty($prod->attributes))
+            {
+                $attrArr = json_decode($prod->attributes, true);
+
+                $count = count($attrArr);
+                $i = 0;
+                $j = 0; 
+                      if (!empty($attrArr))
+                      {
+                          foreach ($attrArr as $attrKey => $attrVal)
+                          {
+
+                            if (is_array($attrVal) && array_key_exists("details_status",$attrVal) && $attrVal['details_status'] == 1) {
+                                if($j == $count - 1){
+                                    $keys .= $attrKey;
+                                }else{
+                                    $keys .= $attrKey.',';
+                                }
+                                $j++;
+
+                                foreach($attrVal['values'] as $optionKey => $optionVal)
+                                {
+                                    
+                                    $values .= $optionVal . ',';
+
+                                    $prod->price += $attrVal['prices'][$optionKey];
+                                    break;
+                                     
+                                    
+                                }
+
+                            }
+                          }
+
+                      }
+
+                }
+                $keys = rtrim($keys, ',');
+                $values = rtrim($values, ',');
+
+
+
+
+
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+
+        $cart->add($prod, $prod->id,$size,$color,$keys,$values);
+        if($cart->items[$id.$size.$color.str_replace(str_split(' ,'),'',$values)]['dp'] == 1)
+        {
+            return 'digital';
+        }
+        if($cart->items[$id.$size.$color.str_replace(str_split(' ,'),'',$values)]['stock'] < 0)
+        {
+            return 0;
+        }
+        if(!empty($cart->items[$id.$size.$color.str_replace(str_split(' ,'),'',$values)]['size_qty']))
+        {
+            if($cart->items[$id.$size.$color.str_replace(str_split(' ,'),'',$values)]['qty'] > $cart->items[$id.$size.$color.str_replace(str_split(' ,'),'',$values)]['size_qty'])
+            {
+                return 0;
+            }           
+        }
+        $cart->totalPrice = 0;
+        foreach($cart->items as $data)
+        $cart->totalPrice += $data['price'];
+        Session::put('cart',$cart);
+        $data[0] = count($cart->items);        
+        return redirect()->route('front.checkout');           
+    } 
+
+    public function addcart($id)
     {
         $prod = Product::where('id','=',$id)->first(['id','user_id','slug','name','photo','size','size_qty','size_price','color','price','stock','type','file','link','license','license_qty','measure','whole_sell_qty','whole_sell_discount','attributes']);
 

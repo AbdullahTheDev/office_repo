@@ -594,7 +594,7 @@
                         @foreach($products as $product)
                         <div class="order_img_box">
                                 <figure>
-                                    <img src="{{ asset('assets/images/products/1672854016SsAK7iqH.png') }}" width="100" height="80" alt="Product Image">
+                                    <img src='{{ $product["item"]["photo"] }}' width="100" height="80" alt="Product Image">
                                 </figure>
                                 <div class="order_description_box">
                                     <p>

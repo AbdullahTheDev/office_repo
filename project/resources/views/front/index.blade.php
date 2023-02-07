@@ -264,23 +264,27 @@
                             <div class="custom_feature_details_hidden">
                                 <div class="custom_feature_div">
                                     @if($prod->stock !== 0)
-                                    @if($prod->price != 0)
-                                    <a href="{{ route('product.cart.add',$prod->id) }}" class="button single_add_to_cart_button custom_btn_add_to_cart" name="add-to-cart" title="Add to Cart">
-                                        <i class="w-icon-cart"></i>
-                                        <span>Add To Cart</span>
-                                    </a>
+                                        @if($prod->price != 0)
+                                            <a href="{{ route('product.cart.add',$prod->id) }}" class="button single_add_to_cart_button custom_btn_add_to_cart" name="add-to-cart" title="Add to Cart">
+                                                <i class="w-icon-cart"></i>
+                                                <span>Add To Cart</span>
+                                            </a>
+                                            <a href="{{ route('product.cart.add-checkout',$prod->id) }}" class="button single_add_to_cart_button custom_btn_add_to_cart" name="add-to-cart" title="Add to Cart">
+                                                {{-- <i class="w-icon-cart"></i> --}}
+                                                <span>Buy Now</span>
+                                            </a>
+                                        @else
+                                            <a href="#" class="call_price" title="Call Of Price">
+                                                <span>Call For Price</span>
+                                            </a>
+                                        @endif
                                     @else
-                                    <a href="#" class="call_price" title="Call Of Price">
-                                        <span>Call For Price</span>
-                                    </a>
-                                    @endif
-                                    @else
-                                    <a href="#" class="out_stock" title="{{ $langg->lang78 }}">
-                                        <span>{{ $langg->lang78 }}</span>
-                                    </a>
+                                        <a href="#" class="out_stock" title="{{ $langg->lang78 }}">
+                                            <span>{{ $langg->lang78 }}</span>
+                                        </a>
                                     @endif
                                     @if(Auth::guard('web')->check())
-                                    <a data-href="{{ route('user-wishlist-add',$prod->id) }}" rel="nofollow" class="custom_btn_wishlist btn-wishlist w-icon-heart add-to-wish add_to_wishlist" title="Add to wishlist"></a>
+                                        <a data-href="{{ route('user-wishlist-add',$prod->id) }}" rel="nofollow" class="custom_btn_wishlist btn-wishlist w-icon-heart add-to-wish add_to_wishlist" title="Add to wishlist"></a>
                                     @endif
                                     {{-- <a data-href="{{ route('product.compare.add',$prod->id) }}" class="btn-product-icon btn-compare w-icon-compare add-to-compare add-to-compare-link" title="Compare"></a> --}}
                                 </div>
