@@ -17,7 +17,7 @@
    </div>
 </nav>
 <!-- End of Breadcrumb -->
-<div class="page-content">
+<div class="page-content" style="padding: 40px 0px;">
    <div class="container">
       <div class="row">
          <div class="col-lg-6 col-md-6 col-sm-12 mt-5">
@@ -61,4 +61,5 @@
       </div>
    </div>
 </div>
+
 @endsection

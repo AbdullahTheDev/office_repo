@@ -767,15 +767,15 @@
 
     <script>
 
-        $('#stripe').click(function() {
-            // alert("Clickll");
+        $('#v-pills-tab2-tab').click(function() {
+        //     // alert("Clickll");
             $('#stripe_card').addClass('stripe_card_show');
-            $('#stripe_month').prop('required', 'required');
-            $('#stripe_cardcvc').prop('required', 'required');
-            $('#stripe_cardnumber').prop('required', 'required');
+        //     $('#stripe_month').prop('required', 'required');
+        //     $('#stripe_cardcvc').prop('required', 'required');
+        //     $('#stripe_cardnumber').prop('required', 'required');
 
-            // setRequired(true);
-            $('#v-pills-tab2-tab').prop("checked", true);
+        //     // setRequired(true);
+            // $('#v-pills-tab2-tab').prop("checked", true);
         });
 
         $('#inner_different_billing').click(function() {

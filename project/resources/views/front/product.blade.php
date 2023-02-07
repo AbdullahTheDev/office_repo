@@ -26,7 +26,7 @@
         <div class="row gutter-lg">
             <div class="main-content">
                 <div class="product product-single row">
-                    <div class="col-md-6 mb-6">
+                    <div class="col-md-4 mb-6">
                         <div class="product-gallery product-gallery-sticky">
                             <div class="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1 gutter-no">
                                <figure class="product-image">
@@ -51,7 +51,7 @@
                             <p class="text-center small text-muted">** The image may not match the actual product. Look for part number to identify the right product. **</p>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-4 mb-md-6">
+                    <div class="col-md-8 mb-4 mb-md-6">
                         <div class="product-details" data-sticky-options="{'minWidth': 767}">
                             <h2 class="product-title">{{ $productt->name }}</h2>
                             <div class="product-bm-wrapper">

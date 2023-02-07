@@ -80,45 +80,52 @@
 			<!-- .header-v1 -->
 			
 			@yield('content')
-
+<style>
+	.owl-theme .owl-nav.disabled+.owl-dots{
+		margin-top: 0px !important;
+	}
+	.owl-simple .owl-nav.disabled+.owl-dots, .owl-theme .owl-nav.disabled+.owl-dots{
+		margin-top: 0px !important;
+	}
+</style>
 			<!-- #content -->
-						@if((url()->current() !== 'http://127.0.0.1:8000/carts'))
-						<div class="container"style="padding: 10px 0px;">
-							@if(!empty($showBrands))
-								<h2 class="title" style="justify-content: center; padding: 8px 0px">Our Partners</h2>
-								<div style="margin: auto; border: 1px solid #ccc; border-radius: 9px; width: 90%;" class="owl-carousel owl-theme owl-loaded" data-owl-options="{
-									'margin': 30,
-									'responsive': {
-													'0': {
-														'items': 5
-													},
-													'576': {
-														'items': 5
-													},
-													'768': {
-														'items': 5
-													},
-													'992': {
-														'items': 5
-													},
-													'1200': {
-														'items': 5
+						@if((url()->current() !== 'http://127.0.0.1:8000/carts') AND (url()->current() !== 'http://127.0.0.1:8000/user/guest') AND (url()->current() !== 'http://127.0.0.1:8000/checkout'))
+							<div class="container"style="padding: 10px 0px;">
+								@if(!empty($showBrands))
+									<h2 class="title" style="justify-content: center; padding: 8px 0px">Our Partners</h2>
+									<div style="margin: auto; border: 1px solid #ccc; border-radius: 9px; width: 90%;" class="owl-carousel owl-theme owl-loaded" data-owl-options="{
+										'margin': 30,
+										'responsive': {
+														'0': {
+															'items': 5
+														},
+														'576': {
+															'items': 5
+														},
+														'768': {
+															'items': 5
+														},
+														'992': {
+															'items': 5
+														},
+														'1200': {
+															'items': 5
+														}
 													}
-												}
-											}">
-										@foreach($showBrands as $brand)
-												<div class="brand-col">
-													<a href="{{url('category?brand='.$brand->id)}}" aria-label="partners">
-														<figure class="">
-															<img style="aspect-ratio: 2 / 1; object-fit: contain !important;" src="{{ asset('assets/images/partner/'.$brand->photo) }}" alt="{{ $brand->link }}" width="400" height="20" />
-														</figure>
-													</a>
-												</div>
-										@endforeach
+												}">
+											@foreach($showBrands as $brand)
+													<div class="brand-col" style="margin-top: 10px;">
+														<a href="{{url('category?brand='.$brand->id)}}" aria-label="partners">
+															<figure class="">
+																<img style="aspect-ratio: 2 / 1; object-fit: contain !important;" src="{{ asset('assets/images/partner/'.$brand->photo) }}" alt="{{ $brand->link }}" width="400" height="20" />
+															</figure>
+														</a>
+													</div>
+											@endforeach
 									</div>
-							@endif
+								@endif
+							</div>
 						@endif
-					</div>
 
 		</main>
 
