@@ -35,7 +35,7 @@
                 <a href="#" aria-label="Hamburger" class="mobile-menu-toggle  w-icon-hamburger">
                 </a>
                 <a href="{{url('')}}" class="logo ml-lg-0">
-                    <img src="{{ asset('assets/images') }}/{{$gs->logo}}" alt="logo" width="190" height="45" />
+                    <img loading="lazy" src="{{ asset('assets/images') }}/{{$gs->logo}}" alt="logo" width="190" height="45" />
                 </a>
                 <form style="" method="get" action="{{ route('front.category', [Request::route('category'),Request::route('subcategory'),Request::route('childcategory')]) }}" class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper search-form navbar-search" id="searchForm">
                     @if (!empty(request()->input('sort')))
