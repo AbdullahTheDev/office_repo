@@ -246,7 +246,7 @@
                     <div class="grid-container-4">
                         @if($section_products->count())
                         @foreach($section_products as $prod)
-                        <div class="custom_feature">
+                        <div style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;" class="custom_feature">
                             <figure class="custom_feature_image">
                                 <a class="" href="{{ route('front.product', $prod->slug) }}">
                                     <img loading="lazy" width="400" height="200" src="{{ $prod->photo  }}" alt="{{ $prod->showName() }}">
