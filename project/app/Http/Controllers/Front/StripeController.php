@@ -116,6 +116,7 @@ class StripeController extends Controller
         {
 
             $stripe = Stripe::make(Config::get('services.stripe.secret'));
+            // return $stripe;
             try{
                 $token = $stripe->tokens()->create([
                     'card' =>[
@@ -158,7 +159,7 @@ class StripeController extends Controller
                     'capture' => false
                     ]);
                     
-                
+                // return $charge;
                 if ($charge['status'] == 'succeeded') {
                         foreach($cart->items as $key => $prod)
                         {

@@ -373,6 +373,8 @@
 </style>
 <main class="checkout">
     <div class="container">
+        @include('includes.form-success')
+        @include('includes.form-error')
         <form class="form checkout-form checkoutform" action="" method="post" name="checkout">
             @csrf
             <div class="grid-container">
