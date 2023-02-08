@@ -37,7 +37,7 @@
                 <a href="{{url('')}}" class="logo ml-lg-0">
                     <img loading="lazy" src="{{ asset('assets/images') }}/{{$gs->logo}}" alt="logo" width="190" height="45" />
                 </a>
-                <form style="" method="get" action="{{ route('front.category', [Request::route('category'),Request::route('subcategory'),Request::route('childcategory')]) }}" class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper search-form navbar-search" id="searchForm">
+                <form style="display: none !important;" method="get" action="{{ route('front.category', [Request::route('category'),Request::route('subcategory'),Request::route('childcategory')]) }}" class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper search-form navbar-search" id="searchForm">
                     @if (!empty(request()->input('sort')))
                         <input type="hidden" name="sort" value="{{ request()->input('sort') }}">
                     @endif
@@ -67,11 +67,11 @@
                         <a href="tel:{{ $gs->phone }}" class="phone-number font-weight-bolder ls-50">{{ $gs->phone }}</a>
                     </div>
                 </div>
-                <a class="wishlist label-down link d-xs-show" aria-label="Wishlist" href="{{ route('user-wishlists') }}">
+                <a style="display: none;" id="include_whichlist" class="wishlist label-down link d-xs-show" aria-label="Wishlist" href="{{ route('user-wishlists') }}">
                     <i class="w-icon-heart"></i>
                     <span class="wishlist-label d-lg-show">Wishlist</span>
                 </a>
-                <div class="dropdown cart-dropdown cart-offcanvas mr-0 mr-lg-2">
+                <div style="display: none;" id="include_cart" class="dropdown cart-dropdown cart-offcanvas mr-0 mr-lg-2">
                     <div class="cart-overlay"></div>
                     @include('load.cart')
                     <!-- End of Dropdown Box -->

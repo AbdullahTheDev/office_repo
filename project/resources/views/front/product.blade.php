@@ -39,7 +39,7 @@
                                <div class="product-thumbs row cols-4 gutter-sm">
                                 @foreach($productt->galleries as $gal)
                                   <div class="product-thumb active">
-                                     <img src="{{asset('assets/images/galleries/'.$gal->photo)}}"
+                                     <img style="display: none;" src="" data-load="{{asset('assets/images/galleries/'.$gal->photo)}}"
                                         alt="{{ $productt->name }}" width="800" height="900">
                                   </div>
                                 @endforeach
@@ -189,16 +189,15 @@
                                 @if($productt->price != 0.00)
                                 <div class="fix-bottom product-sticky-content sticky-content">
                                     <div class="product-form container">
-                                    	
                                     	 @if($productt->product_type != "affiliate")
-                                        <div class="product-qty-form {{ $productt->type == 'Physical' ? '' : 'd-none' }}">
-                                            <div class="input-group">
-                                                <input class="quantity form-control qttotal" type="number" placeholder="Total" min="1"
-                                                    max="10000000">
-                                                <button aria-label="Increament" class="quantity-plus w-icon-plus" type="button"></button>
-                                                <button aria-label="Decreament" class="quantity-minus w-icon-minus" type="button"></button>
+                                            <div class="product-qty-form {{ $productt->type == 'Physical' ? '' : 'd-none' }}">
+                                                <div class="input-group">
+                                                    <input class="quantity form-control qttotal" type="number" placeholder="Total" min="1"
+                                                        max="10000000">
+                                                    <button aria-label="Increament" class="quantity-plus w-icon-plus" type="button"></button>
+                                                    <button aria-label="Decreament" class="quantity-minus w-icon-minus" type="button"></button>
+                                                </div>
                                             </div>
-                                        </div>
                                          @endif
                                          @if($productt->emptyStock())
                                         <button class="btn-dark btn-outline btn-cart" disabled="">
@@ -879,7 +878,7 @@
    //        },200);
    //    });
 
-   function shipments() {
+    function shipments() {
         let street = country = state = city = zip = "";
         if($("#ship-to-different-address-checkbox").is(":checked")){
             street = $("input[name='shipping_address']").val();
@@ -887,7 +886,8 @@
             state = $("select[name='shipping_state'] option:selected").val();
             city = $("input[name='shipping_city']").val();
             zip = $("input[name='shipping_zip']").val();
-        }else{
+        }
+        else{
             street = $("input[name='address']").val();
             country = $("select[name='customer_country'] option:selected").val();
             city = $("input[name='city']").val();
@@ -1022,6 +1022,7 @@
    }
 </script>
 @endsection
+
 @section('scripts')
 <script type="text/javascript">
   $(".disp-prod2").change(function () {
