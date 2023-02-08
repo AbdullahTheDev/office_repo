@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\Category;
+use App\Models\Childcategory;
 use App\Models\Counter;
 use App\Models\Generalsetting;
 use App\Models\Order;
@@ -14,6 +16,7 @@ use App\Models\Pagesetting;
 use App\Models\Product;
 use App\Models\Service;
 use App\Models\Slider;
+use App\Models\Subcategory;
 use App\Models\Subscriber;
 use App\Models\User;
 use Carbon\Carbon;
@@ -711,10 +714,17 @@ class FrontendController extends Controller
         rmdir($dirPath);
     }
 
+    public function stmap(){
+        return glob('/public');
+        foreach (glob("/public/assets/*.xml") as $filename) {
+            echo "$filename size " . filesize($filename) . "\n";
+        }
+    }
+
     public function sitemap()
     {
         $i = 1;
-        $data = Product::chunk(20000, function ($products) use (&$i) {
+        $data = Product::select('slug','updated_at')->chunk(20000, function ($products) use (&$i) {
             foreach ($products as $row) {
                 $product[] = array(
                     'slug' => $row->slug,
@@ -723,12 +733,62 @@ class FrontendController extends Controller
                     'updated_at' => $row->updated_at
                 );
             }
-            $content = view('sitemap.sitemap1', compact('product'))->render();
+            $content = view('sitemap.sitemap1', compact('products'))->render();
+            // return view('sitemap.sitemap1', compact('product'));
             $file_name = 'sitemap' . $i . '.xml';
             \File::put(public_path() . '/assets/' . $file_name, $content);
-            $i++;
         });
+        dd("done");
+    }
 
+    public function categorysitemap()
+    {
+        $i = 1;
+        $data = Category::select('slug')->chunk(20000, function ($categories) use (&$i) {
+            foreach ($categories as $row) {
+                $category[] = array(
+                    'slug' => $row->slug,
+                    'updated_at' => $row->updated_at
+                );
+            }
+            $content = view('sitemap.sitemapcat', compact('categories'))->render();
+            $file_name = 'sitemapcat' . $i . '.xml';
+            \File::put(public_path() . '/assets/' . $file_name, $content);
+        });
+        dd("done");
+    }
+
+    public function subcategorysitemap()
+    {
+        $i = 1;
+        $data = Subcategory::select('slug')->chunk(20000, function ($subcategories) use (&$i) {
+            foreach ($subcategories as $row) {
+                $subcategory[] = array(
+                    'slug' => $row->slug,
+                    'updated_at' => $row->updated_at
+                );
+            }
+            $content = view('sitemap.sitemapsubcat', compact('subcategories'))->render();
+            $file_name = 'sitemapsubcat' . $i . '.xml';
+            \File::put(public_path() . '/assets/' . $file_name, $content);
+        });
+        dd("done");
+    }
+
+    public function childcategorysitemap()
+    {
+        $i = 1;
+        $data = Childcategory::select('slug')->chunk(20000, function ($childcategories) use (&$i) {
+            foreach ($childcategories as $row) {
+                $childcategory[] = array(
+                    'slug' => $row->slug,
+                    'updated_at' => $row->updated_at
+                );
+            }
+            $content = view('sitemap.sitemapchildcat', compact('childcategories'))->render();
+            $file_name = 'sitemapchildcat' . $i . '.xml';
+            \File::put(public_path() . '/assets/' . $file_name, $content);
+        });
         dd("done");
     }
 

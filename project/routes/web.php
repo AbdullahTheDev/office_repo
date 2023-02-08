@@ -1441,7 +1441,11 @@ Route::group(['middleware' => 'maintenance'], function () {
   // PAGE SECTION ENDS
 
   //SITEMAP SECTION
+  Route::get('sitemap/stmap', 'Front\FrontendController@stmap')->name('front.stmap');
   Route::get('sitemap/sitemap.xml', 'Front\FrontendController@sitemap')->name('front.sitemap');
+  Route::get('sitemap/sitemapcat.xml', 'Front\FrontendController@categorysitemap')->name('front.categorysitemap');
+  Route::get('sitemap/sitemapsubcat.xml', 'Front\FrontendController@subcategorysitemap')->name('front.subcategorysitemap');
+  Route::get('sitemap/sitemapchildcat.xml', 'Front\FrontendController@childcategorysitemap')->name('front.childcategorysitemap');
   //SITEMAP SECTION ENDS
 
   // ************************************ FRONT SECTION ENDS**********************************************
