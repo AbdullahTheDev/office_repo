@@ -1503,10 +1503,16 @@ $(function ($) {
         }, 2000);
     });
     $(document).ready(function(){
+      setTimeout(() => {
+        $('#top_middle_header').css('display', 'flex');
+       }, 1000);
+    });
+    $(document).ready(function(){
       setTimeout(() => { 
         $('#include_whichlist').css('display', 'flex');
         $('#searchForm').css('display', 'flex');
         $('#include_cart').css('display', 'block');
+        $('#service_container').css('display', 'block');
       }, 2000);
     });
     //**************************** CUSTOM JS SECTION ENDS****************************************

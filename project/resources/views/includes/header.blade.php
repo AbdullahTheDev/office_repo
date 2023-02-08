@@ -1,5 +1,5 @@
  <header class="header header-border">
-    <div class="header-top d-none d-md-flex">
+    <div style="display: none !important;" id="top_middle_header" class="header-top d-none d-md-flex">
         <div class="container" style="padding: 4px 4px; position: relative;">
             <div class="header-right">
                 <p class="" style="position: absolute; top: 2px; font-size: 1.4rem;">{!! $gs->headr !!}</p>

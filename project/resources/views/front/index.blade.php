@@ -22,7 +22,6 @@
       'dots': false,
       'loop': true,
       'items': 1,
-      'height': 100%,
       'autoplay':true,
         'autoplayTimeout':2200,
         'autoplaySpeed': 2200,
@@ -37,7 +36,7 @@
       }">
         @if($ps->slider == 1)
         @foreach($sliders as $data)
-        <div class="banner banner-fixed intro-slide intro-slide1" style="background-color: #000000;">
+        <div class="banner banner-fixed intro-slide intro-slide1" style="background-color: #000000; height: min-content !important;">
             <div class="container">
                 <figure class="slide-image skrollable custom_added_carousel">
                     <picture>
@@ -81,7 +80,7 @@
     </div>
     <!-- End of .owl-carousel -->
 </section>
-<div class="container">
+<div class="container" style="display: none;" id="service_container">
     <div class="owl-carousel owl-theme row cols-md-4 cols-sm-3 cols-1 br-sm mt-6 mb-6" data-owl-options="{
       'nav': false,
       'dots': false,
@@ -148,7 +147,7 @@
             @foreach($categories->where('is_featured','=',1) as $cat)
             <div class="category category-classic category-absolute overlay-zoom radius-10">
                 <a href="{{ route('front.category',$cat->slug) }}" class="category-media">
-                    <img loading="lazy" src="{{ asset('assets/images/categories') }}/{{ $cat->image }}" alt="{{ $cat->name }}">
+                    <img style="display: none;" src="" data-load="{{ asset('assets/images/categories') }}/{{ $cat->image }}" alt="{{ $cat->name }}">
                 </a>
                 <div class="category-content">
                     <h4 class="category-name">{{ $cat->name }}</h4>
