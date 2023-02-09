@@ -518,6 +518,22 @@
                                 {{-- <input type="radio" name="" id=""> --}}
                             </div>
                             </div>
+                            @if($gs->cod_check == 1)
+                              @if($digital == 0)
+                              <div class="card">
+                                 <div class="card-header">
+                                    <input type="radio" required name="pay" class="payment" data-val="" data-show="no" data-form="{{route('cash.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'cod','slug2' => 0]) }}" id="v-pills-tab3-tab" data-toggle="pill" href="#v-pills-tab3" role="tab" aria-controls="v-pills-tab3" aria-selected="false"> {{ $langg->lang762 }}
+                                    @if($gs->cod_text != null)
+                                    <small>
+                                       {{ $gs->cod_text }}
+                                    </small>
+                                    @endif
+                                 </div>
+                                 <div id="v-pills-tab3" class="card-body payarea">
+                                 </div>
+                              </div>
+                              @endif
+                              @endif
                     </div>
                     <div class="billing_address">
                         <h5>Billing Address</h5>

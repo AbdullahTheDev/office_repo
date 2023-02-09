@@ -40,7 +40,6 @@
             <div class="container">
                 <figure class="slide-image skrollable custom_added_carousel">
                     <picture>
-                        <source media="(min-width:950px)" srcset="{{ asset('assets/images/sliders') }}/{{ $data->mob_img }}" alt="Banner" data-bottom-top="transform: translateY(10vh);" data-top-bottom="transform: translateY(-10vh);" width="474" height="397">
                             <img style="display: none;" src="" data-load="{{ asset('assets/images/sliders') }}/{{ $data->photo }}" alt="Banner" data-bottom-top="transform: translateY(10vh);" data-top-bottom="transform: translateY(-10vh);" width="474" height="397">
                         </picture>
                 </figure>

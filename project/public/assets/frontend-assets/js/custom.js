@@ -1496,10 +1496,13 @@ $(function ($) {
 
     // MESSAGE FORM ENDS
 
+    // Speed effective JS
+
     $('img[data-load]').each(function(){
         setTimeout(() => { 
           $(this).css('display', 'block');  
           $(this).attr('src', $(this).data('load'));
+          $('.owl-dot').attr("aria-label", "Brand-btn");
         }, 2000);
     });
     $(document).ready(function(){

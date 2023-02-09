@@ -111,7 +111,7 @@
 														'1200': {
 															'items': 5
 														}
-													}
+														}
 												}">
 											@foreach($showBrands as $brand)
 													<div class="brand-col" style="margin-top: 10px;">

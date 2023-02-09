@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        <url>
+            <loc>https://dealsondrives.com/</loc>
+            <lastmod>2023-01-09T13:54:16Z</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>
+        </url>
+
+        <url>
+            <loc>https://dealsondrives.com/about-us</loc>
+            <lastmod>2023-01-09T13:54:16Z</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>
+        </url>
+
+        <url>
+            <loc>https://dealsondrives.com/category</loc>
+            <lastmod>2023-01-09T13:54:16Z</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>
+        </url>
+
+        <url>
+            <loc>https://dealsondrives.com/categories</loc>
+            <lastmod>2023-01-09T13:54:16Z</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>
+        </url>
+
+
+        <url>
+            <loc>https://dealsondrives.com/contact</loc>
+            <lastmod>2023-01-09T13:54:16Z</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>
+        </url>
+
+
+        <url>
+            <loc>https://dealsondrives.com/faq</loc>
+            <lastmod>2023-01-09T13:54:16Z</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>
+        </url>
+
+
+        <url>
+            <loc>https://dealsondrives.com/privacy-policy</loc>
+            <lastmod>2023-01-09T13:54:16Z</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>
+        </url>
+
+
+        <url>
+            <loc>https://dealsondrives.com/products-return-and-exchange-policy</loc>
+            <lastmod>2023-01-09T13:54:16Z</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>
+        </url>
+
+
+        <url>
+            <loc>https://dealsondrives.com/shipping</loc>
+            <lastmod>2023-01-09T13:54:16Z</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>
+        </url>
+
+
+        <url>
+            <loc>https://dealsondrives.com/terms-and-conditions</loc>
+            <lastmod>2023-01-09T13:54:16Z</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>
+        </url>
+
+
+        <url>
+            <loc>https://dealsondrives.com/user/forgot</loc>
+            <lastmod>2023-01-09T13:54:16Z</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>
+        </url>
+
+        <url>
+            <loc>https://dealsondrives.com/user/guest</loc>
+            <lastmod>2023-01-09T13:54:16Z</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>
+        </url>
+
+        <url>
+            <loc>https://dealsondrives.com/user/login</loc>
+            <lastmod>2023-01-09T13:54:16Z</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>
+        </url>
+
+
+    </urlset>

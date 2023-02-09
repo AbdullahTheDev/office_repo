@@ -2,165 +2,64 @@
 
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-   <sitemap>
-
-        <loc>https://dealsondrives.com/</loc>
-
-        <lastmod></lastmod>
-
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-
-   </sitemap>
-
-    <sitemap>
-
-        <loc>https://dealsondrives.com/about-us</loc>
-
-        <lastmod></lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </sitemap>
-
-    <sitemap>
-
-        <loc>https://dealsondrives.com/carts</loc>
-
-        <lastmod></lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </sitemap>
-
-    <sitemap>
-
-        <loc>https://dealsondrives.com/categories</loc>
-
-        <lastmod></lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </sitemap>
-
-    <sitemap>
-
-        <loc>https://dealsondrives.com/category</loc>
-
-        <lastmod></lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </sitemap>
-
         <sitemap>
-
-            <loc>https://dealsondrives.com/assets/sitemapcat1.xml</loc>
-
-            <lastmod></lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>1.0</priority>
+            <loc>https://dealsondrives.com/assets/sitemappages.xml</loc>
+            <lastmod>2023-01-19T13:14:18Z</lastmod>            
         </sitemap>
 
         <sitemap>
-
-            <loc>https://dealsondrives.com/assets/sitemapchildcat1.xml</loc>
-
-            <lastmod></lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>1.0</priority>
+            <loc>https://dealsondrives.com/assets/sitemapcat1.xml</loc>
+            <lastmod>2023-01-19T13:14:18Z</lastmod>            
         </sitemap>
 
         <sitemap>
             <loc>https://dealsondrives.com/assets/sitemapsub1.xml</loc>
-            <lastmod></lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>1.0</priority>
+            <lastmod>2023-01-19T13:14:18Z</lastmod>
         </sitemap>
 
         <sitemap>
+            <loc>https://dealsondrives.com/assets/sitemapchildcat1.xml</loc>
+            <lastmod>2023-01-19T13:14:18Z</lastmod>
+        </sitemap>
 
+        <sitemap>
             <loc>https://dealsondrives.com/assets/sitemap1.xml</loc>
-
-            <lastmod></lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>1.0</priority>
+            <lastmod>2023-01-19T13:14:18Z</lastmod>            
         </sitemap>
 
         <sitemap>
-
-            <loc>https://dealsondrives.com/contact</loc>
-
-            <lastmod></lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>1.0</priority>
+            <loc>https://dealsondrives.com/assets/sitemap2.xml</loc>
+            <lastmod>2023-01-19T13:14:18Z</lastmod>            
         </sitemap>
 
         <sitemap>
-
-            <loc>https://dealsondrives.com/faq</loc>
-
-            <lastmod></lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>1.0</priority>
+            <loc>https://dealsondrives.com/assets/sitemap3.xml</loc>
+            <lastmod>2023-01-19T13:14:18Z</lastmod>            
         </sitemap>
 
         <sitemap>
-
-            <loc>https://dealsondrives.com/privacy-policy</loc>
-
-            <lastmod></lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>1.0</priority>
+            <loc>https://dealsondrives.com/assets/sitemap4.xml</loc>
+            <lastmod>2023-01-19T13:14:18Z</lastmod>            
         </sitemap>
 
         <sitemap>
-
-            <loc>https://dealsondrives.com/products-return-and-exchange-policy</loc>
-
-            <lastmod></lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>1.0</priority>
+            <loc>https://dealsondrives.com/assets/sitemap5.xml</loc>
+            <lastmod>2023-01-19T13:14:18Z</lastmod>            
         </sitemap>
 
         <sitemap>
-
-            <loc>https://dealsondrives.com/shipping</loc>
-
-            <lastmod></lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>1.0</priority>
+            <loc>https://dealsondrives.com/assets/sitemap6.xml</loc>
+            <lastmod>2023-01-19T13:14:18Z</lastmod>            
         </sitemap>
 
         <sitemap>
-
-            <loc>https://dealsondrives.com/terms-and-conditions</loc>
-
-            <lastmod></lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>1.0</priority>
+            <loc>https://dealsondrives.com/assets/sitemap7.xml</loc>
+            <lastmod>2023-01-19T13:14:18Z</lastmod>            
         </sitemap>
 
         <sitemap>
-
-            <loc>https://dealsondrives.com/user/forgot</loc>
-
-            <lastmod></lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>1.0</priority>
+            <loc>https://dealsondrives.com/assets/sitemap8.xml</loc>
+            <lastmod>2023-01-19T13:14:18Z</lastmod>            
         </sitemap>
 
-        <sitemap>
-
-            <loc>https://dealsondrives.com/user/guest</loc>
-
-            <lastmod></lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>1.0</priority>
-        </sitemap>
-
-        <sitemap>
-
-            <loc>https://dealsondrives.com/user/login</loc>
-
-            <lastmod></lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>1.0</priority>
-        </sitemap>
 </sitemapindex>
