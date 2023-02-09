@@ -670,7 +670,7 @@
                                             {{-- @php
                                                 $tax = $gs->tax;
                                                 if (Session::has('currency'))
-                                                {
+                                                {$tax
                                                     $curr = \App\Models\Currency::find(\Session::get('currency'));
                                                 }
                                                 else
