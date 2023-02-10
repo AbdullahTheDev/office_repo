@@ -507,6 +507,8 @@ class Product extends Model
     public function getPhotoAttribute($value)
     {
          if ($value) {
+                // $contains =  str($value, '4');
+                // return $contains;
              $extension = str_replace($value, '.', '.webp');
              $normal = Str::before($value, '.');
              $combine = $normal.$extension;
