@@ -1,20 +1,26 @@
+
+
+
+
+
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
-<!--[if gte mso 9]>
-<xml>
-  <o:OfficeDocumentSettings>
-    <o:AllowPNG/>
-    <o:PixelsPerInch>96</o:PixelsPerInch>
-  </o:OfficeDocumentSettings>
-</xml>
+	<!--[if mso]> 
+<noscript> 
+<xml> 
+<o:OfficeDocumentSettings> 
+<o:PixelsPerInch>96</o:PixelsPerInch> 
+</o:OfficeDocumentSettings> 
+</xml> 
+</noscript> 
 <![endif]-->
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="x-apple-disable-message-reformatting">
-  <!--[if !mso]><!--><meta http-equiv="X-UA-Compatible" content="IE=edge"><!--<![endif]-->
-    <title>Email</title>6
-    <style  type="text/css">
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="x-apple-disable-message-reformatting">
+    <title>Email</title>
+    <style type="text/css">
         *{
             margin: 0;
             padding: 0;
@@ -42,6 +48,8 @@
             -webkit-flex-direction: column;
             justify-content: center;
             text-align: center;
+            width: min-content;
+            margin: auto;
         }
         header .header-div picture img{
             aspect-ratio: 2/1;;
@@ -65,17 +73,28 @@
         /* Header Section Ends  */
         /* Main Content  */
         .container{
-            width: 50%;
+            width: 650px;
             margin: auto;
         }
         @media screen and (max-width: 1000px){
             .container{
-                width: 70%;
+                width: 700px;
             }
         }
         @media screen and (max-width: 800px){
             .container{
-                width: 90%;
+                width: 550px;
+            }
+        }
+        @media screen and (max-width: 550px){
+            .container{
+                width: 350px;
+            }
+            .img-sec img{
+                width: 160px !important;
+            }
+            .header-div img{
+                width: 350px !important;
             }
         }
         .container .products .product{
@@ -103,9 +122,6 @@
             width: 100%;
             height: 100%;
             min-height: 220px;
-            display:-webkit-flex;
-            display:-ms-flexbox;
-            display:flex;
             -webkit-flex-direction: column;
             -webkit-justify-content: space-around;
         }
@@ -117,10 +133,10 @@
             font-size: 1.2em;
         }
         .container .products .product .detail-sec .price{
-            display:-webkit-flex;
+            /* display:-webkit-flex;
             display:-ms-flexbox;
             display:flex;
-            -webkit-justify-content: space-between;
+            -webkit-justify-content: space-between; */
             padding: 10px 20px 10px 20px;
             background-color: #c12228;
             mix-blend-mode: lighten;
@@ -131,6 +147,11 @@
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             font-weight: 400;
             font-size: 1em;
+			color: #000;
+        }
+        .container .products .product .detail-sec .price .span{
+            text-align: end;
+			color: #000;
         }
         .container .tax-shipping-details{
             width: 100%;
@@ -163,15 +184,16 @@
         .final-price{
             width: 100%;
             padding: 10px 0px;
-            display:-webkit-flex;
-            display:-ms-flexbox;
-            display:flex;
-            justify-content: space-around;
-            -webkit-justify-content: space-around;
             border: 2px solid #c12228;
             margin: 20px 0px;
             background-color: #c7aeaf25;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .final-price tr{
+            width: 100%;
+        }
+        .final-price tr th{
+            text-align: center;
         }
         .container .all-details{
             padding-bottom: 30px;
@@ -255,13 +277,25 @@
 </head>
 <body>
     <header>
-        <div class="header-div">
-            <picture>
-                <img width="400" height="100" src="{{ asset('assets/images/'.$gs->logo) }}" alt="">
-            </picture>
-            <h1>Order Number</h1>
-            <span>#{{ $order->order_number }}</span>
-        </div>
+        <table class="header-div">
+            <tr>
+                <th>
+                    <picture>
+                        <img width="400" height="100" src="{{ asset('assets/images/'.$gs->logo) }}" alt="">
+                    </picture>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <h1>Order Number</h1>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <span>#{{ $order->order_number }}</span>
+                </th>
+            </tr>
+        </table>
     </header>
     <div>
         <div class="container">
@@ -271,33 +305,46 @@
                     $tax = 0;
                 @endphp
                 @foreach($cart->items as $product)
-                    <div class="product">
-                        <div class="img-sec">
-                            <img width="220" height="220" src="{{$product['item']['photo']}}" alt="Product">
-                        </div>
-                        <div class="detail-sec">
-                            <h4>
-                                @if($product['item']['user_id'] != 0)
-                                                                @php
-                                                                $user = App\Models\User::find($product['item']['user_id']);
-                                                                @endphp
-
-                                                                @if(isset($user))
-                                                                    {{ $product['item']['name'] }}
-                                                                @else
-                                                                    {{ $product['item']['name'] }}
-                                                                @endif
-
-                                                                @else
-                                                                    {{ $product['item']['name'] }}
-                                                                @endif    
-                            </h4>
-                            <div class="price">
-                                <h6>Price</h6>
-                                <span><strong>{{ App\Models\Currency::where('sign',$order->currency_sign)->first()->name }}{{ round($product['item']['price'] * $order->currency_value , 2) }}</strong></span>
-                            </div>
-                        </div>
-                    </div>
+                    <table class="product">
+                        <tr>
+                            <td>
+                                <div class="img-sec">
+                                    <img width="220" height="220" src="{{$product['item']['photo']}}" alt="Product">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="detail-sec">
+                                    <h4>
+                                        @if($product['item']['user_id'] != 0)
+                                            @php
+                                                $user = App\Models\User::find($product['item']['user_id']);
+                                            @endphp
+                                            @if(isset($user))
+                                                {{ $product['item']['name'] }}
+                                            @else
+                                                {{ $product['item']['name'] }}
+                                            @endif
+                                        @else
+                                            {{ $product['item']['name'] }}
+                                        @endif    
+                                    </h4>
+                                    <table class="price">
+                                        <tr>
+                                            <td>
+                                                <h6>Price</h6>
+                                            </td>
+                                            <td class="span">
+                                                <span><strong>{{ App\Models\Currency::where('sign',$order->currency_sign)->first()->name }}{{ round($product['item']['price'] * $order->currency_value , 2) }}</strong></span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    @php
+                        $subtotal += round($product['price'] * $order->currency_value, 2);
+                    @endphp
                 @endforeach
             </div>
             <div class="tax-shipping-details">
@@ -322,15 +369,21 @@
                     </tbody>
                 </table>
             </div>
-            <div class="final-price">
-                <h4>Total Price</h4>
-                <h4>{{ App\Models\Currency::where('sign',$order->currency_sign)->first()->name }}{{ round($order->pay_amount * $order->currency_value , 2) }}</h4>
-            </div>
+            <table class="final-price">
+                <tr>
+                    <th>
+                        <h4>Total Price</h4>
+                    </th>
+                    <th>
+                        <h4>{{ App\Models\Currency::where('sign',$order->currency_sign)->first()->name }}{{ round($order->pay_amount * $order->currency_value , 2) }}</h4>
+                    </th>
+                </tr>
+            </table>
             <hr>
             <div class="all-details">
                 <div class="shipping-sec">
                     <h2>Shipping Details</h2>
-                    <table>
+                    <table role="presentation">
                         <tbody>
                             <tr>
                                 <th>Name</th>
@@ -365,7 +418,7 @@
                 </div>
                 <div class="billing-sec">
                     <h2>Billing Address</h2>
-                    <table>
+                    <table role="presentation">
                         <tbody>
                             <tr>
                                 <th>Name</th>
