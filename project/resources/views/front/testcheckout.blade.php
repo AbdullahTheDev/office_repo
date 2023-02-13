@@ -1016,7 +1016,11 @@
             }, delay );
         });
     
-    
+        var getEmailStarting = $('#check_name_email').val();
+        if(getEmailStarting != null || "")
+        {
+            applyTax($(this));
+        }
         function applyTax(_this){
             var getEmailValue = $('#check_name_email').val().split('@').pop();
             // var afterAt = getEmailValue.split('@').pop();
