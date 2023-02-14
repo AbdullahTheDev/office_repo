@@ -131,6 +131,7 @@ class StripeController extends Controller
                 if (!isset($token['id'])) {
                     return back()->with('error','Token Problem With Your Token.');
                 }
+
                 //'amount' => ($item_amount * 100) + ($shipping_service[1] * 100),
                 //    $amount = number_format(($amount*100) , 0, '', '');
                 //   'amount' => ($item_amount * 100),
@@ -225,7 +226,7 @@ class StripeController extends Controller
                     $order['currency_value'] = $curr->value;
                     $order['shipping_cost'] = $request->shipping_cost;
                     $order['packing_cost'] = $request->packing_cost;
-                    $order['tax'] = $request->tax;
+                    $order['tax'] = $request->sub_tax;
                     $order['dp'] = $request->dp;
                     $order['vendor_shipping_id'] = $request->vendor_shipping_id;
                     $order['vendor_packing_id'] = $request->vendor_packing_id;

@@ -789,7 +789,7 @@ class CheckoutController extends Controller
         $order['customer_name'] = $request->name;
         $order['shipping_cost'] = $request->shipping_cost;
         $order['packing_cost'] = $request->packing_cost;
-        $order['tax'] = $request->tax;
+        $order['tax'] = $request->sub_tax;
         $order['customer_phone'] = $request->phone;
         $order['order_number'] = $getOrder_number;
         $order['increment_number'] = $getIncrement_number;

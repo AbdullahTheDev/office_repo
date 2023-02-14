@@ -1036,7 +1036,7 @@
                     subtotal = parseFloat(subtotal) + parseFloat(tax);
 
                     $('input[name="sub_tax"]').val(tax);
-                    $('#taxtCalculate').val('$'+tax);
+                    $('#taxtCalculate').val(tax);
                     $('#total-cost').text('$'+parseFloat(subtotal).toFixed(2));
                     $('#grandtotal').val(subtotal);
                     $('#tgrandtotal').val(subtotal);
@@ -1050,7 +1050,7 @@
                     $('input[name="sub_tax"]').val(tax);
                     $('.cart-tax').remove();
 
-                    $('#taxtCalculate').val('$'+tax);
+                    $('#taxtCalculate').val(tax);
                     
                     $('#total-cost').text('$'+parseFloat(subtotal).toFixed(2));
                     $('#grandtotal').val(subtotal);
@@ -1063,7 +1063,7 @@
                     subtotal = parseFloat(subtotal) + parseFloat(tax);
 
                     $('input[name="sub_tax"]').val(tax);
-                    $('#taxtCalculate').val('$'+tax);
+                    $('#taxtCalculate').val(tax);
                     $('#total-cost').text('$'+parseFloat(subtotal).toFixed(2));
                     $('#grandtotal').val(subtotal);
                     $('#tgrandtotal').val(subtotal);
@@ -1075,7 +1075,7 @@
                     // subtotal = parseFloat(subtotal).toFixed(2);
                     // alert(subtotal);
                     $('input[name="sub_tax"]').val(tax);
-                    $('#taxtCalculate').val('$'+tax);
+                    $('#taxtCalculate').val(tax);
                     $('#total-cost').text('$'+subtotal);
                     // $('#total-cost').text('$'+parseFloat(subtotal).toFixed(2));
                     $('#grandtotal').val(subtotal);
