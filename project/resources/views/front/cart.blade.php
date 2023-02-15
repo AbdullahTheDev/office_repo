@@ -85,13 +85,11 @@
                                     <i class="w-icon-long-arrow-right"></i>
                                 </a>
                             </div>
-                            
-                           
                         </div>
                     </div>
                 </div>
             </div>
-                <!-- End of PageContent -->
+            <!-- End of PageContent -->
 <!-- #content -->
 @endsection
 @section('scripts')

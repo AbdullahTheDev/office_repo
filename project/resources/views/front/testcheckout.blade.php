@@ -842,27 +842,27 @@
     @endphp
 
     <script>
-    //    let productArr = <?php echo json_encode($products); ?>;
-    //  //  console.log(productArr);
+       let productArr = <?php echo json_encode($products); ?>;
+     //  console.log(productArr);
     
-        // for(const key in productArr){
-        //     const element = productArr[key];
-        //     gtag("event", "begin_checkout", {
-        //         transaction_id: "T_12345_1",
-        //         value: 25.42,
-        //         tax: {!!$gs->tax!!},
-        //         currency: "USD",
-        //         coupon: {!!$coupon!!},
-        //         items: [
-        //             {
-        //             id: element.item.id,
-        //             name: element.item.name,
-        //             slug: element.item.slug,
-        //             price: element.item.price,
-        //             quantity: element.item.qty
-        //         }]
-        //     });
-        // }
+        for(const key in productArr){
+            const element = productArr[key];
+            gtag("event", "begin_checkout", {
+                transaction_id: "T_12345_1",
+                value: element.item.price,
+                tax: {!!$gs->tax!!},
+                currency: "USD",
+                coupon: {!!$coupon!!},
+                items: [
+                    {
+                    id: element.item.id,
+                    name: element.item.name,
+                    slug: element.item.slug,
+                    price: element.item.price,
+                    quantity: element.item.qty
+                }]
+            });
+        }
 
         // console.log(items);
     </script>
