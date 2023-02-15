@@ -4,345 +4,241 @@
 <link rel="canonical" href="{{ url()->current() }}" />
 @endsection
 @section('content')
-<div id="content" class="site-content" tabindex="-1">
-  <form id="cat-prods-form" action="" method="GET">
-    <input type="hidden" value="{{ request()->layout ?? 'grid' }}" name="layout" id="pge_layout">
-    <input type="hidden" value="{{ request()->min ?? 0 }}" name="min" id="amt_min">
-    <input type="hidden" value="{{ request()->max ?? 10000 }}" name="max" id="amt_max">
-    
-    <div class="col-full">
-      <div class="row">
-        <nav class="woocommerce-breadcrumb">
-          <a href="index.php">Home</a>
-          <span class="delimiter"><i class="tm tm-breadcrumbs-arrow-right"></i></span>Shop
-        </nav>
-        <!-- .woocommerce-breadcrumb -->
-        <div id="primary" class="content-area">
-          <main id="main" class="site-main">
-            <div class="shop-archive-header" style="display: none;">
-              <div class="jumbotron">
-                <div class="jumbotron-img">
-                  <!-- <img width="416" height="283" alt="" src="assets/images/products/jumbo.jpg" class="jumbo-image alignright"> -->
-                </div>
-                <div class="jumbotron-caption">
-                  <h3 class="jumbo-title"></h3>
-                  <p class="jumbo-subtitle">Nullam dignissim elit ut urna rutrum, a fermentum mi auctor. Mauris efficitur magna orci, et dignissim lacus scelerisque sit amet. Proin malesuada tincidunt nisl ac commodo. Vivamus eleifend porttitor ex sit amet suscipit. Vestibulum at ullamcorper lacus, vel facilisis arcu. Aliquam erat volutpat.
-                    <a href="https://www.google.com/search?q=" target="_blank">read more <i class="tm tm-long-arrow-right"></i></a>
-                  </p>
-                </div>
-                <!-- .jumbotron-caption -->
-              </div>
-              <!-- .jumbotron -->
-            </div>
-            <!-- .shop-archive-header -->
-            <div class="shop-control-bar">
-              <div class="handheld-sidebar-toggle">
-                <button type="button" class="btn sidebar-toggler">
-                <i class="fa fa-sliders"></i><span>Filters</span>
-                </button>
-              </div>
-              <!-- .handheld-sidebar-toggle -->
-              <h1 class="woocommerce-products-header__title page-title">Shop</h1>
-              <ul role="tablist" class="shop-view-switcher nav nav-tabs mr-5">
-                <li class="nav-item">
-                  <a href="#" title="Grid View" class="nav-link layout-chng {{ request()->layout == '' || request()->layout == 'grid' ? 'active' : '' }}" data-layout="grid">
-                  <i class="tm tm-grid-small"></i>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" title="Grid Extended View" class="nav-link layout-chng {{ request()->layout == 'extended' ? 'active' : '' }}" data-layout="extended">
-                  <i class="tm tm-grid"></i>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" title="List View Large" class="nav-link layout-chng {{ request()->layout == 'list' ? 'active' : '' }}" data-layout="list">
-                  <i class="tm tm-listing-large"></i>
-                  </a>
-                </li>
-              </ul>
-              <!-- .shop-view-switcher -->
-              <div class="row">
-                  <div class="col-lg-12">
-                    <select class="techmarket-wc-wppp-select c-select mr-3 border-0 disp-prod1" onchange="this.form.submit()" name="display_prods">
-                      <option value="50" {{ request()->display_prods == "50" ? 'selected' : '' }}>Show 50</option>
-                      <option value="100" {{ request()->display_prods == "100" ? 'selected' : '' }}>Show 100</option>
-                      <option value="-1" {{ request()->display_prods == "-1" ? 'selected' : '' }}>Show All</option>
-                    </select>
-                  <!-- .form-techmarket-wc-ppp -->
-                    <select class="orderby p-2 ml-1" name="sort" onchange="this.form.submit()">
-                      <option value="date_desc" {{ request()->sort == "date_desc" ? 'selected' : '' }}>Sort by newness</option>
-                      <option value="date_asc" {{ request()->sort == "date_asc" ? 'selected' : '' }}>Sort by oldest</option>
-                      <option value="price_asc" {{ request()->sort == "price_asc" ? 'selected' : '' }}>Sort by price: low to high</option>
-                      <option value="price_desc" {{ request()->sort == "price_desc" ? 'selected' : '' }}>Sort by price: high to low</option>
-                    </select>
-                    </div>
-                </div>
-              <!-- .woocommerce-ordering -->
-              <nav class="techmarket-advanced-pagination ml-1">
-                  <input name="page" type="number" value="{{ $prods->currentPage() }}" class="form-control" step="1" data-max="{{ $prods->lastPage() }}" max="{{ $prods->lastPage() }}" min="1" size="2" id="goto-page">
-                &nbsp;of&nbsp;{{ $prods->lastPage() }}<a href="#" class="next page-numbers">→</a>
-              </nav>
-              <!-- .techmarket-advanced-pagination -->
-            </div>
-            <!-- .shop-control-bar -->
-            <div class="tab-content">
-                <p class="col" style="font-size:18px;">If you don't see an item that you are looking for, feel free to <strong><a href="{{url('contact')}}">contact us</a></strong>. We have access to over 1 million items in stock and can help locate your required item. <br> <br>   <strong>Phone:</strong>  <a href="tel:+1 469-459-9688">+923368473429</a> <br>  <strong>Email: </strong><a href="mailto:support@dealsondrives.com ">support@dealsondrives.com </a></p>
-              <div id="grid" class="tab-pane {{ request()->layout == '' || request()->layout == 'grid' ? 'active' : '' }}" role="tabpanel">
-                <div class="woocommerce columns-5">
-                  <div class="products">
-                    @forelse($prods as $prod)
-                      <div class="product">
-                        @if(Auth::guard('web')->check())
-                        <div class="yith-wcwl-add-to-wishlist">
-                          <a data-href="{{ route('user-wishlist-add',$prod->id) }}" rel="nofollow" class="add-to-wish add_to_wishlist"> Add to Wishlist</a>
-                        </div>
-                        @endif
-                        <a href="{{ route('front.product', $prod->slug) }}" class="woocommerce-LoopProduct-link">
-                          <img src="{{ $prod->photo }}" width="224" height="197" class="wp-post-image" alt="">
-                          <span class="price">
-                          <span class="amount">{{ $prod->showPrice() }} </span>
-                          <del><span class="amount"> {{ $prod->showPreviousPrice() }}</span></del>
-                          </span><!-- /.price -->
-                          <h2 class="woocommerce-loop-product__title">
-                            {{ $prod->showName() }}
-                          </h2>
-                        </a>
-                        <div class="hover-area">
-                          @if($prod->stock === 0)
-                          <span class="add-to-cart-btn cart-out-of-stock">
-                            <i class="icofont-close-circled"></i> {{ $langg->lang78 }}
-                          </span>
-                          @else
-                          <span class="button add_to_cart_button add-to-cart add-to-cart-btn" data-href="{{ route('product.cart.add',$prod->id) }}" rel="nofollow">Add to cart</span>
-                          @endif
-                          <span class="add-to-compare add-to-compare-link" data-href="{{ route('product.compare.add',$prod->id) }}">Add to compare</span>
-                        </div>
-                      </div>
-                      <!-- /.product-outer -->
-                      @empty
-                        <p class="col">No products found in your selected filters!</p>
-                      @endforelse
-                  </div>
-                  <!-- .products -->
-                </div>
-                <!-- .woocommerce -->
-              </div>
-              <!-- .tab-pane -->
-              <div id="grid-extended" class="tab-pane {{ request()->layout == 'extended' ? 'active' : '' }}" role="tabpanel">
-                <div class="woocommerce columns-3">
-                  <div class="products">
-                    @forelse($prods as $prod)
-                    <div class="product first">
-                      @if(Auth::guard('web')->check())
-                      <div class="yith-wcwl-add-to-wishlist">
-                        <a data-href="{{ route('user-wishlist-add',$prod->id) }}" rel="nofollow" class="add-to-wish add_to_wishlist"> Add to Wishlist</a>
-                      </div>
-                      @endif
-                      <!-- .yith-wcwl-add-to-wishlist -->
-                      <a class="woocommerce-LoopProduct-link woocommerce-loop-product__link" href="{{ route('front.product', $prod->slug) }}">
-                        <img width="224" height="197" alt="" class="attachment-shop_catalog size-shop_catalog wp-post-image" src="{{ $prod->photo }}">
-                        <span class="price">
-                          <span class="amount">{{ $prod->showPrice() }} </span>
-                          <del><span class="amount"> {{ $prod->showPreviousPrice() }}</span></del>
-                        </span>
-                        <h2 class="woocommerce-loop-product__title">{{ $prod->showName() }}</h2>
-                      </a>
-                      <!-- .woocommerce-LoopProduct-link -->
-                      <div class="techmarket-product-rating">
-                        <div title="Rated 0 out of 5" class="star-rating"><span style="width:{{App\Models\Rating::ratings($prod->id)}}%"><strong class="rating">{{App\Models\Rating::rating($prod->id)}}</strong> out of 5</span>
-                        </div>
-                        <span class="review-count">({{App\Models\Rating::count($prod->id)}})</span>
-                      </div>
-                      <!-- .techmarket-product-rating -->
-                      <span class="sku_wrapper">SKU: <span class="sku">{{ $prod->sku }}</span></span>
-                      <div class="woocommerce-product-details__short-description">
-                        <ul>
-                          <li>Condition : {{ $prod->condition == 0 ? 'New' : ($prod->condition == 1 ? 'Used' : 'New') }}</li>
-                          <li>Availability : @if($prod->emptyStock()) Out of Stock @else In Stock @endif</li>
-                          <li>Manufacturer : {{ $prod->brand->link ?? "Unspecified" }}</li>
-                        </ul>
-                      </div>
-                      <!-- .woocommerce-product-details__short-description -->
-                      @if($prod->stock === 0)
-                      <span class="add-to-cart-btn cart-out-of-stock">
-                        <i class="icofont-close-circled"></i> {{ $langg->lang78 }}
-                      </span>
-                      @else
-                      <span class="button add_to_cart_button add-to-cart add-to-cart-btn" data-href="{{ route('product.cart.add',$prod->id) }}" rel="nofollow">Add to cart</span>
-                      @endif
-                      <span class="add-to-compare add-to-compare-link" data-href="{{ route('product.compare.add',$prod->id) }}">Add to compare</span>
-                    </div>
-                    @empty
-                      <p class="col">No products found in your selected filters!</p>
-                    @endforelse
-                  </div>
-                  <!-- .products -->
-                </div>
-                <!-- .woocommerce -->
-              </div>
-              <!-- .tab-pane -->
-              <div id="list-view-large" class="tab-pane {{ request()->layout == 'list' ? 'active' : '' }}" role="tabpanel">
-                <div class="woocommerce columns-1">
-                  <div class="products">
-                    @forelse($prods as $prod)
-                    <div class="product list-view-large first ">
-                      <div class="media">
-                        <img width="224" height="197" alt="" class="attachment-shop_catalog size-shop_catalog wp-post-image" src="{{ $prod->photo }}">
-                        <div class="media-body">
-                          <div class="product-info">
-                            @if(Auth::guard('web')->check())
-                            <div class="yith-wcwl-add-to-wishlist">
-                              <a data-href="{{ route('user-wishlist-add',$prod->id) }}" rel="nofollow" class="add-to-wish add_to_wishlist"> Add to Wishlist</a>
-                            </div>
-                            @endif
-                            <!-- .yith-wcwl-add-to-wishlist --> 
-                            <a class="woocommerce-LoopProduct-link woocommerce-loop-product__link" href="{{ route('front.product', $prod->slug) }}">
-                              <h2 class="woocommerce-loop-product__title">{{ $prod->showName() }}</h2>
-                              <div class="techmarket-product-rating">
-                                <div title="Rated 0 out of 5" class="star-rating"><span style="width:{{App\Models\Rating::ratings($prod->id)}}%"><strong class="rating">{{App\Models\Rating::rating($prod->id)}}</strong> out of 5</span>
-                                </div>
-                                <span class="review-count">({{App\Models\Rating::count($prod->id)}})</span>
-                              </div>
-                            </a>
-                            <!-- .woocommerce-LoopProduct-link -->
-                            @if($prod->brand)
-                            <div class="brand">
-                              <a href="#">
-                              <img alt="galaxy" src="{{ asset('assets/images/partner/'.$prod->brand->photo) }}"></a>
-                            </div>
-                            <!-- .brand -->
-                            @endif
-                            <div class="woocommerce-product-details__short-description">
-                              <ul>
-                                <li>Condition : {{ $prod->condition == 0 ? 'New' : ($prod->condition == 1 ? 'Used' : 'New') }}</li>
-                                <li>Availability : @if($prod->emptyStock()) Out of Stock @else In Stock @endif</li>
-                                <li>Manufacturer : {{ $prod->brand->link ?? "Unspecified" }}</li>
-                              </ul>
-                            </div>
-                            <!-- .woocommerce-product-details__short-description -->
-                            <span class="sku_wrapper">SKU: <span class="sku">{{ $prod->sku }}</span></span>
-                          </div>
-                          <!-- .product-info -->
-                          <div class="product-actions">
-                            <div class="availability">
-                              Availability: 
-                              @if($prod->emptyStock())
-                              <p class="stock out-of-stock">out of stock</p>
-                              @else
-                              <p class="stock in-stock">in stock</p>
-                              @endif
-                            </div>
-                            <span class="price">
-                              <span class="amount">{{ $prod->showPrice() }} </span>
-                              <del><span class="amount"> {{ $prod->showPreviousPrice() }}</span></del>
-                            </span>
-                            @if($prod->stock === 0)
-                            <span class="add-to-cart-btn cart-out-of-stock">
-                              <i class="icofont-close-circled"></i> {{ $langg->lang78 }}
-                            </span>
-                            @else
-                            <span class="button add_to_cart_button add-to-cart add-to-cart-btn" data-href="{{ route('product.cart.add',$prod->id) }}" rel="nofollow">Add to cart</span>
-                            @endif
-                            <span class="add-to-compare add-to-compare-link" data-href="{{ route('product.compare.add',$prod->id) }}">Add to compare</span>
-                          </div>
-                          <!-- .product-actions -->
-                        </div>
-                        <!-- .media-body -->
-                      </div>
-                      <!-- .media -->
-                    </div>
-                    <!-- .product -->
-                    @empty
-                      <p class="col">No products found in your selected filters!</p>
-                    @endforelse
-                  </div>
-                  <!-- .products -->
-                </div>
-                <!-- .woocommerce -->
-              </div>
-              <!-- .tab-pane -->          
-            </div>
-            <!-- .tab-content -->
-            <div class="shop-control-bar-bottom">
-              <!-- <form class="form-techmarket-wc-ppp" method="POST"> -->
-                <select class="techmarket-wc-wppp-select c-select border-0 disp-prod2">
-                  <option value="50" {{ request()->display_prods == "50" ? 'selected' : '' }}>Show 50</option>
-                  <option value="100" {{ request()->display_prods == "100" ? 'selected' : '' }}>Show 100</option>
-                  <option value="-1" {{ request()->display_prods == "-1" ? 'selected' : '' }}>Show All</option>
-                </select>
-              <!-- </form> -->
-              <!-- .form-techmarket-wc-ppp -->
-              <p class="woocommerce-result-count">
-                Showing {{ $prods->currentPage() != 1 ? (($prods->currentPage() - 1) * $prods->perPage())+1 : 1 }}
-                &ndash;{{ $prods->currentPage() != $prods->lastPage() ? $prods->count() * $prods->currentPage() : $prods->total() }}
-                 of {{ $prods->total() }} results
-              </p>
-              <!-- .woocommerce-result-count -->
-              <nav class="woocommerce-pagination">
-
-                {!! $prods->appends(['search' => request()->input('search'), 'display_prods' => request()->input('display_prods'), 'layout' => request()->input('layout'), 'min' => request()->input('min'), 'max' => request()->input('max'), 'sort' => request()->input('sort')])->links() !!}
-
-              </nav>
-              <!-- .woocommerce-pagination -->
-            </div>
-            <!-- .shop-control-bar-bottom -->       
-          </main>
-          <!-- #main -->
-        </div>
-        <!-- #primary -->
-        <div id="secondary" class="widget-area shop-sidebar" role="complementary">
-          <div class="widget woocommerce widget_product_categories techmarket_widget_product_categories" id="techmarket_product_categories_widget-2">
-            <ul class="product-categories ">
-              <li class="product_cat">
-                <span>Browse Categories</span>
-                <ul>
-                  @foreach ($categories as $element)
-                  <li class="mcat_item">
-                    <div class="content">
-                        <a href="{{route('front.category', $element->slug)}}{{!empty(request()->input('search')) ? '?search='.request()->input('search') : ''}}" class="category-link"> <i class="fa fa-angle-right"></i> {{$element->name}}</a>
-                        @if(!empty($cat) && $cat->id == $element->id && !empty($cat->subs))
-                            @foreach ($cat->subs as $key => $subelement)
-                            <div class="sub-content">
-                              <a href="{{route('front.category', [$cat->slug, $subelement->slug])}}{{!empty(request()->input('search')) ? '?search='.request()->input('search') : ''}}" class="subcategory-link"><i class="fa fa-angle-right"></i>{{$subelement->name}}</a>
-                              @if(!empty($subcat) && $subcat->id == $subelement->id && !empty($subcat->childs))
-                                @foreach ($subcat->childs as $key => $childcat)
-                                <div class="child-content">
-                                  <a href="{{route('front.category', [$cat->slug, $subcat->slug, $childcat->slug])}}{{!empty(request()->input('search')) ? '?search='.request()->input('search') : ''}}" class="subcategory-link"><i class="fa fa-angle-right"></i> {{$childcat->name}}</a>
-                                </div>
-                                @endforeach
-                              @endif
-                            </div>
-                            @endforeach
-
-                          </div>
-                        @endif
-                  </li>
-                  @endforeach
-                </ul>
-              </li>
-            </ul>
-          </div>
-          <div id="techmarket_products_filter-3" class="widget widget_techmarket_products_filter">
-            <div class="widget woocommerce widget_price_filter" id="woocommerce_price_filter-2">
-              <p>
-                <span class="gamma widget-title">Filter by price</span>
-              <div class="price_slider_amount">
-                <input id="amount" type="text" placeholder="Min price" data-min="0 - 100" value="0 - 100" style="display: none;">
-                <!-- <button class="button filterPrice" type="button">Filter</button> -->
-              </div>
-              <div id="slider-range" class="price_slider"></div>
-            </div>   
-            <button class="button filterPrice btn-block" type="button">Filter</button>
-          </div>      
-        </div>
-        <!-- #secondary -->
-      </div>
-      <!-- .row -->
+<nav class="breadcrumb-nav">
+    <div class="container">
+        <ul class="breadcrumb bb-no">
+            <li><a href="{{ url('/') }}">Home</a></li>
+            <li><a href="javascript:;">Shop</a></li>
+        </ul>
     </div>
-    <!-- .col-full -->
-  </form>
-</div>
-<!-- #content -->
+</nav>
+
+<form id="cat-prods-form" action="" method="GET">
+  <input type="hidden" value="{{ request()->layout ?? 'grid' }}" name="layout" id="pge_layout">
+  <input type="hidden" value="{{ request()->min ?? 0 }}" name="min" id="amt_min">
+  <input type="hidden" value="{{ request()->max ?? 10000 }}" name="max" id="amt_max">
+          <div class="page-content mb-10">
+              <div class="container">
+                  <!-- Start of Shop Content -->
+                  <div class="shop-content row gutter-lg">
+                      <!-- Start of Sidebar, Shop Sidebar -->
+                      <aside class="sidebar shop-sidebar sticky-sidebar-wrapper sidebar-fixed">
+                          <!-- Start of Sidebar Overlay -->
+                          <div class="sidebar-overlay"></div>
+                          <a class="sidebar-close" href="#"><i class="close-icon"></i></a>
+
+                          <!-- Start of Sidebar Content -->
+                          <div class="sidebar-content scrollable">
+                              <!-- Start of Sticky Sidebar -->
+                              <div class="sticky-sidebar">
+                                  <!-- Start of Collapsible widget -->
+                                  <div class="widget filter-data">
+                                      <h3 class="widget-title"><span>All Categories</span></h3>
+                                      <ul>
+                                        @foreach ($categories as $element)
+                                          <li><i class="fa fa-chevron-right"></i> <a href="{{route('front.category', $element->slug)}}{{!empty(request()->input('search')) ? '?search='.request()->input('search') : ''}}">{{$element->name}}</a>
+                                           <ul>
+                                                     @if(!empty($cat) && $cat->id == $element->id && !empty($cat->subs))
+                                                        @foreach ($cat->subs as $key => $subelement)
+                                                      <li>
+                                                          <i class="fa fa-chevron-right"></i>  <a href="{{route('front.category', [$cat->slug, $subelement->slug])}}{{!empty(request()->input('search')) ? '?search='.request()->input('search') : ''}}">{{$subelement->name}}</a>
+                                                          <ul>
+                                                              @if(!empty($subcat) && $subcat->id == $subelement->id && !empty($subcat->childs))
+                                                                  @foreach ($subcat->childs as $key => $childcat)
+                                                                  <li><i class="fa fa-chevron-right"></i>  <a href="{{route('front.category', [$cat->slug, $subcat->slug, $childcat->slug])}}{{!empty(request()->input('search')) ? '?search='.request()->input('search') : ''}}">{{$childcat->name}}</a>
+                                                                  </li>
+                                                                  @endforeach
+                                                              @endif
+                                                          </ul>
+                                                      </li>
+                                                        @endforeach
+                                                      @endif
+                                                  </ul>  
+                                          </li>
+                                          @endforeach
+                                      </ul>
+                                  </div>
+                                  <!-- End of Collapsible Widget -->
+
+                                  @php
+                                      $getUrl = url()->current();
+                                      $fineUrl = \Str::afterLast($getUrl, '/category/');
+                                      $finestUrl = \Str::before($fineUrl, '/');
+                                  @endphp
+                                  @if($finestUrl == 'storage-devices')
+                                  <div class="widget widget-collapsible">
+                                      <h3 class="widget-title"><span>Capacity</span></h3>
+                                      <ul class="widget-body filter-items item-check mt-1" style="height:500px;overflow-y: scroll;padding-top: 10px;">
+                                          <li>
+                                              <input value="4TB" type="checkbox" id="capacity" name="capacity" {{ request()->get('capacity') == $element->id ? 'checked' : '' }}>
+                                              <label>4TB</label>
+                                          </li>
+                                          <li>
+                                              <input value="3TB" type="checkbox" id="capacity" name="capacity" {{ request()->get('capacity') == $element->id ? 'checked' : '' }}>
+                                              <label>3TB</label>
+                                          </li>
+                                          <li>
+                                              <input value="4TB" type="checkbox" id="capacity" name="capacity" {{ request()->get('capacity') == $element->id ? 'checked' : '' }}>
+                                              <label>2TB</label>
+                                          </li>
+                                          @foreach (\App\Models\Product::where('name', 'LIKE', '%' . request()->get('capacity') . '%')->get('name') as $element)
+                                          <li class="">
+                                              <label class="">
+                                                  <input type="radio" class="" name="capacity" value="{{ $element->id }}" {{ request()->get('capacity') == $element->id ? 'checked' : '' }}/>
+                                                  {{$element->name}}
+                                              </label>
+                                          </li>
+                                          @endforeach
+                                      </ul>
+                                  </div>
+                                  @endif
+                                  <!-- Start of Collapsible Widget -->
+                                  <div class="widget widget-collapsible">
+                                      <h3 class="widget-title"><span>Price</span></h3>
+                                      <div class="widget-body price-range">
+                                         <input type="number" id="min-price" value="{{ request('min') }}" name="min" class="min_price min-price" placeholder="500">
+                                         <span class="delimiter">-</span>
+                                         <input type="number" id="max-price" value="{{ request('max') }}" name="max" class="max_price" placeholder="10000">
+                                         {{-- <button type="submit">OK</button> --}}
+                                      </div>
+                                  </div>
+                                  <!-- End of Collapsible Widget -->
+
+                                 
+
+                                  <!-- Start of Collapsible Widget -->
+                                  <div class="widget widget-collapsible">
+                                      <h3 class="widget-title"><span>Brand</span></h3>
+                                      <ul class="widget-body filter-items item-check mt-1" style="height:500px;overflow-y: scroll;padding-top: 10px;">
+                                          @foreach (\App\Models\Partner::get() as $element)
+                                          <li class="brand_filter">
+                                              <label class="brand_filter2">
+                                                  <input type="radio" class="brand_filter3" name="brand" value="{{ $element->id }}" {{ request()->get('brand') == $element->id ? 'checked' : '' }}/>
+                                                  {{$element->link}}
+                                              </label>
+                                          </li>
+                                          @endforeach
+                                      </ul>
+                                  </div>
+                                  <!-- End of Collapsible Widget -->
+
+                                  
+                              </div>
+                              <!-- End of Sidebar Content -->
+                          </div>
+                          <!-- End of Sidebar Content -->
+                      </aside>
+                      <!-- End of Shop Sidebar -->
+
+                      <!-- Start of Main Content -->
+                      <div class="main-content">
+                         
+                          <nav class="toolbox sticky-toolbox sticky-content fix-top">
+                              <div class="toolbox-left">
+                                  <a href="#" class="btn btn-primary btn-outline btn-rounded left-sidebar-toggle 
+                                      btn-icon-left d-block d-lg-none"><i
+                                          class="w-icon-category"></i><span>Filters</span></a>
+                                  <div class="toolbox-item toolbox-sort select-box text-dark">
+                                      <label>Sort By :</label>
+                                      <select  class="form-control" name="sort" onchange="this.form.submit()">
+                                        <option value="date_desc" {{ request()->sort == "date_desc" ? 'selected' : '' }}>Sort by newness</option>
+                                        <option value="date_asc" {{ request()->sort == "date_asc" ? 'selected' : '' }}>Sort by oldest</option>
+                                        <option value="price_asc" {{ request()->sort == "price_asc" ? 'selected' : '' }}>Sort by price: low to high</option>
+                                        <option value="price_desc" {{ request()->sort == "price_desc" ? 'selected' : '' }}>Sort by price: high to low</option>
+                                      </select>
+                                  </div>
+                              </div>
+                              <div class="toolbox-right">
+                                  <div class="toolbox-item toolbox-show select-box">
+                                      <select  class="form-control disp-prod1 c-select" onchange="this.form.submit()" name="display_prods" >
+                                           <option value="50" {{ request()->display_prods == "50" ? 'selected' : '' }}>Show 50</option>
+                                            <option value="100" {{ request()->display_prods == "100" ? 'selected' : '' }}>Show 100</option>
+                                            <option value="-1" {{ request()->display_prods == "-1" ? 'selected' : '' }}>Show All</option>
+                                      </select>
+                                  </div>
+                                  <!-- <div class="toolbox-item toolbox-layout">
+                                      <a href="shop-boxed-banner.html" class="icon-mode-grid btn-layout {{ request()->layout == '' || request()->layout == 'grid' ? 'active' : '' }}">
+                                          <i class="w-icon-grid"></i>
+                                      </a>
+                                      <a href="shop-list.html" class="icon-mode-list btn-layout {{ request()->layout == 'list' ? 'active' : '' }}">
+                                          <i class="w-icon-list"></i>
+                                      </a>
+                                  </div> -->
+                              </div>
+                          </nav>
+                          <div class="product-wrapper row cols-md-4 cols-sm-2 cols-2">
+                            @forelse($prods as $prod)
+                              <div class="product product-slideup-content">
+                                  <figure class="product-media">
+                                       <a href="{{ route('front.product', $prod->slug) }}">
+                                           <img src="{{ $prod->photo  }}" alt="{{ $prod->showName() }}" width="295" height="335">
+                                       </a>
+                                   </figure>
+                                   <div class="product-details">
+                                       <div class="product-cat">
+                                           <a href="{{ route('front.category',$prod->category->slug) }}">{{ $prod->category->name }}</a>
+                                       </div>
+                                       <h3 class="product-name">
+                                           <a href="{{ route('front.product', $prod->slug) }}">{{ $prod->showName() }}</a>
+                                       </h3>
+                                       <div class="product-price">
+                                           <ins class="new-price">{{ $prod->showPrice() }}</ins><del class="old-price">{{ $prod->showPreviousPrice() }}</del>
+                                       </div>
+                                   </div>
+                                   <div class="product-hidden-details">
+                                       <div class="product-action">
+                                          @if($prod->stock !== 0)
+                                          @if($prod->price != 0)
+                                          <a data-href="{{ route('product.cart.add',$prod->id) }}" class="button btn-product btn btn-dark btn-outline btn-rounded btn-sm btn-cart" title="Add to Cart">
+                                               <i class="w-icon-cart"></i>
+                                               <span>Add To Cart</span>
+                                          </a>
+                                          @else
+                                          <a href="#" class="call_price" title="Call Of Price">
+                                               <span>Call For Price</span>
+                                          </a>
+                                          @endif
+                                          @else
+                                          <a href="#" class="out_stock" title="{{ $langg->lang78 }}">
+                                               <span>{{ $langg->lang78 }}</span>
+                                          </a>
+                                          @endif
+                                          @if(Auth::guard('web')->check())
+                                          <a href="{{ route('user-wishlist-add',$prod->id) }}" class="btn-product-icon btn-wishlist w-icon-heart" title="Add to wishlist"></a>
+                                          @endif
+                                           <a href="{{ route('product.compare.add',$prod->id) }}" class="btn-product-icon btn-compare w-icon-compare" title="Compare"></a>
+                                       </div>
+                                   </div>
+                              </div>
+                              @empty
+                              <p class="col">No products found in your selected filters!</p>
+                            @endforelse
+                          </div>
+                          <div class="toolbox toolbox-pagination justify-content-between">
+                              <div class="toolbox-item toolbox-show select-box">
+                                      <select class="form-control disp-prod2">
+                                           <option value="50" {{ request()->display_prods == "50" ? 'selected' : '' }}>Show 50</option>
+                                            <option value="100" {{ request()->display_prods == "100" ? 'selected' : '' }}>Show 100</option>
+                                            <option value="-1" {{ request()->display_prods == "-1" ? 'selected' : '' }}>Show All</option>
+                                      </select>
+                                  </div>
+                              <p class="showing-info mb-2 mb-sm-0">
+                                  Showing <span>{{ $prods->currentPage() != 1 ? (($prods->currentPage() - 1) * $prods->perPage())+1 : 1 }}&ndash;{{ $prods->currentPage() != $prods->lastPage() ? $prods->count() * $prods->currentPage() : $prods->total() }}
+                                   of {{ $prods->total() }}</span> Products
+                              </p>
+                              <ul class="pagination">
+                                  {!! $prods->appends(['search' => request()->input('search'), 'display_prods' => request()->input('display_prods'), 'layout' => request()->input('layout'), 'min' => request()->input('min'), 'max' => request()->input('max'), 'sort' => request()->input('sort')])->links() !!}
+
+                              </ul>
+                          </div>
+                         
+                      </div>
+                      <!-- End of Main Content -->
+                  </div>
+                  <!-- End of Shop Content -->
+              </div>
+          </div>
+</form>
 @endsection
 @section('scripts')
 <script type="text/javascript">

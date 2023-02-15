@@ -243,7 +243,7 @@ class CatalogController extends Controller
           $curr = Currency::where('is_default','=',1)->first();
       }
       
-      $brand = \DB::table('partners')->where('link',str_slug($slug))->first();
+      $brand = \DB::table('partners')->where('link',\Str::slug($slug))->first();
       if(!empty($brand)){
           $brand = $brand->id;
       }
