@@ -353,7 +353,7 @@
                                 </div>
                             </div>
                         </div>
-                         @if(!empty($productt->specs))
+                        @if(!empty($productt->specs))
                         <div class="tab-pane" id="product-tab-specification">
                             <ul class="list-none">
                                 <li>
@@ -748,6 +748,9 @@
                         <div class="product-actions-wrapper">
                            <div id="customScrollSection" class="product-actions">
                               <div class="comment-respond" id="respond">
+                                @if(!empty($quotemsg))
+                                    <h3>{{$quotemsg}}</h3>
+                                @endif
                                  <h3 class="comment-reply-title mb-2" id="reply-title">Request for Quote:</h3>
                                  <div class="d-sm-block" id="quote-form-div">
                                     <form novalidate="" class="comment-form" id="quoteform" method="post" action="{{ route('request.quote') }}">

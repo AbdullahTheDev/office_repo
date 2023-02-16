@@ -499,7 +499,8 @@ class FrontendController extends Controller
         // Login Section Ends
 
         // Redirect Section
-        return redirect('/')->with("msg", "Your Request is submitted Successfully");
+        $quotemsg = "Your Request is submitted Successfully";
+        return redirect('/')->compact("quotemsg");
     }
 
     //home sales inquiry
