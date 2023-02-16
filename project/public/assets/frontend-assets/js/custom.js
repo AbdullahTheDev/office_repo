@@ -133,7 +133,7 @@ $(function ($) {
             } else {
               $(".alert-danger").hide();
               $(".alert-success").show();
-              $(".alert-success p").html(data);
+              $(".alert-success p").html("Query Submitted Successfully");
               $("#quoteform input[type=text], #quoteform input[type=email]")
                 .eq(0)
                 .focus();

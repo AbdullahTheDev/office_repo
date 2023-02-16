@@ -532,7 +532,9 @@ class FrontendController extends Controller
         // Login Section Ends
 
         // Redirect Section
-        return redirect()->back()->with('msg', 'Query Submitted Successfully');
+        return redirect()->back();
+        $salesmsg = "Query Submitted Successfully";
+        return redirect('/')->compact("salesmsg");
     }
 
     // Refresh Capcha Code

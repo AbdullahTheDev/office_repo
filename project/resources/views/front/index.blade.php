@@ -163,21 +163,21 @@
 {{-- Sales  --}}
 <div class="container">
     <div class="row pt-10 pb-10">
-        <div class="col-12 col-lg-4 col-sm-6 mb-4">
+        <div class="col-12 col-lg-3 col-sm-6 mb-4">
             <div class="sales-inquiry">
                 <div class="container-fluid">
                     <h2 class="inquiry-title">Sales <span class="theme_color">Inquiry</span></h2>
                     <p>Our Dedicated Account Manager will get in touch with you shortly</p>
                     <div class="alert alert-success validation" style="display: none; width:100%;">
                         <button type="button" class="close alert-close"><span>×</span></button>
-                        <p class="text-left"></p>
+                        <p>Query Submitted Successfully</p>
                     </div>
                     <div class="alert alert-danger validation" style="display: none;width:100%;">
                         <button type="button" class="close alert-close"><span>×</span></button>
                         <ul class="text-left">
                         </ul>
                     </div>
-                    <form method="post" action="{{ route('request.sale_inquiry') }}" id="quoteform">
+                    <form method="POST" action="{{ route('request.sale_inquiry') }}" id="quoteform">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-1">
@@ -217,7 +217,7 @@
             </div>
         </div>
         <!-- End of Inquiry Form -->
-        <div class="col-12 col-lg-8 col-sm-12">
+        <div class="col-12 col-lg-9 col-sm-12">
             @php
             $multiple_sections = $sections->whereIn("sort",[2,3,4])->where("status",1)->take(2);
             @endphp
