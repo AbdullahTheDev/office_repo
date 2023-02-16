@@ -263,6 +263,11 @@ $(function ($) {
           }
           $this.find("button.submit-btn").prop("disabled", false);
         },
+        error: function (data) {
+          $this.find(".alert-danger").show();
+          $this.find(".alert-danger ul").html();
+          $this.find(".alert-danger p").html("url");
+        }
       });
     });
     // MODAL LOGIN FORM ENDS
@@ -346,8 +351,10 @@ $(function ($) {
               $this.find("button.submit-btn").prop("disabled", false);
             }
           }
-
           $(".refresh_code").click();
+        },
+        error: function (data) {
+          
         },
       });
     });

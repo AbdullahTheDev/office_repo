@@ -54,8 +54,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 mt-5">
                 <h2>Sign Up</h2>
-                <form method="post" class="register signup-form mregisterform"
-                    action="{{route('user-register-submit')}}">
+                <form method="post" class="register signup-form mregisterform" action="{{route('user-register-submit')}}">
                     {{ csrf_field() }}
                     @include('includes.admin.form-login')
                     <div class="form-group mb-2">

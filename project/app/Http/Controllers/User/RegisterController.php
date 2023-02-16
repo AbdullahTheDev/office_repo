@@ -85,7 +85,7 @@ class RegisterController extends Controller
 	        ];
 
 	        $mailer = new GeniusMailer();
-	        $mailer->sendCustomMail($data);
+	        $mailer->sendCustomMail($data, $user->id);
 	        }
 	        else
 	        {

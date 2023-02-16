@@ -67,7 +67,7 @@ class LoginController extends Controller
                 return response()->redirectToRoute('vendor-dashboard');
               }
               else {
-                return response()->redirectToRoute('user-package');
+                return response()->redirectToRoute('user-dashboard');
                 }
             }
           // Login as User
