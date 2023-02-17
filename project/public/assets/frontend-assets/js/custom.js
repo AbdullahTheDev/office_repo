@@ -263,10 +263,8 @@ $(function ($) {
           }
           $this.find("button.submit-btn").prop("disabled", false);
         },
-        error: function (data) {
-          $this.find(".alert-danger").show();
-          $this.find(".alert-danger ul").html();
-          $this.find(".alert-danger p").html("url");
+        error: function(data) {
+          location.reload();
         }
       });
     });
@@ -310,6 +308,9 @@ $(function ($) {
           }
           $(".refresh_code").click();
         },
+        error: function(data) {
+          location.reload();
+        }
       });
     });
     // REGISTER FORM ENDS
@@ -353,9 +354,9 @@ $(function ($) {
           }
           $(".refresh_code").click();
         },
-        error: function (data) {
-          
-        },
+        error: function(data) {
+          location.reload();
+        }
       });
     });
     // MODAL REGISTER FORM ENDS
@@ -394,6 +395,9 @@ $(function ($) {
           }
           $this.find("button.submit-btn").prop("disabled", false);
         },
+        error: function(data) {
+          location.reload();
+        }
       });
     });
 
@@ -429,6 +433,9 @@ $(function ($) {
           }
           $this.find("button.submit-btn").prop("disabled", false);
         },
+        error: function(data) {
+          location.reload();
+        }
       });
     });
 
@@ -465,6 +472,9 @@ $(function ($) {
           $(".gocover").hide();
           $reportform.find("button.submit-btn").prop("disabled", false);
         },
+        error: function(data) {
+          location.reload();
+        }
       });
     });
 
@@ -511,6 +521,9 @@ $(function ($) {
           $(".gocover").hide();
           $("button.submit-btn").prop("disabled", false);
         },
+        error: function(data) {
+          location.reload();
+        }
       });
     });
 
