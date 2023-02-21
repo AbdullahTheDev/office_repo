@@ -1,4 +1,4 @@
- <header class="header header-border">
+<header class="header header-border">
     <div style="display: none !important;" id="top_middle_header" class="header-top d-none d-md-flex">
         <div class="container" style="padding: 4px 4px; position: relative;">
             <div class="header-right">
@@ -89,13 +89,12 @@
                         <a href="#" class="category-toggle " role="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="true" data-display="static"
                             title="Browse Categories">
-                            <i style="color: #c12228" class="w-icon-category"></i>
-                            <span style="color: #c12228">Browse Categories</span>
+                            <i class="w-icon-category"></i>
+                            <span>Browse Categories</span>
                         </a>
 
                         <div class="dropdown-box bottom-radius-10">
-                            <ul class="pure-menu-list bottom-radius-10">
-                                {{-- <ul class="menu vertical-menu category-menu bottom-radius-10"> --}}
+                            <ul class="menu vertical-menu category-menu bottom-radius-10">
                                 @php
                                 $i=1;
                                 @endphp
@@ -106,43 +105,54 @@
                                             if($category->id == 30){
                                                 $colls = 3;
                                             }else{
-                                                $colls = 12;
+                                                $colls = 6;
                                             }
                                         ?>
-                                        <li class="pure-menu-item
-                                        pure-menu-has-children
-                                        pure-menu-allow-hover">
-                                            {{-- <li class="{{ $category->id == 30 ? 'yamm-fw' : 'yamm-tfw' }}"> --}}
-                                            <a style="padding: 17px 10px; color: #6f6767;" class="pure-menu-link" href="{{ route('front.main_category', ['category' => $category->slug]) }}">
+                                        <li class="{{ $category->id == 30 ? 'yamm-fw' : 'yamm-tfw' }}">
+                                            <a href="{{ route('front.main_category', ['category' => $category->slug]) }}">
                                                 {{ $category->name }}
                                             </a>
-                                            <ul class="pure-menu-children" >
-                                                {{-- <ul class="megamenu" style="flex-direction: column; overflow-y: auto; overflow-x: hidden; padding-bottom: 20px;"> --}}
-                                                @php
-                                                    $count = 0;   
-                                                @endphp
+                                            <ul class="megamenu right-bottom-radius-10" style="height: 300px; flex-wrap: wrap; overflow-y: auto;">
                                                 @foreach($category->subs as $subcat)
-                                                    <li class="@if(count($subcat->childs) > 0) pure-menu-has-children
-                                                        pure-menu-allow-hover pure-menu-item @else pure-menu-item @endif" style="min-width: 230px;">
-                                                            <a class="pure-menu-link" style="padding: 17px 10px; color: #6f6767;" href="{{ route('front.subcat' , ['slug1' => $category->slug, 'slug2' => $subcat->slug]) }}">{{$subcat->name}}
-                                                            </a>
+                                                <li style="min-width: max-content;" class="col-md-{{$colls}} col-sm-12">
+                                                    <h4 class="menu-title">
+                                                        <a href="{{ route('front.subcat' , ['slug1' => $category->slug, 'slug2' => $subcat->slug]) }}">{{$subcat->name}}
+                                                        </a>
+                                                    </h4>
+                                                    <hr class="divider">
+                                                    <ul>
                                                         @if(count($subcat->childs) > 0)
-                                                                <ul class="pure-menu-children">
-                                                                    @foreach($subcat->childs as $childcat)
-                                                                        <li class="pure-menu-item">
-                                                                            <a class="pure-menu-link" style="padding: 17px 10px; color: #6f6767;" href="{{ route('front.childcat',['slug1' => $childcat->subcategory->category->slug, 'slug2' => $childcat->subcategory->slug, 'slug3' => $childcat->slug]) }}">{{$childcat->name}}</a>
-                                                                        </li>
-                                                                    @endforeach
-                                                                </ul>                                                      {{-- </div> --}}
+                                                            
+                                                            @foreach($subcat->childs as $childcat)
+                                                            <li><a class="sub_ul_header" href="{{ route('front.childcat',['slug1' => $childcat->subcategory->category->slug, 'slug2' => $childcat->subcategory->slug, 'slug3' => $childcat->slug]) }}">{{$childcat->name}}</a>
+                                                            </li>
+                                                            
+
+                                                            @endforeach
                                                         @endif
-                                                    </li>
-                                                    {{-- @if($count == 9)
-                                                        @break
-                                                    @endif --}}
-                                                    @php
-                                                        $count++;   
-                                                    @endphp
+                                                        <li><a class="sub_ul_header" href="{{ route('front.subcat',['slug1' => $subcat->category->slug, 'slug2' => $subcat->slug]) }}">All in {{$subcat->name}}</a></li>
+                                                    </ul>
+                                                </li>
                                                 @endforeach
+                                                <li>
+                                                    <div class="banner-fixed menu-banner menu-banner2">
+                                                        {{-- <figure>
+                                                            <img loading="lazy" src="{{ asset('assets/images/megamenu.jpg') }}" alt="Menu Banner"
+                                                                width="235" height="347" />
+                                                        </figure> --}}
+                                                        <div class="banner-content">
+                                                            <!-- <div class="banner-price-info mb-1 ls-normal">Get up to
+                                                                <strong
+                                                                    class="text-primary text-uppercase">20%Off</strong>
+                                                            </div>
+                                                            <h3 class="banner-title ls-normal">Hot Sales</h3> -->
+                                                            {{-- <a href="{{ route('front.category',$category->slug) }}"
+                                                                class="btn btn-dark btn-sm btn-link btn-slide-right btn-icon-right">
+                                                                All in {{$category->name}}<i class="w-icon-long-arrow-right"></i>
+                                                            </a> --}}
+                                                        </div>
+                                                    </div>
+                                                </li>
                                             </ul>
                                         </li>
                                     @else

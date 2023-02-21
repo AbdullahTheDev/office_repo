@@ -67,7 +67,7 @@
                                                 <a href="">{{ $category->name }}</a>
                                             </div>
                                             <h3 class="product-name">
-                                                <a href="{{ route('front.subcat' , ['slug1' => $category->slug, 'slug2' => $sub->slug]) }}">{{ $sub->name }}<sup class="count">({{$sub->products_count}})</sup></a>
+                                                <a href="{{ route('front.subcat' , ['slug1' => $category->slug, 'slug2' => $sub->slug]) }}">{{ $sub->name }}<sup class="count">({{$sub->count()}})</sup></a>
                                             </h3>
                                         </div>
                                     </div>

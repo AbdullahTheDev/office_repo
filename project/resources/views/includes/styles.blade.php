@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend-assets/css/default-skin.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend-assets/css/swiper-bundle.min.css')}}"> --}}
 <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend-assets/css/plugin.min.css')}}">
+<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
 <!-- Default CSS -->
 @if(url()->current() == route('front.index'))
 <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend-assets/css/demo1.min.css')}}">
