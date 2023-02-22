@@ -94,7 +94,7 @@
                         </a>
 
                         <div class="dropdown-box bottom-radius-10">
-                            <ul class="pure-menu-list bottom-radius-10">
+                            <ul class="pure-menu-list bottom-radius-10" style="padding-bottom: 10px;">
                                 {{-- <ul class="menu vertical-menu category-menu bottom-radius-10"> --}}
                                 @php
                                 $i=1;
@@ -113,10 +113,10 @@
                                         pure-menu-has-children
                                         pure-menu-allow-hover">
                                             {{-- <li class="{{ $category->id == 30 ? 'yamm-fw' : 'yamm-tfw' }}"> --}}
-                                            <a style="padding: 17px 10px; color: #6f6767;" class="pure-menu-link" href="{{ route('front.main_category', ['category' => $category->slug]) }}">
+                                            <a style="padding: 17px 17px; color: #6f6767;" class="pure-menu-link" href="{{ route('front.main_category', ['category' => $category->slug]) }}">
                                                 {{ $category->name }}
                                             </a>
-                                            <ul class="pure-menu-children" >
+                                            <ul class="pure-menu-children right-bottom-radius-10" >
                                                 {{-- <ul class="megamenu" style="flex-direction: column; overflow-y: auto; overflow-x: hidden; padding-bottom: 20px;"> --}}
                                                 @php
                                                     $count = 0;   
@@ -127,7 +127,7 @@
                                                             <a class="pure-menu-link" style="padding: 17px 10px; color: #6f6767;" href="{{ route('front.subcat' , ['slug1' => $category->slug, 'slug2' => $subcat->slug]) }}">{{$subcat->name}}
                                                             </a>
                                                         @if(count($subcat->childs) > 0)
-                                                                <ul class="pure-menu-children">
+                                                                <ul class="pure-menu-children bottom-radius-10">
                                                                     @foreach($subcat->childs as $childcat)
                                                                         <li class="pure-menu-item">
                                                                             <a class="pure-menu-link" style="padding: 17px 10px; color: #6f6767;" href="{{ route('front.childcat',['slug1' => $childcat->subcategory->category->slug, 'slug2' => $childcat->subcategory->slug, 'slug3' => $childcat->slug]) }}">{{$childcat->name}}</a>
@@ -147,7 +147,7 @@
                                         </li>
                                     @else
                                         <li>
-                                            <a href="{{ route('front.category',$category->slug) }}">
+                                            <a style="padding: 17px 17px; color: #6f6767;" href="{{ route('front.category',$category->slug) }}">
                                                 {{ $category->name }}
                                             </a>
                                         </li>
@@ -158,7 +158,7 @@
                                         @endphp 
                                         @if($i == 10)
                                             <li>
-                                                <a href="{{ route('front.categories') }}">
+                                                <a style="padding: 17px 17px; color: #6f6767;" href="{{ route('front.categories') }}">
                                                    See All Categories
                                                 </a>
                                             </li>
