@@ -176,6 +176,67 @@
                                 <a href="{{ route('front.category',['category' => $item->slug]) }}">{{ $item->name }}</a>
                             </li>
                             @endforeach
+                            <style>
+                                .menu, .about-drop-menu {
+                                    list-style-type: none;
+                                    padding: 0;
+                                    margin: 0;
+                                }
+                                .about_li {
+                                    display: inline-block;
+                                    background-color: #4285f4;
+                                    position: relative;
+                                }
+                                .about_a {
+                                    text-decoration: none;
+                                    padding: 6px 10px;
+                                    color: #fff;
+                                    display: block;
+                                    width: 160px;
+                                }
+                                .about-drop-menu {
+                                    display: none;
+                                    position: absolute;
+                                    background-color: #fff;
+                                    min-width: 100px;
+                                    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+                                }
+                                .about-drop-menu-item {
+                                    width: 100%;
+                                }
+                                .about-drop-menu-item:hover {
+                                    background-color: #eee;
+                                }
+                                .about-drop-menu-item a {
+                                    color: #555;
+                                }
+                                .about_li:hover .about-drop-menu {
+                                    display: block;
+                                }
+                                .about_a:hover .about-drop-menu {
+                                    display: block;
+                                }
+                            </style>
+                            {{-- @php
+                                $about = DB::table('pages')->where('id','=',7)->value('title');
+                            @endphp
+                            <li class="about_li">
+                                <a class="about_a" href="#">{{$about}}</a>
+                            </li>
+                            <ul class="about-drop-menu">
+                                <li class="about-drop-menu-item">
+                                    <a href="">Hello</a>
+                                </li>
+                            </ul> --}}
+                            {{-- @foreach(DB::table('pages')->where('footer','=',1)->get() as $data)
+                            @if ($data->slug != "about-us")
+                                <ul class="about-drop-menu">
+                                    <li class="about-drop-menu-item">
+                                        <a href="{{ route('front.page',$data->slug) }}">{{ $data->title }}</a>
+                                    </li>
+                                </ul>
+                            @endif
+                            @endforeach --}}
                             @endif
                         </ul>
                     </nav>
