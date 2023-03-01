@@ -167,7 +167,7 @@
                                 </div>
                             </nav>
                             <div class="product-wrapper row cols-md-4 cols-sm-2 cols-2">
-                              @forelse($prods as $prod)
+                              {{-- @forelse($prods as $prod)
                                 <div class="product product-slideup-content">
                                     <figure class="product-media">
                                          <a href="{{ route('front.product', $prod->slug) }}">
@@ -212,7 +212,7 @@
                                 </div>
                                 @empty
                                 <p class="col">No products found in your selected filters!</p>
-                              @endforelse
+                              @endforelse --}}
                             </div>
                             <div class="toolbox toolbox-pagination justify-content-between">
                                 <div class="toolbox-item toolbox-show select-box">
