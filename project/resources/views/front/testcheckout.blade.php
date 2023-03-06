@@ -665,30 +665,6 @@
                                     <span> 
                                         @if($gs->tax != 0)
                                             <input name="sub_tax" id="taxtCalculate" value="0" />
-                                            {{-- {{$gs->tax}}%  --}}
-                                            {{-- {{ Session::has('cart') ? App\Models\Product::convertPrice(Session::get('cart')->totalPrice) : '0.00' }} --}}
-                                            {{-- @php
-                                                $tax = $gs->tax;
-                                                if (Session::has('currency'))
-                                                {$tax
-                                                    $curr = \App\Models\Currency::find(\Session::get('currency'));
-                                                }
-                                                else
-                                                {
-                                                    $curr = \App\Models\Currency::where('is_default','=',1)->first();
-                                                }
-                                                if(\Session::has('cart')){
-                                                    $subtotal = round(\Session::get('cart')->totalPrice * $curr->value,2);
-                                                    $dueTax = round($subtotal * ($tax / 100),2);
-                                                    $finalTax = round($subtotal * (1 + ($tax / 100)),2);
-                                                    // echo $subtotal . '<br />';
-                                                    echo '$' . $dueTax . '<br />';
-                                                    // echo  `<span id="finalTax_span">`.$finalTax.`</span>`;
-                                                    // echo $finalTax . '<br />';
-                                                }else{
-                                                    $subtotal = 0.00;
-                                                }
-                                            @endphp --}}
                                         @else
                                         --
                                         <input type="hidden" name="sub_tax" value="" />
@@ -784,7 +760,6 @@
 @section('scripts')
 
     <script>
-
         $('#v-pills-tab2-tab').click(function() {
         //     // alert("Clickll");
             $('#stripe_card').addClass('stripe_card_show');
@@ -842,7 +817,7 @@
     @endphp
 
     <script>
-       let productArr = <?php echo json_encode($products); ?>;
+		       let productArr = <?php echo json_encode($products); ?>;
      //  console.log(productArr);
     
         for(const key in productArr){
@@ -863,6 +838,27 @@
                 }]
             });
         }
+    //    let productArr = <?php echo json_encode($products); ?>;
+    //  //  console.log(productArr);
+    
+        // for(const key in productArr){
+        //     const element = productArr[key];
+        //     gtag("event", "begin_checkout", {
+        //         transaction_id: "T_12345_1",
+        //         value: 25.42,
+        //         tax: {!!$gs->tax!!},
+        //         currency: "USD",
+        //         coupon: {!!$coupon!!},
+        //         items: [
+        //             {
+        //             id: element.item.id,
+        //             name: element.item.name,
+        //             slug: element.item.slug,
+        //             price: element.item.price,
+        //             quantity: element.item.qty
+        //         }]
+        //     });
+        // }
 
         // console.log(items);
     </script>
@@ -1015,12 +1011,18 @@
                 shipments(); 
             }, delay );
         });
-    
-        var getEmailStarting = $('#check_name_email').val();
-        if(getEmailStarting != null || "")
-        {
-            applyTax($(this));
-        }
+		
+		$(document).ready(function(){
+			  setTimeout(() => {
+					var getEmailStarting = $('#check_name_email').val();
+					if(getEmailStarting != null || "")
+					{
+						//alert(getEmailStarting);
+						applyTax(getEmailStarting);
+					}
+			   }, 2000);
+		});
+            
         function applyTax(_this){
             var getEmailValue = $('#check_name_email').val().split('@').pop();
             // var afterAt = getEmailValue.split('@').pop();

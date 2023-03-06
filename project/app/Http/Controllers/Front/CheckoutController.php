@@ -56,6 +56,7 @@ class CheckoutController extends Controller
         //     echo $product["qty"];
         // }
         // die;
+
         $rateRequest = new ComplexType\RateRequest();
         //authentication & client details
         $rateRequest->WebAuthenticationDetail->UserCredential->Key = "mjs81Etb1uOBakqq";
@@ -143,7 +144,6 @@ class CheckoutController extends Controller
         $rateServiceRequest = new RateServiceRequest();
         $rateServiceRequest->getSoapClient()->__setLocation("https://ws.fedex.com:443/web-services/rate"); //use production URL
 
-        // dd($rateServiceRequest);
         // dd($rateRequest);
 
         $rateReply = $rateServiceRequest->getGetRatesReply($rateRequest); // send true as the 2nd argument to return the SoapClient's stdClass response.
