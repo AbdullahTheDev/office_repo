@@ -12,6 +12,10 @@ Route::get('/clear', function () {
   Artisan::call('config:clear');
   return '<h1>All Cache cleared</h1>';
 });
+Route::get('testSquareup', function(){
+  return view('front.squareCheckout');
+});
+Route::get('/Square', 'Front\SquareupController@Squareup');
 Route::get('/MailTester', 'Front\FrontendController@MailTester');
 Route::get('/google-feed', 'Admin\FeedController@Feed');
 Route::get('/ConvertJpgToWebp', 'Admin\DashboardController@ConvertJpgToWebp');
