@@ -151,6 +151,10 @@
         border-bottom: 1px solid #f8f8f8;
         padding: 0px 20px;
     }
+    .checkout .grid-container .payment_info .sub_payment_box .card .row{
+        border-bottom: 1px solid #f8f8f8;
+        padding: 0px 20px;
+    }
     .checkout .grid-container .payment_info .sub_payment_box .stripe .row .stripe_bundle{
         display: flex;
         flex-direction: row;
@@ -168,6 +172,11 @@
         margin: 0;
     }
     .checkout .grid-container .payment_info .sub_payment_box .paypal .row input{
+        height: 15px;
+        width: 15px;
+        margin-top: 4px;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .card .row input{
         height: 15px;
         width: 15px;
         margin-top: 4px;
@@ -204,7 +213,9 @@
         padding: 18px 9px;
         border-top: 1px solid #d5d2d2;
         border-bottom: 1px solid #d5d2d2;
-
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .card .row h4{
+        font-size: 1.1em;
     }
     #stripe_card{
         display: none;
@@ -218,6 +229,12 @@
         gap: 5px;
     }
     .checkout .grid-container .payment_info .sub_payment_box .paypal{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        padding: 13px 0px;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .card{
         width: 100%;
         height: 100%;
         position: relative;
@@ -464,7 +481,8 @@
                         Payment Method
                     </h3>
                     <div class="sub_payment_box">
-                        <div class="stripe">
+                        @if($gs->stripe_check == 1)
+                            <div class="stripe">
                                 <div id="stripe" class="row">
                                     <div class="col-1">
                                         <div class="stripe_bundle">
@@ -487,53 +505,52 @@
                                 </div>
                                 <div id="stripe_card" class="stripe_card">
                                 </div>
-                                {{-- <div id="stripe_card" class="stripe_card">
-                                    <input type="text" placeholder="Card Number" name="" id="">
-                                    <input type="text" placeholder="Name On Card" name="" id="">
-                                    <div class="flex_stripe_card">
-                                        <input type="text" placeholder="Expiration Date" name="" id="">
-                                        <input type="text" placeholder="Security Code" name="" id="">
-                                    </div>
-                                </div> --}}
                             </div>
+                        @endif
+                            @if($gs->paypal_check == 1)
                             <div class="paypal">
-                            <div class="row">
-                                <div class="col-1">
-                                    <div class="paypal_bundle">
-                                        <input  type="radio" required name="pay" class="payment" data-val="" data-show="no" data-form="{{route('paypal.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'paypal','slug2' => 0]) }}" id="paypal" data-toggle="pill" href="#v-pills-tab1" role="tab" aria-controls="v-pills-tab1" aria-selected="true">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <div class="paypal_bundle">
+                                            <input type="radio" required name="pay" class="payment" data-val="" data-show="no" data-form="{{route('paypal.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'paypal','slug2' => 0]) }}" id="paypal" data-toggle="pill" href="#v-pills-tab1" role="tab" aria-controls="v-pills-tab1" aria-selected="true">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="paypal_image">
+                                            <img src="{{asset('assets/images/paypal.webp')}}" width="55" height="10" alt="Paypal">
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <picture>
+                                            <img width="40" height="10" src="{{asset('assets/images/checkout/visa.webp')}}" alt="Visa">
+                                            <img width="40" height="10" src="{{asset('assets/images/checkout/mastercard.png')}}" alt="Mastercard">
+                                            <img width="40" height="10" src="{{asset('assets/images/checkout/unionpay.png')}}" alt="Union Pay">
+                                        </picture>
+                                    </div>                 
+                                    {{-- <input type="radio" name="" id=""> --}}
+                                </div>
+                            </div>
+                        @endif
+                        @if($gs->cod_check == 1)
+                            @if($digital == 0)
+                                <div class="card">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <input type="radio" required name="pay" class="payment" data-val="" data-show="no" data-form="{{route('cash.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'cod','slug2' => 0]) }}" id="v-pills-tab3-tab" data-toggle="pill" href="#v-pills-tab3" role="tab" aria-controls="v-pills-tab3" aria-selected="false">
+                                        </div>
+                                        <div class="col-11">
+                                            @if($gs->cod_text != null)
+                                            <h4>
+                                                {{ $gs->cod_text }}
+                                            </h4>
+                                        </div>
+                                        @endif
+                                    </div>
+                                    <div id="v-pills-tab3" class="card-body payarea">
                                     </div>
                                 </div>
-                                <div class="col-4">
-                                    <div class="paypal_image">
-                                        <img src="{{asset('assets/images/paypal.webp')}}" width="55" height="10" alt="Paypal">
-                                    </div>
-                                </div>
-                                <div class="col-7">
-                                    <picture>
-                                        <img width="40" height="10" src="{{asset('assets/images/checkout/visa.webp')}}" alt="Visa">
-                                        <img width="40" height="10" src="{{asset('assets/images/checkout/mastercard.png')}}" alt="Mastercard">
-                                        <img width="40" height="10" src="{{asset('assets/images/checkout/unionpay.png')}}" alt="Union Pay">
-                                    </picture>
-                                </div>                 
-                                {{-- <input type="radio" name="" id=""> --}}
-                            </div>
-                            </div>
-                            @if($gs->cod_check == 1)
-                              @if($digital == 0)
-                              <div class="card">
-                                 <div class="card-header">
-                                    <input type="radio" required name="pay" class="payment" data-val="" data-show="no" data-form="{{route('cash.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'cod','slug2' => 0]) }}" id="v-pills-tab3-tab" data-toggle="pill" href="#v-pills-tab3" role="tab" aria-controls="v-pills-tab3" aria-selected="false"> {{ $langg->lang762 }}
-                                    @if($gs->cod_text != null)
-                                    <small>
-                                       {{ $gs->cod_text }}
-                                    </small>
-                                    @endif
-                                 </div>
-                                 <div id="v-pills-tab3" class="card-body payarea">
-                                 </div>
-                              </div>
-                              @endif
-                              @endif
+                            @endif
+                        @endif
                     </div>
                     <div class="billing_address">
                         <h5>Billing Address</h5>

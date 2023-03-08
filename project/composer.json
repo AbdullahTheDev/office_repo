@@ -22,6 +22,7 @@
         "maatwebsite/excel": "*",
         "mollie/laravel-mollie": "^2.15",
         "razorpay/razorpay": "^2.7",
+        "square/connect": "^3.20200528",
         "srmklive/paypal": "^3.0",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
