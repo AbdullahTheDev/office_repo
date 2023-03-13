@@ -137,6 +137,12 @@
         background-color: #f8f8f8;
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     }
+
+    .checkout .grid-container .payment_info .sub_payment_box .card .row{
+        border-bottom: 1px solid #f8f8f8;
+        padding: 0px 20px;
+    }
+    /* Stripe  */
     .checkout .grid-container .payment_info .sub_payment_box .stripe{
         /* padding: 5px 0px; */
         background-color: #fff;
@@ -147,19 +153,7 @@
         border-bottom: 1px solid #f8f8f8;
         padding: 0px 20px;
     }
-    .checkout .grid-container .payment_info .sub_payment_box .paypal .row{
-        border-bottom: 1px solid #f8f8f8;
-        padding: 0px 20px;
-    }
-    .checkout .grid-container .payment_info .sub_payment_box .card .row{
-        border-bottom: 1px solid #f8f8f8;
-        padding: 0px 20px;
-    }
     .checkout .grid-container .payment_info .sub_payment_box .stripe .row .stripe_bundle{
-        display: flex;
-        flex-direction: row;
-    }
-    .checkout .grid-container .payment_info .sub_payment_box .paypal .row .paypal_bundle{
         display: flex;
         flex-direction: row;
     }
@@ -171,16 +165,6 @@
         width: 15px;
         margin: 0;
     }
-    .checkout .grid-container .payment_info .sub_payment_box .paypal .row input{
-        height: 15px;
-        width: 15px;
-        margin-top: 4px;
-    }
-    .checkout .grid-container .payment_info .sub_payment_box .card .row input{
-        height: 15px;
-        width: 15px;
-        margin-top: 4px;
-    }
     .checkout .grid-container .payment_info .sub_payment_box .stripe .row picture{
         width: 100%;
         display: flex;
@@ -190,7 +174,41 @@
         aspect-ratio: 2/1;
         object-fit: fill;
         margin: 0px 6px;
+        
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .stripe_card{
+        background-color:#f8f8f8;
+        /* display: none; */
+        padding: 18px 9px;
+        border-top: 1px solid #d5d2d2;
+        border-bottom: 1px solid #d5d2d2;
+    }
+    #stripe_card{
+        display: none;
+    }
+    .stripe_card_show{
+        display: block !important;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .stripe_card .flex_stripe_card{
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+    }
+    /* End Stripe  */
 
+    /* Paypal  */
+    .checkout .grid-container .payment_info .sub_payment_box .paypal .row{
+        border-bottom: 1px solid #f8f8f8;
+        padding: 0px 20px;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .paypal .row .paypal_bundle{
+        display: flex;
+        flex-direction: row;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .paypal .row input{
+        height: 15px;
+        width: 15px;
+        margin-top: 4px;
     }
     .checkout .grid-container .payment_info .sub_payment_box .paypal .row .paypal_image img{
         aspect-ratio: 2/1;
@@ -207,39 +225,87 @@
         margin: 0px 6px;
 
     }
-    .checkout .grid-container .payment_info .sub_payment_box .stripe_card{
-        background-color:#f8f8f8;
-        /* display: none; */
-        padding: 18px 9px;
-        border-top: 1px solid #d5d2d2;
-        border-bottom: 1px solid #d5d2d2;
-    }
-    .checkout .grid-container .payment_info .sub_payment_box .card .row h4{
-        font-size: 1.1em;
-    }
-    #stripe_card{
-        display: none;
-    }
-    .stripe_card_show{
-        display: block !important;
-    }
-    .checkout .grid-container .payment_info .sub_payment_box .stripe_card .flex_stripe_card{
-        display: flex;
-        flex-direction: row;
-        gap: 5px;
-    }
     .checkout .grid-container .payment_info .sub_payment_box .paypal{
         width: 100%;
         height: 100%;
         position: relative;
         padding: 13px 0px;
     }
+
+    /* End Paypal  */
+
+    /* Squareup  */
+    .checkout .grid-container .payment_info .sub_payment_box .squareup{
+        /* padding: 5px 0px; */
+        background-color: #fff;
+        border-bottom: 1px solid #f8f8f8;
+        padding-top: 19px;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .squareup .row{
+        border-bottom: 1px solid #f8f8f8;
+        padding: 0px 20px;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .squareup .row .squareup_bundle{
+        display: flex;
+        flex-direction: row;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .squareup .row .squareup_bundle h4{
+        font-size: 1.1em;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .squareup .row .squareup_bundle input{
+        height: 15px;
+        width: 15px;
+        margin: 0;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .squareup .row picture{
+        width: 100%;
+        display: flex;
+        justify-content: end;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .squareup .row picture img{
+        aspect-ratio: 2/1;
+        object-fit: fill;
+        margin: 0px 6px;
+        
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .squareup_card{
+        background-color:#f8f8f8;
+        /* display: none; */
+        padding: 18px 9px;
+        border-top: 1px solid #d5d2d2;
+        border-bottom: 1px solid #d5d2d2;
+    }
+    #squareup_card{
+        display: none;
+    }
+    .squareup_card_show{
+        display: block !important;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .squareup_card .flex_squareup{
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+    }
+    /* End Squareup  */
+
+
+    .checkout .grid-container .payment_info .sub_payment_box .card .row input{
+        height: 15px;
+        width: 15px;
+        margin-top: 4px;
+    }
+    .checkout .grid-container .payment_info .sub_payment_box .card .row h4{
+        font-size: 1.1em;
+    }
+
+
     .checkout .grid-container .payment_info .sub_payment_box .card{
         width: 100%;
         height: 100%;
         position: relative;
         padding: 13px 0px;
     }
+
     .checkout .grid-container .payment_info .billing_address{
         padding: 10px 0px;
     }
@@ -487,7 +553,6 @@
                                     <div class="col-1">
                                         <div class="stripe_bundle">
                                             <input type="radio" required name="pay" class="payment" data-val="" data-show="yes" data-form="{{route('stripe.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'stripe','slug2' => 0]) }}" id="v-pills-tab2-tab" data-toggle="pill" href="#stripe_card" role="tab" aria-controls="stripe_card" aria-selected="false">
-                                            {{-- <a style="display: none;" name="pay" class="payment" data-val="" data-show="yes" data-form="{{route('stripe.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'stripe','slug2' => 0]) }}" id="" data-toggle="pill" href="#stripe_card" role="tab" aria-controls="stripe_card" aria-selected="false">click</a> --}}
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -507,17 +572,17 @@
                                 </div>
                             </div>
                         @endif
-                            @if($gs->paypal_check == 1)
-                            <div class="paypal">
-                                <div class="row">
+                        @if($gs->squareup_check == 1)
+                            <div class="squareup">
+                                <div id="squareup" class="row">
                                     <div class="col-1">
-                                        <div class="paypal_bundle">
-                                            <input type="radio" required name="pay" class="payment" data-val="" data-show="no" data-form="{{route('paypal.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'paypal','slug2' => 0]) }}" id="paypal" data-toggle="pill" href="#v-pills-tab1" role="tab" aria-controls="v-pills-tab1" aria-selected="true">
+                                        <div class="squareup_bundle">
+                                            <input type="radio" required name="pay" class="payment" data-val="" data-show="yes" data-form="{{route('squareup.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'squareup','slug2' => 0]) }}" id="v-pills-tab3-tab" data-toggle="pill" href="#squareup_card" role="tab" aria-controls="squareup_card" aria-selected="false">
                                         </div>
                                     </div>
                                     <div class="col-4">
-                                        <div class="paypal_image">
-                                            <img src="{{asset('assets/images/paypal.webp')}}" width="55" height="10" alt="Paypal">
+                                        <div class="squareup_bundle">
+                                            <h4>Square Card</h4>
                                         </div>
                                     </div>
                                     <div class="col-7">
@@ -526,13 +591,38 @@
                                             <img width="40" height="10" src="{{asset('assets/images/checkout/mastercard.png')}}" alt="Mastercard">
                                             <img width="40" height="10" src="{{asset('assets/images/checkout/unionpay.png')}}" alt="Union Pay">
                                         </picture>
-                                    </div>                 
-                                    {{-- <input type="radio" name="" id=""> --}}
+                                    </div>
+                                </div>
+                                <div id="squareup_card" class="squareup_card">
                                 </div>
                             </div>
                         @endif
-                        @if($gs->cod_check == 1)
-                            @if($digital == 0)
+                    @if($gs->paypal_check == 1)
+                        <div class="paypal">
+                            <div class="row">
+                                <div class="col-1">
+                                    <div class="paypal_bundle">
+                                        <input type="radio" required name="pay" class="payment" data-val="" data-show="no" data-form="{{route('paypal.submit')}}" data-href="{{ route('front.load.payment',['slug1' => 'paypal','slug2' => 0]) }}" id="paypal" data-toggle="pill" href="#v-pills-tab1" role="tab" aria-controls="v-pills-tab1" aria-selected="true">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="paypal_image">
+                                        <img src="{{asset('assets/images/paypal.webp')}}" width="55" height="10" alt="Paypal">
+                                    </div>
+                                </div>
+                                <div class="col-7">
+                                    <picture>
+                                        <img width="40" height="10" src="{{asset('assets/images/checkout/visa.webp')}}" alt="Visa">
+                                        <img width="40" height="10" src="{{asset('assets/images/checkout/mastercard.png')}}" alt="Mastercard">
+                                        <img width="40" height="10" src="{{asset('assets/images/checkout/unionpay.png')}}" alt="Union Pay">
+                                    </picture>
+                                </div>                 
+                                {{-- <input type="radio" name="" id=""> --}}
+                            </div>
+                        </div>
+                    @endif
+                    @if($gs->cod_check == 1)
+                        @if($digital == 0)
                                 <div class="card">
                                     <div class="row">
                                         <div class="col-1">
@@ -549,8 +639,8 @@
                                     <div id="v-pills-tab3" class="card-body payarea">
                                     </div>
                                 </div>
-                            @endif
                         @endif
+                    @endif
                     </div>
                     <div class="billing_address">
                         <h5>Billing Address</h5>
@@ -776,16 +866,131 @@
 
 @section('scripts')
 
+<script>
+    const appId = 'sandbox-sq0idb-e38ui8XLKdoICmR4hT9LIA';
+    const locationId = 'LA7TWHG3575JT';
+
+    async function initializeCard(payments) {
+      const card = await payments.card();
+      await card.attach('#card-container');
+
+      return card;
+    }
+
+    async function createPayment(token) {
+      const body = JSON.stringify({
+        locationId,
+        sourceId: token,
+        _token: {{ csrf_token() }}
+      });
+
+      const paymentResponse = await fetch('https://dealsondrives.com/payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body,
+      });
+
+      if (paymentResponse.ok) {
+        return paymentResponse.json();
+      }
+
+      const errorBody = await paymentResponse.text();
+      throw new Error(errorBody);
+    }
+
+    async function tokenize(paymentMethod) {
+      const tokenResult = await paymentMethod.tokenize();
+      if (tokenResult.status === 'OK') {
+        return tokenResult.token;
+      } else {
+        let errorMessage = `Tokenization failed with status: ${tokenResult.status}`;
+        if (tokenResult.errors) {
+          errorMessage += ` and errors: ${JSON.stringify(
+            tokenResult.errors
+          )}`;
+        }
+
+        throw new Error(errorMessage);
+      }
+    }
+
+    // status is either SUCCESS or FAILURE;
+    function displayPaymentResults(status) {
+      const statusContainer = document.getElementById(
+        'payment-status-container'
+      );
+      if (status === 'SUCCESS') {
+        statusContainer.classList.remove('is-failure');
+        statusContainer.classList.add('is-success');
+      } else {
+        statusContainer.classList.remove('is-success');
+        statusContainer.classList.add('is-failure');
+      }
+
+      statusContainer.style.visibility = 'visible';
+    }
+
+      document.addEventListener('DOMContentLoaded', async function () {
+        if (!window.Square) {
+          throw new Error('Square.js failed to load properly');
+        }
+
+        let payments;
+        try {
+          payments = window.Square.payments(appId, locationId);
+        } catch {
+          const statusContainer = document.getElementById(
+            'payment-status-container'
+          );
+          statusContainer.className = 'missing-credentials';
+          statusContainer.style.visibility = 'visible';
+          return;
+        }
+
+        let card;
+        try {
+          card = await initializeCard(payments);
+        } catch (e) {
+          console.error('Initializing Card failed', e);
+          return;
+        }
+
+          // Checkpoint 2.
+          async function handlePaymentMethodSubmission(event, paymentMethod) {
+            event.preventDefault();
+
+            try {
+              // disable the submit button as we await tokenization and make a payment request.
+              cardButton.disabled = true;
+              const token = await tokenize(paymentMethod);
+              const paymentResults = await createPayment(token);
+              displayPaymentResults('SUCCESS');
+
+              console.debug('Payment Success', paymentResults);
+            } catch (e) {
+              cardButton.disabled = false;
+              displayPaymentResults('FAILURE');
+              console.error(e.message);
+            }
+          }
+
+          const cardButton = document.getElementById('card-button');
+          cardButton.addEventListener('click', async function (event) {
+          await handlePaymentMethodSubmission(event, card);
+      });
+    });
+</script>
+
     <script>
         $('#v-pills-tab2-tab').click(function() {
         //     // alert("Clickll");
             $('#stripe_card').addClass('stripe_card_show');
-        //     $('#stripe_month').prop('required', 'required');
-        //     $('#stripe_cardcvc').prop('required', 'required');
-        //     $('#stripe_cardnumber').prop('required', 'required');
-
-        //     // setRequired(true);
-            // $('#v-pills-tab2-tab').prop("checked", true);
+        });
+        $('#v-pills-tab3-tab').click(function() {
+            // alert("RF");
+            $('#squareup_card').addClass('squareup_card_show');
         });
 
         $('#inner_different_billing').click(function() {
@@ -795,6 +1000,7 @@
         $('.paypal').click(function(){
             $('#paypal').prop("checked", true);
             $('#stripe_card').removeClass('stripe_card_show');
+            $('#squareup_card').removeClass('squareup_card_show');
         });
 
         $('#same_billing').click(function(){

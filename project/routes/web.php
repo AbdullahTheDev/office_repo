@@ -16,6 +16,7 @@ Route::get('testSquareup', function(){
   return view('front.squareCheckout');
 });
 Route::get('/Square', 'Front\SquareupController@Squareup');
+Route::post('/payment', 'Front\SquareupController@Squareup')->name('payment.square');
 Route::get('/MailTester', 'Front\FrontendController@MailTester');
 Route::get('/google-feed', 'Admin\FeedController@Feed');
 Route::get('/ConvertJpgToWebp', 'Admin\DashboardController@ConvertJpgToWebp');
@@ -1006,6 +1007,7 @@ Route::prefix('user')->group(function () {
   Route::post('/vendor-request', 'User\UserController@vendorrequestsub')->name('user-vendor-request-submit');
 
   Route::post('/paypal/submit', 'User\PaypalController@store')->name('user.paypal.submit');
+  Route::post('/squareup/submit', 'Front\SquareupController@Squareup')->name('squareup.submit');
   Route::get('/paypal/cancle', 'User\PaypalController@paycancle')->name('user.payment.cancle');
   Route::get('/paypal/return', 'User\PaypalController@payreturn')->name('user.payment.return');
   Route::post('/paypal/notify', 'User\PaypalController@notify')->name('user.payment.notify');

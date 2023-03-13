@@ -25,6 +25,9 @@
 
 <script src="{{ asset('assets/dod/js/toastr.min.js') }}"></script>
 
+{{-- Squreup --}}
+<script type="text/javascript" src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
+
     <!-- Main JS -->
 <script src="{{asset('assets/frontend-assets/js/main.min.js')}}"></script>
 <script src="{{asset('assets/frontend-assets/js/custom.js')}}?{{ rand(1111,9999) }}"></script>

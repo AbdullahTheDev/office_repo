@@ -70,7 +70,7 @@
 
                           </div>
                         </div>
-                        <div class="row">
+                        {{-- <div class="row">
                           <div class="col-lg-4">
                             <div class="left-area">
                                 <h4 class="heading">{{ __('Meta Title') }}</h4>
@@ -105,7 +105,7 @@
                                 <textarea class="form-control" name="meta_description">{{ $data->meta_description }}</textarea>
                             </div>
                           </div>
-                        </div>
+                        </div> --}}
 
                         <br>
                         <div class="row">

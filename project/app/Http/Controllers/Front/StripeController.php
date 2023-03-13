@@ -125,7 +125,7 @@ class StripeController extends Controller
                             'exp_year' => $request->year,
                             'cvc' => $request->cardCVC,
                         ],
-                    ]);
+                ]);
                     
                       
                 if (!isset($token['id'])) {

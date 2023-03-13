@@ -115,28 +115,30 @@ class SubCategoryController extends Controller
         $rules = [
             'image' => 'mimes:jpeg,jpg,png,svg,webp',
             'slug' => 'unique:subcategories,slug,'.$id.'|regex:/^[a-zA-Z0-9\s-]+$/'
-                 ];
+        ];
         $customs = [
             'slug.unique' => 'This slug has already been taken.',
             'slug.regex' => 'Slug Must Not Have Any Special Characters.'
-                   ];
+        ];
         $validator = Validator::make($request->all(), $rules, $customs);
-
+        
         if ($validator->fails()) {
           return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
         }
         //--- Validation Section Ends
-
+        
         //--- Logic Section
         $data = Subcategory::findOrFail($id);
         $input = $request->all();
         if ($file = $request->file('image'))
-         {
+        {
             $name = time().$file->getClientOriginalName();
             $file->move('assets/images/categories',$name);
-            $input['image'] = $name;
+            // $input['image'] = $name;
+            $data->update(['image' => $name]);
         }
-        $data->update($input);
+        $data->update($request->all());
+        return response()->json('new');
         //--- Logic Section Ends
 
         //--- Redirect Section
